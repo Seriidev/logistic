@@ -1,6 +1,32 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import DiscountDetailModal from "../components/DiscountDetailModal";
+
+const OFFER_20_MODAL = {
+  heading: "What's Included in the 20% Off Offer?",
+  paragraphs: [
+    "YuuSell is making it easier than ever to shop from the USA and China with a special welcome offer for new users. Now you can enjoy 20% off your first delivery, automatically applied at checkout — no promo code needed!",
+    "Whether you're ordering trendy clothes from the U.S., gadgets from Amazon, or wholesale goods from 1688 or Taobao, YuuSell guarantees fast, affordable, and reliable delivery straight to your door.",
+  ],
+  listTitle: "🔥 What You Get:",
+  listItems: [
+    { bold: "20% discount", text: " on your first international delivery" },
+    { bold: "Automatic application", text: " — no promo code required" },
+    { bold: "Shipping from", text: " the USA and China" },
+    { bold: "Real-time tracking", text: ", secure storage, and personal account dashboard" },
+    { bold: "Prices starting", text: " from just $5 after discount" },
+  ],
+};
+
+const XBOX_MODAL = {
+  heading: "Autumn Surprise: XBOX Giveaway",
+  paragraphs: [
+    "🎁 Promo runs: Sept 8–30, 2025",
+    "Winner revealed Oct 1, 2025 — follow us on social media to stay tuned.",
+    "Don't stop be-leafing — let this autumn surprise you!",
+    "Register with YuuSell for a chance to win an XBOX. Good luck!",
+  ],
+};
 
 const CATEGORIES = [
   { label: "Discounts", count: 5 },
@@ -19,6 +45,7 @@ const DISCOUNTS = [
     date: "18.08.2025",
     path: "/discounts/1",
     special: true,
+    modal: XBOX_MODAL,
   },
   {
     id: 2,
@@ -30,6 +57,7 @@ const DISCOUNTS = [
     date: "14.02.2025",
     path: "/discounts/2",
     special: false,
+    modal: OFFER_20_MODAL,
   },
   {
     id: 3,
@@ -41,6 +69,7 @@ const DISCOUNTS = [
     date: "14.02.2025",
     path: "/discounts/3",
     special: false,
+    modal: OFFER_20_MODAL,
   },
   {
     id: 4,
@@ -52,11 +81,13 @@ const DISCOUNTS = [
     date: "14.02.2025",
     path: "/discounts/4",
     special: false,
+    modal: OFFER_20_MODAL,
   },
 ];
 
 export default function DiscountsPage() {
   const [activeCategory, setActiveCategory] = useState("Discounts");
+  const [selectedDiscount, setSelectedDiscount] = useState(null);
 
   const filtered = DISCOUNTS.filter((n) => n.category === activeCategory);
 
@@ -221,17 +252,26 @@ export default function DiscountsPage() {
                 </p>
 
                 {/* Read more */}
-                 <Link
-                   to={item.path}
-                   className="text-sm text-blue-500 font-medium no-underline hover:underline">
-                   read more...
-                 </Link>
+                <button
+                  type="button"
+                  onClick={() => setSelectedDiscount(item)}
+                  className="text-sm text-blue-500 font-medium border-none bg-transparent p-0 cursor-pointer hover:underline font-[inherit]"
+                >
+                  read more...
+                </button>
               </div>
             </div>
           ))
         )}
       </div>
     </section>
+
+    <DiscountDetailModal
+      isOpen={Boolean(selectedDiscount)}
+      onClose={() => setSelectedDiscount(null)}
+      discount={selectedDiscount}
+    />
+
     <Footer/>
     </>
   );

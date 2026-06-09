@@ -1,4 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
+
 export default function ShippingProcess() {
+  const navigate = useNavigate();
+
+  const handleSendParcel = () => {
+    if (!isAuthenticated()) {
+      navigate("/signup?redirect=/create-shipment");
+      return;
+    }
+    navigate("/create-shipment");
+  };
+
   return (
     <section className="py-10 sm:py-16 bg-white min-w-0">
       <div className="page-container">
@@ -108,7 +121,13 @@ export default function ShippingProcess() {
             <p className="text-white text-center text-sm leading-relaxed">
               Fast and secure delivery
             </p>
-            <button className="w-full bg-white text-[#1E3A8A] font-semibold py-3 rounded-full hover:bg-blue-50 transition-colors mt-4">Send</button>
+            <button
+              type="button"
+              onClick={handleSendParcel}
+              className="w-full bg-white text-[#1E3A8A] font-semibold py-3 rounded-full hover:bg-blue-50 transition-colors mt-4 border-none cursor-pointer font-[inherit]"
+            >
+              Send
+            </button>
           </div>
           {/* Right side card - Send a parcel */}
 {/*           

@@ -1,14 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-const SERVICES = [
-  { id: 1, title: "Air Cargo", image: "/minibanner1.jpg", path: "/air-cargo" },
-  { id: 2, title: "Transport Cargo", image: "/minibanner5.jpg", path: "/transport-cargo" },
-  { id: 3, title: "Sea Cargo", image: "/minibanner3.jpg", path: "/sea-cargo" },
-  { id: 4, title: "Auto Shipping", image: "/minibanner4.jpg", path: "/auto-shipping" },
-  { id: 5, title: "Truck Cargo", image: "/minibanner2.jpg", path: "/truck-cargo" },
-  { id: 6, title: "Amazon FBA", image: "/minibanner6.jpg", path: "/amazon-fba" },
-];
+import ServicesGrid from "./ServicesGrid";
 
 const MOCK_RESULTS = {
   "YUU123456": {
@@ -279,44 +270,7 @@ export default function TrackPage() {
           </div>
         )}
 
-        {/* Services grid */}
-        <div className="mt-12">
-          <h2 className="text-xl font-extrabold text-gray-900 mb-6">Our Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {SERVICES.map((service) => (
-              <div key={service.id}
-                className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden">
-                <div className="relative h-[160px]">
-                  <img src={service.image} alt={service.title}
-                    className="w-full h-full object-cover"
-                    onError={(e) => { e.target.style.background = "#e8eaf6"; e.target.style.opacity = "0.5"; }}
-                  />
-                  <div className="absolute top-3 left-3 bg-white/90 rounded-lg px-2 py-1
-                    flex items-center gap-1.5">
-                    <img src="/logo/logo.svg" alt="YuuSell" className="h-4 w-auto"
-                      onError={(e) => { e.target.style.display = "none"; }} />
-                    <span className="text-xs font-semibold text-gray-900">YuuSell</span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-2">
-                    We receive, label, pack, and ship your products directly to Amazon FBA
-                    warehouses. 100% compliant with Amazon's requirements — no delays.
-                  </p>
-                  <Link to={service.path}
-                    className="inline-block bg-gray-900 text-white text-xs font-semibold
-                      uppercase tracking-wider px-4 py-2 rounded-lg
-                      hover:bg-blue-600 transition-colors duration-150 no-underline">
-                    More Details
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ServicesGrid className="mt-12" />
 
       </section>
     </>

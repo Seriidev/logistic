@@ -150,15 +150,15 @@ const SECTIONS = [
   },
 ];
 
+const SCROLL_OFFSET = 128;
+
 export default function PrivacyPolicy() {
   const [activeId, setActiveId] = useState("information");
   const sectionRefs = useRef({});
-
   const scrollTo = (id) => {
     const el = sectionRefs.current[id];
     if (el) {
-      const offset = 100;
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
@@ -182,28 +182,28 @@ export default function PrivacyPolicy() {
 
   return (
     <>
-    <section className="page-container min-w-0 py-6">
+    <section className="page-container min-w-0 pt-8 sm:pt-10 lg:pt-12 pb-10 sm:pb-14 lg:pb-16">
 
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <a href="/" className="hover:text-blue-500 no-underline text-gray-500 rounded-full">Main</a>
-        <span>›</span>
+      <nav
+        aria-label="Breadcrumb"
+        className="relative z-10 flex items-center gap-2 text-sm text-gray-500 mb-8 sm:mb-10 lg:mb-12 shrink-0"
+      >
+        <a href="/" className="hover:text-blue-500 no-underline text-gray-500 transition-colors">Main</a>
+        <span className="text-gray-300" aria-hidden="true">›</span>
         <span className="text-gray-900 font-medium">Privacy policy</span>
-      </div>
+      </nav>
 
-      {/* Intro */}
-      <p className="text-sm text-gray-500 leading-relaxed mb-8 max-w-full lg:max-w-3xl min-w-0">
+      <p className="text-sm text-gray-500 leading-relaxed mb-8 sm:mb-10 lg:mb-12 max-w-full lg:max-w-3xl min-w-0">
         YuuSell ("we", "our", or "us") values your privacy and is committed to protecting
         your personal information. This Privacy Policy explains how we collect, use, and
         protect your data when you use our services through our website or any other
         communication channels.
       </p>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch min-w-0">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12 items-start min-w-0">
 
-        {/* Sticky sidebar */}
-        <div className="page-sidebar page-sidebar--wide">
-          <nav>
+        <aside className="page-sidebar page-sidebar--wide w-full shrink-0 lg:!top-28 xl:!top-32">
+          <nav className="pb-1 lg:pb-0">
             {SECTIONS.map((section) => (
                 <button
                   key={section.id}
@@ -214,37 +214,36 @@ export default function PrivacyPolicy() {
                     ${activeId === section.id
                       ? "bg-blue-50 text-blue-500 font-semibold"
                       : "bg-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50"}
-                  `}
-                >
+                  `}>
                 {section.title}
               </button>
             ))}
           </nav>
-        </div>
+        </aside>
 
-        {/* Content */}
-        <div className="flex-1 min-w-0 flex flex-col gap-10 pb-20">
-          {SECTIONS.map((section) => (
-            <div
-              key={section.id}
-              id={section.id}
-              ref={(el) => (sectionRefs.current[section.id] = el)}
-            >
-              <h2 className="text-lg font-bold text-gray-900 mb-3">
-                {section.title}
-              </h2>
-              {section.content}
+        <div className="flex-1 min-w-0 w-full max-w-4xl lg:pt-1">
+          <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-6 lg:p-8 shadow-sm">
+            <div className="flex flex-col gap-10 sm:gap-11 lg:gap-12 pb-2 sm:pb-4">
+              {SECTIONS.map((section) => (
+                <div
+                  key={section.id}
+                  id={section.id}
+                  ref={(el) => (sectionRefs.current[section.id] = el)}
+                  className="scroll-mt-32 sm:scroll-mt-36 min-w-0">
+                  <h2 className="text-lg font-bold text-gray-900 mb-4 sm:mb-5">
+                    {section.title}
+                  </h2>
+                  {section.content}
+                </div>
+              ))}
+              <div className="border-t border-gray-200 pt-6 sm:pt-8 mt-2 sm:mt-4 text-center">
+                <p className="text-sm text-gray-500">
+                  <strong>Effective Date:</strong> May 15, 2025
+                </p>
+              </div>
             </div>
-          ))}
-
-          {/* Footer date */}
-          <div className="border-t border-gray-200 pt-6 text-center">
-            <p className="text-sm text-gray-500">
-              <strong>Effective Date:</strong> May 15, 2025
-            </p>
           </div>
         </div>
-
       </div>
     </section>
     <Footer/>

@@ -106,7 +106,7 @@ const SECTIONS = [
     title: "How to Ship with YuuSell",
     questions: [
       {
-        q: "6. Step by Step: How Shipping Works with YuuSell",
+        q: "7. Step by Step: How Shipping Works with YuuSell",
         a: (
           <ol className="list-decimal pl-5 flex flex-col gap-2 text-sm text-gray-600">
             <li>Get an instant quote on our Ship Now page</li>
@@ -120,19 +120,19 @@ const SECTIONS = [
         ),
       },
       {
-        q: "7. How do I calculate a shipping cost?",
+        q: "8. How do I calculate a shipping cost?",
         a: <p className="text-sm text-gray-600">Use our free shipping calculator on the Ship Now page. Enter origin, destination, weight, and dimensions to get an instant quote. You can also contact our team for a custom quote for large or complex shipments.</p>,
       },
       {
-        q: "8. How can I track my shipment?",
+        q: "9. How can I track my shipment?",
         a: <p className="text-sm text-gray-600">Every shipment gets a unique tracking number. Track in real-time on our Track page, via our Telegram bot @yuusell_bot, or through automatic SMS/email notifications we send at every stage of delivery.</p>,
       },
       {
-        q: "9. Do I need cargo insurance?",
+        q: "10. Do I need cargo insurance?",
         a: <p className="text-sm text-gray-600">Cargo insurance is optional but highly recommended, especially for high-value goods. We offer comprehensive cargo insurance that covers loss, damage, and theft during transit. Ask our team for details when booking.</p>,
       },
       {
-        q: "10. What documents do I need?",
+        q: "11. What documents do I need?",
         a: (
           <ul className="list-disc pl-5 flex flex-col gap-1.5 text-sm text-gray-600">
             <li>Commercial Invoice</li>
@@ -150,23 +150,23 @@ const SECTIONS = [
     title: "Customs, Delivery, and Troubleshooting",
     questions: [
       {
-        q: "11. What about customs clearance?",
+        q: "12. What about customs clearance?",
         a: <p className="text-sm text-gray-600">Our team handles full customs clearance including documentation, duty calculation, and direct communication with customs authorities. We ensure your shipment complies with all import/export regulations to avoid delays.</p>,
       },
       {
-        q: "12. Are there shipping delays to be aware of?",
+        q: "13. Are there shipping delays to be aware of?",
         a: <p className="text-sm text-gray-600">Delays can occur due to customs inspections, port congestion, weather, or peak seasons (Chinese New Year, Golden Week). We monitor all shipments and proactively notify you of any delays with updated ETAs.</p>,
       },
       {
-        q: "13. What is the best way to ship to ensure it is free from China?",
+        q: "14. What is the best way to ship to ensure it is free from China?",
         a: <p className="text-sm text-gray-600">To minimize costs, consider consolidating multiple orders into one shipment, choosing sea freight for non-urgent goods, and shipping during off-peak periods. Our team can advise the most cost-effective strategy for your specific needs.</p>,
       },
       {
-        q: "14. What's the best shipping method for me?",
+        q: "15. What's the best shipping method for me?",
         a: <p className="text-sm text-gray-600">It depends on your priorities. If speed is critical — choose express or air freight. If cost is the main concern — sea freight LCL or FCL is best. Our team can analyze your shipment details and recommend the optimal solution.</p>,
       },
       {
-        q: "15. Need help choosing the right option?",
+        q: "16. Need help choosing the right option?",
         a: (
           <div className="flex flex-col gap-3">
             <p className="text-sm text-gray-600">Our logistics experts are available 24/7 to help you choose the best shipping option. Contact us via:</p>
@@ -238,8 +238,6 @@ export default function ShippingMethodsPage() {
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
         <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
-        <span>›</span>
-        <a href="/discounts" className="hover:text-blue-500 no-underline text-gray-500">Discounts</a>
         <span>›</span>
         <span className="text-gray-900 font-medium">Shipping Methods & Options</span>
       </div>

@@ -397,10 +397,100 @@ svg {
   animation: footerModalSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Discount detail modal — smooth mobile sheet + resize transitions */
+@keyframes discountModalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes discountModalSlideUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes discountModalScaleIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.discount-modal-backdrop {
+  animation: discountModalFadeIn 0.32s ease-out forwards;
+}
+
+.discount-modal-overlay {
+  animation: discountModalFadeIn 0.32s ease-out forwards;
+}
+
+.discount-modal-panel {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition:
+    border-radius 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    max-width 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    width 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    max-height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    padding-bottom 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (max-width: 639px) {
+  .discount-modal-panel {
+    animation: discountModalSlideUp 0.42s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+}
+
+@media (min-width: 640px) {
+  .discount-modal-panel {
+    animation: discountModalScaleIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+.discount-modal-shell {
+  transition: padding 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.discount-modal-content {
+  transition: padding 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.discount-modal-inner {
+  transition:
+    padding 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+    border-radius 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .footer-modal-backdrop,
   .footer-modal-panel {
     animation: none;
+  }
+
+  .discount-modal-backdrop,
+  .discount-modal-overlay,
+  .discount-modal-panel {
+    animation: none;
+    transition: none;
+  }
+
+  .discount-modal-shell,
+  .discount-modal-content,
+  .discount-modal-inner {
+    transition: none;
   }
 
   .faq-accordion-panel {

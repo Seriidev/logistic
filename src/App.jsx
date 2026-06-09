@@ -25,8 +25,10 @@ import ShippingMethodsPage from "./Pages/ShippingMethod";
 import OnlineStoresPage from "./Pages/OnlineStores";
 import AboutUsPage from "./Pages/AboutUs";
 import ProhibitedItemsPage from "./Pages/Prohibited";
-import CalculatePage from "./Pages/Calculate";
+import { CalculatePage, CreateShipmentPage } from "./Pages/shipment";
 import ProfilePage from "./Pages/Profile";
+import { AuthPage } from "./Pages/auth";
+import { NotFoundPage, ServerErrorPage } from "./Pages/errors";
 
 
 function HomePage() {
@@ -70,8 +72,13 @@ function App() {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/prohibited-items" element={<ProhibitedItemsPage />} />
         <Route path="/calculate" element={<CalculatePage />} />
+        <Route path="/create-shipment" element={<CreateShipmentPage />} />
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/signup" element={<AuthPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        
+        <Route path="/500" element={<ServerErrorPage />} />
+        <Route path="/505" element={<ServerErrorPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
 
 const TABS = ["International", "Domestic", "Tracking"];
 
 export default function ShippingCalculator() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("International");
   const [from, setFrom] = useState("USA");
   const [to, setTo] = useState("");
@@ -13,7 +16,11 @@ export default function ShippingCalculator() {
   const [trackingCode, setTrackingCode] = useState("");
 
   const handleCalculate = () => {
-    alert("Calculating your quote...");
+    if (!isAuthenticated()) {
+      navigate("/signup?redirect=/create-shipment");
+      return;
+    }
+    navigate("/create-shipment");
   };
 
   return (

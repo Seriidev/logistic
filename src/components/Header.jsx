@@ -278,15 +278,15 @@ export default function Header() {
 
           <div className="hidden lg:flex items-center gap-2 shrink-0">
             <LanguageSwitcher />
-            <button
-              type="button"
+            <Link
+              to="/signup"
               className="flex items-center h-10 px-4 bg-gray-100 text-gray-900 rounded-full text-sm font-semibold
-                cursor-pointer hover:bg-blue-600 hover:text-white transition-all font-[inherit]"
+                no-underline cursor-pointer hover:bg-blue-600 hover:text-white transition-all font-[inherit]"
             >
               Sign up
-            </button>
+            </Link>
             <Link
-              to="/profile"
+              to="/login"
               className="flex items-center h-10 px-4 bg-blue-500 text-white rounded-full text-sm font-semibold
                 no-underline hover:bg-blue-600 font-[inherit]"
             >
@@ -374,14 +374,15 @@ export default function Header() {
               </a>
               <LanguageSwitcher className="w-full [&>button]:w-full [&>button]:justify-center" />
               <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  className="h-11 rounded-full bg-white border border-gray-200 text-sm font-semibold text-gray-900 cursor-pointer"
+                <Link
+                  to="/signup"
+                  onClick={closeMenu}
+                  className="flex h-11 items-center justify-center rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-900 no-underline"
                 >
                   Sign up
-                </button>
+                </Link>
                 <Link
-                  to="/profile"
+                  to="/login"
                   onClick={closeMenu}
                   className="h-11 flex items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold no-underline"
                 >
