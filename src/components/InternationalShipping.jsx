@@ -1,42 +1,12 @@
 import { Link } from "react-router-dom";
 
 const ITEMS = [
-  {
-    id: 1,
-    title: "Dimensional Weight",
-    icon: "/icons/dimensional-weight.svg",
-    path: "/dimensional-weight",
-  },
-  {
-    id: 2,
-    title: "Customs Declaration",
-    icon: "/icons/customs-declaration.svg",
-    path: "/customs-declaration",
-  },
-  {
-    id: 3,
-    title: "Prohibited Items",
-    icon: "/icons/prohibited-items.svg",
-    path: "/prohibited-items",
-  },
-  {
-    id: 4,
-    title: "Deliver to US Through FedEx",
-    icon: "/icons/deliver-fedex.svg",
-    path: "/deliver-fedex",
-  },
-  {
-    id: 5,
-    title: "Compliance",
-    icon: "/icons/compliance.svg",
-    path: "/compliance",
-  },
-  {
-    id: 6,
-    title: "Restricted Air Freight Items",
-    icon: "/icons/restricted-air.svg",
-    path: "/restricted-air",
-  },
+  { id: 1, title: "Dimensional Weight", icon: "/shipicon/11.png", path: "/dimensional-weight" },
+  { id: 2, title: "Customs Declaration", icon: "/shipicon/22.png", path: "/customs-declaration" },
+  { id: 3, title: "Prohibited Items", icon: "/shipicon/33.png", path: "/prohibited-items" },
+  { id: 4, title: "Deliver to US Through FedEx", icon: "/shipicon/44.png", path: "/deliver-fedex" },
+  { id: 5, title: "Compliance", icon: "/shipicon/55.png", path: "/compliance" },
+  { id: 6, title: "Restricted Air Freight Items", icon: "/shipicon/66.png", path: "/restricted-air" },
 ];
 
 export default function InternationalShipping() {
@@ -57,38 +27,24 @@ export default function InternationalShipping() {
         {/* Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {ITEMS.map((item) => (
-            <div key={item.id}
+            <div
+              key={item.id}
               className="border-2 border-dashed border-blue-200 rounded-2xl
-                bg-white/60 p-5 flex flex-col items-center text-center gap-4">
-
-              {/* Icon */}
-              <div className="w-16 h-16 flex items-center justify-center">
+                bg-white/60 p-4 sm:p-5 flex flex-col items-center text-center gap-3 sm:gap-4"
+            >
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center shrink-0">
                 <img
                   src={item.icon}
-                  alt={item.title}
-                  className="w-12 h-12 object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML = `
-                      <div style="width:48px;height:48px;background:#e8eaf6;border-radius:12px;
-                        display:flex;align-items:center;justify-content:center">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5"
-                          style="width:24px;height:24px">
-                          <rect x="3" y="3" width="18" height="18" rx="2"/>
-                          <path d="M3 9h18M9 21V9"/>
-                        </svg>
-                      </div>`;
-                  }}
+                  alt=""
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
                 />
               </div>
 
-              {/* Title */}
               <p className="text-xs font-extrabold text-gray-900 uppercase leading-tight">
                 {item.title}
               </p>
 
-              {/* Button */}
-               <Link
+              <Link
                  to={item.path}
                  className="bg-blue-500 text-white text-[10px] font-bold uppercase
                    tracking-wider px-4 py-1.5 rounded-lg no-underline

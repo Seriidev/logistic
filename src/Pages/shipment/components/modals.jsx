@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ShipmentModal, { ModalActions } from "./ShipmentModal";
+import PhoneInputField from "../../../components/PhoneInputField";
 import { TextInput } from "./shared";
+import { getPhoneValidationError } from "../../../utils/phone";
 import { COUNTRIES, OBTAIN_OPTIONS, TRANSPORT_OPTIONS, US_STATES } from "../constants";
 
 const emptyLocation = { country: "United States", address: "", city: "", state: "", zip: "" };
@@ -112,9 +114,13 @@ function RadioModal({ isOpen, onClose, onSave, title, options, initial }) {
 
 function ContactModal({ isOpen, onClose, onSave, title, initial }) {
   const [form, setForm] = useState(emptyContact);
+  const [phoneError, setPhoneError] = useState("");
 
   useEffect(() => {
-    if (isOpen) setForm(initial || emptyContact);
+    if (isOpen) {
+      setForm(initial || emptyContact);
+      setPhoneError("");
+    }
   }, [isOpen, initial]);
 
   const set = (key) => (val) => setForm((f) => ({ ...f, [key]: val }));
@@ -123,6 +129,12 @@ function ContactModal({ isOpen, onClose, onSave, title, initial }) {
     if (!form.company?.trim() && !form.lastName?.trim()) {
       return alert("Please enter a name.");
     }
+    const err = getPhoneValidationError(form.phone, { required: true });
+    if (err) {
+      setPhoneError(err);
+      return;
+    }
+    setPhoneError("");
     onSave({ ...form, firstName: form.company });
     onClose();
   };
@@ -133,7 +145,15 @@ function ContactModal({ isOpen, onClose, onSave, title, initial }) {
         <TextInput label="Full name / Company name" placeholder="Full name / Company name" value={form.company} onChange={set("company")} />
         <TextInput label="Last name" placeholder="Last name" value={form.lastName} onChange={set("lastName")} />
         <TextInput label="Email" placeholder="email@example.com" value={form.email} onChange={set("email")} type="email" />
-        <TextInput label="Phone number" placeholder="+1 (___) ___-____" value={form.phone} onChange={set("phone")} type="tel" />
+        <PhoneInputField
+          label="Phone number"
+          required
+          variant="default"
+          value={form.phone}
+          onChange={(v) => { set("phone")(v); setPhoneError(""); }}
+          error={phoneError}
+          placeholder="Enter phone number"
+        />
         <TextInput label="Address" placeholder="Street address" value={form.address} onChange={set("address")} />
         <TextInput label="City" placeholder="City" value={form.city} onChange={set("city")} />
         <label className="flex flex-col gap-1.5">

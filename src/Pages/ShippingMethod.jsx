@@ -148,6 +148,7 @@ const SECTIONS = [
   {
     id: "customs",
     title: "Customs, Delivery, and Troubleshooting",
+    sidebarTitle: ["Customs, Delivery,", "and Troubleshooting"],
     questions: [
       {
         q: "12. What about customs clearance?",
@@ -254,12 +255,21 @@ export default function ShippingMethodsPage() {
                   className={`
                     text-left text-sm px-3 py-2 rounded-full transition-all duration-150
                     border-none cursor-pointer font-[inherit] leading-snug
+                    ${section.sidebarTitle ? "!whitespace-normal" : ""}
                     ${activeSection === section.id
                       ? "bg-blue-50 text-blue-500 font-semibold"
                       : "bg-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50"}
                   `}
                 >
-                {section.title}
+                {section.sidebarTitle ? (
+                  <span className="block">
+                    {section.sidebarTitle.map((line) => (
+                      <span key={line} className="block">{line}</span>
+                    ))}
+                  </span>
+                ) : (
+                  section.title
+                )}
               </button>
             ))}
           </nav>

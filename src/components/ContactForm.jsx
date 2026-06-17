@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PhoneInputField from "./PhoneInputField";
+import { getPhoneValidationError } from "../utils/phone";
 
 const SHIPPING_OPTIONS = [
   "Business",
@@ -8,24 +10,20 @@ const SHIPPING_OPTIONS = [
   "Other",
 ];
 
-const PHONE_CODES = [
-  { code: "+1", flag: "🇺🇸" },
-  { code: "+7", flag: "🇷🇺" },
-  { code: "+44", flag: "🇬🇧" },
-  { code: "+49", flag: "🇩🇪" },
-  { code: "+86", flag: "🇨🇳" },
-  { code: "+971", flag: "🇦🇪" },
-  { code: "+998", flag: "🇺🇿" },
-];
-
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [phoneCode, setPhoneCode] = useState("+1");
+  const [phoneError, setPhoneError] = useState("");
   const [shipping, setShipping] = useState("Business");
 
   const handleSubmit = () => {
+    const err = getPhoneValidationError(phone, { required: true });
+    if (err) {
+      setPhoneError(err);
+      return;
+    }
+    setPhoneError("");
     alert(`Thank you, ${name}! We'll contact you soon.`);
   };
 
@@ -86,44 +84,16 @@ export default function ContactForm() {
           {/* Row 2 — Phone + Shipping */}
           <div className="flex flex-col sm:flex-row gap-4">
 
-            {/* Phone */}
-            <div className="flex-1 min-w-0">
-              <label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                Phone*
-              </label>
-              <div className="flex h-12 rounded-full border border-gray-200
-                overflow-hidden focus-within:border-blue-400
-                hover:border-gray-300 transition-colors duration-150">
-
-                {/* Flag + Code */}
-                <div className="flex items-center pl-4 pr-1 gap-1 shrink-0">
-                  <span className="text-base">
-                    {PHONE_CODES.find((p) => p.code === phoneCode)?.flag}
-                  </span>
-                  <select
-                    value={phoneCode}
-                    onChange={(e) => setPhoneCode(e.target.value)}
-                    className="text-sm text-gray-700 border-none outline-none
-                      bg-transparent cursor-pointer font-[inherit] pr-1"
-                  >
-                    {PHONE_CODES.map((p) => (
-                      <option key={p.code} value={p.code}>{p.code}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="w-px bg-gray-200 my-3" />
-
-                <input
-                  type="tel"
-                  placeholder="8123456789"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="flex-1 px-4 text-sm text-gray-900 outline-none
-                    border-none bg-transparent font-[inherit]"
-                />
-              </div>
-            </div>
+            <PhoneInputField
+              label="Phone"
+              required
+              variant="rounded"
+              value={phone}
+              onChange={(v) => { setPhone(v); setPhoneError(""); }}
+              error={phoneError}
+              placeholder="Enter phone number"
+              className="flex-1 min-w-0 [&_label]:text-sm [&_label]:text-gray-700 [&_label]:font-medium"
+            />
 
             {/* Shipping as */}
             <div className="flex-1">

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Footer from "../../components/Footer";
+import PhoneInputField from "../../components/PhoneInputField";
 import { loginUser } from "../../utils/auth";
+import { getPhoneValidationError } from "../../utils/phone";
 import AuthIllustration from "./AuthIllustration";
 
 const inputClass =
@@ -55,6 +57,7 @@ export default function AuthPage() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const switchMode = (next) => {
     setMode(next);
@@ -75,6 +78,12 @@ export default function AuthPage() {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
+    const err = getPhoneValidationError(phone, { required: true });
+    if (err) {
+      setPhoneError(err);
+      return;
+    }
+    setPhoneError("");
     finishAuth();
   };
 
@@ -217,19 +226,15 @@ export default function AuthPage() {
                       </label>
                     </div>
 
-                    <label className="flex flex-col gap-1.5">
-                      <span className="text-xs font-medium text-gray-500">Phone</span>
-                      <div className="flex h-12 items-center gap-2 rounded-xl bg-[#f0f2f5] px-3 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100 focus-within:border focus-within:border-blue-400 transition-all">
-                        <span className="text-lg shrink-0" aria-hidden="true">🇺🇸</span>
-                        <input
-                          type="tel"
-                          placeholder="+1 (___) ___-____"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="flex-1 min-w-0 h-full bg-transparent border-none outline-none text-sm text-gray-900 font-[inherit] placeholder:text-gray-400"
-                        />
-                      </div>
-                    </label>
+                    <PhoneInputField
+                      label="Phone"
+                      required
+                      variant="auth"
+                      value={phone}
+                      onChange={(v) => { setPhone(v); setPhoneError(""); }}
+                      error={phoneError}
+                      placeholder="Enter phone number"
+                    />
 
                     <label className="flex flex-col gap-1.5">
                       <span className="text-xs font-medium text-gray-500">Email</span>

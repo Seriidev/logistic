@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
+import PhoneInputField from "../components/PhoneInputField";
+import { getPhoneValidationError } from "../utils/phone";
 
 const TABS = ["Claim", "Question", "Feedback"];
 
@@ -7,6 +9,7 @@ export default function ContactPage() {
   const [activeTab, setActiveTab] = useState("Feedback");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
@@ -14,6 +17,12 @@ export default function ContactPage() {
 
   const handleSend = () => {
     if (!agreed) { alert("Please agree to the terms."); return; }
+    const err = getPhoneValidationError(phone, { required: true });
+    if (err) {
+      setPhoneError(err);
+      return;
+    }
+    setPhoneError("");
     alert("Message sent! We'll get back to you soon.");
   };
 
@@ -141,13 +150,14 @@ export default function ContactPage() {
               className="flex-1 h-10 px-4 rounded-full bg-white border-none outline-none
                 text-sm text-gray-900 font-[inherit]"
             />
-            <input
-              type="tel"
+            <PhoneInputField
+              variant="compact"
               placeholder="Phone number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 h-10 px-4 rounded-full bg-white border-none outline-none
-                text-sm text-gray-900 font-[inherit]"
+              onChange={(v) => { setPhone(v); setPhoneError(""); }}
+              error={phoneError}
+              required
+              className="flex-1 min-w-0 [&_p[role=alert]]:text-red-100"
             />
           </div>
 

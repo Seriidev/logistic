@@ -1,22 +1,7 @@
 import Footer from "../components/Footer";
+import { PROHIBITED, SPECIAL } from "../data/prohibitedItems";
 
-const PROHIBITED = [
-  { id: 1, title: "Explosives and Ammunition", icon: "/icons/prohibited/explosives.svg" },
-  { id: 2, title: "Firearms and Cold Weapons", icon: "/icons/prohibited/firearms.svg" },
-  { id: 3, title: "Flammable Liquids and Gases", icon: "/icons/prohibited/flammable.svg" },
-  { id: 4, title: "Toxic and Poisonous Substances", icon: "/icons/prohibited/toxic.svg" },
-  { id: 5, title: "Radioactive Materials", icon: "/icons/prohibited/radioactive.svg" },
-  { id: 6, title: "Lithium Batteries (in some cases)", icon: "/icons/prohibited/battery.svg" },
-  { id: 7, title: "Perishable Goods and Biological Materials", icon: "/icons/prohibited/perishable.svg" },
-  { id: 8, title: "Cultural and Natural Assets", icon: "/icons/prohibited/cultural.svg" },
-];
-
-const SPECIAL = [
-  { id: 1, title: "Dry ice", icon: "/icons/prohibited/dry-ice.svg" },
-  { id: 2, title: "Medicines and dietary nutrition", icon: "/icons/prohibited/medicines.svg" },
-];
-
-const ItemCard = ({ item, color = "red" }) => (
+const ItemCard = ({ item }) => (
   <div className="bg-white rounded-2xl p-5 flex flex-col items-center text-center gap-3
     shadow-sm hover:shadow-md transition-shadow duration-200">
     <div className="w-20 h-20 flex items-center justify-center">
@@ -24,20 +9,6 @@ const ItemCard = ({ item, color = "red" }) => (
         src={item.icon}
         alt={item.title}
         className="w-16 h-16 object-contain"
-        onError={(e) => {
-          e.target.style.display = "none";
-          e.target.parentElement.innerHTML = `
-            <div style="width:64px;height:64px;border-radius:50%;
-              border:2px solid ${color === "red" ? "#ef4444" : "#3b82f6"};
-              display:flex;align-items:center;justify-content:center">
-              <svg viewBox="0 0 24 24" fill="none"
-                stroke="${color === "red" ? "#ef4444" : "#3b82f6"}"
-                stroke-width="1.5" style="width:28px;height:28px">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M4.93 4.93l14.14 14.14"/>
-              </svg>
-            </div>`;
-        }}
       />
     </div>
     <p className="text-xs font-semibold text-gray-800 leading-snug">{item.title}</p>
@@ -78,7 +49,7 @@ export default function ProhibitedItemsPage() {
           {/* Prohibited grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
             {PROHIBITED.map((item) => (
-              <ItemCard key={item.id} item={item} color="red" />
+              <ItemCard key={item.id} item={item} />
             ))}
           </div>
 
@@ -90,7 +61,7 @@ export default function ProhibitedItemsPage() {
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {SPECIAL.map((item) => (
-                <ItemCard key={item.id} item={item} color="blue" />
+                <ItemCard key={item.id} item={item} />
               ))}
             </div>
           </div>

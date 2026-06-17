@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import Footer from "../components/Footer";
+import PhoneInputField from "../components/PhoneInputField";
 
 const DEFAULT_USER = {
   fullName: "John Smith",
   email: "john.smith@email.com",
-  phone: "+1 862-652-1545",
+  phone: "+18626521545",
   country: "United States",
   city: "Minnesota",
   address: "221B Baker Street",
@@ -162,14 +163,13 @@ export default function ProfilePage() {
                   />
                 </label>
 
-                <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-gray-500">Phone</span>
-                  <input
-                    value={user.phone}
-                    onChange={(e) => setUser((u) => ({ ...u, phone: e.target.value }))}
-                    className="h-11 px-4 rounded-2xl bg-white border border-gray-200 outline-none text-sm text-gray-900 focus:border-blue-400"
-                  />
-                </label>
+                <PhoneInputField
+                  label="Phone"
+                  variant="default"
+                  value={user.phone}
+                  onChange={(v) => setUser((u) => ({ ...u, phone: v }))}
+                  className="[&_label]:text-xs [&_label]:font-semibold [&_label]:text-gray-500"
+                />
 
                 <label className="flex flex-col gap-2">
                   <span className="text-xs font-semibold text-gray-500">Country</span>

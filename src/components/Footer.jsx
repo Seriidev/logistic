@@ -299,7 +299,6 @@ export default function Footer() {
           <div className="lg:col-span-3 flex flex-col gap-5 min-w-0">
             <a href="/" className="inline-flex items-center gap-2.5 no-underline w-fit group">
               <img src={yuuLogo} alt="" className="h-9 w-auto transition-transform duration-200 group-hover:scale-105" />
-              <span className="text-lg font-bold text-gray-900 tracking-tight">YuuSell</span>
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               Global logistics made simple — fast, affordable international shipping for individuals and businesses.
