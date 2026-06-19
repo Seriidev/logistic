@@ -1,19 +1,31 @@
-import TruckHero from "../components/BannerAir";
-import WhyChooseUs from "../components/WhyChooseUs";  
-import ProhibitedItems from "../components/ProhibitedItems";
-import InternationalShipping from "../components/InternationalShipping";
-import ContactForm from "../components/ContactForm";
+import AirHero from "../components/air/BannerAir";
+import AirServiceOverview from "../components/air/AirServiceOverview";
+import AirWhyChooseUs from "../components/air/AirWhyChooseUs";
+import AirIndustries from "../components/air/AirIndustries";
+import AirGlobalCoverage from "../components/air/AirGlobalCoverage";
+import AirCargoSecurity from "../components/air/AirCargoSecurity";
+import AirCustomsSupport from "../components/air/AirCustomsSupport";
+import AirShippingProcess from "../components/air/AirShippingProcess";
+import AirSuccessMetrics from "../components/air/AirSuccessMetrics";
+import AirFAQ from "../components/air/AirFAQ";
+import AirOtherServices from "../components/air/AirOtherServices";
 import Footer from "../components/Footer";
 
 export default function AirPage() {
-    return (
-      <>
-      <TruckHero />
-      <WhyChooseUs />
-      <ProhibitedItems />
-      <InternationalShipping />
-      <ContactForm />
-      <Footer />
+  return (
+    <>
+      <AirHero />
+      <AirServiceOverview />
+      <AirWhyChooseUs />
+      <AirIndustries />
+      <AirGlobalCoverage />
+      <AirCargoSecurity />
+      <AirCustomsSupport />
+      <AirShippingProcess />
+      <AirSuccessMetrics />
+      <AirFAQ />
+      <AirOtherServices />
+      <Footer/>
     </>
-    );
-  }
+  );
+}

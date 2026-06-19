@@ -8,7 +8,7 @@ import AboutUs from "./components/About";
 import LogisticsMap from "./components/Map";
 import { Partners, Reviews } from "./components/Partners";
 import Footer from "./components/Footer";
-import TruckPage from "./Pages/Truck";
+import TruckCargoPage from "./Pages/TruckCargo";
 import TruckParcelPage from "./Pages/TruckParcel";
 import AirPage from "./Pages/Air";
 import SeaPage from "./Pages/Sea";
@@ -54,8 +54,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/track" element={<TruckParcelPage />} />
-        <Route path="/truck" element={<TruckPage />} />
-        <Route path="/truck-cargo" element={<TruckPage />} />
+        <Route path="/truck" element={<TruckCargoPage />} />
+        <Route path="/truck-cargo" element={<TruckCargoPage />} />
         <Route path="/air-cargo" element={<AirPage />} />
         <Route path="/sea-cargo" element={<SeaPage />} />
         <Route path="/ship-now" element={<ShipNowPage />} />
