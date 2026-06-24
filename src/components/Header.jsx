@@ -70,16 +70,13 @@ const IconClose = () => (
 function NavLink({ href, label, active, onClick, mobile = false }) {
   const isRoute = href.startsWith("/");
   const base = mobile
-    ? "block w-full text-left text-base font-medium px-4 py-3.5 rounded-xl transition-colors"
-    : "text-sm font-medium px-3 py-1.5 rounded-lg transition-all duration-150";
-  const activeClass = mobile
-    ? "bg-blue-500 text-white"
-    : active ? "text-white bg-blue-500" : "text-gray-500 hover:text-gray-900 hover:bg-gray-100";
-  const inactiveClass = mobile
-    ? "text-gray-800 hover:bg-gray-100"
-    : active ? "text-white" : "text-gray-500 hover:text-gray-900 hover:bg-gray-100";
+    ? "block w-full text-left text-base font-medium px-4 py-3.5 bg-transparent border-0 shadow-none transition-colors duration-150"
+    : "text-sm font-medium px-3 py-1.5 bg-transparent border-0 shadow-none rounded-none transition-colors duration-150";
+  const stateClass = active
+    ? "text-blue-500"
+    : "text-gray-700 hover:text-blue-500";
 
-  const className = `${base} no-underline ${active ? activeClass : inactiveClass}`;
+  const className = `${base} no-underline ${stateClass}`;
 
   if (isRoute) {
     return (
