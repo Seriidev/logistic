@@ -23,7 +23,9 @@ export default function SeaCargoHero() {
       <header
         className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-cyan-900
           overflow-hidden px-5 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-16
-          min-h-[min(85vh,720px)] flex flex-col justify-center"
+          w-full max-w-[1920px] mx-auto aspect-[24/7]
+          min-h-[440px] sm:min-h-[500px] lg:min-h-0 lg:h-[560px]
+          flex flex-col justify-center"
       >
         <div
           className="hidden md:block absolute inset-0 opacity-20 pointer-events-none"
@@ -68,27 +70,6 @@ export default function SeaCargoHero() {
                 <p className="text-xs sm:text-sm text-cyan-200">{stat.label}</p>
               </div>
             ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Link
-              to="/calculate"
-              className="banner-cta inline-flex items-center justify-center w-full sm:w-auto
-                bg-blue-500 text-white text-sm font-bold uppercase tracking-wider
-                px-6 py-2.5 rounded-full no-underline
-                hover:bg-blue-400 transition-colors duration-150"
-            >
-              Get Quote
-            </Link>
-            <Link
-              to="/track"
-              className="banner-cta inline-flex items-center justify-center w-full sm:w-auto
-                bg-white/10 text-white text-sm font-bold uppercase tracking-wider
-                px-6 py-2.5 rounded-full no-underline border border-white/30
-                hover:bg-white/20 transition-colors duration-150"
-            >
-              Track Shipment
-            </Link>
           </div>
         </div>
       </header>

@@ -1,0 +1,138 @@
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import ProgressIndicator from "./components/ProgressIndicator";
+import ServiceSelector from "./components/ServiceSelector";
+import EconomyForm from "./components/EconomyForm";
+import ExpressForm from "./components/ExpressForm";
+import PaymentMethod from "./components/PaymentMethod";
+import PaymentDetails from "./components/PaymentDetails";
+import ShipmentSuccess from "./components/ShipmentSuccess";
+import Footer from "../components/Footer";
+import { getBreakdown } from "./utils/getBreakdown";
+import { getPaymentMethod } from "./data/paymentMethods";
+
+export default function AirCargoBookingPage() {
+  const [searchParams] = useSearchParams();
+  const initialService = searchParams.get("service") === "express" ? "express" : "economy";
+
+  const [service, setService] = useState(initialService);
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({});
+  const [paymentMethodId, setPaymentMethodId] = useState(null);
+  const [paymentDetails, setPaymentDetails] = useState({});
+
+  const selectedMethod = getPaymentMethod(paymentMethodId);
+  const paymentFee = selectedMethod ? selectedMethod.fee : 0;
+
+  const breakdown = getBreakdown(service, { ...formData, paymentFee });
+
+  const handleFormChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleServiceChange = (next) => {
+    setService(next);
+  };
+
+  const handlePaymentDetailChange = (field, value) => {
+    setPaymentDetails((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const goToStep = (n) => {
+    setStep(n);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const booking = {
+    serviceType: service,
+    serviceLabel: breakdown.label,
+    deliveryTime: breakdown.deliveryTime,
+    fromCountry: formData.fromCountry,
+    zipCode: formData.zipCode,
+    destinationCountry: formData.destinationCountry,
+    weight: formData.weight,
+    length: formData.length,
+    width: formData.width,
+    height: formData.height,
+    declaredValue: formData.declaredValue,
+    paymentMethod: selectedMethod ? selectedMethod.name : "-",
+    total: breakdown.total,
+  };
+
+  return (
+    <>
+      <main className="min-w-0 bg-gradient-to-b from-blue-50/60 to-white">
+        {/* Header band */}
+        <section className="page-container min-w-0 pt-5 sm:pt-6">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5 flex-wrap">
+            <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Main</Link>
+            <span aria-hidden="true">›</span>
+            <Link to="/air-cargo" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Air Cargo</Link>
+            <span aria-hidden="true">›</span>
+            <span className="text-gray-900 font-medium">Booking</span>
+          </nav>
+
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 sm:mb-3">
+              Air Cargo Booking
+            </h1>
+            <p className="text-sm sm:text-base text-gray-500">
+              Complete your air freight booking in a few simple steps.
+            </p>
+          </div>
+        </section>
+
+        {/* Progress */}
+        <section className="page-container min-w-0">
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12">
+            <ProgressIndicator currentStep={step} />
+          </div>
+        </section>
+
+        {/* Step content */}
+        <section className="page-container min-w-0 pb-12 sm:pb-16 lg:pb-20">
+          {step === 1 && (
+            <>
+              <ServiceSelector service={service} onSelect={handleServiceChange} />
+              {service === "economy" ? (
+                <EconomyForm
+                  formData={formData}
+                  onChange={handleFormChange}
+                  onNext={() => goToStep(2)}
+                />
+              ) : (
+                <ExpressForm
+                  formData={formData}
+                  onChange={handleFormChange}
+                  onNext={() => goToStep(2)}
+                />
+              )}
+            </>
+          )}
+
+          {step === 2 && (
+            <PaymentMethod
+              selected={paymentMethodId}
+              onSelect={setPaymentMethodId}
+              onBack={() => goToStep(1)}
+              onContinue={() => goToStep(3)}
+            />
+          )}
+
+          {step === 3 && (
+            <PaymentDetails
+              details={paymentDetails}
+              onChange={handlePaymentDetailChange}
+              onBack={() => goToStep(2)}
+              onPay={() => goToStep(4)}
+              amount={breakdown.total}
+            />
+          )}
+
+          {step === 4 && <ShipmentSuccess booking={booking} />}
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

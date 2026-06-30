@@ -45,7 +45,9 @@ export default function AirHero() {
       <div
         className="relative rounded-2xl sm:rounded-3xl bg-blue-500 overflow-hidden
           px-5 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-16
-          min-h-[min(85vh,720px)] flex flex-col justify-center"
+          w-full max-w-[1920px] mx-auto aspect-[24/7]
+          min-h-[440px] sm:min-h-[500px] lg:min-h-0 lg:h-[560px]
+          flex flex-col justify-center"
       >
         <div className="hidden md:block absolute top-6 right-[35%] lg:right-[280px] opacity-80 pointer-events-none">
           <img
@@ -98,18 +100,6 @@ export default function AirHero() {
               </div>
             ))}
           </div>
-
-          <Link
-            to="/ship-now"
-            className="banner-cta inline-flex items-center justify-center w-full sm:w-auto
-              bg-white text-gray-900 text-sm font-bold uppercase tracking-wider
-              px-6 py-2.5 rounded-full no-underline
-              hover:bg-blue-50 transition-colors duration-150 mb-6 sm:mb-8"
-          >
-            Ship Now
-          </Link>
-
-          <p className="text-blue-100 text-xs mb-2 font-medium">Continent of delivery</p>
 
           {/* <div className="flex flex-col sm:flex-row gap-3 min-w-0">
             <div className="relative w-full sm:w-auto">

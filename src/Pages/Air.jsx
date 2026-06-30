@@ -1,5 +1,6 @@
 import AirHero from "../components/air/BannerAir";
 import AirServiceOverview from "../components/air/AirServiceOverview";
+import AirServiceTypes from "../components/air/AirServiceTypes";
 import AirWhyChooseUs from "../components/air/AirWhyChooseUs";
 import AirIndustries from "../components/air/AirIndustries";
 import AirGlobalCoverage from "../components/air/AirGlobalCoverage";
@@ -15,6 +16,7 @@ export default function AirPage() {
   return (
     <>
       <AirHero />
+      <AirServiceTypes />
       <AirServiceOverview />
       <AirWhyChooseUs />
       <AirIndustries />

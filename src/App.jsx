@@ -29,6 +29,10 @@ import { CalculatePage, CreateShipmentPage } from "./Pages/shipment";
 import ProfilePage from "./Pages/Profile";
 import { AuthPage } from "./Pages/auth";
 import { NotFoundPage, ServerErrorPage } from "./Pages/errors";
+import BackToTopButton from "./components/common/BackToTopButton";
+import AirCargoBookingPage from "./air-cargo-booking/page";
+import SeaCargoBookingPage from "./sea-cargo-booking/page";
+import TruckCargoBookingPage from "./truck-cargo-booking/page";
 
 
 function HomePage() {
@@ -56,8 +60,11 @@ function App() {
         <Route path="/track" element={<TruckParcelPage />} />
         <Route path="/truck" element={<TruckCargoPage />} />
         <Route path="/truck-cargo" element={<TruckCargoPage />} />
+        <Route path="/truck-cargo-booking" element={<TruckCargoBookingPage />} />
         <Route path="/air-cargo" element={<AirPage />} />
+        <Route path="/air-cargo-booking" element={<AirCargoBookingPage />} />
         <Route path="/sea-cargo" element={<SeaPage />} />
+        <Route path="/sea-cargo-booking" element={<SeaCargoBookingPage />} />
         <Route path="/ship-now" element={<ShipNowPage />} />
         <Route path="/news" element={<NewsPage/>} />
         <Route path="/location" element={<Location/>}/>
@@ -80,6 +87,7 @@ function App() {
         <Route path="/505" element={<ServerErrorPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <BackToTopButton />
     </BrowserRouter>
   );
 }

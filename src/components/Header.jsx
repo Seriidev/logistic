@@ -19,7 +19,6 @@ const NAV_LINKS = [
   { label: "Ship now", href: "/ship-now" },
   { label: "Track", href: "/track" },
   { label: "Locations", href: "/location" },
-  { label: "Discounts", href: "/discounts" },
   { label: "Services", href: "/serviceshead" },
   { label: "Contact us", href: "/contact" },
   { label: "Calculate", href: "/calculate" },
@@ -309,7 +308,7 @@ export default function Header() {
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-0.5 pb-2 overflow-x-auto scrollbar-none">
+        <nav className="hidden lg:flex items-center justify-center gap-0.5 pb-2 overflow-x-auto scrollbar-none">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}

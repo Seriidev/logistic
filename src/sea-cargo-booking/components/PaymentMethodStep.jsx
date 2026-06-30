@@ -1,0 +1,96 @@
+import StepWrapper from "./StepWrapper";
+import { PAYMENT_METHODS } from "../data/paymentMethods";
+
+export default function PaymentMethodStep({ service, breakdown, selected, onSelect, onBack, onContinue }) {
+  return (
+    <StepWrapper
+      eyebrow="Step 2 of 4"
+      title="Payment Method"
+      description="Choose a payment provider. Fees vary by provider and are added to your total."
+    >
+      <div className="max-w-2xl mx-auto">
+        {/* Summary */}
+        <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 sm:p-5 mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Service</p>
+            <p className="text-sm font-bold text-gray-900">{service.toUpperCase()} Ocean Freight</p>
+          </div>
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Delivery</p>
+            <p className="text-sm font-bold text-gray-900">{breakdown.deliveryTime}</p>
+          </div>
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Estimated Cost</p>
+            <p className="text-sm font-bold text-gray-900">${breakdown.total.toFixed(2)} USD</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 sm:gap-4">
+          {PAYMENT_METHODS.map((method) => {
+            const isActive = selected === method.id;
+            return (
+              <label
+                key={method.id}
+                className={`flex items-center gap-4 p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all duration-200 min-w-0
+                  ${isActive
+                    ? "border-blue-500 bg-blue-50 shadow-sm shadow-blue-500/10"
+                    : "border-gray-200 bg-white hover:border-blue-300"
+                  }`}
+              >
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value={method.id}
+                  checked={isActive}
+                  onChange={() => onSelect(method.id)}
+                  className="accent-blue-500 w-4 h-4 shrink-0"
+                />
+                <div className="flex items-center justify-center w-11 h-11 shrink-0 rounded-xl bg-gray-100 text-gray-700 text-xs font-extrabold">
+                  {method.initials}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-sm sm:text-base font-bold text-gray-900">{method.name}</span>
+                    {method.badge && (
+                      <span className="inline-flex px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider">
+                        {method.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-500 truncate">{method.tagline}</p>
+                </div>
+                <span className="text-sm font-semibold text-gray-900 shrink-0">
+                  {method.fee > 0 ? `+$${method.fee.toFixed(2)}` : "Free"}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-8">
+          <button
+            type="button"
+            onClick={onBack}
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 py-2.5 rounded-full border border-gray-200
+              bg-white text-gray-700 text-sm font-semibold cursor-pointer hover:border-gray-300 hover:bg-gray-50 transition-colors font-[inherit]"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
+          <button
+            type="button"
+            onClick={onContinue}
+            disabled={!selected}
+            className="inline-flex items-center justify-center min-h-[44px] px-10 py-3 rounded-full bg-blue-500 text-white text-sm font-bold
+              uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
+              disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </StepWrapper>
+  );
+}
