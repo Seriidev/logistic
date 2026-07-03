@@ -9,4 +9,9 @@ export default defineConfig({
     react(),
     svgr(),
   ],
+  optimizeDeps: {
+    include: [
+      'react-icons/lu',
+    ],
+  },
 })

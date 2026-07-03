@@ -146,10 +146,14 @@ function LangItem({ lang, isSelected, onSelect }) {
   );
 }
 
-function LanguageSwitcher({ className = "" }) {
+function LanguageSwitcher({ className = "", preferPlacement = "auto", elevated = false }) {
   const [selected, setSelected] = useState(LANGUAGES[0]);
   const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState("bottom");
+  const [fixedStyle, setFixedStyle] = useState(null);
   const ref = useRef(null);
+  const buttonRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handler = (e) => {
@@ -159,12 +163,76 @@ function LanguageSwitcher({ className = "" }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  useEffect(() => {
+    if (!open) {
+      setFixedStyle(null);
+      return;
+    }
+
+    const updatePlacement = () => {
+      const button = buttonRef.current;
+      if (!button) return;
+
+      const rect = button.getBoundingClientRect();
+      const dropdownHeight = dropdownRef.current?.offsetHeight ?? 360;
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+      const spaceBelow = viewportHeight - rect.bottom;
+      const spaceAbove = rect.top;
+
+      let nextPlacement = "bottom";
+      if (preferPlacement === "top") {
+        nextPlacement = spaceAbove >= dropdownHeight || spaceAbove >= spaceBelow ? "top" : "bottom";
+      } else if (preferPlacement === "bottom") {
+        nextPlacement = "bottom";
+      } else {
+        nextPlacement = spaceBelow >= dropdownHeight || spaceBelow >= spaceAbove ? "bottom" : "top";
+      }
+
+      setPlacement(nextPlacement);
+
+      if (elevated || nextPlacement === "top") {
+        setFixedStyle({
+          left: Math.max(16, Math.min(rect.left, window.innerWidth - 224 - 16)),
+          width: Math.min(224, window.innerWidth - 32),
+          ...(nextPlacement === "top"
+            ? { bottom: viewportHeight - rect.top + 8 }
+            : { top: rect.bottom + 8 }),
+        });
+      } else {
+        setFixedStyle(null);
+      }
+    };
+
+    updatePlacement();
+    const raf = requestAnimationFrame(updatePlacement);
+    window.addEventListener("resize", updatePlacement);
+    window.visualViewport?.addEventListener("resize", updatePlacement);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", updatePlacement);
+      window.visualViewport?.removeEventListener("resize", updatePlacement);
+    };
+  }, [open, preferPlacement, elevated]);
+
   const popular = LANGUAGES.filter((l) => l.popular);
   const others = LANGUAGES.filter((l) => !l.popular);
+
+  const useFixed = Boolean(fixedStyle);
+  const placementClasses = useFixed
+    ? ""
+    : placement === "top"
+      ? "absolute bottom-[calc(100%+8px)] right-0 top-auto"
+      : "absolute top-[calc(100%+8px)] right-0";
+  const openClasses = open
+    ? "opacity-100 translate-y-0 pointer-events-auto"
+    : placement === "top"
+      ? "opacity-0 translate-y-1 pointer-events-none"
+      : "opacity-0 -translate-y-1 pointer-events-none";
 
   return (
     <div ref={ref} className={`relative shrink-0 ${className}`}>
       <button
+        ref={buttonRef}
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
@@ -182,13 +250,16 @@ function LanguageSwitcher({ className = "" }) {
       </button>
 
       <div
+        ref={dropdownRef}
         role="listbox"
+        style={useFixed ? { ...fixedStyle, position: "fixed" } : undefined}
         className={`
-          absolute top-[calc(100%+8px)] right-0 w-56 max-w-[calc(100vw-2rem)]
+          ${placementClasses} w-56 max-w-[calc(100vw-2rem)]
           bg-white border border-gray-200 rounded-2xl
-          shadow-lg shadow-gray-200/80 overflow-hidden z-[9999]
+          shadow-lg shadow-gray-200/80 overflow-hidden
+          ${elevated ? "z-[10200]" : "z-[9999]"}
           transition-all duration-200 ease-out
-          ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"}
+          ${openClasses}
         `}
       >
         <div className="text-[11px] font-semibold text-gray-400 px-3.5 pt-2.5 pb-1 tracking-wide uppercase">
@@ -322,7 +393,7 @@ export default function Header() {
 
       {/* Mobile menu panel */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[100] flex flex-col">
+        <div className="lg:hidden fixed inset-0 z-[100] flex justify-end">
           <button
             type="button"
             className="absolute inset-0 bg-black/40 border-none cursor-pointer"
@@ -330,11 +401,12 @@ export default function Header() {
             aria-label="Close menu overlay"
           />
           <div
-            className="relative ml-auto w-full max-w-sm h-full bg-white shadow-xl flex flex-col
-              animate-[slideIn_0.2s_ease-out] overflow-y-auto"
-            style={{ maxHeight: "100dvh" }}
+            className="relative w-full max-w-sm bg-white shadow-xl flex flex-col overflow-hidden
+              animate-[slideIn_0.2s_ease-out]
+              h-[100dvh] max-h-[100dvh]
+              pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+            <div className="shrink-0 flex items-center justify-between px-4 py-3 border-b border-gray-100">
               <span className="text-sm font-bold text-gray-900">Menu</span>
               <button
                 type="button"
@@ -346,7 +418,7 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="flex flex-col gap-1 p-3">
+            <nav className="flex-1 min-h-0 overflow-y-auto overscroll-contain flex flex-col gap-1 p-3">
               {NAV_LINKS.map((link) => (
                 <NavLink
                   key={link.href}
@@ -359,7 +431,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="mt-auto p-4 border-t border-gray-100 flex flex-col gap-3">
+            <div className="shrink-0 p-4 border-t border-gray-100 flex flex-col gap-3">
               <a
                 href="tel:+78005553535"
                 className="flex items-center justify-center gap-2 h-11 rounded-xl bg-gray-50 text-gray-900
@@ -368,7 +440,11 @@ export default function Header() {
                 <span className="text-blue-500"><IconPhone /></span>
                 +7 (800) 555-35-35
               </a>
-              <LanguageSwitcher className="w-full [&>button]:w-full [&>button]:justify-center" />
+              <LanguageSwitcher
+                className="w-full [&>button]:w-full [&>button]:justify-center"
+                preferPlacement="top"
+                elevated
+              />
               <div className="grid grid-cols-2 gap-2">
                 <Link
                   to="/signup"

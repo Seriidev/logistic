@@ -1,3 +1,13 @@
+import {
+  LuShoppingCart,
+  LuPlane,
+  LuPill,
+  LuLaptop,
+  LuShirt,
+  LuFactory,
+  LuSalad,
+  LuZap,
+} from "react-icons/lu";
 import { SectionHeading } from "./shared";
 
 const INDUSTRIES = [
@@ -5,49 +15,49 @@ const INDUSTRIES = [
     id: 1,
     title: "E-Commerce & Retail",
     description: "Fast replenishment, FBA prep, and cross-border parcel consolidation for online sellers.",
-    icon: "🛒",
+    Icon: LuShoppingCart,
   },
   {
     id: 2,
     title: "Automotive & Aerospace",
     description: "Critical spare parts, AOG shipments, and just-in-time component delivery.",
-    icon: "✈️",
+    Icon: LuPlane,
   },
   {
     id: 3,
     title: "Pharmaceuticals & Healthcare",
     description: "Temperature-controlled lanes, GDP-compliant handling, and priority routing.",
-    icon: "💊",
+    Icon: LuPill,
   },
   {
     id: 4,
     title: "Electronics & Technology",
     description: "Secure transport for high-value devices, semiconductors, and sensitive equipment.",
-    icon: "💻",
+    Icon: LuLaptop,
   },
   {
     id: 5,
     title: "Fashion & Luxury Goods",
     description: "Seasonal collections, showroom samples, and time-sensitive retail launches.",
-    icon: "👗",
+    Icon: LuShirt,
   },
   {
     id: 6,
     title: "Industrial & Manufacturing",
     description: "Heavy machinery parts, production materials, and project cargo coordination.",
-    icon: "🏭",
+    Icon: LuFactory,
   },
   {
     id: 7,
     title: "Food & Perishables",
     description: "Cold-chain air freight for fresh produce, seafood, and specialty foods.",
-    icon: "🥗",
+    Icon: LuSalad,
   },
   {
     id: 8,
     title: "Energy & Mining",
     description: "Urgent equipment, drilling components, and remote-site delivery support.",
-    icon: "⚡",
+    Icon: LuZap,
   },
 ];
 
@@ -61,17 +71,20 @@ export default function AirIndustries() {
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
-        {INDUSTRIES.map((item) => (
+        {INDUSTRIES.map(({ id, title, description, Icon }) => (
           <article
-            key={item.id}
+            key={id}
             className="group rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-6
               shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-200 min-w-0"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-2xl mb-4">
-              {item.icon}
+            <div
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-4
+                text-blue-600 group-hover:bg-blue-100 transition-colors"
+            >
+              <Icon className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden />
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">{item.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{item.description}</p>
+            <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">{title}</h3>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{description}</p>
           </article>
         ))}
       </div>

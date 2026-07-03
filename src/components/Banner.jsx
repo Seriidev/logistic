@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
  * Safe zone for text: center 80% of width.
  */
 const BANNERS = [
-  { id: 1, image: "/banner1.jpg", link: "#banner1" },
-  { id: 2, image: "/banner2.jpg", link: "#banner2" },
-  { id: 3, image: "/banner3.jpg", link: "#banner3" },
-  { id: 4, image: "/banner1.jpg", link: "#banner4" },
+  { id: 1, image: "/banner1.png", link: "#banner1" },
+  { id: 2, image: "/banner2.png", link: "#banner2" },
+  { id: 3, image: "/banner3.png", link: "#banner3" },
+  { id: 4, image: "/banner4.png", link: "#banner4" },
 ];
 
 export default function BannerCarousel() {
