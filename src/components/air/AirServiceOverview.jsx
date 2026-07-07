@@ -1,42 +1,41 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SectionHeading, CheckItem, ImageBlock } from "./shared";
 
-const HIGHLIGHTS = [
-  "Door-to-airport and door-to-door delivery worldwide",
-  "Express, standard, and deferred air freight options",
-  "Consolidation, repacking, and labeling at origin hubs",
-  "Live tracking with milestone notifications",
-  "Dedicated account managers for commercial shippers",
-  "Insurance and priority handling for high-value cargo",
-];
+const HIGHLIGHT_KEYS = ["0", "1", "2", "3", "4", "5"];
 
 export default function AirServiceOverview() {
+  const { t } = useTranslation("airCargo");
+
+  const highlights = useMemo(
+    () => HIGHLIGHT_KEYS.map((key) => t(`overview.highlights.${key}`)),
+    [t],
+  );
+
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20">
       <SectionHeading
-        eyebrow="Service Overview"
-        title="Premium Air Freight for Time-Critical Global Shipments"
-        description="From single cartons to full charter loads, YuuSell delivers reliable air cargo solutions backed by a global carrier network, transparent pricing, and end-to-end logistics control."
+        eyebrow={t("overview.eyebrow")}
+        title={t("overview.title")}
+        description={t("overview.description")}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0">
         <ImageBlock
           src="/air picture.png"
-          alt="Air cargo operations"
-          hint="Add photo: public/air picture.png"
+          alt={t("overview.imageAlt")}
+          hint={t("shared.imageHint", { path: "/air picture.png" })}
           className="w-full h-56 sm:h-72 lg:h-[420px] rounded-2xl sm:rounded-3xl"
         />
 
         <div className="min-w-0">
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
-            Air cargo remains the fastest way to move goods across continents. Whether you are
-            shipping retail inventory, industrial parts, perishables, or e-commerce parcels, our
-            air freight team designs routes that balance speed, cost, and compliance — so your
-            cargo arrives on schedule and in perfect condition.
+            {t("overview.body")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-            {HIGHLIGHTS.map((item) => (
+            {highlights.map((item) => (
               <CheckItem key={item} text={item} />
             ))}
           </div>
@@ -48,7 +47,7 @@ export default function AirServiceOverview() {
                 rounded-full bg-blue-500 text-white text-sm font-bold uppercase tracking-wider
                 no-underline hover:bg-blue-600 transition-colors"
             >
-              Get a Quote
+              {t("overview.getQuote")}
             </Link>
             <Link
               to="/calculate"
@@ -57,7 +56,7 @@ export default function AirServiceOverview() {
                 uppercase tracking-wider no-underline hover:border-blue-300 hover:text-blue-600
                 transition-colors"
             >
-              Calculate Rates
+              {t("overview.calculateRates")}
             </Link>
           </div>
         </div>

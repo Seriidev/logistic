@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Footer from "../../components/Footer";
 import { isAuthenticated } from "../../utils/auth";
 import { PARCEL_SIZES } from "./constants";
@@ -15,7 +16,7 @@ const INITIAL_FORM = {
   where: null,
   transport: "",
   obtain: "",
-  parcelSize: PARCEL_SIZES[0].label,
+  parcelSize: PARCEL_SIZES[0].id,
   height: "",
   length: "",
   width: "",
@@ -47,6 +48,7 @@ function generateTrackingId() {
 
 export default function CreateShipmentPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation("shipment");
   const [step, setStep] = useState(1);
   const [form, setForm] = useState(INITIAL_FORM);
   const [trackingId, setTrackingId] = useState("");
@@ -60,12 +62,12 @@ export default function CreateShipmentPage() {
 
   const validateStep = () => {
     if (step === 1) {
-      if (!form.from || !form.where) return "Please fill in From and Where.";
-      if (!form.transport || !form.obtain) return "Please select transport and obtain method.";
-      if (!form.cargo?.trim()) return "Please describe the cargo.";
+      if (!form.from || !form.where) return t("validation.fromWhereRequiredShort");
+      if (!form.transport || !form.obtain) return t("validation.transportObtainRequired");
+      if (!form.cargo?.trim()) return t("validation.cargoRequired");
     }
     if (step === 2) {
-      if (!form.sender || !form.recipient) return "Please add sender and recipient information.";
+      if (!form.sender || !form.recipient) return t("validation.contactsRequired");
     }
     return null;
   };
@@ -96,7 +98,7 @@ export default function CreateShipmentPage() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(trackingId.replace(/\s/g, ""));
-      alert("Tracking number copied!");
+      alert(t("success.trackingCopied"));
     } catch {
       alert(trackingId);
     }
@@ -107,9 +109,9 @@ export default function CreateShipmentPage() {
       <>
         <section className="page-container min-w-0 py-6 sm:py-10">
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
+            <a href="/" className="hover:text-blue-500 no-underline text-gray-500">{t("breadcrumb.main")}</a>
             <span>›</span>
-            <span className="text-gray-900 font-medium">Create shipment</span>
+            <span className="text-gray-900 font-medium">{t("breadcrumb.createShipment")}</span>
           </nav>
           <StepSuccess trackingId={trackingId} onCopy={handleCopy} />
         </section>
@@ -122,9 +124,9 @@ export default function CreateShipmentPage() {
     <>
       <section className="page-container min-w-0 py-6">
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6 sm:mb-8">
-          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
+          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">{t("breadcrumb.main")}</a>
           <span>›</span>
-          <span className="text-gray-900 font-medium">Create shipment</span>
+          <span className="text-gray-900 font-medium">{t("breadcrumb.createShipment")}</span>
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-6 items-start min-w-0">
@@ -139,7 +141,7 @@ export default function CreateShipmentPage() {
             <ShipmentStepper
               currentStep={step}
               onContinue={handleContinue}
-              continueLabel={step === 4 ? "Complete" : "Continue"}
+              continueLabel={step === 4 ? t("actions.complete") : t("actions.continue")}
             />
           </div>
         </div>

@@ -1,0 +1,80 @@
+{
+  "breadcrumb": {
+    "truckCargo": "Truck Cargo"
+  },
+  "page": {
+    "title": "Truck Cargo Booking",
+    "subtitle": "Complete your road freight booking in a few simple steps."
+  },
+  "defaults": {
+    "category": "General Goods"
+  },
+  "summary": {
+    "kgBillable": "kg billable",
+    "ftlDetail": "{{vehicle}} · {{delivery}}",
+    "ltlDetail": "{{weight}} kg billable · {{category}}"
+  },
+  "services": {
+    "ariaLabel": "Truck cargo service type",
+    "ltl": { "label": "LTL", "sublabel": "Less Than Truck Load" },
+    "ftl": { "label": "FTL", "sublabel": "Full Truck Load" }
+  },
+  "ltl": {
+    "badge": "LTL · Less Than Truck Load",
+    "intro": "Shared truck space for smaller loads. Delivery in {{time}}."
+  },
+  "ftl": {
+    "badge": "FTL · Full Truck Load",
+    "intro": "A dedicated truck for your cargo. Delivery in {{time}}."
+  },
+  "pricing": {
+    "ltl": {
+      "label": "LTL Road Freight",
+      "deliveryTime": "4–8 business days"
+    },
+    "ftl": {
+      "label": "FTL Road Freight",
+      "deliveryTime": "2–5 business days"
+    }
+  },
+  "options": {
+    "countries": {
+      "asia": "Asia",
+      "china": "China",
+      "turkmenistan": "Turkmenistan"
+    },
+    "categories": {
+      "generalGoods": "General Goods",
+      "electronics": "Electronics",
+      "furniture": "Furniture",
+      "machinery": "Machinery",
+      "textiles": "Textiles",
+      "foodBeverage": "Food & Beverage",
+      "automotiveParts": "Automotive Parts",
+      "constructionMaterials": "Construction Materials"
+    },
+    "units": {
+      "cm": "cm",
+      "inch": "inch",
+      "kg": "kg",
+      "lbs": "lbs"
+    },
+    "delivery": {
+      "doorToDoor": "Door to Door",
+      "doorToPost": "Door to Post",
+      "warehouseDelivery": "Warehouse Delivery"
+    },
+    "vehicles": {
+      "cargoVan": "Cargo Van",
+      "mediumTruck": "Medium Truck",
+      "heavyTruck": "Heavy Truck"
+    }
+  },
+  "success": {
+    "title": "Electronic declaration created successfully",
+    "subtitle": "Your truck cargo shipment is confirmed.",
+    "pdf": {
+      "serviceFallback": "Truck Cargo"
+    }
+  }
+}

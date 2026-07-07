@@ -1,0 +1,104 @@
+{
+  "breadcrumb": { "title": "Локации" },
+  "hero": {
+    "title": "Международная доставка из США",
+    "shipNow": "Отправить сейчас",
+    "continentLabel": "Континент доставки",
+    "searchPlaceholder": "Поиск страны",
+    "truckAlt": "Грузовик"
+  },
+  "continents": {
+    "all": "Все континенты",
+    "europe": "Европа",
+    "asia": "Азия",
+    "northAmerica": "Северная Америка",
+    "southAmerica": "Южная Америка",
+    "africa": "Африка",
+    "australia": "Австралия"
+  },
+  "countries": {
+    "usa": "США",
+    "germany": "Германия",
+    "france": "Франция",
+    "china": "Китай",
+    "japan": "Япония",
+    "brazil": "Бразилия",
+    "canada": "Канада",
+    "australia": "Австралия",
+    "india": "Индия",
+    "uae": "ОАЭ",
+    "uk": "Великобритания",
+    "italy": "Италия",
+    "spain": "Испания",
+    "mexico": "Мексика",
+    "southKorea": "Южная Корея",
+    "russia": "Россия",
+    "turkey": "Турция"
+  },
+  "map": {
+    "title": "Наши склады по всему миру",
+    "subtitle": "Выберите страну, узнайте детали и скачайте прайс-лист",
+    "sidebar": {
+      "ariaLabel": "Наши склады",
+      "title": "Наши склады",
+      "subtitle": "Поиск и прайс-листы по странам",
+      "searchPlaceholder": "Поиск страны...",
+      "clearSearch": "Очистить поиск",
+      "address": "Адрес:",
+      "delivery": "Доставка:",
+      "inStock": "На складе:",
+      "downloading": "Открытие...",
+      "pdfButton": "PDF-прайс · {{country}}"
+    },
+    "warehouses": [
+      {
+        "country": "Китай",
+        "city": "Шанхай",
+        "address": "No.88 Longhua Rd, Xuhui District",
+        "price": "от $3/кг",
+        "delivery": "7–14 дней",
+        "stock": "1 240 ед."
+      },
+      {
+        "country": "Турция",
+        "city": "Стамбул",
+        "address": "Atatürk Mah. Ertuğrulgazi Sok.",
+        "price": "от $5/кг",
+        "delivery": "5–10 дней",
+        "stock": "820 ед."
+      },
+      {
+        "country": "ОАЭ",
+        "city": "Дубай",
+        "address": "Jebel Ali Free Zone, Gate 5",
+        "price": "от $4/кг",
+        "delivery": "4–8 дней",
+        "stock": "560 ед."
+      },
+      {
+        "country": "Германия",
+        "city": "Гамбург",
+        "address": "Freihafen 12, 20457 Hamburg",
+        "price": "от $8/кг",
+        "delivery": "3–6 дней",
+        "stock": "430 ед."
+      },
+      {
+        "country": "Япония",
+        "city": "Токио",
+        "address": "2-1 Osanbashi, Naka-ku, Yokohama",
+        "price": "от $6/кг",
+        "delivery": "6–12 дней",
+        "stock": "310 ед."
+      },
+      {
+        "country": "Индия",
+        "city": "Мумбай",
+        "address": "Nhava Sheva, Navi Mumbai",
+        "price": "от $3/кг",
+        "delivery": "8–15 дней",
+        "stock": "740 ед."
+      }
+    ]
+  }
+}

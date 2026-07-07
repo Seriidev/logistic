@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 import ProgressIndicator from "./components/ProgressIndicator";
 import ServiceSelector from "./components/ServiceSelector";
@@ -10,8 +11,10 @@ import ShipmentSuccess from "./components/ShipmentSuccess";
 import Footer from "../components/Footer";
 import { getBreakdown } from "./utils/getBreakdown";
 import { getPaymentMethod } from "./data/paymentMethods";
+import { getPaymentMethodLabel } from "../i18n/paymentMethodLabels";
 
 export default function AirCargoBookingPage() {
+  const { t } = useTranslation(["airCargoBooking", "booking"]);
   const [searchParams] = useSearchParams();
   const initialService = searchParams.get("service") === "express" ? "express" : "economy";
 
@@ -45,8 +48,8 @@ export default function AirCargoBookingPage() {
 
   const booking = {
     serviceType: service,
-    serviceLabel: breakdown.label,
-    deliveryTime: breakdown.deliveryTime,
+    serviceLabel: t(breakdown.labelKey),
+    deliveryTime: t(breakdown.deliveryTimeKey),
     fromCountry: formData.fromCountry,
     zipCode: formData.zipCode,
     destinationCountry: formData.destinationCountry,
@@ -55,41 +58,44 @@ export default function AirCargoBookingPage() {
     width: formData.width,
     height: formData.height,
     declaredValue: formData.declaredValue,
-    paymentMethod: selectedMethod ? selectedMethod.name : "-",
+    paymentMethod: selectedMethod
+      ? getPaymentMethodLabel(t, selectedMethod, "name")
+      : t("common.notSet", { ns: "booking" }),
     total: breakdown.total,
   };
 
   return (
     <>
       <main className="min-w-0 bg-gradient-to-b from-blue-50/60 to-white">
-        {/* Header band */}
         <section className="page-container min-w-0 pt-5 sm:pt-6">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5 flex-wrap">
-            <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Main</Link>
+          <nav aria-label={t("aria.breadcrumb", { ns: "booking" })} className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5 flex-wrap">
+            <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">
+              {t("breadcrumb.main", { ns: "booking" })}
+            </Link>
             <span aria-hidden="true">›</span>
-            <Link to="/air-cargo" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Air Cargo</Link>
+            <Link to="/air-cargo" className="hover:text-blue-500 transition-colors no-underline text-gray-500">
+              {t("breadcrumb.airCargo")}
+            </Link>
             <span aria-hidden="true">›</span>
-            <span className="text-gray-900 font-medium">Booking</span>
+            <span className="text-gray-900 font-medium">{t("breadcrumb.booking", { ns: "booking" })}</span>
           </nav>
 
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 sm:mb-3">
-              Air Cargo Booking
+              {t("hero.title")}
             </h1>
             <p className="text-sm sm:text-base text-gray-500">
-              Complete your air freight booking in a few simple steps.
+              {t("hero.subtitle")}
             </p>
           </div>
         </section>
 
-        {/* Progress */}
         <section className="page-container min-w-0">
           <div className="max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12">
             <ProgressIndicator currentStep={step} />
           </div>
         </section>
 
-        {/* Step content */}
         <section className="page-container min-w-0 pb-12 sm:pb-16 lg:pb-20">
           {step === 1 && (
             <>

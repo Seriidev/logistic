@@ -34,8 +34,8 @@ export function calculateExpressPrice(form = {}) {
 
   return {
     serviceType: p.serviceType,
-    label: p.label,
-    deliveryTime: p.deliveryTime,
+    labelKey: p.labelKey,
+    deliveryTimeKey: p.deliveryTimeKey,
     currency: p.currency,
     actualWeight: weight,
     volumetricWeight: Number(volumetricWeight.toFixed(2)),

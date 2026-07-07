@@ -1,0 +1,104 @@
+{
+  "breadcrumb": { "title": "Locations" },
+  "hero": {
+    "title": "International shipping from USA",
+    "shipNow": "Ship Now",
+    "continentLabel": "Continent of delivery",
+    "searchPlaceholder": "Search country",
+    "truckAlt": "Truck"
+  },
+  "continents": {
+    "all": "All Continents",
+    "europe": "Europe",
+    "asia": "Asia",
+    "northAmerica": "North America",
+    "southAmerica": "South America",
+    "africa": "Africa",
+    "australia": "Australia"
+  },
+  "countries": {
+    "usa": "USA",
+    "germany": "Germany",
+    "france": "France",
+    "china": "China",
+    "japan": "Japan",
+    "brazil": "Brazil",
+    "canada": "Canada",
+    "australia": "Australia",
+    "india": "India",
+    "uae": "UAE",
+    "uk": "UK",
+    "italy": "Italy",
+    "spain": "Spain",
+    "mexico": "Mexico",
+    "southKorea": "South Korea",
+    "russia": "Russia",
+    "turkey": "Turkey"
+  },
+  "map": {
+    "title": "Our warehouses are all over the world",
+    "subtitle": "Select a country, find out the details, and download the price list",
+    "sidebar": {
+      "ariaLabel": "Our Stocks",
+      "title": "Our Stocks",
+      "subtitle": "Search and price lists by country",
+      "searchPlaceholder": "Search country...",
+      "clearSearch": "Clear search",
+      "address": "Address:",
+      "delivery": "Delivery:",
+      "inStock": "In stocks:",
+      "downloading": "Open...",
+      "pdfButton": "PDF price · {{country}}"
+    },
+    "warehouses": [
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "address": "No.88 Longhua Rd, Xuhui District",
+        "price": "from $3/kg",
+        "delivery": "7–14 days",
+        "stock": "1,240 units"
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "address": "Atatürk Mah. Ertuğrulgazi Sok.",
+        "price": "from $5/kg",
+        "delivery": "5–10 days",
+        "stock": "820 units"
+      },
+      {
+        "country": "UAE",
+        "city": "Dubai",
+        "address": "Jebel Ali Free Zone, Gate 5",
+        "price": "from $4/kg",
+        "delivery": "4–8 days",
+        "stock": "560 units"
+      },
+      {
+        "country": "Germany",
+        "city": "Hamburg",
+        "address": "Freihafen 12, 20457 Hamburg",
+        "price": "from $8/kg",
+        "delivery": "3–6 days",
+        "stock": "430 units"
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "address": "2-1 Osanbashi, Naka-ku, Yokohama",
+        "price": "from $6/kg",
+        "delivery": "6–12 days",
+        "stock": "310 units"
+      },
+      {
+        "country": "India",
+        "city": "Mumbai",
+        "address": "Nhava Sheva, Navi Mumbai",
+        "price": "from $3/kg",
+        "delivery": "8–15 days",
+        "stock": "740 units"
+      }
+    ]
+  }
+}

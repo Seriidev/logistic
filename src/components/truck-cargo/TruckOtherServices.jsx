@@ -1,69 +1,61 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const OTHER_SERVICES = [
-  {
-    id: 1,
-    title: "Air Cargo",
-    description:
-      "Express and standard air freight with global carrier partnerships and time-definite delivery windows.",
-    image: "/air picture.png",
-    path: "/air-cargo",
-  },
-  {
-    id: 2,
-    title: "Sea Cargo",
-    description:
-      "Cost-effective ocean freight for large volumes — FCL and LCL options with worldwide port coverage.",
-    image: "/minibanner3.jpg",
-    path: "/sea-cargo",
-  },
-  {
-    id: 3,
-    title: "Express Delivery",
-    description:
-      "Same-day and next-day courier services for urgent documents and time-critical parcels.",
-    image: "/minibanner4.jpg",
-    path: "/express-delivery",
-  },
-  {
-    id: 4,
-    title: "Warehouse Services",
-    description:
-      "Storage, inventory management, pick-and-pack, and fulfillment from strategic global locations.",
-    image: "/minibanner6.jpg",
-    path: "/warehouse-services",
-  },
-  {
-    id: 5,
-    title: "Customs Clearance",
-    description:
-      "Expert import/export documentation, duty calculation, and border compliance for seamless cross-border shipping.",
-    image: "/minibanner1.jpg",
-    path: "/customs-clearance",
-  },
-  {
-    id: 6,
-    title: "Cargo Insurance",
-    description:
-      "Full-value cargo protection with streamlined claims processing and carrier liability coordination.",
-    image: "/minibanner2.jpg",
-    path: "/cargo-insurance",
-  },
+const SERVICE_KEYS = [
+  "airCargo",
+  "seaCargo",
+  "expressDelivery",
+  "warehouseServices",
+  "customsClearance",
+  "cargoInsurance",
 ];
 
+const SERVICE_PATHS = {
+  airCargo: "/air-cargo",
+  seaCargo: "/sea-cargo",
+  expressDelivery: "/express-delivery",
+  warehouseServices: "/warehouse-services",
+  customsClearance: "/customs-clearance",
+  cargoInsurance: "/cargo-insurance",
+};
+
+const SERVICE_IMAGES = {
+  airCargo: "/air picture.png",
+  seaCargo: "/minibanner3.jpg",
+  expressDelivery: "/minibanner4.jpg",
+  warehouseServices: "/minibanner6.jpg",
+  customsClearance: "/minibanner1.jpg",
+  cargoInsurance: "/minibanner2.jpg",
+};
+
 export default function TruckOtherServices() {
+  const { t } = useTranslation("truckCargo");
+
+  const services = useMemo(
+    () =>
+      SERVICE_KEYS.map((key) => ({
+        id: key,
+        title: t(`otherServices.items.${key}.title`),
+        description: t(`otherServices.items.${key}.description`),
+        image: SERVICE_IMAGES[key],
+        path: SERVICE_PATHS[key],
+      })),
+    [t],
+  );
+
   return (
     <section className="bg-gray-50 min-w-0 py-12 sm:py-16 lg:py-20">
       <div className="page-container min-w-0">
         <SectionHeading
-          eyebrow="Explore More"
-          title="Other Logistics Services"
-          description="Beyond road freight, YuuSell offers a complete suite of transportation, warehousing, and compliance solutions for your supply chain."
+          eyebrow={t("otherServices.eyebrow")}
+          title={t("otherServices.title")}
+          description={t("otherServices.description")}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {OTHER_SERVICES.map((service) => (
+          {services.map((service) => (
             <article
               key={service.id}
               className="group flex flex-col rounded-2xl sm:rounded-3xl border border-gray-100 bg-white
@@ -93,7 +85,7 @@ export default function TruckOtherServices() {
                     px-5 py-2.5 rounded-lg no-underline
                     hover:bg-blue-600 transition-colors duration-150"
                 >
-                  Learn More
+                  {t("shared.learnMore")}
                 </Link>
               </div>
             </article>

@@ -38,13 +38,13 @@ export function calculateFCLPrice(form = {}) {
 
   return {
     serviceType: p.serviceType,
-    label: p.label,
-    deliveryTime: p.deliveryTime,
+    labelKey: p.labelKey,
+    deliveryTimeKey: p.deliveryTimeKey,
     currency: p.currency,
     weightKg: Number(weightKg.toFixed(2)),
-    containerLabel: container ? container.label : "—",
+    containerLabelKey: container ? container.labelKey : null,
     distance: Math.round(distance),
-    deliveryLabel: delivery ? delivery.label : "—",
+    deliveryLabelKey: delivery ? delivery.labelKey : null,
     containerFee: Number(containerFee.toFixed(2)),
     overweightFee: Number(overweightFee.toFixed(2)),
     distanceFee: Number(distanceFee.toFixed(2)),

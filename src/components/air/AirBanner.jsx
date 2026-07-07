@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * Recommended upload size for /public/banner1.jpg, banner2.jpg, etc.:
@@ -13,6 +14,7 @@ const BANNERS = [
 ];
 
 export default function AirBanner() {
+  const { t } = useTranslation("airCargo");
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -31,11 +33,10 @@ export default function AirBanner() {
         >
           {BANNERS.map((banner) => (
             <a key={banner.id} href={banner.link} className="shrink-0 w-full block">
-              <div className="relative w-full aspect-[1920/560] min-h-[200px] sm:min-h-[260px] md:min-h-[320px] lg:min-h-[360px] bg-gray-100">
+              <div className="hero-banner">
                 <img
                   src={banner.image}
-                  alt={`Banner ${banner.id}`}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  alt={t("banner.slideAlt", { n: banner.id })}
                 />
               </div>
             </a>
@@ -48,7 +49,7 @@ export default function AirBanner() {
               type="button"
               onClick={() => setCurrent(i)}
               className={`carousel-nav-btn h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer ${i === current ? "w-5 bg-white" : "w-1.5 bg-white/50"}`}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={t("banner.goToSlide", { n: i + 1 })}
             />
           ))}
         </div>

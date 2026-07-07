@@ -38,13 +38,8 @@ export default function NotFoundPage() {
   return (
     <ErrorPageLayout
       illustration={<BoxesIllustration />}
-      title="Oops! Page not found."
-      description={
-        <>
-          Looks like the page you&apos;re looking for doesn&apos;t exist or has been moved.
-          But don&apos;t worry — we&apos;re here to help you get back on track.
-        </>
-      }
+      titleKey="notFound.title"
+      descriptionKey="notFound.description"
     />
   );
 }

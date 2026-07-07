@@ -1,0 +1,42 @@
+{
+  "breadcrumb": { "title": "Contact us" },
+  "title": "Contact us",
+  "address": { "label": "Address", "value": "Minnesota" },
+  "phone": { "label": "Phone number" },
+  "email": { "label": "Email", "value": "info.usa@yuusell.gmail.com" },
+  "workingHours": {
+    "label": "Working hours",
+    "weekdays": "Monday - Friday 8:00 AM - 6:00 PM EST",
+    "saturday": "Saturday: 9:00 AM - 6:00 PM EST"
+  },
+  "liveHelp": {
+    "label": "Live help",
+    "hours": "Monday - Friday 8:00 AM - 6:00 PM EST"
+  },
+  "financial": {
+    "label": "For all financial and office-related questions please call:",
+    "phone": "+1 862-652-1545"
+  },
+  "tabs": {
+    "claim": "Claim",
+    "question": "Question",
+    "feedback": "Feedback"
+  },
+  "form": {
+    "title": "Write to us",
+    "namePlaceholder": "Your name",
+    "phonePlaceholder": "Phone number",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "Message",
+    "fileExtensions": "Allowed file extensions",
+    "attachFile": "Attach file",
+    "extensionsList": "JPG, JPEG, PNG, XLS, HEIC, WEBP",
+    "consent": "I consent to having YuuSell store my submitted information so they can respond to my inquiry, and grant a permission to contact me using contact details provided, as well as to share my information with other companies within YuuSell Group and any third-party service providers. I understand that I can revoke my consent by sending an email to",
+    "consentEmail": "info.usa@yuusell.com",
+    "send": "Send"
+  },
+  "alerts": {
+    "agreeRequired": "Please agree to the terms.",
+    "sent": "Message sent! We'll get back to you soon."
+  }
+}

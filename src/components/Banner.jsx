@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * Recommended upload size for /public/banner1.jpg, banner2.jpg, etc.:
@@ -9,10 +10,12 @@ const BANNERS = [
   { id: 1, image: "/banner1.png", link: "#banner1" },
   { id: 2, image: "/banner2.png", link: "#banner2" },
   { id: 3, image: "/banner3.png", link: "#banner3" },
-  { id: 4, image: "/banner4.png", link: "#banner4" },
+  { id: 4, image: "/banner1.png", link: "#banner1" },
 ];
 
 export default function BannerCarousel() {
+  const { t } = useTranslation("home");
+  const { t: tc } = useTranslation("common");
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -31,11 +34,10 @@ export default function BannerCarousel() {
         >
           {BANNERS.map((banner) => (
             <a key={banner.id} href={banner.link} className="shrink-0 w-full block">
-              <div className="relative w-full aspect-[1920/560] min-h-[200px] sm:min-h-[260px] md:min-h-[320px] lg:min-h-[360px] bg-gray-100">
+              <div className="hero-banner">
                 <img
                   src={banner.image}
-                  alt={`Banner ${banner.id}`}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  alt={t("banner.imageAlt", { n: banner.id })}
                 />
               </div>
             </a>
@@ -48,7 +50,7 @@ export default function BannerCarousel() {
               type="button"
               onClick={() => setCurrent(i)}
               className={`carousel-nav-btn h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer ${i === current ? "w-5 bg-white" : "w-1.5 bg-white/50"}`}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={tc("shared.carousel.goToSlide", { n: i + 1 })}
             />
           ))}
         </div>

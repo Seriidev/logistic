@@ -1,107 +1,94 @@
+import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import { PROHIBITED, SPECIAL } from "../data/prohibitedItems";
 
-const ItemCard = ({ item }) => (
-  <div className="bg-white rounded-2xl p-5 flex flex-col items-center text-center gap-3
-    shadow-sm hover:shadow-md transition-shadow duration-200">
-    <div className="w-20 h-20 flex items-center justify-center">
-      <img
-        src={item.icon}
-        alt={item.title}
-        className="w-16 h-16 object-contain"
-      />
+function ItemCard({ item, t }) {
+  const title = t(item.titleKey);
+  return (
+    <div className="bg-white rounded-2xl p-5 flex flex-col items-center text-center gap-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div className="w-20 h-20 flex items-center justify-center">
+        <img src={item.icon} alt={title} className="w-16 h-16 object-contain" />
+      </div>
+      <p className="text-xs font-semibold text-gray-800 leading-snug">{title}</p>
     </div>
-    <p className="text-xs font-semibold text-gray-800 leading-snug">{item.title}</p>
-  </div>
-);
+  );
+}
 
 export default function ProhibitedItemsPage() {
+  const { t } = useTranslation("prohibited");
+
   return (
     <>
       <section className="page-container min-w-0 py-6">
-
-        {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-           <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
+          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">
+            {t("common:common.main")}
+          </a>
           <span>›</span>
-          <span className="text-gray-900 font-medium">Prohibited Items</span>
+          <span className="text-gray-900 font-medium">{t("breadcrumb.title")}</span>
         </div>
 
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-2xl font-extrabold text-gray-900 uppercase tracking-wide mb-3">
-            It is prohibited to send in parcels
+            {t("header.title")}
           </h1>
           <p className="text-sm text-gray-500 max-w-[560px] mx-auto leading-relaxed mb-3">
-            The following items are strictly prohibited in shipments for safety, legal,
-            and customs reasons. Please review the list carefully before sending your parcel.
+            {t("header.description")}
           </p>
-          <a href="#"
-            className="text-xs font-semibold text-red-500 uppercase tracking-widest
-              hover:text-red-600 transition-colors no-underline">
-            Please check destination country restrictions for incoming shipments
+          <a
+            href="#"
+            className="text-xs font-semibold text-red-500 uppercase tracking-widest hover:text-red-600 transition-colors no-underline"
+          >
+            {t("header.restrictionsLink")}
           </a>
         </div>
 
-        {/* Main container */}
         <div className="bg-blue-50 rounded-3xl p-8 mb-8">
-
-          {/* Prohibited grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
             {PROHIBITED.map((item) => (
-              <ItemCard key={item.id} item={item} />
+              <ItemCard key={item.id} item={item} t={t} />
             ))}
           </div>
 
-          {/* Special conditions */}
           <div>
-            <h2 className="text-lg font-bold text-gray-900 mb-1">Special conditions</h2>
-            <p className="text-sm text-gray-500 mb-5">
-              Some items can only be transported *under special conditions*:
-            </p>
+            <h2 className="text-lg font-bold text-gray-900 mb-1">{t("specialConditions.title")}</h2>
+            <p className="text-sm text-gray-500 mb-5">{t("specialConditions.description")}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {SPECIAL.map((item) => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard key={item.id} item={item} t={t} />
               ))}
             </div>
           </div>
-
         </div>
 
-        {/* Bottom banner */}
-        <div className="bg-blue-500 rounded-3xl px-10 py-12 flex flex-col
-          items-center text-center gap-6">
-
-          {/* Icon */}
-          <div className="w-12 h-12 rounded-full border-2 border-white/40
-            flex items-center justify-center">
+        <div className="bg-blue-500 rounded-3xl px-10 py-12 flex flex-col items-center text-center gap-6">
+          <div className="w-12 h-12 rounded-full border-2 border-white/40 flex items-center justify-center">
             <span className="text-white font-extrabold text-xl">!</span>
           </div>
 
           <div>
             <h2 className="text-lg font-extrabold text-white uppercase tracking-wide mb-2">
-              Please refer to the full list of<br/>prohibited items for each country
+              {t("banner.title")}
             </h2>
           </div>
 
-          {/* Download PDF */}
           <a
             href="/prohibited-items.pdf"
             download
-            className="flex items-center gap-2 bg-white/20 hover:bg-white/30
-              text-white text-sm font-semibold px-6 py-2.5
-              no-underline transition-colors duration-150 border border-white/30"
+            className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm font-semibold px-6 py-2.5 no-underline transition-colors duration-150 border border-white/30"
           >
-            Download PDF
+            {t("banner.downloadPdf")}
             <svg viewBox="0 0 24 24" fill="none" width="14" height="14">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                strokeLinejoin="round"/>
+              <path
+                d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </a>
-
         </div>
-
       </section>
       <Footer />
     </>

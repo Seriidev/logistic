@@ -1,0 +1,56 @@
+{
+  "breadcrumb": { "title": "Profile" },
+  "title": "Your profile",
+  "subtitle": "Manage your personal details and track your shipments.",
+  "save": "Save changes",
+  "saving": "Saving...",
+  "saved": "Saved!",
+  "stats": {
+    "total": "Total",
+    "inTransit": "In transit",
+    "delivered": "Delivered"
+  },
+  "actions": {
+    "notifications": "Notification settings",
+    "notificationsStub": "Notifications settings (stub)",
+    "security": "Security",
+    "securityStub": "Security settings (stub)",
+    "logout": "Log out",
+    "logoutStub": "Logged out (stub)"
+  },
+  "personalDetails": "Personal details",
+  "fields": {
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "city": "City",
+    "address": "Address"
+  },
+  "shipments": {
+    "title": "Recent shipments",
+    "goToTracking": "Go to tracking →",
+    "eta": "ETA",
+    "details": "Details",
+    "detailsStub": "Open shipment {{id}} (stub)"
+  },
+  "status": {
+    "inTransit": "In transit",
+    "delivered": "Delivered",
+    "processing": "Processing"
+  },
+  "demo": {
+    "fullName": "John Smith",
+    "email": "john.smith@email.com",
+    "country": "United States",
+    "city": "Minnesota",
+    "address": "221B Baker Street",
+    "fromChina": "China",
+    "fromTurkey": "Turkey",
+    "fromUae": "UAE",
+    "toUsa": "USA",
+    "etaRange1": "3–6 days",
+    "etaRange2": "7–14 days",
+    "etaDelivered": "Delivered"
+  }
+}

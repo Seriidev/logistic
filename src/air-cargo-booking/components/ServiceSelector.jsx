@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ECONOMY_PRICING } from "../data/economyPricing";
 import { EXPRESS_PRICING } from "../data/expressPricing";
 
@@ -7,10 +8,12 @@ const OPTIONS = [
 ];
 
 export default function ServiceSelector({ service, onSelect }) {
+  const { t } = useTranslation("airCargoBooking");
+
   return (
     <div
       role="tablist"
-      aria-label="Air cargo service type"
+      aria-label={t("serviceSelector.ariaLabel")}
       className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-xl mx-auto"
     >
       {OPTIONS.map((opt) => {
@@ -29,9 +32,9 @@ export default function ServiceSelector({ service, onSelect }) {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
           >
-            <span className="block">{opt.label}</span>
+            <span className="block">{t(opt.labelKey)}</span>
             <span className="block text-[10px] sm:text-xs font-normal normal-case tracking-normal opacity-80 mt-0.5">
-              {opt.deliveryTime}
+              {t(opt.deliveryTimeKey)}
             </span>
           </button>
         );

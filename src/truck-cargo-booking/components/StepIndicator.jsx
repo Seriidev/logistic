@@ -1,13 +1,17 @@
+import { useTranslation } from "react-i18next";
+
 const STEPS = [
-  { id: 1, label: "Shipment Details" },
-  { id: 2, label: "Payment Method" },
-  { id: 3, label: "Card Payment" },
-  { id: 4, label: "Shipment Created" },
+  { id: 1, key: "shipmentDetails" },
+  { id: 2, key: "paymentMethod" },
+  { id: 3, key: "cardPayment" },
+  { id: 4, key: "shipmentCreated" },
 ];
 
 export default function StepIndicator({ currentStep }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
+
   return (
-    <nav aria-label="Booking progress" className="w-full min-w-0">
+    <nav aria-label={t("aria.bookingProgress", { ns: "booking" })} className="w-full min-w-0">
       <ol className="flex items-start justify-between gap-1 sm:gap-2">
         {STEPS.map((step, index) => {
           const isComplete = currentStep > step.id;
@@ -59,7 +63,7 @@ export default function StepIndicator({ currentStep }) {
                   isActive ? "text-blue-500" : isComplete ? "text-gray-700" : "text-gray-400"
                 }`}
               >
-                {step.label}
+                {t(`steps.${step.key}`, { ns: "booking" })}
               </span>
             </li>
           );

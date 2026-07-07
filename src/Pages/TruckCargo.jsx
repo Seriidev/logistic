@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import TruckCargoHero from "../components/truck-cargo/TruckCargoHero";
 import TruckTransportTypes from "../components/truck-cargo/TruckTransportTypes";
 import TruckWhyChooseUs from "../components/truck-cargo/TruckWhyChooseUs";
@@ -15,16 +16,15 @@ import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 
 export default function TruckCargoPage() {
+  const { t, i18n } = useTranslation("truckCargo");
+
   useEffect(() => {
-    document.title = "Truck Cargo Transportation | YuuSell Logistics";
+    document.title = t("meta.title");
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
-      meta.setAttribute(
-        "content",
-        "Reliable domestic and international road freight solutions. FTL, LTL, fleet services, real-time tracking, and door-to-door delivery for businesses worldwide."
-      );
+      meta.setAttribute("content", t("meta.description"));
     }
-  }, []);
+  }, [t, i18n.language]);
 
   return (
     <>

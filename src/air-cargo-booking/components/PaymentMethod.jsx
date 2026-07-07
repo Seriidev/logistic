@@ -1,17 +1,21 @@
+import { useTranslation } from "react-i18next";
 import { PAYMENT_METHODS } from "../data/paymentMethods";
+import { getPaymentMethodLabel } from "../../i18n/paymentMethodLabels";
 
 export default function PaymentMethod({ selected, onSelect, onBack, onContinue }) {
+  const { t } = useTranslation("booking");
+
   return (
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
-          Step 2 of 4
+          {t("steps.stepOf", { current: 2, total: 4 })}
         </p>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-          Payment Method
+          {t("paymentMethod.title")}
         </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          Choose a payment provider. Fees vary by provider and are added to your total.
+          {t("paymentMethod.subtitle")}
         </p>
       </div>
 
@@ -19,6 +23,7 @@ export default function PaymentMethod({ selected, onSelect, onBack, onContinue }
         <div className="flex flex-col gap-3 sm:gap-4">
           {PAYMENT_METHODS.map((method) => {
             const isActive = selected === method.id;
+            const badge = method.badge ? getPaymentMethodLabel(t, method, "badge") : null;
             return (
               <label
                 key={method.id}
@@ -41,17 +46,23 @@ export default function PaymentMethod({ selected, onSelect, onBack, onContinue }
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm sm:text-base font-bold text-gray-900">{method.name}</span>
-                    {method.badge && (
+                    <span className="text-sm sm:text-base font-bold text-gray-900">
+                      {getPaymentMethodLabel(t, method, "name")}
+                    </span>
+                    {badge && (
                       <span className="inline-flex px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider">
-                        {method.badge}
+                        {badge}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-500 truncate">{method.tagline}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 truncate">
+                    {getPaymentMethodLabel(t, method, "tagline")}
+                  </p>
                 </div>
                 <span className="text-sm font-semibold text-gray-900 shrink-0">
-                  {method.fee > 0 ? `+$${method.fee.toFixed(2)}` : "Free"}
+                  {method.fee > 0
+                    ? t("paymentMethod.fee", { amount: method.fee.toFixed(2) })
+                    : t("paymentMethod.free")}
                 </span>
               </label>
             );
@@ -68,7 +79,7 @@ export default function PaymentMethod({ selected, onSelect, onBack, onContinue }
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("actions.back")}
           </button>
           <button
             type="button"
@@ -78,7 +89,7 @@ export default function PaymentMethod({ selected, onSelect, onBack, onContinue }
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
           >
-            Continue
+            {t("actions.continue")}
           </button>
         </div>
       </div>

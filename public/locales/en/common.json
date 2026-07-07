@@ -1,0 +1,229 @@
+{
+  "header": {
+    "nav": {
+      "shipNow": "Ship now",
+      "track": "Track",
+      "locations": "Locations",
+      "services": "Services",
+      "contactUs": "Contact us",
+      "calculate": "Calculate"
+    },
+    "search": {
+      "placeholder": "Search or tracking",
+      "button": "SEARCH"
+    },
+    "logoAlt": "YuuSell",
+    "auth": {
+      "signUp": "Sign up",
+      "logIn": "Log in"
+    },
+    "menu": {
+      "title": "Menu",
+      "open": "Open menu",
+      "close": "Close menu",
+      "closeOverlay": "Close menu overlay"
+    },
+    "languages": {
+      "popular": "Popular",
+      "other": "Other",
+      "english": "English",
+      "russian": "Русский",
+      "chinese": "中文",
+      "uzbek": "O'zbek",
+      "german": "Deutsch",
+      "turkish": "Türkçe",
+      "kazakh": "Қазақша",
+      "japanese": "日本語",
+      "korean": "한국어",
+      "arabic": "العربية"
+    }
+  },
+  "footer": {
+    "links": {
+      "aboutUs": "About Us",
+      "services": "Services",
+      "support": "Support",
+      "news": "News",
+      "faq": "FAQ",
+      "yuuSellShopping": "YuuSell Shopping",
+      "privacyPolicy": "Privacy Policy",
+      "prohibitedItems": "Prohibited Items",
+      "shippingMethods": "Shipping Methods"
+    },
+    "contact": {
+      "email": "E-Mail",
+      "phone": "Phone",
+      "location": "Location",
+      "locationValue": "Seattle, WA, USA"
+    },
+    "newsletter": {
+      "title": "Subscribe to Newsletter",
+      "description": "Be the first to know our news — once a month, get updates on features and shipping tips.",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Email",
+      "agreeEmail": "I agree to receive email communications from YuuSell",
+      "agreePhone": "I agree to receive phone communications from YuuSell",
+      "subscribe": "Subscribe"
+    },
+    "brand": {
+      "tagline": "Global logistics made simple — fast, affordable international shipping for individuals and businesses.",
+      "writeReview": "Write a Review",
+      "name": "YuuSell"
+    },
+    "sections": {
+      "usefulLinks": "Useful Links",
+      "contactUs": "Contact Us",
+      "newsletter": "Newsletter"
+    },
+    "copyright": "© 2026 All rights reserved \"YuuSell\""
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "International solutions for all your shipping and delivery needs",
+    "items": {
+      "airCargo": {
+        "title": "Air Cargo",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      },
+      "truckCargo": {
+        "title": "Truck Cargo",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      },
+      "seaCargo": {
+        "title": "Sea Cargo",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      },
+      "autoShipping": {
+        "title": "Auto Shipping",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      },
+      "transportCargo": {
+        "title": "Transport Cargo",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      },
+      "amazonFba": {
+        "title": "Amazon FBA",
+        "description": "We receive, label, pack, and ship your products directly to Amazon FBA warehouses. 100% compliant with Amazon's requirements — no delays."
+      }
+    }
+  },
+  "serviceCard": {
+    "moreDetails": "More Details"
+  },
+  "contactForm": {
+    "eyebrow": "Connect with us",
+    "title": "Need An Expert Advice?",
+    "subtitle": "Get in touch to discuss your specific logistics needs or request more information.",
+    "fields": {
+      "name": "Name*",
+      "namePlaceholder": "Your Full Name",
+      "email": "Email*",
+      "emailPlaceholder": "yourname@company.com",
+      "phone": "Phone",
+      "phonePlaceholder": "Enter phone number",
+      "shippingAs": "Shipping as*"
+    },
+    "shippingOptions": {
+      "business": "Business",
+      "personal": "Personal",
+      "ecommerce": "E-commerce",
+      "freightBroker": "Freight Broker",
+      "other": "Other"
+    },
+    "submit": "Talk to an Expert",
+    "successAlert": "Thank you, {{name}}! We'll contact you soon."
+  },
+  "steps": {
+    "title": "HOW DOES THIS WORK",
+    "subtitle": "Step-by-step shipping process — clear, fast, and convenient.",
+    "step1": {
+      "title": "Calculate",
+      "description": "Fill out a quick online form — easy and fast."
+    },
+    "step2": {
+      "title": "We pick it up",
+      "description": "Courier pickup or drop-off point — your choice."
+    },
+    "step3": {
+      "title": "Pack and store",
+      "description": "Secure packing and prep for shipping."
+    },
+    "step4": {
+      "title": "Delivery",
+      "description": "Fast delivery with tracking — worldwide service."
+    },
+    "cta": {
+      "title": "Send a parcel",
+      "description": "Fast and secure delivery",
+      "button": "Send"
+    }
+  },
+  "about": {
+    "images": {
+      "teamAlt": "Team",
+      "planeAlt": "Plane"
+    },
+    "badge": {
+      "years": "21+",
+      "experienceLine1": "Years of",
+      "experienceLine2": "experience"
+    },
+    "title": "About Us",
+    "description": "Step-by-step shipping process — clear, fast, and convenient. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    "stats": {
+      "assetsLabel1": "Value of Assets",
+      "assetsLabel2": "Handled",
+      "shipmentsLabel1": "Shipments",
+      "shipmentsLabel2": "Delivered",
+      "clientsLabel1": "Clients",
+      "clientsLabel2": "Worldwide"
+    }
+  },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "International solutions for all your shipping and delivery needs"
+  },
+  "reviews": {
+    "title": "Reviews YuuSell",
+    "subtitle": "International solutions for all your shipping and delivery needs",
+    "nav": {
+      "previous": "Previous review",
+      "next": "Next review",
+      "slide": "Review slide {{n}}"
+    },
+    "items": {
+      "title": "Amazing Service!",
+      "text": "The team delivered exactly what we needed, on time and with great attention to detail."
+    }
+  },
+  "common": {
+    "main": "Main"
+  },
+  "shared": {
+    "backToTop": "Back to top",
+    "modal": {
+      "close": "Close"
+    },
+    "carousel": {
+      "goToSlide": "Go to slide {{n}}"
+    },
+    "search": {
+      "clear": "Clear search"
+    },
+    "cta": {
+      "shipNow": "Ship Now",
+      "description": "Description",
+      "readMore": "read more...",
+      "moreDetails": "More details..."
+    },
+    "validation": {
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Please enter a valid phone number for the selected country."
+    },
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com"
+    }
+  }
+}

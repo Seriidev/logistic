@@ -1,70 +1,64 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SectionHeading, CheckItem, ImageBlock } from "./shared";
-
-const SHIPPING_OPTIONS = {
-  lcl: {
-    id: "lcl",
-    label: "LCL Shipping",
-    sublabel: "Less Container Load",
-    title: "Small Shipments (LCL)",
-    description:
-      "Perfect for customers with smaller cargo volumes that do not require an entire shipping container.",
-    image: "/sea-lcl.jpg",
-    benefits: [
-      "Lower shipping costs",
-      "Pay only for used space",
-      "Ideal for small businesses",
-      "Ideal for personal shipments",
-      "Flexible shipping options",
-    ],
-    examples: [
-      "Small packages",
-      "E-commerce orders",
-      "Retail goods",
-      "Personal cargo",
-    ],
-  },
-  fcl: {
-    id: "fcl",
-    label: "FCL Shipping",
-    sublabel: "Full Container Load",
-    title: "Full Container Shipping (FCL)",
-    description: "Dedicated shipping container for one customer.",
-    image: "/sea-fcl.jpg",
-    benefits: [
-      "Faster processing",
-      "Greater security",
-      "Large cargo capacity",
-      "Better for bulk shipments",
-      "More control over transportation",
-    ],
-    examples: [
-      "Industrial equipment",
-      "Large inventories",
-      "Commercial imports",
-      "Wholesale cargo",
-    ],
-  },
-};
 
 const TABS = ["lcl", "fcl"];
 
+const TAB_CONFIG = {
+  lcl: {
+    image: "/sea-lcl.jpg",
+    benefitKeys: ["lowerCosts", "payForSpace", "smallBusiness", "personal", "flexible"],
+    exampleKeys: ["packages", "ecommerce", "retail", "personal"],
+  },
+  fcl: {
+    image: "/sea-fcl.jpg",
+    benefitKeys: ["faster", "security", "capacity", "bulk", "control"],
+    exampleKeys: ["equipment", "inventory", "imports", "wholesale"],
+  },
+};
+
 export default function SeaShippingOptions() {
+  const { t } = useTranslation("seaCargo");
   const [activeTab, setActiveTab] = useState("lcl");
-  const active = SHIPPING_OPTIONS[activeTab];
+
+  const shippingOptions = useMemo(
+    () =>
+      Object.fromEntries(
+        TABS.map((tab) => [
+          tab,
+          {
+            id: tab,
+            label: t(`shippingOptions.${tab}.label`),
+            sublabel: t(`shippingOptions.${tab}.sublabel`),
+            title: t(`shippingOptions.${tab}.title`),
+            description: t(`shippingOptions.${tab}.description`),
+            image: TAB_CONFIG[tab].image,
+            benefits: TAB_CONFIG[tab].benefitKeys.map((key) =>
+              t(`shippingOptions.${tab}.benefits.${key}`)
+            ),
+            examples: TAB_CONFIG[tab].exampleKeys.map((key) =>
+              t(`shippingOptions.${tab}.examples.${key}`)
+            ),
+          },
+        ])
+      ),
+    [t]
+  );
+
+  const active = shippingOptions[activeTab];
 
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20" aria-labelledby="shipping-options-heading">
       <SectionHeading
-        eyebrow="Shipping Options"
-        title="LCL & FCL Ocean Freight"
-        description="Whether you need shared container space or a dedicated unit, switch between options to find the right sea cargo solution for your shipment."
+        eyebrow={t("shippingOptions.eyebrow")}
+        title={t("shippingOptions.title")}
+        description={t("shippingOptions.description")}
       />
 
       <div
         role="tablist"
-        aria-label="Sea cargo shipping type"
+        aria-label={t("shippingOptions.tabsAriaLabel")}
         className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-2xl mx-auto"
       >
         {TABS.map((tab) => (
@@ -83,9 +77,9 @@ export default function SeaShippingOptions() {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
           >
-            <span className="block">{SHIPPING_OPTIONS[tab].label}</span>
+            <span className="block">{shippingOptions[tab].label}</span>
             <span className="block text-[10px] sm:text-xs font-normal normal-case tracking-normal opacity-80 mt-0.5">
-              {SHIPPING_OPTIONS[tab].sublabel}
+              {shippingOptions[tab].sublabel}
             </span>
           </button>
         ))}
@@ -100,8 +94,8 @@ export default function SeaShippingOptions() {
       >
         <ImageBlock
           src={active.image}
-          alt={`${active.title} ocean freight`}
-          hint={`Add photo: public${active.image}`}
+          alt={t("shippingOptions.imageAlt", { title: active.title })}
+          hint={t("shippingOptions.photoHint", { path: active.image })}
           className="w-full h-56 sm:h-72 lg:h-[420px] rounded-2xl sm:rounded-3xl"
         />
 
@@ -116,7 +110,7 @@ export default function SeaShippingOptions() {
             {active.description}
           </p>
 
-          <p className="text-sm font-semibold text-gray-900 mb-3">Benefits</p>
+          <p className="text-sm font-semibold text-gray-900 mb-3">{t("shippingOptions.benefitsLabel")}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 sm:mb-6">
             {active.benefits.map((item) => (
               <CheckItem key={item} text={item} />
@@ -124,7 +118,9 @@ export default function SeaShippingOptions() {
           </div>
 
           <div className="rounded-2xl bg-gray-50 border border-gray-100 p-4 sm:p-5 mb-6 sm:mb-8">
-            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">Examples</p>
+            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">
+              {t("shippingOptions.examplesLabel")}
+            </p>
             <div className="flex flex-wrap gap-2">
               {active.examples.map((example) => (
                 <span
@@ -144,7 +140,7 @@ export default function SeaShippingOptions() {
               rounded-full bg-blue-500 text-white text-sm font-bold uppercase tracking-wider
               no-underline hover:bg-blue-600 transition-colors"
           >
-            Get {activeTab.toUpperCase()} Quote
+            {t("shippingOptions.getQuote", { service: activeTab.toUpperCase() })}
           </Link>
         </div>
       </div>

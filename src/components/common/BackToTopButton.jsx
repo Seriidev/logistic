@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const SCROLL_THRESHOLD = 400;
 
 export default function BackToTopButton() {
+  const { t } = useTranslation("common");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function BackToTopButton() {
     <button
       type="button"
       onClick={scrollToTop}
-      aria-label="Back to top"
+      aria-label={t("shared.backToTop")}
       tabIndex={visible ? 0 : -1}
       className={`
         fixed z-[60]

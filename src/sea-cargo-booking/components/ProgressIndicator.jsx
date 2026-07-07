@@ -1,15 +1,24 @@
-const STEPS = [
-  { id: 1, label: "Shipment Details" },
-  { id: 2, label: "Payment Method" },
-  { id: 3, label: "Card Payment" },
-  { id: 4, label: "Declaration Created" },
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
+const STEP_KEYS = [
+  "steps.shipmentDetails",
+  "steps.paymentMethod",
+  "steps.cardPayment",
+  "steps.declarationCreated",
 ];
 
 export default function ProgressIndicator({ currentStep }) {
+  const { t } = useTranslation("booking");
+  const steps = useMemo(
+    () => STEP_KEYS.map((key, i) => ({ id: i + 1, label: t(key) })),
+    [t],
+  );
+
   return (
-    <nav aria-label="Booking progress" className="w-full min-w-0">
+    <nav aria-label={t("aria.bookingProgress")} className="w-full min-w-0">
       <ol className="flex items-start justify-between gap-1 sm:gap-2">
-        {STEPS.map((step, index) => {
+        {steps.map((step, index) => {
           const isComplete = currentStep > step.id;
           const isActive = currentStep === step.id;
 
@@ -45,7 +54,7 @@ export default function ProgressIndicator({ currentStep }) {
                     step.id
                   )}
                 </div>
-                {index < STEPS.length - 1 && (
+                {index < steps.length - 1 && (
                   <div
                     className={`h-0.5 flex-1 transition-colors duration-300 ${
                       isComplete ? "bg-blue-500" : "bg-gray-200"

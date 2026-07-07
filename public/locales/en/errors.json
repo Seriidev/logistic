@@ -1,0 +1,13 @@
+{
+  "notFound": {
+    "title": "Oops! Page not found.",
+    "description": "Looks like the page you're looking for doesn't exist or has been moved. But don't worry — we're here to help you get back on track."
+  },
+  "serverError": {
+    "title": "500 – Internal Server Error",
+    "description": "Oops! Something went wrong on our side. Our system hit a temporary glitch. We're already working to fix it. Please try again in a few minutes or contact our support team if the issue persists."
+  },
+  "layout": {
+    "homePage": "Home Page"
+  }
+}

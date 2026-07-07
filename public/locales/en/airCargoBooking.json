@@ -1,0 +1,35 @@
+{
+  "breadcrumb": {
+    "airCargo": "Air Cargo"
+  },
+  "hero": {
+    "title": "Air Cargo Booking",
+    "subtitle": "Complete your air freight booking in a few simple steps."
+  },
+  "serviceSelector": {
+    "ariaLabel": "Air cargo service type"
+  },
+  "services": {
+    "economy": {
+      "label": "Economy Air Cargo",
+      "speedLabel": "Standard",
+      "shortLabel": "Economy",
+      "deliveryTime": "5–8 business days",
+      "eyebrow": "Economy Air Cargo",
+      "description": "Cost-effective air freight with {{deliveryTime}} delivery. Enter your shipment information to continue."
+    },
+    "express": {
+      "label": "Express Air Cargo",
+      "speedLabel": "Priority",
+      "shortLabel": "Express",
+      "deliveryTime": "2–4 business days",
+      "eyebrow": "Express Air Cargo",
+      "description": "Priority air freight with {{deliveryTime}} delivery. Enter your shipment information to continue."
+    }
+  },
+  "success": {
+    "pdf": {
+      "airCargoFallback": "Air Cargo"
+    }
+  }
+}

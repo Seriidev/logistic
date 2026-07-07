@@ -1,0 +1,65 @@
+{
+  "breadcrumb": { "title": "Online stores" },
+  "banner": {
+    "title": "Calculate shipping and send your parcel in a minute",
+    "subtitle": "Fast, simple and transparent — no hidden fees.",
+    "subtitleLine2": "Select a country, specify the weight — and get an exact price.",
+    "shipNow": "Ship Now",
+    "peopleAlt": "People"
+  },
+  "search": {
+    "title": "Choose Your Favorite Shops",
+    "label": "Search",
+    "placeholder": "Find a brand",
+    "country": "Country",
+    "allCountries": "All Countries",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "button": "Search",
+    "empty": "No stores found. Try different filters."
+  },
+  "countries": {
+    "usa": "USA",
+    "china": "China",
+    "germany": "Germany",
+    "uk": "UK",
+    "uae": "UAE",
+    "russia": "Russia",
+    "uzbekistan": "Uzbekistan"
+  },
+  "categories": {
+    "electronics": "Electronics",
+    "fashion": "Fashion",
+    "homeGarden": "Home & Garden",
+    "sports": "Sports",
+    "beauty": "Beauty",
+    "books": "Books",
+    "toys": "Toys"
+  },
+  "storeDescription": "One-stop shop for fashion, gadgets, home & hobby items. Great deals, fast delivery.",
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "1. Which stores are included in the verified list?",
+        "a": "We carefully select only reliable and trusted online stores with great reputations and high-quality service. All stores are verified by our team and regularly updated."
+      },
+      {
+        "q": "2. How do the country and category filters work?",
+        "a": "Use the Country filter to find stores available in your region, and the Category filter to narrow down by product type. You can combine both filters for more precise results."
+      },
+      {
+        "q": "3. Can I pay if I don't have the right card?",
+        "a": "Most stores accept Visa, Mastercard, PayPal, and Apple/Google Pay. YuuSell also offers payment assistance services — contact our support team for help with purchases from specific stores."
+      },
+      {
+        "q": "4. How fast is the shipping?",
+        "a": "Shipping times depend on the store location and your selected delivery method. Air freight typically takes 5–14 days, while sea freight takes 25–45 days. Express options are available for urgent orders."
+      },
+      {
+        "q": "5. What should I do if I have issues with my order?",
+        "a": "Contact our 24/7 support team via chat, email, or Telegram. We assist with disputes, returns, refunds, and communication with stores on your behalf."
+      }
+    ]
+  }
+}

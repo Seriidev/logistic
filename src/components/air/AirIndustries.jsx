@@ -8,70 +8,33 @@ import {
   LuSalad,
   LuZap,
 } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const INDUSTRIES = [
-  {
-    id: 1,
-    title: "E-Commerce & Retail",
-    description: "Fast replenishment, FBA prep, and cross-border parcel consolidation for online sellers.",
-    Icon: LuShoppingCart,
-  },
-  {
-    id: 2,
-    title: "Automotive & Aerospace",
-    description: "Critical spare parts, AOG shipments, and just-in-time component delivery.",
-    Icon: LuPlane,
-  },
-  {
-    id: 3,
-    title: "Pharmaceuticals & Healthcare",
-    description: "Temperature-controlled lanes, GDP-compliant handling, and priority routing.",
-    Icon: LuPill,
-  },
-  {
-    id: 4,
-    title: "Electronics & Technology",
-    description: "Secure transport for high-value devices, semiconductors, and sensitive equipment.",
-    Icon: LuLaptop,
-  },
-  {
-    id: 5,
-    title: "Fashion & Luxury Goods",
-    description: "Seasonal collections, showroom samples, and time-sensitive retail launches.",
-    Icon: LuShirt,
-  },
-  {
-    id: 6,
-    title: "Industrial & Manufacturing",
-    description: "Heavy machinery parts, production materials, and project cargo coordination.",
-    Icon: LuFactory,
-  },
-  {
-    id: 7,
-    title: "Food & Perishables",
-    description: "Cold-chain air freight for fresh produce, seafood, and specialty foods.",
-    Icon: LuSalad,
-  },
-  {
-    id: 8,
-    title: "Energy & Mining",
-    description: "Urgent equipment, drilling components, and remote-site delivery support.",
-    Icon: LuZap,
-  },
+const INDUSTRY_ITEMS = [
+  { id: 1, Icon: LuShoppingCart },
+  { id: 2, Icon: LuPlane },
+  { id: 3, Icon: LuPill },
+  { id: 4, Icon: LuLaptop },
+  { id: 5, Icon: LuShirt },
+  { id: 6, Icon: LuFactory },
+  { id: 7, Icon: LuSalad },
+  { id: 8, Icon: LuZap },
 ];
 
 export default function AirIndustries() {
+  const { t } = useTranslation("airCargo");
+
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20">
       <SectionHeading
-        eyebrow="Industries We Serve"
-        title="Specialized Air Freight Across Every Sector"
-        description="Our team understands the compliance, handling, and timing requirements unique to each industry — delivering tailored solutions that keep your supply chain moving."
+        eyebrow={t("industries.eyebrow")}
+        title={t("industries.title")}
+        description={t("industries.description")}
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
-        {INDUSTRIES.map(({ id, title, description, Icon }) => (
+        {INDUSTRY_ITEMS.map(({ id, Icon }) => (
           <article
             key={id}
             className="group rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-6
@@ -83,8 +46,8 @@ export default function AirIndustries() {
             >
               <Icon className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden />
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">{title}</h3>
-            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{description}</p>
+            <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">{t(`industries.items.${id}.title`)}</h3>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{t(`industries.items.${id}.description`)}</p>
           </article>
         ))}
       </div>

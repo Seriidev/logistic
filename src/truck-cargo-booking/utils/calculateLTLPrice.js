@@ -34,13 +34,11 @@ export function calculateLTLPrice(form = {}) {
 
   return {
     serviceType: p.serviceType,
-    label: p.label,
-    deliveryTime: p.deliveryTime,
     currency: p.currency,
     chargeableWeight: Number(chargeableWeight.toFixed(2)),
     volumetricWeight: Number(volumetricWeight.toFixed(2)),
     distance: Math.round(distance),
-    category: form.category || "—",
+    categoryId: form.category || "",
     baseFee: Number(baseFee.toFixed(2)),
     weightFee: Number(weightFee.toFixed(2)),
     distanceFee: Number(distanceFee.toFixed(2)),

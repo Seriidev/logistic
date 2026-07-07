@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "Support & Help Center",
+    "subtitle": "Find answers to common questions or contact our support team for assistance"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Our support team is available to help you with any questions or concerns.",
+    "emailSupport": "Email Support",
+    "email": "support@yuusell.com",
+    "phoneSupport": "Phone Support",
+    "phone": "(+1) 941 288 95 73",
+    "liveChat": "Live Chat",
+    "liveChatDescription": "Available 24/7 on our website"
+  },
+  "form": {
+    "title": "Send Us a Message",
+    "description": "Fill out the form below and we'll get back to you within 24 hours.",
+    "success": "Your message has been sent successfully! We'll respond shortly.",
+    "error": "There was an error sending your message. Please try again.",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "sending": "Sending...",
+    "send": "Send Message"
+  },
+  "faq": [
+    {
+      "question": "How long does shipping take?",
+      "answer": "Shipping times vary depending on the destination and service selected. Express deliveries typically take 2-5 business days, while standard shipping can take 7-14 business days. You'll get an estimated delivery date when you create your shipment."
+    },
+    {
+      "question": "What items are prohibited from shipping?",
+      "answer": "We prohibit shipping of hazardous materials, flammable items, explosives, weapons, illegal substances, perishable foods without proper packaging, and items that violate international trade regulations. For a complete list, please visit our Prohibited Items page."
+    },
+    {
+      "question": "How can I track my shipment?",
+      "answer": "All shipments come with a tracking number. You can track your package in real-time by entering your tracking number on our website's tracking page or through the tracking link sent to your email."
+    },
+    {
+      "question": "Do you offer insurance for shipped items?",
+      "answer": "Yes, we offer cargo insurance for all shipments. Basic coverage is included, and you can purchase additional insurance based on the declared value of your items for extra protection."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Google Pay, Apple Pay, and bank transfers for business accounts."
+    },
+    {
+      "question": "How do I calculate shipping costs?",
+      "answer": "You can calculate shipping costs using our online calculator. Simply enter the origin, destination, weight, and dimensions of your package to get an instant quote."
+    }
+  ]
+}

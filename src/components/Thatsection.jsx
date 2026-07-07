@@ -1,10 +1,7 @@
+import { useTranslation } from "react-i18next";
 
-const ROUTES = [
-  { id: 1, from: "New York", fromDate: "June 17 2025", to: "Dubai", toDate: "June 19 2025", type: "air", price: "180$" },
-  { id: 2, from: "Las Vegas", fromDate: "June 17 2025", to: "Denver", toDate: "June 20 2025", type: "truck", price: "162$" },
-  { id: 3, from: "New York", fromDate: "June 17 2025", to: "Dubai", toDate: "June 19 2025", type: "air", price: "134$" },
-  { id: 4, from: "Las Vegas", fromDate: "June 17 2025", to: "Denver", toDate: "June 20 2025", type: "truck", price: "321$" },
-];
+const ROUTE_KEYS = ["0", "1", "2", "3"];
+const ROUTE_TYPES = ["air", "truck", "air", "truck"];
 
 const TypeIcon = ({ type }) => {
   if (type === "air") return (
@@ -25,53 +22,56 @@ const TypeIcon = ({ type }) => {
 };
 
 export default function PromoBanner() {
+  const { t } = useTranslation("home");
+  const { t: tc } = useTranslation("common");
+
   return (
     <section className="page-container py-6 sm:py-8 min-w-0">
       <div className="relative rounded-2xl sm:rounded-3xl bg-blue-500 overflow-hidden flex flex-col lg:flex-row lg:min-h-70">
 
         <div className="flex flex-col justify-center px-5 py-8 sm:px-10 sm:py-10 z-10 w-full lg:max-w-[320px] shrink-0">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white uppercase leading-tight mb-3">
-            Get 24% Off Shipping to USA!
+            {t("promo.title")}
           </h2>
-          <p className="text-blue-100 text-sm mb-5 sm:mb-6">Celebrate with YuuSell</p>
+          <p className="text-blue-100 text-sm mb-5 sm:mb-6">{t("promo.subtitle")}</p>
           <button
             type="button"
             className="banner-cta w-full sm:w-fit bg-white text-gray-900 text-sm font-bold uppercase
             tracking-wider px-6 py-2.5 rounded-full hover:bg-blue-50
             transition-colors duration-150 cursor-pointer border-none"
           >
-            More details...
+            {tc("shared.cta.moreDetails")}
           </button>
         </div>
 
         <div className="hidden sm:block flex-1 relative min-h-[120px] lg:min-h-0">
           <img
             src="/picto.png"
-            alt="Promo"
+            alt={t("promo.imageAlt")}
             className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-full w-auto object-contain pointer-events-none"
           />
         </div>
 
         <div className="flex flex-col justify-center gap-2.5 sm:gap-3 px-4 pb-6 sm:px-6 sm:pb-8 lg:py-8 z-10 w-full lg:w-auto lg:min-w-0 lg:flex-1 min-w-0">
-          {ROUTES.map((route) => (
+          {ROUTE_KEYS.map((key, index) => (
             <div
-              key={route.id}
+              key={key}
               className="flex items-center gap-2 sm:gap-3 bg-white/15 backdrop-blur-sm
                 border border-white/20 rounded-xl sm:rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 min-w-0"
             >
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-sm truncate">{route.from}</p>
-                <p className="text-blue-100 text-xs">{route.fromDate}</p>
+                <p className="text-white font-semibold text-sm truncate">{t(`promo.routes.${key}.from`)}</p>
+                <p className="text-blue-100 text-xs">{t(`promo.routes.${key}.fromDate`)}</p>
               </div>
               <div className="shrink-0">
-                <TypeIcon type={route.type} />
+                <TypeIcon type={ROUTE_TYPES[index]} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-sm truncate">{route.to}</p>
-                <p className="text-blue-100 text-xs">{route.toDate}</p>
+                <p className="text-white font-semibold text-sm truncate">{t(`promo.routes.${key}.to`)}</p>
+                <p className="text-blue-100 text-xs">{t(`promo.routes.${key}.toDate`)}</p>
               </div>
               <div className="shrink-0 text-white font-bold text-sm">
-                {route.price}
+                {t(`promo.routes.${key}.price`)}
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 function mulberry32(seed) {
   let a = seed >>> 0;
@@ -17,7 +18,7 @@ function hashString(str) {
   return h;
 }
 
-function QrCode({ value, size = 168 }) {
+function QrCode({ value, size = 168, ariaLabel }) {
   const modules = 25;
   const cell = size / modules;
   const rand = mulberry32(hashString(value || "yuusell"));
@@ -51,7 +52,7 @@ function QrCode({ value, size = 168 }) {
       height={size}
       viewBox={`0 0 ${size} ${size}`}
       role="img"
-      aria-label="Shipment QR code"
+      aria-label={ariaLabel}
       className="rounded-xl bg-white"
     >
       <rect width={size} height={size} fill="#fff" />
@@ -95,6 +96,9 @@ function buildPdf(lines) {
 }
 
 export default function ShipmentSuccess({ booking }) {
+  const { t } = useTranslation(["airCargoBooking", "booking"]);
+  const notSet = t("common.notSet", { ns: "booking" });
+
   const { trackingNumber, shipmentNumber } = useMemo(() => {
     const rand = mulberry32((Date.now() ^ hashString(JSON.stringify(booking || {}))) >>> 0);
     const digits = (n) => Array.from({ length: n }, () => Math.floor(rand() * 10)).join("");
@@ -107,25 +111,25 @@ export default function ShipmentSuccess({ booking }) {
   const handleDownload = () => {
     const b = booking || {};
     const lines = [
-      "YuuSell Logistics - Electronic Declaration",
+      t("success.pdf.title", { ns: "booking" }),
       "==========================================",
       "",
-      `Service:          ${b.serviceLabel || "Air Cargo"}`,
-      `Tracking Number:  ${trackingNumber}`,
-      `Shipment Number:  ${shipmentNumber}`,
+      `${t("success.pdf.service", { ns: "booking" })}          ${b.serviceLabel || t("success.pdf.airCargoFallback")}`,
+      `${t("success.pdf.trackingNumber", { ns: "booking" })}  ${trackingNumber}`,
+      `${t("success.pdf.shipmentNumber", { ns: "booking" })}  ${shipmentNumber}`,
       "",
-      `From:             ${b.fromCountry || "-"} (${b.zipCode || "-"})`,
-      `Destination:      ${b.destinationCountry || "-"}`,
-      `Weight:           ${b.weight || "-"} kg`,
-      `Dimensions:       ${b.length || "-"} x ${b.width || "-"} x ${b.height || "-"} cm`,
-      `Declared Value:   $${b.declaredValue || "0"}`,
+      `${t("success.pdf.from", { ns: "booking" })}             ${b.fromCountry || notSet} (${b.zipCode || notSet})`,
+      `${t("success.pdf.destination", { ns: "booking" })}      ${b.destinationCountry || notSet}`,
+      `${t("success.pdf.weight", { ns: "booking" })}           ${b.weight || notSet} kg`,
+      `${t("success.pdf.dimensions", { ns: "booking" })}       ${b.length || notSet} x ${b.width || notSet} x ${b.height || notSet} cm`,
+      `${t("success.pdf.declaredValue", { ns: "booking" })}   $${b.declaredValue || "0"}`,
       "",
-      `Payment Method:   ${b.paymentMethod || "-"}`,
-      `Amount Paid:      $${(b.total || 0).toFixed(2)} USD`,
-      `Delivery Time:    ${b.deliveryTime || "-"}`,
+      `${t("success.pdf.paymentMethod", { ns: "booking" })}   ${b.paymentMethod || notSet}`,
+      `${t("success.pdf.amountPaid", { ns: "booking" })}      $${(b.total || 0).toFixed(2)} USD`,
+      `${t("success.pdf.deliveryTime", { ns: "booking" })}    ${b.deliveryTime || notSet}`,
       "",
-      "Please bring your package to the nearest branch or wait for pickup.",
-      "Thank you for shipping with YuuSell.",
+      t("success.pdf.instructionsAir", { ns: "booking" }),
+      t("success.pdf.thankYou", { ns: "booking" }),
     ];
     const blob = new Blob([buildPdf(lines)], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
@@ -147,13 +151,13 @@ export default function ShipmentSuccess({ booking }) {
           </svg>
         </div>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-          Shipment Created
+          {t("success.title", { ns: "booking" })}
         </h2>
         <p className="inline-flex items-center gap-2 text-sm sm:text-base text-green-700 font-medium">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
           </svg>
-          Electronic declaration created
+          {t("success.status", { ns: "booking" })}
         </p>
       </div>
 
@@ -161,11 +165,15 @@ export default function ShipmentSuccess({ booking }) {
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-6 sm:gap-8 items-center">
           <div className="min-w-0 order-2 sm:order-1">
             <div className="mb-4">
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Tracking Number</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
+                {t("success.trackingNumber", { ns: "booking" })}
+              </p>
               <p className="text-lg sm:text-xl font-extrabold text-gray-900 break-all">{trackingNumber}</p>
             </div>
             <div className="mb-4">
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Shipment Number</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
+                {t("success.shipmentNumber", { ns: "booking" })}
+              </p>
               <p className="text-base sm:text-lg font-bold text-gray-900 break-all">{shipmentNumber}</p>
             </div>
             <button
@@ -177,24 +185,23 @@ export default function ShipmentSuccess({ booking }) {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
               </svg>
-              Download PDF
+              {t("success.downloadPdf", { ns: "booking" })}
             </button>
           </div>
 
           <div className="flex flex-col items-center order-1 sm:order-2 shrink-0">
             <div className="p-3 rounded-2xl border border-gray-100 bg-white">
-              <QrCode value={trackingNumber} />
+              <QrCode value={trackingNumber} ariaLabel={t("aria.qrCode", { ns: "booking" })} />
             </div>
-            <p className="text-xs text-gray-400 mt-2">Scan at branch</p>
+            <p className="text-xs text-gray-400 mt-2">{t("success.scanAtBranch", { ns: "booking" })}</p>
           </div>
         </div>
 
         <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-100">
           <div className="rounded-2xl bg-blue-50 border border-blue-100 p-4 sm:p-5">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900">Next step:</strong> Please bring your package to the
-              nearest branch or wait for pickup. You can track your shipment any time using your
-              tracking number.
+              <strong className="text-gray-900">{t("success.nextStep.label", { ns: "booking" })}</strong>{" "}
+              {t("success.nextStep.bodyAir", { ns: "booking" })}
             </p>
           </div>
         </div>

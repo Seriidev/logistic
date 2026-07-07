@@ -1,4 +1,5 @@
 import PriceCalculator from "./PriceCalculator";
+import { useTranslation } from "react-i18next";
 import { getBreakdown } from "../utils/getBreakdown";
 import { COUNTRIES, CATEGORIES, WEIGHT_UNITS, DELIVERY_TYPES } from "../data/shippingOptions";
 
@@ -17,6 +18,7 @@ function isValid(f) {
 }
 
 export default function FTLForm({ formData, onChange, onNext }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
   const update = (field) => (e) => onChange(field, e.target.value);
   const breakdown = getBreakdown(SERVICE, formData);
   const valid = isValid(formData);
@@ -25,11 +27,16 @@ export default function FTLForm({ formData, onChange, onNext }) {
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
-          FTL · Full Truck Load
+          {t("ftl.badge", { ns: "truckCargoBooking" })}
         </p>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">Shipment Details</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
+          {t("steps.shipmentDetails", { ns: "booking" })}
+        </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          A dedicated truck for your cargo. Delivery in {breakdown.deliveryTime}.
+          {t("ftl.intro", {
+            ns: "truckCargoBooking",
+            time: t("pricing.ftl.deliveryTime", { ns: "truckCargoBooking" }),
+          })}
         </p>
       </div>
 
@@ -39,107 +46,133 @@ export default function FTLForm({ formData, onChange, onNext }) {
           className="lg:col-span-2 bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-7 lg:p-8 min-w-0"
         >
           {/* Origin */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Origin</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.origin", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0 sm:col-span-2">
-              <label htmlFor="country" className={labelClass}>Choose your country *</label>
+              <label htmlFor="country" className={labelClass}>{t("form.fields.country", { ns: "booking" })}</label>
               <select id="country" value={formData.country || ""} onChange={update("country")} className={`${inputClass} cursor-pointer`}>
-                <option value="" disabled>Select country</option>
-                {COUNTRIES.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+                <option value="" disabled>{t("form.placeholders.selectCountry", { ns: "booking" })}</option>
+                {COUNTRIES.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {t(`options.countries.${c.id}`, { ns: "truckCargoBooking" })}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="min-w-0">
-              <label htmlFor="fromLocation" className={labelClass}>From — Location *</label>
-              <input id="fromLocation" type="text" placeholder="Pickup location"
+              <label htmlFor="fromLocation" className={labelClass}>{t("form.fields.fromLocation", { ns: "booking" })}</label>
+              <input id="fromLocation" type="text" placeholder={t("form.placeholders.fromLocation", { ns: "booking" })}
                 value={formData.fromLocation || ""} onChange={update("fromLocation")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="fromWarehouse" className={labelClass}>From — Warehouse</label>
-              <input id="fromWarehouse" type="text" placeholder="Warehouse"
+              <label htmlFor="fromWarehouse" className={labelClass}>{t("form.fields.fromWarehouse", { ns: "booking" })}</label>
+              <input id="fromWarehouse" type="text" placeholder={t("form.placeholders.fromWarehouse", { ns: "booking" })}
                 value={formData.fromWarehouse || ""} onChange={update("fromWarehouse")} className={inputClass} />
             </div>
           </div>
 
           {/* Shipper */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Shipper Information</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.shipper", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0 sm:col-span-2">
-              <label htmlFor="shipperInfo" className={labelClass}>Shipper name &amp; address *</label>
-              <textarea id="shipperInfo" rows={2} placeholder="Full name, address, phone"
+              <label htmlFor="shipperInfo" className={labelClass}>{t("form.fields.shipperInfo", { ns: "booking" })}</label>
+              <textarea id="shipperInfo" rows={2} placeholder={t("form.placeholders.receiverInfo", { ns: "booking" })}
                 value={formData.shipperInfo || ""} onChange={update("shipperInfo")} className={`${inputClass} h-auto py-3 resize-y`} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="dateOfShipment" className={labelClass}>Date of Shipment *</label>
+              <label htmlFor="dateOfShipment" className={labelClass}>{t("form.fields.dateOfShipment", { ns: "booking" })}</label>
               <input id="dateOfShipment" type="date"
                 value={formData.dateOfShipment || ""} onChange={update("dateOfShipment")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="weight" className={labelClass}>Package Weight *</label>
+              <label htmlFor="weight" className={labelClass}>{t("form.fields.packageWeight", { ns: "booking" })}</label>
               <div className="flex gap-2 min-w-0">
-                <input id="weight" type="number" min="0" step="0.1" placeholder="0"
+                <input id="weight" type="number" min="0" step="0.1" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                   value={formData.weight || ""} onChange={update("weight")} className={inputClass} />
                 <select
-                  aria-label="Weight unit"
+                  aria-label={t("aria.weightUnit", { ns: "booking" })}
                   value={formData.weightUnit || "kg"}
                   onChange={update("weightUnit")}
                   className="h-11 sm:h-12 px-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white outline-none cursor-pointer focus:border-blue-400 transition-colors font-[inherit] shrink-0"
                 >
-                  {WEIGHT_UNITS.map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
+                  {WEIGHT_UNITS.map((u) => (
+                    <option key={u.id} value={u.id}>
+                      {t(`options.units.${u.id}`, { ns: "truckCargoBooking" })}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
           </div>
 
           {/* Customs */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Customs &amp; Goods</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.customs", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0">
-              <label htmlFor="hsCode" className={labelClass}>HS Code *</label>
-              <input id="hsCode" type="text" placeholder="e.g. 8708.99"
+              <label htmlFor="hsCode" className={labelClass}>{t("form.fields.hsCode", { ns: "booking" })}</label>
+              <input id="hsCode" type="text" placeholder={t("form.placeholders.hsCodeFtl", { ns: "booking" })}
                 value={formData.hsCode || ""} onChange={update("hsCode")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="category" className={labelClass}>Category *</label>
+              <label htmlFor="category" className={labelClass}>{t("form.fields.category", { ns: "booking" })}</label>
               <select id="category" value={formData.category || ""} onChange={update("category")} className={`${inputClass} cursor-pointer`}>
-                <option value="" disabled>Select category</option>
-                {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                <option value="" disabled>{t("form.placeholders.selectCategory", { ns: "booking" })}</option>
+                {CATEGORIES.map((c) => (
+                  <option key={c} value={c}>
+                    {t(`options.categories.${c}`, { ns: "truckCargoBooking" })}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
           {/* Receiver + delivery */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Receiver &amp; Delivery</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.receiverDelivery", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0">
-              <label htmlFor="receiverInfo" className={labelClass}>Receiver Information *</label>
-              <textarea id="receiverInfo" rows={2} placeholder="Full name, address, phone"
+              <label htmlFor="receiverInfo" className={labelClass}>{t("form.fields.receiverInfoFtl", { ns: "booking" })}</label>
+              <textarea id="receiverInfo" rows={2} placeholder={t("form.placeholders.receiverInfo", { ns: "booking" })}
                 value={formData.receiverInfo || ""} onChange={update("receiverInfo")} className={`${inputClass} h-auto py-3 resize-y`} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="deliveryType" className={labelClass}>Delivery Type *</label>
+              <label htmlFor="deliveryType" className={labelClass}>{t("form.fields.deliveryType", { ns: "booking" })}</label>
               <select id="deliveryType" value={formData.deliveryType || ""} onChange={update("deliveryType")} className={`${inputClass} cursor-pointer`}>
-                <option value="" disabled>Select delivery type</option>
-                {DELIVERY_TYPES.map((d) => <option key={d.id} value={d.id}>{d.label}</option>)}
+                <option value="" disabled>{t("form.placeholders.selectDelivery", { ns: "booking" })}</option>
+                {DELIVERY_TYPES.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {t(`options.delivery.${d.id}`, { ns: "truckCargoBooking" })}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
           <div className="mb-6 min-w-0">
-            <label htmlFor="commodityDescription" className={labelClass}>Commodity Description</label>
-            <textarea id="commodityDescription" rows={3} placeholder="Describe the goods being shipped"
+            <label htmlFor="commodityDescription" className={labelClass}>{t("form.fields.commodityDescription", { ns: "booking" })}</label>
+            <textarea id="commodityDescription" rows={3} placeholder={t("form.placeholders.commodityDescription", { ns: "booking" })}
               value={formData.commodityDescription || ""} onChange={update("commodityDescription")} className={`${inputClass} h-auto py-3 resize-y`} />
           </div>
 
           {/* Insurance */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Insurance</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.insurance", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0">
-              <label htmlFor="declaredValue" className={labelClass}>Declared Value (USD)</label>
-              <input id="declaredValue" type="number" min="0" step="1" placeholder="0"
+              <label htmlFor="declaredValue" className={labelClass}>{t("form.fields.declaredValue", { ns: "booking" })}</label>
+              <input id="declaredValue" type="number" min="0" step="1" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                 value={formData.declaredValue || ""} onChange={update("declaredValue")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="insuranceFee" className={labelClass}>Insurance Fee (USD)</label>
+              <label htmlFor="insuranceFee" className={labelClass}>{t("form.fields.insuranceFee", { ns: "booking" })}</label>
               <input id="insuranceFee" type="text" readOnly tabIndex={-1}
                 value={`$${breakdown.insuranceFee.toFixed(2)}`} className={`${inputClass} bg-gray-50 text-gray-500 cursor-default`} />
             </div>
@@ -156,7 +189,7 @@ export default function FTLForm({ formData, onChange, onNext }) {
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Next
+            {t("actions.next", { ns: "booking" })}
           </button>
         </form>
 

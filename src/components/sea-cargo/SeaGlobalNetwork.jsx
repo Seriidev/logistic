@@ -1,103 +1,59 @@
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const REGIONS = [
-  {
-    id: 1,
-    title: "Asia",
-    description:
-      "Direct services to Shanghai, Singapore, Hong Kong, Busan, and Mumbai — the world's busiest manufacturing and transshipment hubs.",
-    ports: "120+ port pairs · Weekly sailings",
-    transit: "15–25 days to Europe / Americas",
-  },
-  {
-    id: 2,
-    title: "Europe",
-    description:
-      "Full coverage of Rotterdam, Hamburg, Antwerp, Felixstowe, and Mediterranean gateways with inland rail and truck connections.",
-    ports: "80+ European ports · Daily departures",
-    transit: "20–35 days from Asia / Americas",
-  },
-  {
-    id: 3,
-    title: "Middle East",
-    description:
-      "Strategic access to Jebel Ali, Jeddah, and Dammam — connecting Asia-Europe trade lanes and regional distribution centers.",
-    ports: "35+ Gulf & Red Sea ports",
-    transit: "12–22 days from Asia / Europe",
-  },
-  {
-    id: 4,
-    title: "North America",
-    description:
-      "Coast-to-coast coverage via Los Angeles, Long Beach, New York, Savannah, and Vancouver with customs pre-clearance support.",
-    ports: "60+ US & Canada ports",
-    transit: "18–30 days from Asia · 10–18 from Europe",
-  },
-  {
-    id: 5,
-    title: "South America",
-    description:
-      "Regular sailings to Santos, Buenos Aires, Callao, and Cartagena — linking Atlantic and Pacific trade corridors.",
-    ports: "40+ Latin American ports",
-    transit: "25–40 days from Asia / Europe",
-  },
-  {
-    id: 6,
-    title: "Africa",
-    description:
-      "Growing network to Durban, Mombasa, Lagos, and Tanger Med — supporting emerging market imports and resource exports.",
-    ports: "30+ African ports · Expanding coverage",
-    transit: "20–35 days from Asia / Europe",
-  },
-];
-
-const STATS = [
-  { value: "120+", label: "Global ports" },
-  { value: "6", label: "Continents served" },
-  { value: "500+", label: "Trade lanes" },
-  { value: "99.2%", label: "On-time sailing" },
-];
+const STAT_KEYS = ["globalPorts", "continents", "tradeLanes", "onTime"];
+const REGION_KEYS = ["asia", "europe", "middleEast", "northAmerica", "southAmerica", "africa"];
 
 export default function SeaGlobalNetwork() {
+  const { t } = useTranslation("seaCargo");
+
   return (
     <section className="bg-blue-500 min-w-0 py-12 sm:py-16 lg:py-20">
       <div className="page-container min-w-0">
         <SectionHeading
-          eyebrow="Global Shipping Network"
-          title="Worldwide Ocean Freight Coverage"
-          description="From major transshipment hubs to emerging market gateways — our integrated sea cargo network connects your cargo to every continent with reliability and competitive transit times."
+          eyebrow={t("globalNetwork.eyebrow")}
+          title={t("globalNetwork.title")}
+          description={t("globalNetwork.description")}
           light
         />
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10 lg:mb-12">
-          {STATS.map((stat) => (
+          {STAT_KEYS.map((key) => (
             <div
-              key={stat.label}
+              key={key}
               className="rounded-2xl bg-white/10 border border-white/20 px-4 py-5 sm:px-6 sm:py-6 text-center min-w-0"
             >
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-1">{stat.value}</p>
-              <p className="text-xs sm:text-sm text-blue-100">{stat.label}</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-1">
+                {t(`globalNetwork.stats.${key}.value`)}
+              </p>
+              <p className="text-xs sm:text-sm text-blue-100">
+                {t(`globalNetwork.stats.${key}.label`)}
+              </p>
             </div>
           ))}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8 sm:mb-10">
-          {REGIONS.map((region) => (
+          {REGION_KEYS.map((key) => (
             <article
-              key={region.id}
+              key={key}
               className="rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 min-w-0
                 hover:shadow-lg transition-shadow duration-200"
             >
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">{region.title}</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">{region.description}</p>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
+                {t(`globalNetwork.regions.${key}.title`)}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+                {t(`globalNetwork.regions.${key}.description`)}
+              </p>
               <dl className="space-y-2 text-xs sm:text-sm">
                 <div>
-                  <dt className="font-semibold text-blue-600">Network</dt>
-                  <dd className="text-gray-600 mt-0.5">{region.ports}</dd>
+                  <dt className="font-semibold text-blue-600">{t("globalNetwork.networkLabel")}</dt>
+                  <dd className="text-gray-600 mt-0.5">{t(`globalNetwork.regions.${key}.ports`)}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-blue-600">Typical Transit</dt>
-                  <dd className="text-gray-600 mt-0.5">{region.transit}</dd>
+                  <dt className="font-semibold text-blue-600">{t("globalNetwork.transitLabel")}</dt>
+                  <dd className="text-gray-600 mt-0.5">{t(`globalNetwork.regions.${key}.transit`)}</dd>
                 </div>
               </dl>
             </article>
@@ -123,10 +79,10 @@ export default function SeaGlobalNetwork() {
               <circle cx="320" cy="110" r="4" fill="white" opacity="0.8" />
             </svg>
             <p className="text-sm sm:text-base text-blue-100 font-medium">
-              Interactive world shipping map — ready for future media integration
+              {t("globalNetwork.mapTitle")}
             </p>
             <p className="text-xs sm:text-sm text-blue-200 mt-2 max-w-md mx-auto">
-              Visualize trade lanes, port connections, and sailing schedules across our global ocean freight network
+              {t("globalNetwork.mapDescription")}
             </p>
           </div>
         </div>

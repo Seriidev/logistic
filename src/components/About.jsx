@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function useCountUp(target, duration = 2000, started) {
   const [count, setCount] = useState(0);
@@ -32,6 +33,7 @@ function StatCard({ value, suffix, label1, label2, started }) {
 }
 
 export default function AboutUs() {
+  const { t } = useTranslation();
   const [started, setStarted] = useState(false);
   const sectionRef = useRef(null);
 
@@ -52,19 +54,22 @@ export default function AboutUs() {
 
           <img
             src="/team.jpg"
-            alt="Team"
+            alt={t("about.images.teamAlt")}
             className="absolute top-0 left-0 w-[58%] sm:w-[300px] max-w-[300px] h-[55%] sm:h-[260px] object-cover rounded-2xl"
             onError={(e) => { e.target.style.background = "#e8eaf6"; e.target.style.opacity = "0.5"; }}
           />
 
           <div className="absolute bottom-12 sm:bottom-[80px] left-0 bg-white rounded-2xl shadow-lg px-5 py-4 sm:px-8 sm:py-6 text-center">
-            <p className="text-3xl sm:text-4xl font-bold text-blue-500">21+</p>
-            <p className="text-sm text-gray-500 mt-1">Years of<br />experience</p>
+            <p className="text-3xl sm:text-4xl font-bold text-blue-500">{t("about.badge.years")}</p>
+            <p className="text-sm text-gray-500 mt-1">
+              {t("about.badge.experienceLine1")}<br />
+              {t("about.badge.experienceLine2")}
+            </p>
           </div>
 
           <img
             src="/plane.jpg"
-            alt="Plane"
+            alt={t("about.images.planeAlt")}
             className="absolute bottom-0 right-0 w-[52%] sm:w-[260px] max-w-[260px] h-[48%] sm:h-[200px] object-cover rounded-2xl"
             onError={(e) => { e.target.style.background = "#e8eaf6"; e.target.style.opacity = "0.5"; }}
           />
@@ -74,18 +79,34 @@ export default function AboutUs() {
 
         <div className="flex-1 min-w-0 w-full">
           <h2 className="text-2xl sm:text-3xl font-bold text-blue-500 uppercase tracking-wide mb-4">
-            About Us
+            {t("about.title")}
           </h2>
           <p className="text-sm text-gray-500 leading-relaxed mb-8 sm:mb-10 max-w-full lg:max-w-[500px]">
-            Step-by-step shipping process — clear, fast, and convenient.
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry&apos;s standard dummy text.
+            {t("about.description")}
           </p>
           <div className="border-t border-gray-100 mb-6 sm:mb-8 max-w-full lg:max-w-[420px]" />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
-            <StatCard value={6.5} suffix="$" label1="Value of Assets" label2="Handled" started={started} />
-            <StatCard value={300} suffix="K+" label1="Shipments" label2="Delivered" started={started} />
-            <StatCard value={25} suffix="K+" label1="Clients" label2="Worldwide" started={started} />
+            <StatCard
+              value={6.5}
+              suffix="$"
+              label1={t("about.stats.assetsLabel1")}
+              label2={t("about.stats.assetsLabel2")}
+              started={started}
+            />
+            <StatCard
+              value={300}
+              suffix="K+"
+              label1={t("about.stats.shipmentsLabel1")}
+              label2={t("about.stats.shipmentsLabel2")}
+              started={started}
+            />
+            <StatCard
+              value={25}
+              suffix="K+"
+              label1={t("about.stats.clientsLabel1")}
+              label2={t("about.stats.clientsLabel2")}
+              started={started}
+            />
           </div>
         </div>
 

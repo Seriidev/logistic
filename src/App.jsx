@@ -12,6 +12,7 @@ import TruckCargoPage from "./Pages/TruckCargo";
 import TruckParcelPage from "./Pages/TruckParcel";
 import AirPage from "./Pages/Air";
 import SeaPage from "./Pages/Sea";
+import DomesticShippingPage from "./Pages/DomesticShipping";
 import ShipNowPage from "./Pages/ShipNow";
 import DiscountsPage from "./Pages/DiscountsPage";
 import Location from "./Pages/Location";
@@ -66,6 +67,7 @@ function App() {
         <Route path="/sea-cargo" element={<SeaPage />} />
         <Route path="/sea-cargo-booking" element={<SeaCargoBookingPage />} />
         <Route path="/ship-now" element={<ShipNowPage />} />
+        <Route path="/domestic-shipping" element={<DomesticShippingPage />} />
         <Route path="/news" element={<NewsPage/>} />
         <Route path="/location" element={<Location/>}/>
         <Route path="/contact" element={<ContactPage/>}/>

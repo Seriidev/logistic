@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import AirHero from "../components/air/BannerAir";
 import AirServiceOverview from "../components/air/AirServiceOverview";
 import AirServiceTypes from "../components/air/AirServiceTypes";
@@ -13,6 +15,16 @@ import AirOtherServices from "../components/air/AirOtherServices";
 import Footer from "../components/Footer";
 
 export default function AirPage() {
+  const { t, i18n } = useTranslation("airCargo");
+
+  useEffect(() => {
+    document.title = t("meta.title");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t("meta.description"));
+    }
+  }, [t, i18n.language]);
+
   return (
     <>
       <AirHero />
@@ -27,7 +39,7 @@ export default function AirPage() {
       <AirSuccessMetrics />
       <AirFAQ />
       <AirOtherServices />
-      <Footer/>
+      <Footer />
     </>
   );
 }

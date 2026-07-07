@@ -1,0 +1,121 @@
+{
+  "banner": {
+    "imageAlt": "Рекламный баннер {{n}}"
+  },
+  "promo": {
+    "title": "Скидка 24% на доставку в США!",
+    "subtitle": "Празднуйте вместе с YuuSell",
+    "imageAlt": "Акция на доставку",
+    "routes": [
+      {
+        "from": "Нью-Йорк",
+        "fromDate": "17 июня 2025",
+        "to": "Дубай",
+        "toDate": "19 июня 2025",
+        "price": "180$"
+      },
+      {
+        "from": "Лас-Вегас",
+        "fromDate": "17 июня 2025",
+        "to": "Денвер",
+        "toDate": "20 июня 2025",
+        "price": "162$"
+      },
+      {
+        "from": "Нью-Йорк",
+        "fromDate": "17 июня 2025",
+        "to": "Дубай",
+        "toDate": "19 июня 2025",
+        "price": "134$"
+      },
+      {
+        "from": "Лас-Вегас",
+        "fromDate": "17 июня 2025",
+        "to": "Денвер",
+        "toDate": "20 июня 2025",
+        "price": "321$"
+      }
+    ]
+  },
+  "map": {
+    "title": "Наши склады по всему миру",
+    "subtitle": "Выберите страну, узнайте подробности и скачайте прайс-лист",
+    "sidebar": {
+      "ariaLabel": "Наши склады",
+      "title": "Наши склады",
+      "subtitle": "Поиск и прайс-листы по странам",
+      "searchPlaceholder": "Поиск страны...",
+      "address": "Адрес:",
+      "delivery": "Доставка:",
+      "inStock": "На складе:",
+      "pdfButton": "Прайс PDF · {{country}}",
+      "downloading": "Открытие..."
+    },
+    "warehouses": [
+      {
+        "country": "Китай",
+        "city": "Шанхай",
+        "address": "No.88 Longhua Rd, Xuhui District",
+        "price": "от $3/кг",
+        "delivery": "7–14 дней",
+        "stock": "1 240 ед."
+      },
+      {
+        "country": "Турция",
+        "city": "Стамбул",
+        "address": "Atatürk Mah. Ertuğrulgazi Sok.",
+        "price": "от $5/кг",
+        "delivery": "5–10 дней",
+        "stock": "820 ед."
+      },
+      {
+        "country": "ОАЭ",
+        "city": "Дубай",
+        "address": "Jebel Ali Free Zone, Gate 5",
+        "price": "от $4/кг",
+        "delivery": "4–8 дней",
+        "stock": "560 ед."
+      },
+      {
+        "country": "Германия",
+        "city": "Гамбург",
+        "address": "Freihafen 12, 20457 Hamburg",
+        "price": "от $8/кг",
+        "delivery": "3–6 дней",
+        "stock": "430 ед."
+      },
+      {
+        "country": "Япония",
+        "city": "Токио",
+        "address": "2-1 Osanbashi, Naka-ku, Yokohama",
+        "price": "от $6/кг",
+        "delivery": "6–12 дней",
+        "stock": "310 ед."
+      },
+      {
+        "country": "Индия",
+        "city": "Мумбай",
+        "address": "Nhava Sheva, Navi Mumbai",
+        "price": "от $3/кг",
+        "delivery": "8–15 дней",
+        "stock": "740 ед."
+      }
+    ]
+  },
+  "reviewModal": {
+    "title": "Написать отзыв",
+    "ratingLabel": "Ваша оценка",
+    "ratingGroup": "Оценка",
+    "star_one": "{{count}} звезда",
+    "star_few": "{{count}} звезды",
+    "star_many": "{{count}} звёзд",
+    "namePlaceholder": "Ваше полное имя",
+    "review": "Отзыв",
+    "reviewPlaceholder": "Поделитесь своим опытом работы с YuuSell...",
+    "submit": "Отправить отзыв",
+    "errors": {
+      "required": "Пожалуйста, укажите имя и текст отзыва."
+    },
+    "success": "Спасибо за ваш отзыв!"
+  }
+}

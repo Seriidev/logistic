@@ -1,28 +1,39 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import yuuLogo from "../logo/logo.svg";
+import i18n, { LOCALE_BY_CODE } from "../i18n";
 
 const LANGUAGES = [
-  { code: "RU", flag: "🇷🇺", name: "Русский", popular: true },
-  { code: "EN", flag: "EN", name: "English", popular: true },
-  { code: "ZH", flag: "🇨🇳", name: "中文", popular: true },
-  { code: "UZ", flag: "🇺🇿", name: "O'zbek", popular: true },
-  { code: "DE", flag: "🇩🇪", name: "Deutsch", popular: false },
-  { code: "TR", flag: "🇹🇷", name: "Türkçe", popular: false },
-  { code: "KZ", flag: "🇰🇿", name: "Қазақша", popular: false },
-  { code: "JA", flag: "🇯🇵", name: "日本語", popular: false },
-  { code: "KO", flag: "🇰🇷", name: "한국어", popular: false },
-  { code: "AR", flag: "🇦🇪", name: "العربية", popular: false },
+  { code: "RU", flag: "🇷🇺", nameKey: "russian", popular: true },
+  { code: "EN", flag: "EN", nameKey: "english", popular: true },
+  { code: "ZH", flag: "🇨🇳", nameKey: "chinese", popular: true },
+  { code: "UZ", flag: "🇺🇿", nameKey: "uzbek", popular: true },
+  { code: "DE", flag: "🇩🇪", nameKey: "german", popular: false },
+  { code: "TR", flag: "🇹🇷", nameKey: "turkish", popular: false },
+  { code: "KZ", flag: "🇰🇿", nameKey: "kazakh", popular: false },
+  { code: "JA", flag: "🇯🇵", nameKey: "japanese", popular: false },
+  { code: "KO", flag: "🇰🇷", nameKey: "korean", popular: false },
+  { code: "AR", flag: "🇦🇪", nameKey: "arabic", popular: false },
 ];
 
 const NAV_LINKS = [
-  { label: "Ship now", href: "/ship-now" },
-  { label: "Track", href: "/track" },
-  { label: "Locations", href: "/location" },
-  { label: "Services", href: "/serviceshead" },
-  { label: "Contact us", href: "/contact" },
-  { label: "Calculate", href: "/calculate" },
+  { labelKey: "shipNow", href: "/ship-now" },
+  { labelKey: "track", href: "/track" },
+  { labelKey: "locations", href: "/location" },
+  { labelKey: "services", href: "/serviceshead" },
+  { labelKey: "contactUs", href: "/contact" },
+  { labelKey: "calculate", href: "/calculate" },
 ];
+
+function getLangByCode(code) {
+  return LANGUAGES.find((l) => l.code === code) ?? LANGUAGES.find((l) => l.code === "EN");
+}
+
+function getCodeByLocale(locale) {
+  const entry = Object.entries(LOCALE_BY_CODE).find(([, lng]) => lng === locale);
+  return entry ? entry[0] : "EN";
+}
 
 const IconSearch = ({ className = "" }) => (
   <svg className={`w-4 h-4 ${className}`} viewBox="0 0 24 24" fill="none"
@@ -93,6 +104,7 @@ function NavLink({ href, label, active, onClick, mobile = false }) {
 }
 
 function SearchBar({ compact = false }) {
+  const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
   return (
     <div
@@ -111,7 +123,7 @@ function SearchBar({ compact = false }) {
         <IconSearch className="text-gray-400 mr-2 shrink-0" />
         <input
           type="search"
-          placeholder="Search or tracking"
+          placeholder={t("header.search.placeholder")}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           className="flex-1 min-w-0 h-full bg-transparent outline-none text-sm text-gray-700 placeholder:text-gray-400"
@@ -123,13 +135,13 @@ function SearchBar({ compact = false }) {
           bg-blue-600 hover:bg-blue-700 text-white text-[11px] sm:text-xs font-semibold
           px-3 sm:px-4 h-8 rounded-full transition-colors whitespace-nowrap"
       >
-        SEARCH
+        {t("header.search.button")}
       </button>
     </div>
   );
 }
 
-function LangItem({ lang, isSelected, onSelect }) {
+function LangItem({ lang, name, isSelected, onSelect }) {
   return (
     <button
       type="button"
@@ -138,7 +150,7 @@ function LangItem({ lang, isSelected, onSelect }) {
         ${isSelected ? "bg-blue-50 text-blue-600" : "bg-transparent text-gray-900 hover:bg-gray-50"}`}
     >
       <span className="text-base w-5 text-center leading-none shrink-0">{lang.flag}</span>
-      <span className="flex-1 text-left truncate">{lang.name}</span>
+      <span className="flex-1 text-left truncate">{name}</span>
       <span className={`text-blue-500 shrink-0 ${isSelected ? "opacity-100" : "opacity-0"}`}>
         <IconCheck />
       </span>
@@ -147,13 +159,21 @@ function LangItem({ lang, isSelected, onSelect }) {
 }
 
 function LanguageSwitcher({ className = "", preferPlacement = "auto", elevated = false }) {
-  const [selected, setSelected] = useState(LANGUAGES[0]);
+  const { t } = useTranslation();
+  const [selected, setSelected] = useState(() => getLangByCode(getCodeByLocale(i18n.language)));
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("bottom");
   const [fixedStyle, setFixedStyle] = useState(null);
   const ref = useRef(null);
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const sync = (lng) => setSelected(getLangByCode(getCodeByLocale(lng)));
+    sync(i18n.language);
+    i18n.on("languageChanged", sync);
+    return () => i18n.off("languageChanged", sync);
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {
@@ -214,6 +234,13 @@ function LanguageSwitcher({ className = "", preferPlacement = "auto", elevated =
     };
   }, [open, preferPlacement, elevated]);
 
+  const handleSelect = (lang) => {
+    setSelected(lang);
+    setOpen(false);
+    const locale = LOCALE_BY_CODE[lang.code] ?? "en";
+    i18n.changeLanguage(locale);
+  };
+
   const popular = LANGUAGES.filter((l) => l.popular);
   const others = LANGUAGES.filter((l) => !l.popular);
 
@@ -263,26 +290,28 @@ function LanguageSwitcher({ className = "", preferPlacement = "auto", elevated =
         `}
       >
         <div className="text-[11px] font-semibold text-gray-400 px-3.5 pt-2.5 pb-1 tracking-wide uppercase">
-          Популярные
+          {t("header.languages.popular")}
         </div>
         {popular.map((lang) => (
           <LangItem
             key={lang.code}
             lang={lang}
+            name={t(`header.languages.${lang.nameKey}`)}
             isSelected={selected.code === lang.code}
-            onSelect={() => { setSelected(lang); setOpen(false); }}
+            onSelect={() => handleSelect(lang)}
           />
         ))}
         <div className="h-px bg-gray-100 my-1" />
         <div className="text-[11px] font-semibold text-gray-400 px-3.5 pt-2.5 pb-1 tracking-wide uppercase">
-          Другие
+          {t("header.languages.other")}
         </div>
         {others.map((lang) => (
           <LangItem
             key={lang.code}
             lang={lang}
+            name={t(`header.languages.${lang.nameKey}`)}
             isSelected={selected.code === lang.code}
-            onSelect={() => { setSelected(lang); setOpen(false); }}
+            onSelect={() => handleSelect(lang)}
           />
         ))}
       </div>
@@ -291,6 +320,7 @@ function LanguageSwitcher({ className = "", preferPlacement = "auto", elevated =
 }
 
 export default function Header() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -322,10 +352,9 @@ export default function Header() {
       `}
     >
       <div className="page-container">
-        {/* Top row */}
         <div className="flex items-center gap-3 h-14 sm:h-16 min-w-0">
           <a href="/" className="flex items-center gap-2 no-underline shrink-0">
-            <img src={yuuLogo} alt="YuuSell" className="h-7 sm:h-8 w-auto" />
+            <img src={yuuLogo} alt={t("header.logoAlt")} className="h-7 sm:h-8 w-auto" />
           </a>
 
           <div className="hidden lg:block flex-1 min-w-0" />
@@ -348,16 +377,14 @@ export default function Header() {
             <Link
               to="/signup"
               className="flex items-center h-10 px-4 bg-gray-100 text-gray-900 rounded-full text-sm font-semibold
-                no-underline cursor-pointer hover:bg-blue-600 hover:text-white transition-all font-[inherit]"
-            >
-              Sign up
+                no-underline cursor-pointer hover:bg-blue-600 hover:text-white transition-all font-[inherit]">
+              {t("header.auth.signUp")}
             </Link>
             <Link
               to="/login"
               className="flex items-center h-10 px-4 bg-blue-500 text-white rounded-full text-sm font-semibold
-                no-underline hover:bg-blue-600 font-[inherit]"
-            >
-              Log in
+                no-underline hover:bg-blue-600 font-[inherit]">
+              {t("header.auth.logIn")}
             </Link>
           </div>
 
@@ -366,39 +393,36 @@ export default function Header() {
             className="lg:hidden ml-auto flex items-center justify-center w-11 h-11 rounded-xl
               text-gray-800 hover:bg-gray-100 border-none bg-transparent cursor-pointer"
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t("header.menu.close") : t("header.menu.open")}
             aria-expanded={menuOpen}
           >
             {menuOpen ? <IconClose /> : <IconMenu />}
           </button>
         </div>
 
-        {/* Search — mobile & tablet */}
         <div className="pb-3 lg:hidden min-w-0">
           <SearchBar compact />
         </div>
 
-        {/* Desktop nav */}
         <nav className="hidden lg:flex items-center justify-center gap-0.5 pb-2 overflow-x-auto scrollbar-none">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}
               href={link.href}
-              label={link.label}
+              label={t(`header.nav.${link.labelKey}`)}
               active={activeLink === link.href}
             />
           ))}
         </nav>
       </div>
 
-      {/* Mobile menu panel */}
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 z-[100] flex justify-end">
           <button
             type="button"
             className="absolute inset-0 bg-black/40 border-none cursor-pointer"
             onClick={closeMenu}
-            aria-label="Close menu overlay"
+            aria-label={t("header.menu.closeOverlay")}
           />
           <div
             className="relative w-full max-w-sm bg-white shadow-xl flex flex-col overflow-hidden
@@ -407,12 +431,12 @@ export default function Header() {
               pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
           >
             <div className="shrink-0 flex items-center justify-between px-4 py-3 border-b border-gray-100">
-              <span className="text-sm font-bold text-gray-900">Menu</span>
+              <span className="text-sm font-bold text-gray-900">{t("header.menu.title")}</span>
               <button
                 type="button"
                 onClick={closeMenu}
                 className="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gray-100 border-none bg-transparent cursor-pointer"
-                aria-label="Close menu"
+                aria-label={t("header.menu.close")}
               >
                 <IconClose />
               </button>
@@ -423,7 +447,7 @@ export default function Header() {
                 <NavLink
                   key={link.href}
                   href={link.href}
-                  label={link.label}
+                  label={t(`header.nav.${link.labelKey}`)}
                   active={activeLink === link.href}
                   onClick={closeMenu}
                   mobile
@@ -451,14 +475,14 @@ export default function Header() {
                   onClick={closeMenu}
                   className="flex h-11 items-center justify-center rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-900 no-underline"
                 >
-                  Sign up
+                  {t("header.auth.signUp")}
                 </Link>
                 <Link
                   to="/login"
                   onClick={closeMenu}
                   className="h-11 flex items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold no-underline"
                 >
-                  Log in
+                  {t("header.auth.logIn")}
                 </Link>
               </div>
             </div>

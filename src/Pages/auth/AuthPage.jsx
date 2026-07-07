@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Footer from "../../components/Footer";
 import PhoneInputField from "../../components/PhoneInputField";
 import { loginUser } from "../../utils/auth";
@@ -25,22 +26,24 @@ const IconApple = () => (
 );
 
 function LegalText() {
+  const { t } = useTranslation("auth");
   return (
     <p className="text-[11px] sm:text-xs text-gray-400 leading-relaxed text-center">
-      This site is protected by reCAPTCHA and the Google{" "}
+      {t("legal.prefix")}{" "}
       <Link to="/privacy" className="text-blue-500 no-underline hover:underline">
-        Privacy Policy
+        {t("legal.privacyPolicy")}
       </Link>{" "}
-      and{" "}
+      {t("legal.and")}{" "}
       <a href="#" className="text-blue-500 no-underline hover:underline">
-        Terms of Service
+        {t("legal.termsOfService")}
       </a>{" "}
-      apply.
+      {t("legal.suffix")}
     </p>
   );
 }
 
 export default function AuthPage() {
+  const { t } = useTranslation("auth");
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -80,14 +83,16 @@ export default function AuthPage() {
     e.preventDefault();
     const err = getPhoneValidationError(phone, { required: true });
     if (err) {
-      setPhoneError(err);
+      setPhoneError(t(`shared.validation.${err}`));
       return;
     }
     setPhoneError("");
     finishAuth();
   };
 
-  const breadcrumbLabel = mode === "signup" ? "Sign up" : "Log in";
+  const breadcrumbLabel = mode === "signup" ? t("breadcrumb.signUp") : t("breadcrumb.logIn");
+  const illustrationSrc = mode === "signup" ? "/signup.png" : "/login.png";
+  const illustrationAlt = mode === "signup" ? t("illustration.signUpAlt") : t("illustration.loginAlt");
 
   return (
     <>
@@ -98,7 +103,7 @@ export default function AuthPage() {
             className="flex items-center gap-2 text-sm text-gray-500 mb-6 sm:mb-8"
           >
             <a href="/" className="hover:text-blue-500 no-underline text-gray-500 transition-colors">
-              Main
+              {t("breadcrumb.main")}
             </a>
             <span className="text-gray-300" aria-hidden="true">›</span>
             <span className="text-blue-500 font-medium">{breadcrumbLabel}</span>
@@ -106,19 +111,19 @@ export default function AuthPage() {
 
           {redirectTo !== "/" && (
             <p className="mb-6 max-w-lg text-sm text-gray-600 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
-              Please {mode === "signup" ? "create an account" : "log in"} to continue creating your parcel.
+              {mode === "signup" ? t("redirectNotice.signUp") : t("redirectNotice.logIn")}
             </p>
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center max-w-6xl mx-auto">
             <div className="hidden lg:flex items-center justify-center order-1">
-              <AuthIllustration />
+              <AuthIllustration src={illustrationSrc} alt={illustrationAlt} />
             </div>
 
             <div className="w-full max-w-[440px] mx-auto lg:mx-0 lg:ml-auto order-2">
               <div className="bg-white rounded-3xl shadow-[0_4px_32px_rgba(0,0,0,0.08)] border border-gray-100 px-6 sm:px-8 py-8 sm:py-10">
                 <h1 className="text-xl sm:text-2xl font-bold text-[#1e2a4a] text-center mb-6 uppercase tracking-wide">
-                  {mode === "signup" ? "Sign up" : "Login"}
+                  {mode === "signup" ? t("title.signUp") : t("title.login")}
                 </h1>
 
                 <div className="grid grid-cols-2 gap-0 mb-6 rounded-xl overflow-hidden bg-gray-100 p-1">
@@ -130,7 +135,7 @@ export default function AuthPage() {
                         ? "bg-[#3b63f1] text-white shadow-sm"
                         : "bg-transparent text-gray-500 hover:text-gray-700"}`}
                   >
-                    Log in
+                    {t("tabs.logIn")}
                   </button>
                   <button
                     type="button"
@@ -140,17 +145,17 @@ export default function AuthPage() {
                         ? "bg-[#3b63f1] text-white shadow-sm"
                         : "bg-transparent text-gray-500 hover:text-gray-700"}`}
                   >
-                    Sign up
+                    {t("tabs.signUp")}
                   </button>
                 </div>
 
                 {mode === "login" ? (
                   <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4">
                     <label className="flex flex-col gap-1.5">
-                      <span className="text-xs font-medium text-gray-500">Email</span>
+                      <span className="text-xs font-medium text-gray-500">{t("fields.email")}</span>
                       <input
                         type="email"
-                        placeholder="@gmail"
+                        placeholder={t("fields.emailPlaceholder")}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={inputClass}
@@ -158,10 +163,10 @@ export default function AuthPage() {
                     </label>
 
                     <label className="flex flex-col gap-1.5">
-                      <span className="text-xs font-medium text-gray-500">Password</span>
+                      <span className="text-xs font-medium text-gray-500">{t("fields.password")}</span>
                       <input
                         type="password"
-                        placeholder="Password"
+                        placeholder={t("fields.passwordPlaceholder")}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className={inputClass}
@@ -170,7 +175,7 @@ export default function AuthPage() {
 
                     <div className="relative flex items-center gap-3 my-2">
                       <div className="flex-1 h-px bg-gray-200" />
-                      <span className="text-xs text-gray-400 whitespace-nowrap">Or with the help of</span>
+                      <span className="text-xs text-gray-400 whitespace-nowrap">{t("divider")}</span>
                       <div className="flex-1 h-px bg-gray-200" />
                     </div>
 
@@ -178,14 +183,14 @@ export default function AuthPage() {
                       <button
                         type="button"
                         className="flex h-12 items-center justify-center rounded-xl bg-[#f0f2f5] border-none cursor-pointer hover:bg-gray-200 transition-colors"
-                        aria-label="Continue with Google"
+                        aria-label={t("social.google")}
                       >
                         <IconGoogle />
                       </button>
                       <button
                         type="button"
                         className="flex h-12 items-center justify-center rounded-xl bg-[#f0f2f5] border-none cursor-pointer hover:bg-gray-200 transition-colors"
-                        aria-label="Continue with Apple"
+                        aria-label={t("social.apple")}
                       >
                         <IconApple />
                       </button>
@@ -197,7 +202,7 @@ export default function AuthPage() {
                       type="submit"
                       className="mt-2 w-full min-h-[48px] bg-[#9baff9] hover:bg-[#7a97f5] text-white text-sm font-bold uppercase tracking-wider rounded-2xl border-none cursor-pointer transition-colors duration-150 font-[inherit] flex items-center justify-center gap-2"
                     >
-                      Log in
+                      {t("submit.logIn")}
                       <span aria-hidden="true">→</span>
                     </button>
                   </form>
@@ -205,20 +210,20 @@ export default function AuthPage() {
                   <form onSubmit={handleSignupSubmit} className="flex flex-col gap-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <label className="flex flex-col gap-1.5">
-                        <span className="text-xs font-medium text-gray-500">Name</span>
+                        <span className="text-xs font-medium text-gray-500">{t("fields.name")}</span>
                         <input
                           type="text"
-                          placeholder="Name..."
+                          placeholder={t("fields.namePlaceholder")}
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           className={inputClass}
                         />
                       </label>
                       <label className="flex flex-col gap-1.5">
-                        <span className="text-xs font-medium text-gray-500">Surname</span>
+                        <span className="text-xs font-medium text-gray-500">{t("fields.surname")}</span>
                         <input
                           type="text"
-                          placeholder="Surname..."
+                          placeholder={t("fields.surnamePlaceholder")}
                           value={surname}
                           onChange={(e) => setSurname(e.target.value)}
                           className={inputClass}
@@ -227,20 +232,20 @@ export default function AuthPage() {
                     </div>
 
                     <PhoneInputField
-                      label="Phone"
+                      label={t("fields.phone")}
                       required
                       variant="auth"
                       value={phone}
                       onChange={(v) => { setPhone(v); setPhoneError(""); }}
                       error={phoneError}
-                      placeholder="Enter phone number"
+                      placeholder={t("fields.phonePlaceholder")}
                     />
 
                     <label className="flex flex-col gap-1.5">
-                      <span className="text-xs font-medium text-gray-500">Email</span>
+                      <span className="text-xs font-medium text-gray-500">{t("fields.email")}</span>
                       <input
                         type="email"
-                        placeholder="@gmail"
+                        placeholder={t("fields.emailPlaceholder")}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={inputClass}
@@ -253,7 +258,7 @@ export default function AuthPage() {
                       type="submit"
                       className="mt-2 w-full min-h-[48px] bg-[#9baff9] hover:bg-[#7a97f5] text-white text-sm font-bold uppercase tracking-wider rounded-2xl border-none cursor-pointer transition-colors duration-150 font-[inherit] flex items-center justify-center gap-2"
                     >
-                      Sign up
+                      {t("submit.signUp")}
                       <span aria-hidden="true">→</span>
                     </button>
                   </form>
@@ -262,7 +267,7 @@ export default function AuthPage() {
             </div>
 
             <div className="lg:hidden order-1 max-w-sm mx-auto w-full">
-              <AuthIllustration />
+              <AuthIllustration src={illustrationSrc} alt={illustrationAlt} />
             </div>
           </div>
         </div>

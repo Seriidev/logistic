@@ -1,25 +1,39 @@
 import { PAYMENT_METHODS } from "../data/shippingOptions";
+import { useTranslation } from "react-i18next";
+import { getPaymentMethodLabel } from "../../i18n/paymentMethodLabels";
 
 export default function PaymentMethodStep({ service, breakdown, selected, onSelect, onBack, onContinue }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
+
   return (
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
-        <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">Step 2 of 4</p>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">Payment Method</h2>
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
+          {t("steps.stepOf", { ns: "booking", current: 2, total: 4 })}
+        </p>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
+          {t("paymentMethod.title", { ns: "booking" })}
+        </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          Choose a payment provider. The price shown includes the provider fee.
+          {t("paymentMethod.subtitleTruck", { ns: "booking" })}
         </p>
       </div>
 
       <div className="max-w-2xl mx-auto">
         <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 sm:p-5 mb-6 grid grid-cols-2 gap-3 sm:gap-4">
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Service</p>
-            <p className="text-sm font-bold text-gray-900">{service.toUpperCase()} Road Freight</p>
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">
+              {t("paymentMethod.summary.service", { ns: "booking" })}
+            </p>
+            <p className="text-sm font-bold text-gray-900">{t(`pricing.${service}.label`, { ns: "truckCargoBooking" })}</p>
           </div>
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Delivery</p>
-            <p className="text-sm font-bold text-gray-900">{breakdown.deliveryTime}</p>
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">
+              {t("paymentMethod.summary.delivery", { ns: "booking" })}
+            </p>
+            <p className="text-sm font-bold text-gray-900">
+              {t(`pricing.${service}.deliveryTime`, { ns: "truckCargoBooking" })}
+            </p>
           </div>
         </div>
 
@@ -49,14 +63,18 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm sm:text-base font-bold text-gray-900">{method.name}</span>
-                    {method.badge && (
+                    <span className="text-sm sm:text-base font-bold text-gray-900">
+                      {getPaymentMethodLabel(t, method, "name")}
+                    </span>
+                    {method.recommended && (
                       <span className="inline-flex px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider">
-                        {method.badge}
+                        {getPaymentMethodLabel(t, method, "badge")}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-500 truncate">{method.tagline}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 truncate">
+                    {getPaymentMethodLabel(t, method, "tagline")}
+                  </p>
                 </div>
                 <span className="text-sm sm:text-base font-extrabold text-gray-900 shrink-0">
                   ${methodTotal.toFixed(2)}
@@ -76,7 +94,7 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("actions.back", { ns: "booking" })}
           </button>
           <button
             type="button"
@@ -86,7 +104,7 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
           >
-            Continue
+            {t("actions.continue", { ns: "booking" })}
           </button>
         </div>
       </div>

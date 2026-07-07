@@ -1,4 +1,4 @@
-export default function StepWrapper({ eyebrow, title, description, children }) {
+export default function StepWrapper({ eyebrow = "", title, description = "", children }) {
   return (
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">

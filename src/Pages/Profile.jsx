@@ -1,21 +1,7 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import PhoneInputField from "../components/PhoneInputField";
-
-const DEFAULT_USER = {
-  fullName: "John Smith",
-  email: "john.smith@email.com",
-  phone: "+18626521545",
-  country: "United States",
-  city: "Minnesota",
-  address: "221B Baker Street",
-};
-
-const DEFAULT_SHIPMENTS = [
-  { id: "YS-10428", status: "In transit", from: "China", to: "USA", eta: "3–6 days" },
-  { id: "YS-10311", status: "Delivered", from: "Turkey", to: "USA", eta: "Delivered" },
-  { id: "YS-10102", status: "Processing", from: "UAE", to: "USA", eta: "7–14 days" },
-];
 
 function StatusPill({ status }) {
   const style = useMemo(() => {
@@ -35,18 +21,31 @@ function StatusPill({ status }) {
 }
 
 export default function ProfilePage() {
-  const [user, setUser] = useState(DEFAULT_USER);
+  const { t } = useTranslation("profile");
+  const [user, setUser] = useState({
+    fullName: t("demo.fullName"),
+    email: t("demo.email"),
+    phone: "+18626521545",
+    country: t("demo.country"),
+    city: t("demo.city"),
+    address: t("demo.address"),
+  });
   const [saving, setSaving] = useState(false);
 
+  const shipments = useMemo(
+    () => [
+      { id: "YS-10428", status: t("status.inTransit"), from: t("demo.fromChina"), to: t("demo.toUsa"), eta: t("demo.etaRange1") },
+      { id: "YS-10311", status: t("status.delivered"), from: t("demo.fromTurkey"), to: t("demo.toUsa"), eta: t("demo.etaDelivered") },
+      { id: "YS-10102", status: t("status.processing"), from: t("demo.fromUae"), to: t("demo.toUsa"), eta: t("demo.etaRange2") },
+    ],
+    [t],
+  );
+
   const stats = useMemo(() => {
-    const inTransit = DEFAULT_SHIPMENTS.filter((s) => s.status.toLowerCase().includes("transit")).length;
-    const delivered = DEFAULT_SHIPMENTS.filter((s) => s.status.toLowerCase().includes("deliver")).length;
-    return {
-      total: DEFAULT_SHIPMENTS.length,
-      inTransit,
-      delivered,
-    };
-  }, []);
+    const inTransit = shipments.filter((s) => s.status === t("status.inTransit")).length;
+    const delivered = shipments.filter((s) => s.status === t("status.delivered")).length;
+    return { total: shipments.length, inTransit, delivered };
+  }, [shipments, t]);
 
   const initials = useMemo(() => {
     const parts = (user.fullName || "").trim().split(/\s+/).filter(Boolean);
@@ -59,29 +58,31 @@ export default function ProfilePage() {
     setSaving(true);
     await new Promise((r) => setTimeout(r, 650));
     setSaving(false);
-    alert("Saved!");
+    alert(t("saved"));
   };
 
   return (
     <>
       <section className="page-container py-4 sm:py-6 min-w-0">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
+          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">
+            {t("common:common.main")}
+          </a>
           <span>›</span>
-          <span className="text-gray-900 font-medium">Profile</span>
+          <span className="text-gray-900 font-medium">{t("breadcrumb.title")}</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Your profile</h1>
-            <p className="text-sm text-gray-500 mt-1">Manage your personal details and track your shipments.</p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">{t("title")}</h1>
+            <p className="text-sm text-gray-500 mt-1">{t("subtitle")}</p>
           </div>
           <button
             onClick={onSave}
             disabled={saving}
             className="w-full sm:w-fit min-h-[44px] bg-blue-500 text-white text-xs font-bold uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full border-none cursor-pointer hover:bg-blue-600 transition-colors duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {saving ? "Saving..." : "Save changes"}
+            {saving ? t("saving") : t("save")}
           </button>
         </div>
 
@@ -102,15 +103,15 @@ export default function ProfilePage() {
 
               <div className="grid grid-cols-3 gap-2 sm:gap-3 min-w-0">
                 <div className="bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 min-w-0">
-                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">Total</p>
+                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">{t("stats.total")}</p>
                   <p className="text-lg sm:text-xl font-extrabold text-gray-900 mt-1">{stats.total}</p>
                 </div>
                 <div className="bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 min-w-0">
-                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">In transit</p>
+                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">{t("stats.inTransit")}</p>
                   <p className="text-lg sm:text-xl font-extrabold text-gray-900 mt-1">{stats.inTransit}</p>
                 </div>
                 <div className="bg-white rounded-xl sm:rounded-2xl p-2.5 sm:p-4 min-w-0">
-                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">Delivered</p>
+                  <p className="text-[10px] sm:text-xs text-gray-400 truncate">{t("stats.delivered")}</p>
                   <p className="text-lg sm:text-xl font-extrabold text-gray-900 mt-1">{stats.delivered}</p>
                 </div>
               </div>
@@ -120,21 +121,21 @@ export default function ProfilePage() {
               <div className="flex flex-col gap-3">
                 <button
                   className="w-full bg-white text-gray-900 text-sm font-semibold px-4 py-3 rounded-2xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors"
-                  onClick={() => alert("Notifications settings (stub)")}
+                  onClick={() => alert(t("actions.notificationsStub"))}
                 >
-                  Notification settings
+                  {t("actions.notifications")}
                 </button>
                 <button
                   className="w-full bg-white text-gray-900 text-sm font-semibold px-4 py-3 rounded-2xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors"
-                  onClick={() => alert("Security settings (stub)")}
+                  onClick={() => alert(t("actions.securityStub"))}
                 >
-                  Security
+                  {t("actions.security")}
                 </button>
                 <button
                   className="w-full bg-white text-red-600 text-sm font-semibold px-4 py-3 rounded-2xl border border-red-100 cursor-pointer hover:bg-red-50 transition-colors"
-                  onClick={() => alert("Logged out (stub)")}
+                  onClick={() => alert(t("actions.logoutStub"))}
                 >
-                  Log out
+                  {t("actions.logout")}
                 </button>
               </div>
             </div>
@@ -142,11 +143,11 @@ export default function ProfilePage() {
 
           <div className="lg:col-span-8 flex flex-col gap-6">
             <div className="bg-gray-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8">
-              <h2 className="text-base font-bold text-gray-900 mb-5">Personal details</h2>
+              <h2 className="text-base font-bold text-gray-900 mb-5">{t("personalDetails")}</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-gray-500">Full name</span>
+                  <span className="text-xs font-semibold text-gray-500">{t("fields.fullName")}</span>
                   <input
                     value={user.fullName}
                     onChange={(e) => setUser((u) => ({ ...u, fullName: e.target.value }))}
@@ -155,7 +156,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-gray-500">Email</span>
+                  <span className="text-xs font-semibold text-gray-500">{t("fields.email")}</span>
                   <input
                     value={user.email}
                     onChange={(e) => setUser((u) => ({ ...u, email: e.target.value }))}
@@ -164,7 +165,7 @@ export default function ProfilePage() {
                 </label>
 
                 <PhoneInputField
-                  label="Phone"
+                  label={t("fields.phone")}
                   variant="default"
                   value={user.phone}
                   onChange={(v) => setUser((u) => ({ ...u, phone: v }))}
@@ -172,7 +173,7 @@ export default function ProfilePage() {
                 />
 
                 <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-gray-500">Country</span>
+                  <span className="text-xs font-semibold text-gray-500">{t("fields.country")}</span>
                   <input
                     value={user.country}
                     onChange={(e) => setUser((u) => ({ ...u, country: e.target.value }))}
@@ -181,7 +182,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-gray-500">City</span>
+                  <span className="text-xs font-semibold text-gray-500">{t("fields.city")}</span>
                   <input
                     value={user.city}
                     onChange={(e) => setUser((u) => ({ ...u, city: e.target.value }))}
@@ -190,7 +191,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label className="flex flex-col gap-2 md:col-span-2">
-                  <span className="text-xs font-semibold text-gray-500">Address</span>
+                  <span className="text-xs font-semibold text-gray-500">{t("fields.address")}</span>
                   <input
                     value={user.address}
                     onChange={(e) => setUser((u) => ({ ...u, address: e.target.value }))}
@@ -202,28 +203,28 @@ export default function ProfilePage() {
 
             <div className="bg-gray-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8">
               <div className="flex items-center justify-between gap-4 mb-5">
-                <h2 className="text-base font-bold text-gray-900">Recent shipments</h2>
+                <h2 className="text-base font-bold text-gray-900">{t("shipments.title")}</h2>
                 <a href="/track" className="text-sm font-semibold text-blue-500 no-underline hover:text-blue-600">
-                  Go to tracking →
+                  {t("shipments.goToTracking")}
                 </a>
               </div>
 
               <div className="flex flex-col gap-3">
-                {DEFAULT_SHIPMENTS.map((s) => (
+                {shipments.map((s) => (
                   <div key={s.id} className="bg-white border border-gray-200 rounded-2xl p-4 flex flex-col md:flex-row md:items-center gap-3">
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-bold text-gray-900">{s.id}</p>
                       <p className="text-xs text-gray-500 mt-0.5">
-                        {s.from} → {s.to} · ETA: {s.eta}
+                        {s.from} → {s.to} · {t("shipments.eta")}: {s.eta}
                       </p>
                     </div>
                     <div className="flex items-center justify-between md:justify-end gap-3">
                       <StatusPill status={s.status} />
                       <button
                         className="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border-none cursor-pointer bg-gray-100 hover:bg-gray-200 transition-colors"
-                        onClick={() => alert(`Open shipment ${s.id} (stub)`)}
+                        onClick={() => alert(t("shipments.detailsStub", { id: s.id }))}
                       >
-                        Details
+                        {t("shipments.details")}
                       </button>
                     </div>
                   </div>

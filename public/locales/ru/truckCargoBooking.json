@@ -1,0 +1,80 @@
+{
+  "breadcrumb": {
+    "truckCargo": "Автоперевозки"
+  },
+  "page": {
+    "title": "Бронирование автоперевозки",
+    "subtitle": "Оформите автомобильную перевозку груза в несколько простых шагов."
+  },
+  "defaults": {
+    "category": "Генеральный груз"
+  },
+  "summary": {
+    "kgBillable": "кг к оплате",
+    "ftlDetail": "{{vehicle}} · {{delivery}}",
+    "ltlDetail": "{{weight}} кг к оплате · {{category}}"
+  },
+  "services": {
+    "ariaLabel": "Тип автоперевозки",
+    "ltl": { "label": "LTL", "sublabel": "Сборный груз" },
+    "ftl": { "label": "FTL", "sublabel": "Полная загрузка" }
+  },
+  "ltl": {
+    "badge": "LTL · Сборный груз",
+    "intro": "Сборное пространство в грузовике для небольших партий. Доставка за {{time}}."
+  },
+  "ftl": {
+    "badge": "FTL · Полная загрузка",
+    "intro": "Выделенный грузовик для вашего груза. Доставка за {{time}}."
+  },
+  "pricing": {
+    "ltl": {
+      "label": "LTL — автоперевозка",
+      "deliveryTime": "4–8 рабочих дней"
+    },
+    "ftl": {
+      "label": "FTL — автоперевозка",
+      "deliveryTime": "2–5 рабочих дней"
+    }
+  },
+  "options": {
+    "countries": {
+      "asia": "Азия",
+      "china": "Китай",
+      "turkmenistan": "Туркменистан"
+    },
+    "categories": {
+      "generalGoods": "Генеральный груз",
+      "electronics": "Электроника",
+      "furniture": "Мебель",
+      "machinery": "Техника",
+      "textiles": "Текстиль",
+      "foodBeverage": "Продукты и напитки",
+      "automotiveParts": "Автозапчасти",
+      "constructionMaterials": "Строительные материалы"
+    },
+    "units": {
+      "cm": "см",
+      "inch": "дюйм",
+      "kg": "кг",
+      "lbs": "фунт"
+    },
+    "delivery": {
+      "doorToDoor": "От двери до двери",
+      "doorToPost": "От двери до почты",
+      "warehouseDelivery": "Доставка на склад"
+    },
+    "vehicles": {
+      "cargoVan": "Грузовой фургон",
+      "mediumTruck": "Средний грузовик",
+      "heavyTruck": "Тяжёлый грузовик"
+    }
+  },
+  "success": {
+    "title": "Электронная декларация успешно создана",
+    "subtitle": "Ваша автоперевозка подтверждена.",
+    "pdf": {
+      "serviceFallback": "Автоперевозки"
+    }
+  }
+}

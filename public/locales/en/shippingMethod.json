@@ -1,0 +1,131 @@
+{
+  "breadcrumb": { "title": "Shipping Methods & Options" },
+  "sections": {
+    "shipping-options": {
+      "title": "Shipping Methods & Options",
+      "questions": {
+        "q1": {
+          "q": "1. What shipping options does YuuSell offer from China to the USA?",
+          "intro": "YuuSell offers three main types of international shipping:",
+          "seaFreightBold": "Sea Freight",
+          "seaFreightText": "Best for large and heavy shipments. Lower cost, but slower delivery.",
+          "airFreightBold": "Air Freight",
+          "airFreightText": "Clear features of speed and low cost. Ideal for medium-sized parcels.",
+          "expressBold": "Express Delivery",
+          "expressText": "The quickest option for time-sensitive deliveries or smaller parcels.",
+          "outro": "Each method has its benefits depending on your budget, volume, and urgency.",
+          "seaFreightAlt": "Sea freight"
+        },
+        "q2": {
+          "q": "2. What is the difference between FCL and LCL sea freight?",
+          "fclBold": "FCL (Full Container Load)",
+          "fclText": "You book the entire container, giving you exclusive use. This is usually more cost-effective for shipments that fill most or all of a container. It offers faster transit and less handling.",
+          "lclBold": "LCL (Less than Container Load)",
+          "lclText": "Your goods share space with other shippers' shipments. For small shipments under 15CBM, LCL delivery may be slower due to consolidation stops.",
+          "note1": "It is important to note that in LCL shipping, your goods are placed with other people's goods and the wait time can double to triple and delivery dates take twice as long.",
+          "note2": "If you are looking for port-to-port or door-to-door sea freight from China to the USA with the fastest delivery, hassle-free customs clearance, and budget-friendly costs, then our YuuSell Freight are the best option for you.",
+          "fclLclAlt": "FCL vs LCL",
+          "fclLclCalcAlt": "FCL LCL Calculation"
+        },
+        "q3": {
+          "q": "3. How long does delivery take from China to the USA?",
+          "intro": "Delivery time depends on your selected shipping method. Here's a general overview:",
+          "tableMethod": "Shipping Method",
+          "tableTime": "Delivery Time",
+          "tablePriority": "Priority",
+          "express": "Express Delivery",
+          "expressTime": "3–7 days",
+          "airFreight": "Air Freight",
+          "airFreightTime": "7–14 days (door-to-door)",
+          "seaFreight": "Sea Freight",
+          "seaFreightTime": "25–35 days",
+          "priority": "##"
+        },
+        "q4": {
+          "q": "4. What is the most cost-effective way to ship?",
+          "a": "Sea freight LCL or FCL is the most cost-effective for large shipments. For smaller packages, our consolidated air freight offers the best balance of price and speed. Use our calculator to compare options instantly."
+        },
+        "q5": {
+          "q": "5. What is DDU shipping and do you offer it?",
+          "a": "DDU (Delivered Duty Unpaid) means the buyer is responsible for paying import duties upon arrival. We offer both DDU and DDP (Delivered Duty Paid) options. With DDP, we handle all customs fees upfront so you have no surprises at delivery."
+        },
+        "q6": {
+          "q": "6. What is D2D shipping and do you offer it?",
+          "a": "D2D (Door-to-Door) shipping means we pick up from the seller's location in China and deliver directly to your door in the USA. Yes, we fully offer door-to-door service for air, sea, and express shipments."
+        }
+      }
+    },
+    "how-to-ship": {
+      "title": "How to Ship with YuuSell",
+      "questions": {
+        "q7": {
+          "q": "7. Step by Step: How Shipping Works with YuuSell",
+          "steps": [
+            "Get an instant quote on our Ship Now page",
+            "Book your shipment and choose your service",
+            "We arrange pickup from the supplier or warehouse",
+            "Your goods are packed, labeled, and documented",
+            "Shipment is dispatched and tracked in real-time",
+            "Customs clearance handled by our team",
+            "Delivered to your door with full tracking"
+          ]
+        },
+        "q8": {
+          "q": "8. How do I calculate a shipping cost?",
+          "a": "Use our free shipping calculator on the Ship Now page. Enter origin, destination, weight, and dimensions to get an instant quote. You can also contact our team for a custom quote for large or complex shipments."
+        },
+        "q9": {
+          "q": "9. How can I track my shipment?",
+          "a": "Every shipment gets a unique tracking number. Track in real-time on our Track page, via our Telegram bot @yuusell_bot, or through automatic SMS/email notifications we send at every stage of delivery."
+        },
+        "q10": {
+          "q": "10. Do I need cargo insurance?",
+          "a": "Cargo insurance is optional but highly recommended, especially for high-value goods. We offer comprehensive cargo insurance that covers loss, damage, and theft during transit. Ask our team for details when booking."
+        },
+        "q11": {
+          "q": "11. What documents do I need?",
+          "items": [
+            "Commercial Invoice",
+            "Packing List",
+            "Bill of Lading (for sea) or Airway Bill (for air)",
+            "Certificate of Origin (if required)",
+            "Import/Export License (for regulated goods)"
+          ]
+        }
+      }
+    },
+    "customs": {
+      "title": "Customs, Delivery, and Troubleshooting",
+      "sidebarLine1": "Customs, Delivery,",
+      "sidebarLine2": "and Troubleshooting",
+      "questions": {
+        "q12": {
+          "q": "12. What about customs clearance?",
+          "a": "Our team handles full customs clearance including documentation, duty calculation, and direct communication with customs authorities. We ensure your shipment complies with all import/export regulations to avoid delays."
+        },
+        "q13": {
+          "q": "13. Are there shipping delays to be aware of?",
+          "a": "Delays can occur due to customs inspections, port congestion, weather, or peak seasons (Chinese New Year, Golden Week). We monitor all shipments and proactively notify you of any delays with updated ETAs."
+        },
+        "q14": {
+          "q": "14. What is the best way to ship to ensure it is free from China?",
+          "a": "To minimize costs, consider consolidating multiple orders into one shipment, choosing sea freight for non-urgent goods, and shipping during off-peak periods. Our team can advise the most cost-effective strategy for your specific needs."
+        },
+        "q15": {
+          "q": "15. What's the best shipping method for me?",
+          "a": "It depends on your priorities. If speed is critical — choose express or air freight. If cost is the main concern — sea freight LCL or FCL is best. Our team can analyze your shipment details and recommend the optimal solution."
+        },
+        "q16": {
+          "q": "16. Need help choosing the right option?",
+          "intro": "Our logistics experts are available 24/7 to help you choose the best shipping option. Contact us via:",
+          "items": [
+            "Live chat on our website",
+            "Email: info.usa@yuusell.com",
+            "Phone: +1 862-652-1545",
+            "Telegram: @yuusell_bot"
+          ]
+        }
+      }
+    }
+  }
+}

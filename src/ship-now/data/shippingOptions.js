@@ -1,15 +1,13 @@
+import { FaGlobeAmericas, FaHome, FaPlane, FaShip, FaTruck, FaShippingFast } from "react-icons/fa";
+
 export const DESTINATION_TYPES = [
   {
     id: "international",
-    icon: "🌍",
-    title: "International Shipping",
-    description: "Ship cargo across borders with global air, sea, and truck networks.",
+    Icon: FaGlobeAmericas,
   },
   {
     id: "domestic",
-    icon: "🏠",
-    title: "Domestic Shipping",
-    description: "Move freight within your country via truck or express delivery.",
+    Icon: FaHome,
   },
 ];
 
@@ -17,98 +15,87 @@ export const SHIPPING_METHODS = {
   international: [
     {
       id: "air",
-      icon: "✈️",
-      title: "Air Cargo",
-      description: "Fast international air freight for time-sensitive shipments.",
+      Icon: FaPlane,
     },
     {
       id: "sea",
-      icon: "🚢",
-      title: "Sea Cargo",
-      description: "Cost-effective ocean freight for large and heavy cargo.",
+      Icon: FaShip,
     },
     {
       id: "truck",
-      icon: "🚛",
-      title: "International Truck Cargo",
-      description: "Cross-border road freight with customs-ready routing.",
+      Icon: FaTruck,
     },
   ],
   domestic: [
     {
       id: "truck",
-      icon: "🚛",
-      title: "Domestic Truck Delivery",
-      description: "Full or partial truck loads for domestic freight lanes.",
+      Icon: FaTruck,
     },
     {
       id: "express",
-      icon: "⚡",
-      title: "Express Delivery",
-      description: "Priority parcel and package delivery with fast transit.",
+      Icon: FaShippingFast,
     },
   ],
 };
 
 export const CARGO_TYPES = [
-  "General Cargo",
-  "Documents",
-  "Electronics",
-  "Perishables",
-  "Fragile Items",
-  "Industrial Parts",
-  "Textiles & Apparel",
-  "Hazardous (DG)",
+  "generalCargo",
+  "documents",
+  "electronics",
+  "perishables",
+  "fragileItems",
+  "industrialParts",
+  "textilesApparel",
+  "hazardous",
 ];
 
-export const AIR_SERVICE_TYPES = [
-  { id: "economy", label: "Economy Air Cargo" },
-  { id: "express", label: "Express Air Cargo" },
-];
+export const AIR_SERVICE_TYPES = ["economy", "express"];
 
-export const SEA_CONTAINER_TYPES = [
-  { id: "lcl", label: "LCL (Small Shipments)" },
-  { id: "fcl", label: "FCL (Full Container)" },
-];
+export const SEA_CONTAINER_TYPES = ["lcl", "fcl"];
 
-export const TRUCK_TRANSPORT_TYPES = [
-  { id: "ftl", label: "Full Truck Load (FTL)" },
-  { id: "ltl", label: "Less Than Truck Load (LTL)" },
-];
+export const TRUCK_TRANSPORT_TYPES = ["ftl", "ltl"];
 
 export const PACKAGE_TYPES = [
-  "Envelope",
-  "Small Box",
-  "Medium Box",
-  "Large Box",
-  "Pallet",
-  "Custom Packaging",
+  "envelope",
+  "smallBox",
+  "mediumBox",
+  "largeBox",
+  "pallet",
+  "customPackaging",
 ];
 
 export const PACKAGE_SIZES = [
-  "Extra Small (up to 1 kg)",
-  "Small (1–5 kg)",
-  "Medium (5–15 kg)",
-  "Large (15–30 kg)",
-  "Extra Large (30+ kg)",
+  "extraSmall",
+  "small",
+  "medium",
+  "large",
+  "extraLarge",
 ];
 
-export const DELIVERY_PRIORITIES = [
-  { id: "standard", label: "Standard (2–3 days)" },
-  { id: "priority", label: "Priority (Next day)" },
-  { id: "urgent", label: "Urgent (Same day)" },
-];
+export const DELIVERY_PRIORITIES = ["standard", "priority", "urgent"];
 
 export const STEPS = [
-  { id: 1, label: "Destination" },
-  { id: 2, label: "Method" },
-  { id: 3, label: "Details" },
-  { id: 4, label: "Calculate" },
+  "destination",
+  "method",
+  "details",
+  "calculate",
 ];
 
-function getMethodLabel(destination, method) {
-  const methods = SHIPPING_METHODS[destination] || [];
-  return methods.find((m) => m.id === method)?.title || method;
+const EMPTY_VALUE = "—";
+
+function getMethodLabelKey(destination, method) {
+  if (method === "truck") {
+    return `options.methods.truck.${destination}.title`;
+  }
+  return `options.methods.${method}.title`;
+}
+
+function getServiceDetailKey(method, formData) {
+  if (method === "air") return `options.airServiceTypes.${formData.serviceType}`;
+  if (method === "sea") return `options.seaContainerTypes.${formData.containerType}`;
+  if (method === "truck") return `options.truckTransportTypes.${formData.transportType}`;
+  if (method === "express") return `options.deliveryPriorities.${formData.deliveryPriority}`;
+  return null;
 }
 
 function parseWeight(weight) {
@@ -117,7 +104,7 @@ function parseWeight(weight) {
 
 export function getInitialFormData(method) {
   const base = {
-    cargoType: "General Cargo",
+    cargoType: "generalCargo",
     weight: "",
     specialInstructions: "",
   };
@@ -153,9 +140,9 @@ export function getInitialFormData(method) {
       return {
         pickupLocation: "",
         deliveryLocation: "",
-        packageType: "Small Box",
+        packageType: "smallBox",
         weight: "",
-        packageSize: "Small (1–5 kg)",
+        packageSize: "small",
         deliveryPriority: "standard",
         specialInstructions: "",
       };
@@ -210,34 +197,54 @@ export function buildRouteSummary(destination, method, formData) {
     case "express":
       return `${formData.pickupLocation} → ${formData.deliveryLocation}`;
     default:
-      return "—";
+      return EMPTY_VALUE;
   }
 }
 
 export function buildCargoSummary(method, formData) {
-  const weight = formData.weight ? `${formData.weight} kg` : "—";
-
   switch (method) {
-    case "air": {
-      const dims = [formData.length, formData.width, formData.height]
-        .filter(Boolean)
-        .join(" × ");
-      return `${formData.cargoType} · ${weight}${dims ? ` · ${dims} cm` : ""}`;
-    }
+    case "air":
+      return {
+        kind: "cargo",
+        cargoTypeKey: formData.cargoType,
+        weight: formData.weight,
+        dimensions: [formData.length, formData.width, formData.height].filter(Boolean),
+      };
     case "sea":
-      return `${formData.cargoType} · ${weight}${formData.dimensions ? ` · ${formData.dimensions}` : ""}`;
+      return {
+        kind: "cargo",
+        cargoTypeKey: formData.cargoType,
+        weight: formData.weight,
+        dimensions: formData.dimensions,
+      };
     case "truck":
-      return `${formData.cargoType} · ${weight}${formData.dimensions ? ` · ${formData.dimensions}` : ""}`;
+      return {
+        kind: "cargo",
+        cargoTypeKey: formData.cargoType,
+        weight: formData.weight,
+        dimensions: formData.dimensions,
+      };
     case "express":
-      return `${formData.packageType} · ${weight} · ${formData.packageSize}`;
+      return {
+        kind: "package",
+        packageTypeKey: formData.packageType,
+        weight: formData.weight,
+        packageSizeKey: formData.packageSize,
+      };
     default:
-      return weight;
+      return {
+        kind: "cargo",
+        cargoTypeKey: formData.cargoType,
+        weight: formData.weight,
+        dimensions: "",
+      };
   }
 }
 
 export function calculateShippingEstimate(destination, method, formData) {
   const weight = parseWeight(formData.weight);
-  const serviceLabel = getMethodLabel(destination, method);
+  const serviceLabelKey = getMethodLabelKey(destination, method);
+  const serviceDetailKey = getServiceDetailKey(method, formData);
   const route = buildRouteSummary(destination, method, formData);
   const cargo = buildCargoSummary(method, formData);
 
@@ -246,17 +253,6 @@ export function calculateShippingEstimate(destination, method, formData) {
     sea: { lcl: 0.9, fcl: 1.4 },
     truck: { ftl: 2.1, ltl: 1.5 },
     express: { standard: 3.0, priority: 4.5, urgent: 6.2 },
-  };
-
-  const transitDays = {
-    air: { economy: "5–8 business days", express: "2–4 business days" },
-    sea: { lcl: "25–35 days", fcl: "18–28 days" },
-    truck: { ftl: "3–6 business days", ltl: "4–8 business days" },
-    express: {
-      standard: "2–3 business days",
-      priority: "1 business day",
-      urgent: "Same day",
-    },
   };
 
   let basePrice = 120;
@@ -283,36 +279,23 @@ export function calculateShippingEstimate(destination, method, formData) {
     basePrice = weight * rate * 18 + 35;
   }
 
-  const deliveryTime =
+  const deliveryVariant =
     method === "air"
-      ? transitDays.air[formData.serviceType]
+      ? formData.serviceType
       : method === "sea"
-        ? transitDays.sea[formData.containerType]
+        ? formData.containerType
         : method === "truck"
-          ? transitDays.truck[formData.transportType]
-          : transitDays.express[formData.deliveryPriority];
-
-  let serviceDetail = serviceLabel;
-  if (method === "air") {
-    const svc = AIR_SERVICE_TYPES.find((s) => s.id === formData.serviceType);
-    serviceDetail = `${serviceLabel} — ${svc?.label || ""}`;
-  } else if (method === "sea") {
-    const ct = SEA_CONTAINER_TYPES.find((c) => c.id === formData.containerType);
-    serviceDetail = `${serviceLabel} — ${ct?.label || ""}`;
-  } else if (method === "truck") {
-    const tt = TRUCK_TRANSPORT_TYPES.find((t) => t.id === formData.transportType);
-    serviceDetail = `${serviceLabel} — ${tt?.label || ""}`;
-  } else if (method === "express") {
-    const dp = DELIVERY_PRIORITIES.find((p) => p.id === formData.deliveryPriority);
-    serviceDetail = `${serviceLabel} — ${dp?.label || ""}`;
-  }
+          ? formData.transportType
+          : formData.deliveryPriority;
+  const deliveryTimeKey = `transit.${method}.${deliveryVariant}`;
 
   return {
     route,
-    service: serviceDetail,
+    serviceLabelKey,
+    serviceDetailKey,
     cargo,
-    deliveryTime,
+    deliveryTimeKey,
     price: Math.max(99, Math.round(basePrice)),
-    destinationType: destination === "international" ? "International" : "Domestic",
+    destinationTypeKey: `destinationTypes.${destination}`,
   };
 }

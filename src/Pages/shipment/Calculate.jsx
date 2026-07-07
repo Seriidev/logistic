@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Footer from "../../components/Footer";
 import { isAuthenticated } from "../../utils/auth";
 import { PARCEL_SIZES } from "./constants";
@@ -8,12 +9,13 @@ import { FromModal, WhereModal, TransportModal, ObtainModal } from "./components
 
 export default function CalculatePage() {
   const navigate = useNavigate();
+  const { t } = useTranslation("shipment");
 
   const [fromData, setFromData] = useState(null);
   const [whereData, setWhereData] = useState(null);
   const [transport, setTransport] = useState("");
   const [obtain, setObtain] = useState("");
-  const [parcelSize, setParcelSize] = useState(PARCEL_SIZES[0].label);
+  const [parcelSize, setParcelSize] = useState(PARCEL_SIZES[0].id);
   const [cargo, setCargo] = useState("");
   const [height, setHeight] = useState("");
   const [length, setLength] = useState("");
@@ -25,11 +27,11 @@ export default function CalculatePage() {
   const [transportOpen, setTransportOpen] = useState(false);
   const [obtainOpen, setObtainOpen] = useState(false);
 
-  const selectedSize = PARCEL_SIZES.find((s) => s.label === parcelSize);
+  const selectedSize = PARCEL_SIZES.find((s) => s.id === parcelSize);
 
   const handleCalculate = () => {
     if (!fromData || !whereData) {
-      alert("Please fill in From and Where fields.");
+      alert(t("validation.fromWhereRequired"));
       return;
     }
     const days = Math.floor(Math.random() * 20) + 5;
@@ -49,66 +51,67 @@ export default function CalculatePage() {
     <>
       <section className="page-container min-w-0 py-6">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">Main</a>
+          <a href="/" className="hover:text-blue-500 no-underline text-gray-500">{t("breadcrumb.main")}</a>
           <span>›</span>
-          <span className="text-gray-900 font-medium">Calculate</span>
+          <span className="text-gray-900 font-medium">{t("breadcrumb.calculate")}</span>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 items-stretch min-w-0">
           <div className="flex-1 min-w-0 flex flex-col gap-4">
-            <FormBlock title="From">
+            <FormBlock title={t("fields.from")}>
               <ClickField
-                placeholder="Click to select origin"
-                value={formatLocation(fromData)}
+                placeholder={t("placeholders.selectOrigin")}
+                value={formatLocation(fromData, t)}
                 onClick={() => setFromOpen(true)}
               />
             </FormBlock>
 
-            <FormBlock title="Where">
+            <FormBlock title={t("fields.where")}>
               <ClickField
-                placeholder="Click to select destination"
-                value={formatLocation(whereData)}
+                placeholder={t("placeholders.selectDestination")}
+                value={formatLocation(whereData, t)}
                 onClick={() => setWhereOpen(true)}
               />
             </FormBlock>
 
-            <FormBlock title="Type of service">
+            <FormBlock title={t("sections.typeOfService")}>
               <div className="flex flex-col gap-3">
                 <ClickField
-                  placeholder="How will we transport it?"
-                  value={transport}
+                  placeholder={t("fields.transport")}
+                  value={transport ? t(`transportOptions.${transport}`) : ""}
                   onClick={() => setTransportOpen(true)}
                 />
                 <ClickField
-                  placeholder="Method to obtain"
-                  value={obtain}
+                  placeholder={t("fields.obtain")}
+                  value={obtain ? t(`obtainOptions.${obtain}`) : ""}
                   onClick={() => setObtainOpen(true)}
                 />
               </div>
             </FormBlock>
 
-            <FormBlock title="Size and type of parcel">
+            <FormBlock title={t("sections.parcelSize")}>
               <div className="flex flex-col gap-3">
                 <SelectInput
-                  placeholder="Select size"
+                  placeholder={t("placeholders.selectSize")}
                   options={PARCEL_SIZES}
                   value={parcelSize}
                   onChange={setParcelSize}
+                  getOptionLabel={(option) => t(`parcelSizes.${option.id}.label`)}
                 />
                 {selectedSize && (
-                  <p className="text-xs text-blue-400 px-1">{selectedSize.desc}</p>
+                  <p className="text-xs text-blue-400 px-1">{t(`parcelSizes.${selectedSize.id}.desc`)}</p>
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <TextInput placeholder="Height cm" value={height} onChange={setHeight} />
-                  <TextInput placeholder="Length cm" value={length} onChange={setLength} />
-                  <TextInput placeholder="Width cm" value={width} onChange={setWidth} />
+                  <TextInput placeholder={t("fields.heightCm")} value={height} onChange={setHeight} />
+                  <TextInput placeholder={t("fields.lengthCm")} value={length} onChange={setLength} />
+                  <TextInput placeholder={t("fields.widthCm")} value={width} onChange={setWidth} />
                 </div>
               </div>
             </FormBlock>
 
-            <FormBlock title="Describe the cargo">
+            <FormBlock title={t("sections.describeCargo")}>
               <textarea
-                placeholder="What needs to be transported?"
+                placeholder={t("placeholders.cargoDescription")}
                 value={cargo}
                 onChange={(e) => setCargo(e.target.value)}
                 rows={4}
@@ -120,7 +123,7 @@ export default function CalculatePage() {
           <div className="w-full lg:w-70 lg:shrink-0 lg:sticky lg:top-24 flex flex-col gap-4 min-w-0">
             <div className="bg-teal-50 border border-teal-100 rounded-2xl p-5">
               <p className="text-sm font-semibold text-teal-800 mb-4">
-                Here you can find out the approximate delivery time
+                {t("calculate.sidebarHint")}
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-2">
                 <button
@@ -128,45 +131,45 @@ export default function CalculatePage() {
                   onClick={handleCalculate}
                   className="flex items-center gap-2 bg-teal-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-full border-none cursor-pointer hover:bg-teal-600 transition-colors font-[inherit]"
                 >
-                  Calculate
+                  {t("actions.calculate")}
                 </button>
                 <button
                   type="button"
                   onClick={handleCreateParcel}
                   className="flex items-center gap-2 bg-white text-teal-600 text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-full border border-teal-200 cursor-pointer hover:bg-teal-50 transition-colors font-[inherit]"
                 >
-                  Create
+                  {t("actions.create")}
                 </button>
               </div>
             </div>
 
             {result && (
               <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
-                <h3 className="text-sm font-bold text-gray-900 mb-4">Calculation Result</h3>
+                <h3 className="text-sm font-bold text-gray-900 mb-4">{t("calculate.resultTitle")}</h3>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">From</span>
-                    <span className="text-sm font-semibold text-gray-900">{formatLocation(fromData)}</span>
+                    <span className="text-xs text-gray-500">{t("fields.from")}</span>
+                    <span className="text-sm font-semibold text-gray-900">{formatLocation(fromData, t)}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">To</span>
-                    <span className="text-sm font-semibold text-gray-900">{formatLocation(whereData)}</span>
+                    <span className="text-xs text-gray-500">{t("fields.to")}</span>
+                    <span className="text-sm font-semibold text-gray-900">{formatLocation(whereData, t)}</span>
                   </div>
                   <div className="h-px bg-gray-100" />
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Delivery time</span>
-                    <span className="text-sm font-bold text-blue-500">{result.days} days</span>
+                    <span className="text-xs text-gray-500">{t("calculate.deliveryTime")}</span>
+                    <span className="text-sm font-bold text-blue-500">{t("calculate.days", { days: result.days })}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Estimated price</span>
-                    <span className="text-sm font-bold text-teal-500">from ${result.price}</span>
+                    <span className="text-xs text-gray-500">{t("calculate.estimatedPrice")}</span>
+                    <span className="text-sm font-bold text-teal-500">{t("calculate.priceFrom", { price: result.price })}</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleCreateParcel}
                     className="w-full h-10 bg-blue-500 text-white text-xs font-bold uppercase tracking-wider rounded-full border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]"
                   >
-                    Book This Shipment
+                    {t("actions.bookShipment")}
                   </button>
                 </div>
               </div>

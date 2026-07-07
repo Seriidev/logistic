@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   LuStore,
   LuFactory,
@@ -6,59 +7,52 @@ import {
   LuPackage,
   LuTruck,
 } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const INDUSTRIES = [
-  {
-    id: 1,
-    title: "Retail",
-    description: "Store replenishment, seasonal inventory, and distribution center transfers with flexible scheduling.",
-    Icon: LuStore,
-  },
-  {
-    id: 2,
-    title: "Manufacturing",
-    description: "Raw materials inbound and finished goods outbound — just-in-time delivery to production lines.",
-    Icon: LuFactory,
-  },
-  {
-    id: 3,
-    title: "Construction",
-    description: "Building materials, equipment, and project cargo delivered directly to job sites on schedule.",
-    Icon: LuHardHat,
-  },
-  {
-    id: 4,
-    title: "Agriculture",
-    description: "Farm produce, feed, and agricultural machinery with refrigerated and flatbed options available.",
-    Icon: LuWheat,
-  },
-  {
-    id: 5,
-    title: "E-commerce",
-    description: "Fulfillment center transfers, last-mile hub distribution, and returns logistics at scale.",
-    Icon: LuPackage,
-  },
-  {
-    id: 6,
-    title: "Wholesale Distribution",
-    description: "High-volume pallet movements between warehouses, distributors, and retail partners nationwide.",
-    Icon: LuTruck,
-  },
+const INDUSTRY_KEYS = [
+  "retail",
+  "manufacturing",
+  "construction",
+  "agriculture",
+  "ecommerce",
+  "wholesale",
 ];
 
+const INDUSTRY_ICONS = {
+  retail: LuStore,
+  manufacturing: LuFactory,
+  construction: LuHardHat,
+  agriculture: LuWheat,
+  ecommerce: LuPackage,
+  wholesale: LuTruck,
+};
+
 export default function TruckIndustries() {
+  const { t } = useTranslation("truckCargo");
+
+  const industries = useMemo(
+    () =>
+      INDUSTRY_KEYS.map((key) => ({
+        id: key,
+        title: t(`industries.items.${key}.title`),
+        description: t(`industries.items.${key}.description`),
+        Icon: INDUSTRY_ICONS[key],
+      })),
+    [t],
+  );
+
   return (
     <section className="bg-gray-50 min-w-0 py-12 sm:py-16 lg:py-20">
       <div className="page-container min-w-0">
         <SectionHeading
-          eyebrow="Industries We Serve"
-          title="Road Freight Solutions Across Every Sector"
-          description="Our team understands the unique handling, compliance, and timing requirements of each industry — delivering tailored truck cargo services that keep your operations moving."
+          eyebrow={t("industries.eyebrow")}
+          title={t("industries.title")}
+          description={t("industries.description")}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {INDUSTRIES.map(({ id, title, description, Icon }) => (
+          {industries.map(({ id, title, description, Icon }) => (
             <article
               key={id}
               className="group rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-5 sm:p-6

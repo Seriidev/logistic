@@ -1,98 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 
-const FAQ_DATA = [
-  {
-    id: "shipping",
-    title: "Shipping & Delivery",
-    questions: [
-      {
-        q: "Which countries do you deliver to?",
-        a: "We deliver to over 150 countries worldwide, including the USA, China, UAE, Germany, UK, Russia, Uzbekistan, Kazakhstan, and more. Our network covers all major continents with reliable carrier partners.",
-      },
-      {
-        q: "How much does international shipping cost?",
-        a: "Shipping costs depend on the weight, dimensions, destination, and shipping method (air, sea, or truck). You can get an instant quote using our calculator on the Ship Now page. Prices start from just $5 for small packages.",
-      },
-      {
-        q: "How long does delivery take?",
-        a: "Delivery times vary by service: Air Cargo — 3 to 7 business days. Sea Cargo — 20 to 45 days. Truck Cargo — 5 to 14 days depending on destination. Express options are available for urgent shipments.",
-      },
-      {
-        q: "Can I track my shipment?",
-        a: "Yes! Every shipment comes with a unique tracking number. You can track your parcel in real-time on our Track page or via our Telegram bot @yuusell_bot. We also send automatic SMS and email notifications.",
-      },
-      {
-        q: "Do you offer courier pickup?",
-        a: "Yes, we offer door-to-door pickup service in most major cities. You can schedule a pickup when placing your order, or drop off your package at one of our partner locations.",
-      },
-      {
-        q: "What happens if my package is delayed?",
-        a: "In case of delays due to customs, weather, or carrier issues, our support team will notify you immediately and provide an updated ETA. We work 24/7 to resolve any issues as quickly as possible.",
-      },
-    ],
-  },
-  {
-    id: "orders",
-    title: "Orders & Payments",
-    questions: [
-      {
-        q: "How do I place a delivery order?",
-        a: "Simply go to our Ship Now page, enter your shipment details (from, to, weight, dimensions), get an instant quote, and confirm your order. You can also contact our support team for assistance.",
-      },
-      {
-        q: "Which payment methods do you accept?",
-        a: "We accept all major credit and debit cards (Visa, Mastercard), Apple Pay, Google Pay, bank transfers, and PayPal. All payments are processed securely through encrypted channels.",
-      },
-      {
-        q: "Can I cancel or change my shipment?",
-        a: "Yes, you can cancel or modify your shipment before it is picked up. Once the shipment is in transit, changes may be limited. Please contact our support team as soon as possible for assistance.",
-      },
-      {
-        q: "Is VAT included in the price?",
-        a: "VAT and customs duties depend on the destination country and the type of goods being shipped. Our system will show any applicable taxes during the checkout process. We also provide full customs documentation support.",
-      },
-      {
-        q: "Are there any hidden fees?",
-        a: "No hidden fees! The price you see during checkout is the final price. Any additional customs or duties are clearly displayed before you confirm your order.",
-      },
-      {
-        q: "Do you offer refunds?",
-        a: "If your shipment is lost or significantly damaged due to our fault, we offer full compensation according to our insurance policy. Please file a claim within 30 days of the expected delivery date.",
-      },
-    ],
-  },
-  {
-    id: "business",
-    title: "Business & Integrations",
-    questions: [
-      {
-        q: "Can I integrate YuuSell with my online store?",
-        a: "Yes! We offer seamless integrations with major e-commerce platforms including Shopify, WooCommerce, Amazon, eBay, Etsy, and AliExpress. Contact our business team to set up your integration.",
-      },
-      {
-        q: "Do you have special pricing for businesses?",
-        a: "Absolutely. We offer volume discounts, dedicated account managers, and custom pricing plans for businesses with high shipping volumes. Contact us to discuss a tailored solution for your business.",
-      },
-      {
-        q: "Can I automate shipping from my e-commerce platform?",
-        a: "Yes, through our API and platform integrations, you can fully automate order fulfillment, label generation, and tracking updates directly from your store dashboard.",
-      },
-      {
-        q: "Do you offer fulfillment services?",
-        a: "Yes! Our Amazon FBA prep service handles receiving, labeling, packing, and shipping your products directly to Amazon warehouses. We are 100% compliant with Amazon requirements.",
-      },
-      {
-        q: "How do I become a business client?",
-        a: "Simply fill out the contact form on our Contact Us page or email us at info.usa@yuusell.com. Our business team will get back to you within 24 hours to discuss your needs.",
-      },
-      {
-        q: "Do you provide customs clearance support?",
-        a: "Yes, we provide full customs clearance support including documentation preparation, duty calculation, and liaison with customs authorities. Our team ensures smooth and compliant cross-border shipping.",
-      },
-    ],
-  },
-];
+const SECTION_IDS = ["shipping", "orders", "business"];
 
 const SECTION_ICONS = {
   shipping: (
@@ -129,8 +39,7 @@ function AccordionItem({ question, answer }) {
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between gap-4 px-4 sm:px-5 py-4 sm:py-4.5
-          text-left bg-transparent border-none cursor-pointer font-[inherit] min-h-[52px]"
+        className="w-full flex items-center justify-between gap-4 px-4 sm:px-5 py-4 sm:py-4.5 text-left bg-transparent border-none cursor-pointer font-[inherit] min-h-[52px]"
       >
         <span
           className={`text-sm sm:text-[15px] font-medium leading-snug transition-colors duration-200 min-w-0
@@ -143,13 +52,7 @@ function AccordionItem({ question, answer }) {
             ${open ? "bg-blue-500 text-white rotate-180" : "bg-gray-100 text-gray-500"}`}
         >
           <svg viewBox="0 0 24 24" fill="none" width="14" height="14" aria-hidden="true">
-            <path
-              d="M6 9l6 6 6-6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
       </button>
@@ -202,9 +105,20 @@ function SidebarNavButton({ section, isActive, onClick, compact = false }) {
 }
 
 export default function FAQPage() {
+  const { t } = useTranslation("faq");
   const [activeSection, setActiveSection] = useState("shipping");
   const scrollLockRef = useRef(false);
   const scrollLockTimer = useRef(null);
+
+  const faqData = useMemo(
+    () =>
+      SECTION_IDS.map((id) => ({
+        id,
+        title: t(`sections.${id}.title`),
+        questions: t(`sections.${id}.questions`, { returnObjects: true }),
+      })),
+    [t],
+  );
 
   const scrollTo = useCallback((id) => {
     setActiveSection(id);
@@ -223,7 +137,7 @@ export default function FAQPage() {
   }, []);
 
   useEffect(() => {
-    const sectionEls = FAQ_DATA.map((s) => document.getElementById(s.id)).filter(Boolean);
+    const sectionEls = faqData.map((s) => document.getElementById(s.id)).filter(Boolean);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -240,7 +154,7 @@ export default function FAQPage() {
       {
         rootMargin: `-${SCROLL_OFFSET}px 0px -55% 0px`,
         threshold: [0, 0.15, 0.35, 0.5],
-      }
+      },
     );
 
     sectionEls.forEach((el) => observer.observe(el));
@@ -248,7 +162,7 @@ export default function FAQPage() {
       observer.disconnect();
       if (scrollLockTimer.current) clearTimeout(scrollLockTimer.current);
     };
-  }, []);
+  }, [faqData]);
 
   return (
     <>
@@ -258,18 +172,15 @@ export default function FAQPage() {
           className="relative z-10 flex items-center gap-2 text-sm text-gray-500 mb-8 sm:mb-10 lg:mb-12 shrink-0"
         >
           <a href="/" className="hover:text-blue-500 no-underline text-gray-500 transition-colors">
-            Main
+            {t("common:common.main")}
           </a>
-          <span className="text-gray-300" aria-hidden="true">
-            ›
-          </span>
-          <span className="text-gray-900 font-medium">FAQ</span>
+          <span className="text-gray-300" aria-hidden="true">›</span>
+          <span className="text-gray-900 font-medium">{t("breadcrumb.title")}</span>
         </nav>
 
-        {/* Mobile / tablet horizontal category tabs */}
         <div className="lg:hidden mb-8 sm:mb-10">
           <div className="flex gap-2 overflow-x-auto pb-2 -mx-0.5 px-0.5 scrollbar-none snap-x snap-mandatory">
-            {FAQ_DATA.map((section) => (
+            {faqData.map((section) => (
               <div key={section.id} className="snap-start">
                 <SidebarNavButton
                   section={section}
@@ -283,14 +194,13 @@ export default function FAQPage() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12 items-start min-w-0 mt-2 sm:mt-0">
-          {/* Desktop sidebar */}
           <aside className="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-28 xl:top-32 self-start">
             <div className="rounded-2xl border border-gray-100 bg-white p-3.5 sm:p-4 shadow-sm">
               <p className="px-3 pt-2 pb-3 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-                Categories
+                {t("categories")}
               </p>
               <nav className="flex flex-col gap-1">
-                {FAQ_DATA.map((section) => (
+                {faqData.map((section) => (
                   <SidebarNavButton
                     key={section.id}
                     section={section}
@@ -302,11 +212,10 @@ export default function FAQPage() {
             </div>
           </aside>
 
-          {/* FAQ content */}
           <div className="flex-1 min-w-0 w-full lg:pt-1">
             <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white/80 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-sm">
               <div className="flex flex-col gap-10 sm:gap-11 lg:gap-12 pb-2 sm:pb-4 lg:pb-6">
-                {FAQ_DATA.map((section) => (
+                {faqData.map((section) => (
                   <div key={section.id} id={section.id} className="scroll-mt-32 sm:scroll-mt-36 min-w-0">
                     <div className="flex items-center gap-3 mb-5 sm:mb-6 pb-4 sm:pb-5 border-b border-gray-100">
                       <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 text-blue-500">

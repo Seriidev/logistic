@@ -1,20 +1,23 @@
-import { LCL_PRICING } from "../data/lclPricing";
-import { FCL_PRICING } from "../data/fclPricing";
+import { useTranslation } from "react-i18next";
 
 const OPTIONS = [
-  { id: "lcl", label: "LCL", sublabel: "Less Container Load", deliveryTime: LCL_PRICING.deliveryTime },
-  { id: "fcl", label: "FCL", sublabel: "Full Container Load", deliveryTime: FCL_PRICING.deliveryTime },
+  { id: "lcl" },
+  { id: "fcl" },
 ];
 
 export default function ServiceSelector({ service, onSelect }) {
+  const { t } = useTranslation("seaCargoBooking");
+
   return (
     <div
       role="tablist"
-      aria-label="Sea cargo service type"
+      aria-label={t("serviceSelector.ariaLabel")}
       className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-xl mx-auto"
     >
       {OPTIONS.map((opt) => {
         const isActive = service === opt.id;
+        const label = t(`serviceSelector.${opt.id}.label`);
+        const sublabel = t(`serviceSelector.${opt.id}.sublabel`);
         return (
           <button
             key={opt.id}
@@ -29,9 +32,9 @@ export default function ServiceSelector({ service, onSelect }) {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
           >
-            <span className="block">{opt.label} Shipping</span>
+            <span className="block">{t("serviceSelector.shippingSuffix", { label })}</span>
             <span className="block text-[10px] sm:text-xs font-normal normal-case tracking-normal opacity-80 mt-0.5">
-              {opt.sublabel}
+              {sublabel}
             </span>
           </button>
         );

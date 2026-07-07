@@ -1,103 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// ─── Данные складов ───────────────────────────────────────────────────────────
-// pdfFile → положи файл в /public/pricelists/china.pdf и т.д.
-const WAREHOUSES = [
-  {
-    id: 1,
-    country: "Китай",
-    en: "China",
-    flag: "🇨🇳",
-    city: "Шанхай",
-    address: "No.88 Longhua Rd, Xuhui District",
-    price: "от $3/кг",
-    delivery: "7–14 дней",
-    stock: "1 240 ед.",
-    color: "#1E40AF",
-    lat: 31.23,
-    lng: 121.47,
-    pdfFile: "/pricelists/china.pdf",
-  },
-  {
-    id: 2,
-    country: "Турция",
-    en: "Turkey",
-    flag: "🇹🇷",
-    city: "Стамбул",
-    address: "Atatürk Mah. Ertuğrulgazi Sok.",
-    price: "от $5/кг",
-    delivery: "5–10 дней",
-    stock: "820 ед.",
-    color: "#DC2626",
-    lat: 41.01,
-    lng: 28.97,
-    pdfFile: "/pricelists/turkey.pdf",
-  },
-  {
-    id: 3,
-    country: "ОАЭ",
-    en: "UAE",
-    flag: "🇦🇪",
-    city: "Дубай",
-    address: "Jebel Ali Free Zone, Gate 5",
-    price: "от $4/кг",
-    delivery: "4–8 дней",
-    stock: "560 ед.",
-    color: "#059669",
-    lat: 25.2,
-    lng: 55.27,
-    pdfFile: "/pricelists/uae.pdf",
-  },
-  {
-    id: 4,
-    country: "Германия",
-    en: "Germany",
-    flag: "🇩🇪",
-    city: "Гамбург",
-    address: "Freihafen 12, 20457 Hamburg",
-    price: "от $8/кг",
-    delivery: "3–6 дней",
-    stock: "430 ед.",
-    color: "#D97706",
-    lat: 53.55,
-    lng: 9.99,
-    pdfFile: "/pricelists/germany.pdf",
-  },
-  {
-    id: 5,
-    country: "Япония",
-    en: "Japan",
-    flag: "🇯🇵",
-    city: "Токио",
-    address: "2-1 Osanbashi, Naka-ku, Yokohama",
-    price: "от $6/кг",
-    delivery: "6–12 дней",
-    stock: "310 ед.",
-    color: "#6D28D9",
-    lat: 35.68,
-    lng: 139.69,
-    pdfFile: "/pricelists/japan.pdf",
-  },
-  {
-    id: 6,
-    country: "Индия",
-    en: "India",
-    flag: "🇮🇳",
-    city: "Мумбай",
-    address: "Nhava Sheva, Navi Mumbai",
-    price: "от $3/кг",
-    delivery: "8–15 дней",
-    stock: "740 ед.",
-    color: "#EA580C",
-    lat: 19.08,
-    lng: 72.88,
-    pdfFile: "/pricelists/india.pdf",
-  },
+const WAREHOUSE_META = [
+  { id: 1, flag: "🇨🇳", en: "China", color: "#1E40AF", lat: 31.23, lng: 121.47, pdfFile: "/pricelists/china.pdf" },
+  { id: 2, flag: "🇹🇷", en: "Turkey", color: "#DC2626", lat: 41.01, lng: 28.97, pdfFile: "/pricelists/turkey.pdf" },
+  { id: 3, flag: "🇦🇪", en: "UAE", color: "#059669", lat: 25.2, lng: 55.27, pdfFile: "/pricelists/uae.pdf" },
+  { id: 4, flag: "🇩🇪", en: "Germany", color: "#D97706", lat: 53.55, lng: 9.99, pdfFile: "/pricelists/germany.pdf" },
+  { id: 5, flag: "🇯🇵", en: "Japan", color: "#6D28D9", lat: 35.68, lng: 139.69, pdfFile: "/pricelists/japan.pdf" },
+  { id: 6, flag: "🇮🇳", en: "India", color: "#EA580C", lat: 19.08, lng: 72.88, pdfFile: "/pricelists/india.pdf" },
 ];
 
-// ─── SVG-иконка пина ──────────────────────────────────────────────────────────
 function makePinIcon(L, color, active) {
   const size = active ? 38 : 30;
   const svg = `
@@ -116,8 +30,20 @@ function makePinIcon(L, color, active) {
   });
 }
 
-// ─── Основной компонент ───────────────────────────────────────────────────────
+function buildWarehouses(t) {
+  return WAREHOUSE_META.map((meta, index) => ({
+    ...meta,
+    country: t(`map.warehouses.${index}.country`),
+    city: t(`map.warehouses.${index}.city`),
+    address: t(`map.warehouses.${index}.address`),
+    price: t(`map.warehouses.${index}.price`),
+    delivery: t(`map.warehouses.${index}.delivery`),
+    stock: t(`map.warehouses.${index}.stock`),
+  }));
+}
+
 function StocksSidebar({
+  warehouses,
   selected,
   setSelected,
   query,
@@ -128,15 +54,16 @@ function StocksSidebar({
   downloading,
   handleDownload,
   searchRef,
+  t,
 }) {
   return (
-    <aside className="map-layout__sidebar" aria-label="Our Stocks">
+    <aside className="map-layout__sidebar" aria-label={t("map.sidebar.ariaLabel")}>
       <div>
         <p className="text-xs sm:text-xs font-bold tracking-widest uppercase text-gray-900">
-          Our Stocks
+          {t("map.sidebar.title")}
         </p>
         <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-          Search and price lists by country
+          {t("map.sidebar.subtitle")}
         </p>
       </div>
 
@@ -150,7 +77,7 @@ function StocksSidebar({
             type="search"
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search country..."
+            placeholder={t("map.sidebar.searchPlaceholder")}
             className="map-search-input flex-1 text-sm md:text-xs text-gray-700 outline-none bg-transparent placeholder-gray-300 min-w-0"
           />
           {query && (
@@ -158,7 +85,7 @@ function StocksSidebar({
               type="button"
               onClick={clearSearch}
               className="text-gray-400 hover:text-gray-600 text-sm px-2 py-1 rounded-full min-h-[44px] md:min-h-0 flex items-center"
-              aria-label="Clear search"
+              aria-label={t("map.sidebar.clearSearch")}
             >
               ✕
             </button>
@@ -186,7 +113,7 @@ function StocksSidebar({
       </div>
 
       <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[220px] md:max-h-[168px] -mx-0.5 px-0.5">
-        {WAREHOUSES.map((w) => (
+        {warehouses.map((w) => (
           <button
             key={w.id}
             type="button"
@@ -222,12 +149,12 @@ function StocksSidebar({
             </div>
           </div>
           <div className="text-sm md:text-xs text-gray-500 leading-relaxed space-y-1">
-            <p><span className="text-gray-400">Address: </span>{selected.address}</p>
+            <p><span className="text-gray-400">{t("map.sidebar.address")} </span>{selected.address}</p>
             <p>
-              <span className="text-gray-400">Delivery: </span>
+              <span className="text-gray-400">{t("map.sidebar.delivery")} </span>
               <span className="text-green-600 font-semibold">{selected.delivery}</span>
             </p>
-            <p><span className="text-gray-400">In stocks: </span>{selected.stock}</p>
+            <p><span className="text-gray-400">{t("map.sidebar.inStock")} </span>{selected.stock}</p>
           </div>
         </div>
       )}
@@ -245,7 +172,7 @@ function StocksSidebar({
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
             </svg>
-            Open...
+            {t("map.sidebar.downloading")}
           </>
         ) : (
           <>
@@ -254,7 +181,7 @@ function StocksSidebar({
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
-            PDF price · {selected?.country}
+            {t("map.sidebar.pdfButton", { country: selected?.country })}
           </>
         )}
       </button>
@@ -263,17 +190,25 @@ function StocksSidebar({
 }
 
 export default function LogisticsMap() {
+  const { t, i18n } = useTranslation("location");
+  const warehouses = useMemo(() => buildWarehouses(t), [t, i18n.language]);
+  const warehousesRef = useRef(warehouses);
+  warehousesRef.current = warehouses;
+
   const mapRef = useRef(null);
   const mapCanvasRef = useRef(null);
   const mapInstance = useRef(null);
   const markersRef = useRef({});
-  const [selected, setSelected] = useState(WAREHOUSES[0]);
+  const [selected, setSelected] = useState(() => warehouses[0]);
   const [query, setQuery] = useState("");
   const [dropdown, setDropdown] = useState([]);
   const [downloading, setDownloading] = useState(false);
   const searchRef = useRef(null);
 
-  // ── Инициализация Leaflet ──────────────────────────────────────────────────
+  useEffect(() => {
+    setSelected((prev) => warehouses.find((w) => w.id === prev?.id) ?? warehouses[0]);
+  }, [warehouses]);
+
   useEffect(() => {
     const container = mapRef.current;
     if (!container || mapInstance.current) return;
@@ -305,24 +240,17 @@ export default function LogisticsMap() {
 
     L.control.zoom({ position: "bottomright" }).addTo(map);
 
-    WAREHOUSES.forEach((w) => {
-      const marker = L.marker([w.lat, w.lng], {
-        icon: makePinIcon(L, w.color, w.id === WAREHOUSES[0].id),
+    WAREHOUSE_META.forEach((meta) => {
+      const marker = L.marker([meta.lat, meta.lng], {
+        icon: makePinIcon(L, meta.color, meta.id === WAREHOUSE_META[0].id),
       }).addTo(map);
 
-      marker.bindPopup(
-        `<div style="font-family:sans-serif;min-width:140px">
-          <b style="font-size:13px">${w.flag} ${w.country}</b><br/>
-          <span style="font-size:11px;color:#6b7280">${w.city} · ${w.price}</span>
-        </div>`,
-        { closeButton: false, offset: [0, -4] }
-      );
-
       marker.on("click", () => {
-        setSelected(w);
+        const next = warehousesRef.current.find((w) => w.id === meta.id);
+        if (next) setSelected(next);
       });
 
-      markersRef.current[w.id] = { marker, L };
+      markersRef.current[meta.id] = { marker, L };
     });
 
     if (cancelled) {
@@ -357,7 +285,20 @@ export default function LogisticsMap() {
     };
   }, []);
 
-  // Leaflet must recalculate size when layout switches (stack ↔ sidebar)
+  useEffect(() => {
+    warehouses.forEach((w) => {
+      const ref = markersRef.current[w.id];
+      if (ref) {
+        ref.marker.setPopupContent(
+          `<div style="font-family:sans-serif;min-width:140px">
+            <b style="font-size:13px">${w.flag} ${w.country}</b><br/>
+            <span style="font-size:11px;color:#6b7280">${w.city} · ${w.price}</span>
+          </div>`
+        );
+      }
+    });
+  }, [warehouses]);
+
   useEffect(() => {
     const el = mapCanvasRef.current;
     if (!el) return;
@@ -379,15 +320,14 @@ export default function LogisticsMap() {
     };
   }, []);
 
-  const selectedIdRef = useRef(selected.id);
+  const selectedIdRef = useRef(selected?.id);
   const isFirstSelectRef = useRef(true);
 
-  // ── Реакция на смену выбранного склада ────────────────────────────────────
   useEffect(() => {
-    if (!mapInstance.current) return;
+    if (!mapInstance.current || !selected) return;
     const { map, L } = mapInstance.current;
 
-    WAREHOUSES.forEach((w) => {
+    warehouses.forEach((w) => {
       const ref = markersRef.current[w.id];
       if (ref) {
         ref.marker.setIcon(makePinIcon(L, w.color, w.id === selected.id));
@@ -405,20 +345,19 @@ export default function LogisticsMap() {
 
     map.flyTo([selected.lat, selected.lng], 5, { duration: 1.2 });
 
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       markersRef.current[selected.id]?.marker.openPopup();
     }, 1300);
 
-    return () => clearTimeout(t);
-  }, [selected]);
+    return () => clearTimeout(timer);
+  }, [selected, warehouses]);
 
-  // ── Поиск ─────────────────────────────────────────────────────────────────
   const handleSearch = (val) => {
     setQuery(val);
     const q = val.toLowerCase().trim();
     if (!q) { setDropdown([]); return; }
     setDropdown(
-      WAREHOUSES.filter(
+      warehouses.filter(
         (w) =>
           w.country.toLowerCase().includes(q) ||
           w.en.toLowerCase().includes(q) ||
@@ -438,15 +377,12 @@ export default function LogisticsMap() {
     setDropdown([]);
   };
 
-  // ── Скачать PDF ───────────────────────────────────────────────────────────
-  // PDF файлы лежат в /public/pricelists/*.pdf
-  // Добавь свои файлы туда и они скачаются напрямую
   const handleDownload = () => {
     if (!selected || downloading) return;
     setDownloading(true);
 
     const a = document.createElement("a");
-    a.href = selected.pdfFile;          // /public/pricelists/china.pdf
+    a.href = selected.pdfFile;
     a.download = `pricelist_${selected.en.toLowerCase()}.pdf`;
     a.target = "_blank";
     document.body.appendChild(a);
@@ -456,17 +392,16 @@ export default function LogisticsMap() {
     setTimeout(() => setDownloading(false), 1000);
   };
 
-  // ─────────────────────────────────────────────────────────────────────────
   return (
     <section className="relative z-0 w-full flex items-center justify-center py-10 sm:py-16 px-4 min-w-0 overflow-hidden">
       <div className="w-full max-w-6xl min-w-0">
 
         <div className="text-center mb-6 sm:mb-8 px-2">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-500 uppercase tracking-wide mb-3 sm:mb-4">
-          Our warehouses are all over the world
+            {t("map.title")}
           </h2>
           <p className="text-gray-400 text-sm mt-2">
-          Select a country, find out the details, and download the price list
+            {t("map.subtitle")}
           </p>
         </div>
 
@@ -476,6 +411,7 @@ export default function LogisticsMap() {
           </div>
 
           <StocksSidebar
+            warehouses={warehouses}
             selected={selected}
             setSelected={setSelected}
             query={query}
@@ -486,6 +422,7 @@ export default function LogisticsMap() {
             downloading={downloading}
             handleDownload={handleDownload}
             searchRef={searchRef}
+            t={t}
           />
         </div>
       </div>

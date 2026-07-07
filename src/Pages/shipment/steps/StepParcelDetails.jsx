@@ -1,72 +1,75 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { PARCEL_SIZES } from "../constants";
 import { FormBlock, ClickField, SelectInput, TextInput, formatLocation } from "../components/shared";
 import { FromModal, WhereModal, TransportModal, ObtainModal } from "../components/modals";
 
 export default function StepParcelDetails({ data, onChange }) {
+  const { t } = useTranslation("shipment");
   const [fromOpen, setFromOpen] = useState(false);
   const [whereOpen, setWhereOpen] = useState(false);
   const [transportOpen, setTransportOpen] = useState(false);
   const [obtainOpen, setObtainOpen] = useState(false);
 
-  const selectedSize = PARCEL_SIZES.find((s) => s.label === data.parcelSize);
+  const selectedSize = PARCEL_SIZES.find((s) => s.id === data.parcelSize);
   const set = (key) => (val) => onChange({ ...data, [key]: val });
 
   return (
     <>
-      <FormBlock title="From">
+      <FormBlock title={t("fields.from")}>
         <ClickField
-          placeholder="Click this form"
-          value={formatLocation(data.from)}
+          placeholder={t("placeholders.selectOrigin")}
+          value={formatLocation(data.from, t)}
           onClick={() => setFromOpen(true)}
         />
       </FormBlock>
 
-      <FormBlock title="Where">
+      <FormBlock title={t("fields.where")}>
         <ClickField
-          placeholder="Click this form"
-          value={formatLocation(data.where)}
+          placeholder={t("placeholders.selectDestination")}
+          value={formatLocation(data.where, t)}
           onClick={() => setWhereOpen(true)}
         />
       </FormBlock>
 
-      <FormBlock title="Type of service">
+      <FormBlock title={t("sections.typeOfService")}>
         <div className="flex flex-col gap-3">
           <ClickField
-            placeholder="How will we transport it?"
-            value={data.transport}
+            placeholder={t("fields.transport")}
+            value={data.transport ? t(`transportOptions.${data.transport}`) : ""}
             onClick={() => setTransportOpen(true)}
           />
           <ClickField
-            placeholder="Method to obtain"
-            value={data.obtain}
+            placeholder={t("fields.obtain")}
+            value={data.obtain ? t(`obtainOptions.${data.obtain}`) : ""}
             onClick={() => setObtainOpen(true)}
           />
         </div>
       </FormBlock>
 
-      <FormBlock title="Size and type of parcel">
+      <FormBlock title={t("sections.parcelSize")}>
         <div className="flex flex-col gap-3">
           <SelectInput
-            placeholder="Select size"
+            placeholder={t("placeholders.selectSize")}
             options={PARCEL_SIZES}
             value={data.parcelSize}
             onChange={set("parcelSize")}
+            getOptionLabel={(option) => t(`parcelSizes.${option.id}.label`)}
           />
           {selectedSize && (
-            <p className="text-xs text-blue-500 px-1 leading-relaxed">{selectedSize.desc}</p>
+            <p className="text-xs text-blue-500 px-1 leading-relaxed">{t(`parcelSizes.${selectedSize.id}.desc`)}</p>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <TextInput label="Height cm" placeholder="Height cm" value={data.height} onChange={set("height")} />
-            <TextInput label="Length cm" placeholder="Length cm" value={data.length} onChange={set("length")} />
-            <TextInput label="Width cm" placeholder="Width cm" value={data.width} onChange={set("width")} />
+            <TextInput label={t("fields.heightCm")} placeholder={t("fields.heightCm")} value={data.height} onChange={set("height")} />
+            <TextInput label={t("fields.lengthCm")} placeholder={t("fields.lengthCm")} value={data.length} onChange={set("length")} />
+            <TextInput label={t("fields.widthCm")} placeholder={t("fields.widthCm")} value={data.width} onChange={set("width")} />
           </div>
         </div>
       </FormBlock>
 
-      <FormBlock title="Describe the cargo">
+      <FormBlock title={t("sections.describeCargo")}>
         <textarea
-          placeholder="What needs to be transported?"
+          placeholder={t("placeholders.cargoDescription")}
           value={data.cargo}
           onChange={(e) => set("cargo")(e.target.value)}
           rows={4}

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function ModalBulletList({ title, items }) {
   if (!items?.length) return null;
 
   return (
     <div className="mt-6">
-      {title && (
-        <p className="text-sm font-bold text-gray-900 mb-3">{title}</p>
-      )}
+      {title && <p className="text-sm font-bold text-gray-900 mb-3">{title}</p>}
       <ul className="flex flex-col gap-2.5 pl-1">
         {items.map((item, index) => (
           <li key={index} className="flex gap-2.5 text-sm text-gray-800 leading-relaxed">
@@ -24,6 +23,8 @@ function ModalBulletList({ title, items }) {
 }
 
 export default function DiscountDetailModal({ isOpen, onClose, discount }) {
+  const { t } = useTranslation("discounts");
+
   useEffect(() => {
     if (!isOpen) return;
     const prev = document.body.style.overflow;
@@ -61,11 +62,7 @@ export default function DiscountDetailModal({ isOpen, onClose, discount }) {
       />
 
       <div
-        className="discount-modal-panel fixed inset-x-0 bottom-0 z-10 w-full sm:static sm:max-w-2xl
-          max-h-[min(92dvh,calc(100dvh-env(safe-area-inset-bottom,0px)))]
-          overflow-y-auto overscroll-contain touch-pan-y
-          bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl
-          pb-[env(safe-area-inset-bottom,0px)] sm:pb-0"
+        className="discount-modal-panel fixed inset-x-0 bottom-0 z-10 w-full sm:static sm:max-w-2xl max-h-[min(92dvh,calc(100dvh-env(safe-area-inset-bottom,0px)))] overflow-y-auto overscroll-contain touch-pan-y bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl pb-[env(safe-area-inset-bottom,0px)] sm:pb-0"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-gray-100 bg-white/95 backdrop-blur-sm px-5 py-4 rounded-t-2xl sm:rounded-t-2xl">
@@ -75,7 +72,7 @@ export default function DiscountDetailModal({ isOpen, onClose, discount }) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t("close")}
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-none bg-gray-100 cursor-pointer hover:bg-gray-200 transition-colors duration-200"
           >
             <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
@@ -86,9 +83,7 @@ export default function DiscountDetailModal({ isOpen, onClose, discount }) {
 
         <div className="discount-modal-content p-5 sm:p-6">
           <div className="discount-modal-inner rounded-xl sm:rounded-2xl bg-slate-100/90 p-5 sm:p-7 md:p-8">
-            <h3 className="text-xl sm:text-2xl font-bold text-blue-900 leading-snug mb-5 sm:mb-6">
-              {heading}
-            </h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-blue-900 leading-snug mb-5 sm:mb-6">{heading}</h3>
 
             <div className="flex flex-col gap-4 text-sm sm:text-[15px] text-gray-800 leading-relaxed">
               {paragraphs.map((paragraph) => (

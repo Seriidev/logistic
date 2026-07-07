@@ -1,4 +1,5 @@
 import { getBreakdown } from "../utils/getBreakdown";
+import { Trans, useTranslation } from "react-i18next";
 
 function Row({ label, value, muted }) {
   return (
@@ -10,6 +11,7 @@ function Row({ label, value, muted }) {
 }
 
 export default function PriceCalculator({ service, formData, sticky = true }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
   const b = getBreakdown(service, formData);
   const money = (n) => `$${n.toFixed(2)}`;
 
@@ -18,10 +20,12 @@ export default function PriceCalculator({ service, formData, sticky = true }) {
       className={`rounded-2xl border border-gray-100 bg-gray-50 p-5 sm:p-6 min-w-0 ${
         sticky ? "lg:sticky lg:top-24" : ""
       }`}
-      aria-label="Price estimate"
+      aria-label={t("aria.priceEstimate", { ns: "booking" })}
     >
       <div className="flex items-center justify-between mb-1">
-        <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Estimated Cost</p>
+        <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+          {t("priceCalculator.title", { ns: "booking" })}
+        </p>
         <span className="inline-flex px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider">
           {service.toUpperCase()}
         </span>
@@ -29,39 +33,72 @@ export default function PriceCalculator({ service, formData, sticky = true }) {
 
       <p className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-1">
         {money(b.total)}
-        <span className="text-sm font-normal text-gray-500 ml-1">USD</span>
+        <span className="text-sm font-normal text-gray-500 ml-1">{t("priceCalculator.currency", { ns: "booking" })}</span>
       </p>
       <p className="text-xs text-gray-500 mb-4">
-        Delivery in <strong className="text-gray-700">{b.deliveryTime}</strong>
+        <Trans
+          i18nKey="priceCalculator.deliveryIn"
+          ns="booking"
+          values={{ time: t(`pricing.${service}.deliveryTime`, { ns: "truckCargoBooking" }) }}
+          components={{ strong: <strong className="text-gray-700" /> }}
+        />
       </p>
 
       <div className="h-px bg-gray-200 mb-2" />
 
       {service === "ftl" ? (
         <>
-          <Row label={`Vehicle (${b.vehicleLabel})`} value={money(b.vehicleFee)} />
-          {b.overweightFee > 0 && <Row label="Overweight surcharge" value={money(b.overweightFee)} />}
-          <Row label={`Delivery (${b.deliveryLabel})`} value={money(b.deliveryFee)} />
+          <Row
+            label={t("priceCalculator.lines.vehicle", {
+              ns: "booking",
+              label: t(`options.vehicles.${b.vehicleId}`, { ns: "truckCargoBooking" }),
+            })}
+            value={money(b.vehicleFee)}
+          />
+          {b.overweightFee > 0 && (
+            <Row label={t("priceCalculator.lines.overweight", { ns: "booking" })} value={money(b.overweightFee)} />
+          )}
+          <Row
+            label={t("priceCalculator.lines.delivery", {
+              ns: "booking",
+              label: t(`options.delivery.${b.deliveryId}`, { ns: "truckCargoBooking" }),
+            })}
+            value={money(b.deliveryFee)}
+          />
         </>
       ) : (
         <>
-          <Row label="Base service fee" value={money(b.baseFee)} />
-          <Row label={`Weight (${b.chargeableWeight} kg billable)`} value={money(b.weightFee)} />
-          {b.categoryFee > 0 && <Row label={`Category (${b.category})`} value={money(b.categoryFee)} />}
+          <Row label={t("priceCalculator.lines.baseFee", { ns: "booking" })} value={money(b.baseFee)} />
+          <Row
+            label={t("priceCalculator.lines.weight", { ns: "booking", weight: b.chargeableWeight })}
+            value={money(b.weightFee)}
+          />
+          {b.categoryFee > 0 && (
+            <Row
+              label={t("priceCalculator.lines.category", {
+                ns: "booking",
+                category: t(`options.categories.${b.categoryId}`, { ns: "truckCargoBooking" }),
+              })}
+              value={money(b.categoryFee)}
+            />
+          )}
         </>
       )}
-      <Row label={`Distance (~${b.distance.toLocaleString()} km)`} value={money(b.distanceFee)} />
-      {b.insuranceFee > 0 && <Row label="Insurance" value={money(b.insuranceFee)} />}
-      {b.paymentFee > 0 && <Row label="Provider fee" value={money(b.paymentFee)} />}
+      <Row
+        label={t("priceCalculator.lines.distance", { ns: "booking", distance: b.distance.toLocaleString() })}
+        value={money(b.distanceFee)}
+      />
+      {b.insuranceFee > 0 && <Row label={t("priceCalculator.lines.insurance", { ns: "booking" })} value={money(b.insuranceFee)} />}
+      {b.paymentFee > 0 && <Row label={t("priceCalculator.lines.providerFee", { ns: "booking" })} value={money(b.paymentFee)} />}
 
       <div className="h-px bg-gray-200 my-2" />
       <div className="flex items-center justify-between gap-3 pt-1">
-        <span className="text-sm font-bold text-gray-900">Total</span>
+        <span className="text-sm font-bold text-gray-900">{t("priceCalculator.total", { ns: "booking" })}</span>
         <span className="text-base font-extrabold text-gray-900">{money(b.total)}</span>
       </div>
 
       <p className="text-[11px] text-gray-400 mt-3 leading-relaxed">
-        Preliminary estimate. Final price confirmed at checkout after route optimization.
+        {t("priceCalculator.disclaimerTruck", { ns: "booking" })}
       </p>
     </aside>
   );

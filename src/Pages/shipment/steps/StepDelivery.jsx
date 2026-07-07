@@ -1,4 +1,5 @@
 import { CARRIERS, SHIPPING_SPEEDS } from "../constants";
+import { useTranslation } from "react-i18next";
 import { FormBlock } from "../components/shared";
 
 const ShipIcon = () => (
@@ -13,21 +14,15 @@ const PlaneIcon = () => (
   </svg>
 );
 
-const CARRIER_LOGOS = {
-  yuusell: "YuuSell",
-  fedex: "FedEx",
-  ups: "UPS",
-  usps: "USPS",
-};
-
 export default function StepDelivery({ data, onChange }) {
+  const { t } = useTranslation("shipment");
   const set = (key) => (val) => onChange({ ...data, [key]: val });
   const selectedCarrier = CARRIERS.find((c) => c.id === data.carrierId) || CARRIERS[1];
   const shippingCost = selectedCarrier.price;
 
   return (
     <div className="flex flex-col gap-4">
-      <FormBlock title="Add to cart or skip">
+      <FormBlock title={t("delivery.addToCartOrSkip")}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {SHIPPING_SPEEDS.map((speed) => {
             const selected = data.speedId === speed.id;
@@ -43,7 +38,7 @@ export default function StepDelivery({ data, onChange }) {
                 <div className="flex items-center gap-3 px-4 py-3 bg-white">
                   <input type="radio" readOnly checked={selected} className="accent-blue-500" />
                   <Icon />
-                  <span className="text-sm font-medium text-gray-900">{speed.label}</span>
+                  <span className="text-sm font-medium text-gray-900">{t(`shippingSpeeds.${speed.labelKey}`)}</span>
                 </div>
                 <div className={`px-4 py-2 text-sm font-bold ${selected ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700"}`}>
                   {speed.price}$
@@ -54,7 +49,7 @@ export default function StepDelivery({ data, onChange }) {
         </div>
       </FormBlock>
 
-      <FormBlock title="Carrier">
+      <FormBlock title={t("delivery.carrier")}>
         <div className="flex flex-col gap-2">
           {CARRIERS.map((carrier) => {
             const selected = data.carrierId === carrier.id;
@@ -68,9 +63,9 @@ export default function StepDelivery({ data, onChange }) {
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded shrink-0">
-                    {CARRIER_LOGOS[carrier.id]}
+                    {t(`carrierLogos.${carrier.id}`)}
                   </span>
-                  <span className="text-sm text-gray-700 truncate">{carrier.name}</span>
+                  <span className="text-sm text-gray-700 truncate">{t(`carriers.${carrier.nameKey}`)}</span>
                 </div>
                 <span className="text-sm font-bold text-gray-900 shrink-0">{carrier.price.toFixed(2)}$</span>
               </button>
@@ -79,21 +74,21 @@ export default function StepDelivery({ data, onChange }) {
         </div>
       </FormBlock>
 
-      <FormBlock title="Total">
+      <FormBlock title={t("delivery.total")}>
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">Shipping cost:</span>
+            <span className="text-sm text-gray-600">{t("delivery.shippingCost")}</span>
             <span className="text-lg font-bold text-blue-500">{shippingCost.toFixed(2)}$</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">Delivery date:</span>
+            <span className="text-sm text-gray-600">{t("delivery.deliveryDate")}</span>
             <span className="text-sm font-bold text-blue-500">{data.deliveryDate || "10.07.2025"}</span>
           </div>
         </div>
       </FormBlock>
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-gray-700">Date of shipment</span>
+        <span className="text-sm font-medium text-gray-700">{t("delivery.shipmentDate")}</span>
         <input
           type="date"
           value={data.shipmentDate || "2025-07-07"}

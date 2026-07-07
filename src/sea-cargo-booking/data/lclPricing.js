@@ -1,8 +1,8 @@
 export const LCL_PRICING = {
   serviceType: "lcl",
-  label: "LCL Ocean Freight",
-  speedLabel: "Economical",
-  deliveryTime: "25–35 days",
+  labelKey: "services.lcl.label",
+  speedLabelKey: "services.lcl.speedLabel",
+  deliveryTimeKey: "services.lcl.deliveryTime",
   basePrice: 55,
   perUnit: 11,
   perKg: 0.42,

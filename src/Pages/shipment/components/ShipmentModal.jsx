@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ShipmentModal({ isOpen, onClose, title, children, wide = false }) {
+  const { t } = useTranslation("shipment");
   useEffect(() => {
     if (!isOpen) return;
     const prev = document.body.style.overflow;
@@ -33,7 +35,7 @@ export default function ShipmentModal({ isOpen, onClose, title, children, wide =
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t("modals.close")}
             className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 border-none cursor-pointer hover:bg-gray-200 transition-colors text-gray-500"
           >
             ✕
@@ -45,7 +47,9 @@ export default function ShipmentModal({ isOpen, onClose, title, children, wide =
   );
 }
 
-export function ModalActions({ onCancel, onSave, saveLabel = "Save" }) {
+export function ModalActions({ onCancel, onSave, saveLabel }) {
+  const { t } = useTranslation("shipment");
+
   return (
     <div className="flex gap-3 mt-6">
       {onCancel && (
@@ -54,7 +58,7 @@ export function ModalActions({ onCancel, onSave, saveLabel = "Save" }) {
           onClick={onCancel}
           className="flex-1 h-11 rounded-full border border-gray-200 bg-white text-xs font-bold uppercase tracking-wider text-gray-600 cursor-pointer hover:bg-gray-50 transition-colors font-[inherit]"
         >
-          Cancel
+          {t("actions.cancel")}
         </button>
       )}
       <button
@@ -62,7 +66,7 @@ export function ModalActions({ onCancel, onSave, saveLabel = "Save" }) {
         onClick={onSave}
         className="flex-1 h-11 rounded-full border-none bg-blue-500 text-white text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]"
       >
-        {saveLabel}
+        {saveLabel || t("actions.save")}
       </button>
     </div>
   );

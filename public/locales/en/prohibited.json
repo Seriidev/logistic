@@ -1,0 +1,30 @@
+{
+  "breadcrumb": { "title": "Prohibited Items" },
+  "header": {
+    "title": "It is prohibited to send in parcels",
+    "description": "The following items are strictly prohibited in shipments for safety, legal, and customs reasons. Please review the list carefully before sending your parcel.",
+    "restrictionsLink": "Please check destination country restrictions for incoming shipments"
+  },
+  "specialConditions": {
+    "title": "Special conditions",
+    "description": "Some items can only be transported *under special conditions*:"
+  },
+  "banner": {
+    "title": "Please refer to the full list of prohibited items for each country",
+    "downloadPdf": "Download PDF"
+  },
+  "items": {
+    "explosives": "Explosives and Ammunition",
+    "firearms": "Firearms and Cold Weapons",
+    "flammable": "Flammable Liquids and Gases",
+    "toxic": "Toxic and Poisonous Substances",
+    "radioactive": "Radioactive Materials",
+    "lithiumBatteries": "Lithium Batteries (in some cases)",
+    "perishable": "Perishable Goods and Biological Materials",
+    "culturalAssets": "Cultural and Natural Assets"
+  },
+  "special": {
+    "dryIce": "Dry ice",
+    "medicines": "Medicines and dietary nutrition"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "breadcrumb": { "title": "Профиль" },
+  "title": "Ваш профиль",
+  "subtitle": "Управляйте личными данными и отслеживайте отправления.",
+  "save": "Сохранить изменения",
+  "saving": "Сохранение...",
+  "saved": "Сохранено!",
+  "stats": {
+    "total": "Всего",
+    "inTransit": "В пути",
+    "delivered": "Доставлено"
+  },
+  "actions": {
+    "notifications": "Настройки уведомлений",
+    "notificationsStub": "Настройки уведомлений (заглушка)",
+    "security": "Безопасность",
+    "securityStub": "Настройки безопасности (заглушка)",
+    "logout": "Выйти",
+    "logoutStub": "Выход выполнен (заглушка)"
+  },
+  "personalDetails": "Личные данные",
+  "fields": {
+    "fullName": "Полное имя",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "country": "Страна",
+    "city": "Город",
+    "address": "Адрес"
+  },
+  "shipments": {
+    "title": "Недавние отправления",
+    "goToTracking": "Перейти к отслеживанию →",
+    "eta": "Срок доставки",
+    "details": "Подробнее",
+    "detailsStub": "Открыть отправление {{id}} (заглушка)"
+  },
+  "status": {
+    "inTransit": "В пути",
+    "delivered": "Доставлено",
+    "processing": "Обработка"
+  },
+  "demo": {
+    "fullName": "Иван Иванов",
+    "email": "ivan.ivanov@email.com",
+    "country": "Соединённые Штаты",
+    "city": "Миннесота",
+    "address": "ул. Бейкер, 221Б",
+    "fromChina": "Китай",
+    "fromTurkey": "Турция",
+    "fromUae": "ОАЭ",
+    "toUsa": "США",
+    "etaRange1": "3–6 дней",
+    "etaRange2": "7–14 дней",
+    "etaDelivered": "Доставлено"
+  }
+}

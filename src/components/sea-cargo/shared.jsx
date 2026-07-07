@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function SectionHeading({ eyebrow, title, description, light = false }) {
   return (
@@ -47,6 +48,8 @@ export function CheckItem({ text }) {
 }
 
 export function ImageBlock({ src, alt, hint, className = "" }) {
+  const { t } = useTranslation("seaCargo");
+
   return (
     <div className={`overflow-hidden bg-gray-100 ${className}`}>
       <img
@@ -61,6 +64,7 @@ export function ImageBlock({ src, alt, hint, className = "" }) {
           parent.style.justifyContent = "center";
           parent.style.flexDirection = "column";
           parent.style.gap = "8px";
+          const hintText = hint || t("shared.photoHint", { path: src });
           parent.innerHTML = `
             <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"
               style="width:48px;height:48px">
@@ -69,7 +73,7 @@ export function ImageBlock({ src, alt, hint, className = "" }) {
               <path d="M21 15l-5-5L5 21"/>
             </svg>
             <p style="font-size:12px;color:#9ca3af;text-align:center;padding:0 12px">
-              ${hint || `Add photo: ${src}`}
+              ${hintText}
             </p>`;
         }}
       />

@@ -1,77 +1,47 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SectionHeading, CheckItem, ImageBlock } from "./shared";
 
-const SERVICE_TYPES = {
-  economy: {
-    id: "economy",
-    label: "Economy Air Cargo",
-    shortLabel: "Economy",
-    description:
-      "Cost-effective air freight for shipments where budget matters more than speed — consolidated loads on scheduled flights with reliable, predictable transit.",
-    delivery:
-      "Typical transit: 5–8 business days. Consolidated cargo on scheduled departures with optimized routing through major hubs.",
-    pricing: "Lowest air freight rates · Shared capacity · Ideal for non-urgent and high-volume cargo",
-    image: "/air-economy.jpg",
-    advantages: [
-      "Most affordable air freight option",
-      "Reliable scheduled flight departures",
-      "Ideal for non-time-critical shipments",
-      "Great for bulk and high-volume cargo",
-      "Full tracking from origin to destination",
-      "Lower cost per kilogram on large loads",
-    ],
-    examples: [
-      "Bulk inventory",
-      "E-commerce restocking",
-      "Non-urgent freight",
-      "Seasonal stock",
-    ],
-  },
-  express: {
-    id: "express",
-    label: "Express Air Cargo",
-    shortLabel: "Express",
-    description:
-      "Priority air freight for time-critical shipments — next-flight-out options, guaranteed transit windows, and expedited handling from pickup to delivery.",
-    delivery:
-      "Typical transit: 2–4 business days. Priority booking, next-flight-out availability, and expedited customs clearance.",
-    pricing: "Premium rates · Guaranteed capacity · Ideal for urgent and high-value cargo",
-    image: "/air-express.jpg",
-    advantages: [
-      "Fastest air freight delivery available",
-      "Priority space on the next flight out",
-      "Guaranteed transit time windows",
-      "Expedited customs and clearance handling",
-      "Ideal for urgent and high-value goods",
-      "Dedicated priority support and monitoring",
-    ],
-    examples: [
-      "AOG / spare parts",
-      "Medical supplies",
-      "Perishables",
-      "High-value goods",
-    ],
-  },
+const TABS = ["economy", "express"];
+const ADVANTAGE_KEYS = ["0", "1", "2", "3", "4", "5"];
+const EXAMPLE_KEYS = ["0", "1", "2", "3"];
+
+const SERVICE_IMAGES = {
+  economy: "/air-economy.jpg",
+  express: "/air-express.jpg",
 };
 
-const TABS = ["economy", "express"];
-
 export default function AirServiceTypes() {
+  const { t } = useTranslation("airCargo");
   const [activeTab, setActiveTab] = useState("economy");
-  const active = SERVICE_TYPES[activeTab];
+
+  const active = useMemo(
+    () => ({
+      id: activeTab,
+      label: t(`serviceTypes.${activeTab}.label`),
+      shortLabel: t(`serviceTypes.${activeTab}.shortLabel`),
+      description: t(`serviceTypes.${activeTab}.description`),
+      delivery: t(`serviceTypes.${activeTab}.delivery`),
+      pricing: t(`serviceTypes.${activeTab}.pricing`),
+      image: SERVICE_IMAGES[activeTab],
+      advantages: ADVANTAGE_KEYS.map((key) => t(`serviceTypes.${activeTab}.advantages.${key}`)),
+      examples: EXAMPLE_KEYS.map((key) => t(`serviceTypes.${activeTab}.examples.${key}`)),
+    }),
+    [activeTab, t],
+  );
 
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20" aria-labelledby="air-service-types-heading">
       <SectionHeading
-        eyebrow="Service Types"
-        title="Economy & Express Air Cargo"
-        description="Choose the air freight service that fits your timeline and budget — switch between options to compare delivery speed and pricing instantly."
+        eyebrow={t("serviceTypes.eyebrow")}
+        title={t("serviceTypes.title")}
+        description={t("serviceTypes.description")}
       />
 
       <div
         role="tablist"
-        aria-label="Air cargo service type"
+        aria-label={t("serviceTypes.tablistAriaLabel")}
         className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-xl mx-auto"
       >
         {TABS.map((tab) => (
@@ -90,7 +60,7 @@ export default function AirServiceTypes() {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
           >
-            {SERVICE_TYPES[tab].label}
+            {t(`serviceTypes.${tab}.label`)}
           </button>
         ))}
       </div>
@@ -104,8 +74,8 @@ export default function AirServiceTypes() {
       >
         <ImageBlock
           src={active.image}
-          alt={`${active.shortLabel} air cargo`}
-          hint={`Add photo: public${active.image}`}
+          alt={t("serviceTypes.imageAlt", { service: active.shortLabel })}
+          hint={t("shared.imageHint", { path: active.image })}
           className="w-full h-56 sm:h-72 lg:h-[420px] rounded-2xl sm:rounded-3xl"
         />
 
@@ -120,17 +90,17 @@ export default function AirServiceTypes() {
 
           <div className="rounded-2xl bg-gray-50 border border-gray-100 p-4 sm:p-5 mb-5 sm:mb-6 space-y-3">
             <div>
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Delivery</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">{t("serviceTypes.deliveryLabel")}</p>
               <p className="text-sm text-gray-600">{active.delivery}</p>
             </div>
             <div className="h-px bg-gray-200" />
             <div>
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Pricing</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">{t("serviceTypes.pricingLabel")}</p>
               <p className="text-sm text-gray-600">{active.pricing}</p>
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-gray-900 mb-3">Key Advantages</p>
+          <p className="text-sm font-semibold text-gray-900 mb-3">{t("serviceTypes.advantagesLabel")}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 sm:mb-6">
             {active.advantages.map((item) => (
               <CheckItem key={item} text={item} />
@@ -138,7 +108,7 @@ export default function AirServiceTypes() {
           </div>
 
           <div className="rounded-2xl bg-gray-50 border border-gray-100 p-4 sm:p-5 mb-6 sm:mb-8">
-            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">Examples</p>
+            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">{t("serviceTypes.examplesLabel")}</p>
             <div className="flex flex-wrap gap-2">
               {active.examples.map((example) => (
                 <span
@@ -158,7 +128,7 @@ export default function AirServiceTypes() {
               rounded-full bg-blue-500 text-white text-sm font-bold uppercase tracking-wider
               no-underline hover:bg-blue-600 transition-colors"
           >
-            Get {active.shortLabel} Quote
+            {t("serviceTypes.getQuote", { service: active.shortLabel })}
           </Link>
         </div>
       </div>

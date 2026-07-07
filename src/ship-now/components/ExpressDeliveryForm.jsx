@@ -3,6 +3,7 @@ import {
   PACKAGE_SIZES,
   DELIVERY_PRIORITIES,
 } from "../data/shippingOptions";
+import { useTranslation } from "react-i18next";
 
 function Field({ label, htmlFor, children, required }) {
   return (
@@ -17,114 +18,121 @@ function Field({ label, htmlFor, children, required }) {
 }
 
 export default function ExpressDeliveryForm({ formData, onChange }) {
+  const { t } = useTranslation("shipNow");
   const update = (field) => (e) => onChange(field, e.target.value);
 
   return (
     <div className="ship-now-step-enter">
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
-          Step 3 of 4
+          {t("forms.stepLabel", { current: 3, total: 4 })}
         </p>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 mb-2 sm:mb-3">
-          Express Delivery Details
+          {t("forms.express.title")}
         </h2>
         <p className="text-sm sm:text-base text-slate-500 max-w-xl mx-auto">
-          Enter package and delivery information for express shipping.
+          {t("forms.express.subtitle")}
         </p>
       </div>
 
       <div className="ship-now-card max-w-4xl mx-auto p-5 sm:p-7 lg:p-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          <Field label="Pickup Location" htmlFor="pickupLocation" required>
+          <Field label={t("forms.fields.pickupLocation")} htmlFor="pickupLocation" required>
             <input
               id="pickupLocation"
               type="text"
-              placeholder="City, address or ZIP"
+              placeholder={t("forms.placeholders.location")}
               value={formData.pickupLocation}
               onChange={update("pickupLocation")}
               className="ship-now-input"
             />
           </Field>
 
-          <Field label="Delivery Location" htmlFor="deliveryLocation" required>
+          <Field label={t("forms.fields.deliveryLocation")} htmlFor="deliveryLocation" required>
             <input
               id="deliveryLocation"
               type="text"
-              placeholder="City, address or ZIP"
+              placeholder={t("forms.placeholders.location")}
               value={formData.deliveryLocation}
               onChange={update("deliveryLocation")}
               className="ship-now-input"
             />
           </Field>
 
-          <Field label="Package Type" htmlFor="packageType">
+          <Field label={t("forms.fields.packageType")} htmlFor="packageType">
             <select
               id="packageType"
               value={formData.packageType}
               onChange={update("packageType")}
               className="ship-now-input cursor-pointer"
             >
-              {PACKAGE_TYPES.map((type) => (
-                <option key={type} value={type}>{type}</option>
+              {PACKAGE_TYPES.map((typeKey) => (
+                <option key={typeKey} value={typeKey}>
+                  {t(`options.packageTypes.${typeKey}`)}
+                </option>
               ))}
             </select>
           </Field>
 
-          <Field label="Weight (kg)" htmlFor="weight" required>
+          <Field label={t("forms.fields.weightKg")} htmlFor="weight" required>
             <input
               id="weight"
               type="number"
               min="0.1"
               step="0.1"
-              placeholder="e.g. 2.5"
+              placeholder={t("forms.placeholders.weightSmall")}
               value={formData.weight}
               onChange={update("weight")}
               className="ship-now-input"
             />
           </Field>
 
-          <Field label="Package Size" htmlFor="packageSize">
+          <Field label={t("forms.fields.packageSize")} htmlFor="packageSize">
             <select
               id="packageSize"
               value={formData.packageSize}
               onChange={update("packageSize")}
               className="ship-now-input cursor-pointer"
             >
-              {PACKAGE_SIZES.map((size) => (
-                <option key={size} value={size}>{size}</option>
+              {PACKAGE_SIZES.map((sizeKey) => (
+                <option key={sizeKey} value={sizeKey}>
+                  {t(`options.packageSizes.${sizeKey}`)}
+                </option>
               ))}
             </select>
           </Field>
         </div>
 
         <fieldset className="mt-5 sm:mt-6 border-none p-0 m-0">
-          <legend className="ship-now-label mb-3">Delivery Priority</legend>
+          <legend className="ship-now-label mb-3">{t("forms.fields.deliveryPriority")}</legend>
           <div className="ship-now-radio-group">
-            {DELIVERY_PRIORITIES.map((priority) => (
+            {DELIVERY_PRIORITIES.map((priorityId) => (
               <label
-                key={priority.id}
+                key={priorityId}
                 className={`ship-now-radio-option ${
-                  formData.deliveryPriority === priority.id ? "ship-now-radio-option--active" : ""
+                  formData.deliveryPriority === priorityId ? "ship-now-radio-option--active" : ""
                 }`}
               >
                 <input
                   type="radio"
                   name="deliveryPriority"
-                  value={priority.id}
-                  checked={formData.deliveryPriority === priority.id}
+                  value={priorityId}
+                  checked={formData.deliveryPriority === priorityId}
                   onChange={update("deliveryPriority")}
                 />
-                <span className="text-sm font-medium text-slate-800">{priority.label}</span>
+                <span className="text-sm font-medium text-slate-800">
+                  {t(`options.deliveryPriorities.${priorityId}`)}
+                </span>
               </label>
             ))}
           </div>
         </fieldset>
 
         <div className="mt-5 sm:mt-6">
-          <Field label="Special Instructions" htmlFor="specialInstructions">
+          <Field label={t("forms.fields.specialInstructions")} htmlFor="specialInstructions">
             <textarea
               id="specialInstructions"
-              placeholder="Signature required, fragile handling, etc."
+              placeholder={t("forms.placeholders.specialInstructionsExpress")}
               value={formData.specialInstructions}
               onChange={update("specialInstructions")}
               className="ship-now-input ship-now-textarea"

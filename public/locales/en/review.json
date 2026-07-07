@@ -1,0 +1,24 @@
+{
+  "title": "Leave a Review",
+  "left": {
+    "heading": "Send with confidence",
+    "description": "Every day, clients from over 25 countries trust YuuSell to deliver their parcels safely and on time. Fast, affordable, and always traceable — we make logistics simple.",
+    "illustrationAlt": "Review"
+  },
+  "form": {
+    "title": "Write a review",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "locationPlaceholder": "Location",
+    "messagePlaceholder": "Write message",
+    "rating": "Rating",
+    "selectFile": "Select file",
+    "fileExtensions": "Allowed file extensions: .jpg, .gif, .jpeg, .log, .txt, .html, .png, .tiff, .tif, .pdf, .doc, .docx, .zip, .rar, .gz, .tar.gz, .7z, .rdp, .odt, .csv, .conf, .cfg, .xls, .xlsx",
+    "send": "Send"
+  },
+  "alerts": {
+    "required": "Please fill in Name and Message.",
+    "thanks": "Thank you for your review!"
+  },
+  "logoAlt": "YuuSell"
+}

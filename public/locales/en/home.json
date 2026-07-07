@@ -1,0 +1,120 @@
+{
+  "banner": {
+    "imageAlt": "Promotional banner {{n}}"
+  },
+  "promo": {
+    "title": "Get 24% Off Shipping to USA!",
+    "subtitle": "Celebrate with YuuSell",
+    "imageAlt": "Shipping promotion",
+    "routes": [
+      {
+        "from": "New York",
+        "fromDate": "June 17 2025",
+        "to": "Dubai",
+        "toDate": "June 19 2025",
+        "price": "180$"
+      },
+      {
+        "from": "Las Vegas",
+        "fromDate": "June 17 2025",
+        "to": "Denver",
+        "toDate": "June 20 2025",
+        "price": "162$"
+      },
+      {
+        "from": "New York",
+        "fromDate": "June 17 2025",
+        "to": "Dubai",
+        "toDate": "June 19 2025",
+        "price": "134$"
+      },
+      {
+        "from": "Las Vegas",
+        "fromDate": "June 17 2025",
+        "to": "Denver",
+        "toDate": "June 20 2025",
+        "price": "321$"
+      }
+    ]
+  },
+  "map": {
+    "title": "Our warehouses are all over the world",
+    "subtitle": "Select a country, find out the details, and download the price list",
+    "sidebar": {
+      "ariaLabel": "Our Stocks",
+      "title": "Our Stocks",
+      "subtitle": "Search and price lists by country",
+      "searchPlaceholder": "Search country...",
+      "address": "Address:",
+      "delivery": "Delivery:",
+      "inStock": "In stock:",
+      "pdfButton": "PDF price · {{country}}",
+      "downloading": "Opening..."
+    },
+    "warehouses": [
+      {
+        "country": "China",
+        "city": "Shanghai",
+        "address": "No.88 Longhua Rd, Xuhui District",
+        "price": "from $3/kg",
+        "delivery": "7–14 days",
+        "stock": "1,240 units"
+      },
+      {
+        "country": "Turkey",
+        "city": "Istanbul",
+        "address": "Atatürk Mah. Ertuğrulgazi Sok.",
+        "price": "from $5/kg",
+        "delivery": "5–10 days",
+        "stock": "820 units"
+      },
+      {
+        "country": "UAE",
+        "city": "Dubai",
+        "address": "Jebel Ali Free Zone, Gate 5",
+        "price": "from $4/kg",
+        "delivery": "4–8 days",
+        "stock": "560 units"
+      },
+      {
+        "country": "Germany",
+        "city": "Hamburg",
+        "address": "Freihafen 12, 20457 Hamburg",
+        "price": "from $8/kg",
+        "delivery": "3–6 days",
+        "stock": "430 units"
+      },
+      {
+        "country": "Japan",
+        "city": "Tokyo",
+        "address": "2-1 Osanbashi, Naka-ku, Yokohama",
+        "price": "from $6/kg",
+        "delivery": "6–12 days",
+        "stock": "310 units"
+      },
+      {
+        "country": "India",
+        "city": "Mumbai",
+        "address": "Nhava Sheva, Navi Mumbai",
+        "price": "from $3/kg",
+        "delivery": "8–15 days",
+        "stock": "740 units"
+      }
+    ]
+  },
+  "reviewModal": {
+    "title": "Write a Review",
+    "ratingLabel": "Your rating",
+    "ratingGroup": "Rating",
+    "star_one": "{{count}} star",
+    "star_other": "{{count}} stars",
+    "namePlaceholder": "Your full name",
+    "review": "Review",
+    "reviewPlaceholder": "Share your experience with YuuSell...",
+    "submit": "Submit Review",
+    "errors": {
+      "required": "Please fill in your name and review."
+    },
+    "success": "Thank you for your review!"
+  }
+}

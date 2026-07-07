@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const inputClass =
   "w-full h-11 sm:h-12 px-4 rounded-xl border border-gray-200 text-sm text-gray-900 outline-none bg-white focus:border-blue-400 transition-colors min-w-0 font-[inherit]";
 const labelClass = "text-sm font-medium text-gray-700 mb-1.5 block";
@@ -17,16 +19,21 @@ function isValid(d) {
 }
 
 export default function CardPaymentStep({ details, onChange, onBack, onPay, amount }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
   const update = (field) => (e) => onChange(field, e.target.value);
   const valid = isValid(details);
 
   return (
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
-        <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">Step 3 of 4</p>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">Card Payment</h2>
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
+          {t("steps.stepOf", { ns: "booking", current: 3, total: 4 })}
+        </p>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
+          {t("cardPayment.title", { ns: "booking" })}
+        </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          Enter your card and billing information to complete the booking.
+          {t("cardPayment.subtitle", { ns: "booking" })}
         </p>
       </div>
 
@@ -34,74 +41,80 @@ export default function CardPaymentStep({ details, onChange, onBack, onPay, amou
         onSubmit={(e) => { e.preventDefault(); if (valid) onPay(); }}
         className="max-w-3xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-7 lg:p-8 min-w-0"
       >
-        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Card Information</h3>
+        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+          {t("cardPayment.sections.card", { ns: "booking" })}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="cardNumber" className={labelClass}>Card Number *</label>
-            <input id="cardNumber" type="text" inputMode="numeric" placeholder="1234 5678 9012 3456"
+            <label htmlFor="cardNumber" className={labelClass}>{t("cardPayment.fields.cardNumber", { ns: "booking" })}</label>
+            <input id="cardNumber" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.cardNumber", { ns: "booking" })}
               value={details.cardNumber || ""} onChange={(e) => onChange("cardNumber", formatCardNumber(e.target.value))} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="expiry" className={labelClass}>MM/YY *</label>
-            <input id="expiry" type="text" inputMode="numeric" placeholder="MM/YY"
+            <label htmlFor="expiry" className={labelClass}>{t("cardPayment.fields.expiry", { ns: "booking" })}</label>
+            <input id="expiry" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.expiry", { ns: "booking" })}
               value={details.expiry || ""} onChange={(e) => onChange("expiry", formatExpiry(e.target.value))} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="cvc" className={labelClass}>CVC *</label>
-            <input id="cvc" type="text" inputMode="numeric" placeholder="123" maxLength={4}
+            <label htmlFor="cvc" className={labelClass}>{t("cardPayment.fields.cvc", { ns: "booking" })}</label>
+            <input id="cvc" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.cvc", { ns: "booking" })} maxLength={4}
               value={details.cvc || ""} onChange={(e) => onChange("cvc", e.target.value.replace(/\D/g, "").slice(0, 4))} className={inputClass} />
           </div>
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="cardholderName" className={labelClass}>Cardholder Name *</label>
-            <input id="cardholderName" type="text" placeholder="Name on card"
+            <label htmlFor="cardholderName" className={labelClass}>{t("cardPayment.fields.cardholderName", { ns: "booking" })}</label>
+            <input id="cardholderName" type="text" placeholder={t("cardPayment.placeholders.cardholderName", { ns: "booking" })}
               value={details.cardholderName || ""} onChange={update("cardholderName")} className={inputClass} />
           </div>
         </div>
 
-        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Billing Address</h3>
+        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+          {t("cardPayment.sections.billing", { ns: "booking" })}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="addressLine1" className={labelClass}>Address Line 1 *</label>
-            <input id="addressLine1" type="text" placeholder="Street address"
+            <label htmlFor="addressLine1" className={labelClass}>{t("cardPayment.fields.addressLine1", { ns: "booking" })}</label>
+            <input id="addressLine1" type="text" placeholder={t("cardPayment.placeholders.addressLine1", { ns: "booking" })}
               value={details.addressLine1 || ""} onChange={update("addressLine1")} className={inputClass} />
           </div>
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="addressLine2" className={labelClass}>Address Line 2</label>
-            <input id="addressLine2" type="text" placeholder="Apartment, suite, etc. (optional)"
+            <label htmlFor="addressLine2" className={labelClass}>{t("cardPayment.fields.addressLine2", { ns: "booking" })}</label>
+            <input id="addressLine2" type="text" placeholder={t("cardPayment.placeholders.addressLine2", { ns: "booking" })}
               value={details.addressLine2 || ""} onChange={update("addressLine2")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="city" className={labelClass}>City *</label>
-            <input id="city" type="text" placeholder="City"
+            <label htmlFor="city" className={labelClass}>{t("cardPayment.fields.city", { ns: "booking" })}</label>
+            <input id="city" type="text" placeholder={t("cardPayment.placeholders.city", { ns: "booking" })}
               value={details.city || ""} onChange={update("city")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="province" className={labelClass}>Province / State</label>
-            <input id="province" type="text" placeholder="Province or state"
+            <label htmlFor="province" className={labelClass}>{t("cardPayment.fields.province", { ns: "booking" })}</label>
+            <input id="province" type="text" placeholder={t("cardPayment.placeholders.province", { ns: "booking" })}
               value={details.province || ""} onChange={update("province")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="postalCode" className={labelClass}>Postal Code *</label>
-            <input id="postalCode" type="text" placeholder="Postal code"
+            <label htmlFor="postalCode" className={labelClass}>{t("cardPayment.fields.postalCode", { ns: "booking" })}</label>
+            <input id="postalCode" type="text" placeholder={t("cardPayment.placeholders.postalCode", { ns: "booking" })}
               value={details.postalCode || ""} onChange={update("postalCode")} className={inputClass} />
           </div>
         </div>
 
-        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">VAT Information</h3>
+        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+          {t("cardPayment.sections.vat", { ns: "booking" })}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="businessName" className={labelClass}>Business Name</label>
-            <input id="businessName" type="text" placeholder="Company / business name (optional)"
+            <label htmlFor="businessName" className={labelClass}>{t("cardPayment.fields.businessName", { ns: "booking" })}</label>
+            <input id="businessName" type="text" placeholder={t("cardPayment.placeholders.businessName", { ns: "booking" })}
               value={details.businessName || ""} onChange={update("businessName")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="vatCountry" className={labelClass}>Country</label>
-            <input id="vatCountry" type="text" placeholder="Country"
+            <label htmlFor="vatCountry" className={labelClass}>{t("cardPayment.fields.vatCountry", { ns: "booking" })}</label>
+            <input id="vatCountry" type="text" placeholder={t("cardPayment.placeholders.vatCountry", { ns: "booking" })}
               value={details.vatCountry || ""} onChange={update("vatCountry")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="vatNumber" className={labelClass}>VAT Number</label>
-            <input id="vatNumber" type="text" placeholder="VAT / Tax ID (optional)"
+            <label htmlFor="vatNumber" className={labelClass}>{t("cardPayment.fields.vatNumber", { ns: "booking" })}</label>
+            <input id="vatNumber" type="text" placeholder={t("cardPayment.placeholders.vatNumber", { ns: "booking" })}
               value={details.vatNumber || ""} onChange={update("vatNumber")} className={inputClass} />
           </div>
         </div>
@@ -109,7 +122,7 @@ export default function CardPaymentStep({ details, onChange, onBack, onPay, amou
         <label className="flex items-center gap-2.5 mb-6 cursor-pointer select-none">
           <input type="checkbox" checked={Boolean(details.savePayment)}
             onChange={(e) => onChange("savePayment", e.target.checked)} className="accent-blue-500 w-4 h-4" />
-          <span className="text-sm text-gray-700">Save payment information for faster checkout</span>
+          <span className="text-sm text-gray-700">{t("cardPayment.savePaymentFaster", { ns: "booking" })}</span>
         </label>
 
         <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
@@ -122,7 +135,7 @@ export default function CardPaymentStep({ details, onChange, onBack, onPay, amou
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("actions.back", { ns: "booking" })}
           </button>
           <button
             type="submit"
@@ -131,7 +144,7 @@ export default function CardPaymentStep({ details, onChange, onBack, onPay, amou
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
           >
-            Pay ${amount.toFixed(2)}
+            {t("cardPayment.payButton", { ns: "booking", amount: amount.toFixed(2) })}
           </button>
         </div>
       </form>

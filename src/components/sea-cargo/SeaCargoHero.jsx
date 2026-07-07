@@ -1,23 +1,22 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const HERO_STATS = [
-  { value: "120+", label: "Global ports" },
-  { value: "15–45", label: "Day transit" },
-  { value: "24/7", label: "Operations" },
-];
+const HERO_STAT_KEYS = ["globalPorts", "dayTransit", "operations"];
 
 export default function SeaCargoHero() {
+  const { t } = useTranslation("seaCargo");
+
   return (
     <div className="page-container py-4 sm:py-6 min-w-0">
       <nav
-        aria-label="Breadcrumb"
+        aria-label={t("hero.breadcrumbAria")}
         className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-4 flex-wrap"
       >
         <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">
-          Main
+          {t("common:common.main")}
         </Link>
         <span aria-hidden="true">›</span>
-        <span className="text-gray-900 font-medium">Sea Cargo</span>
+        <span className="text-gray-900 font-medium">{t("hero.breadcrumbCurrent")}</span>
       </nav>
 
       <header
@@ -54,20 +53,24 @@ export default function SeaCargoHero() {
 
         <div className="relative z-10 w-full max-w-full lg:max-w-[620px] min-w-0 pr-0 sm:pr-24 md:pr-36">
           <p className="text-cyan-300 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
-            Ocean Freight Solutions
+            {t("hero.eyebrow")}
           </p>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white mb-4 leading-tight">
-            Global Sea Cargo Solutions
+            {t("hero.title")}
           </h1>
           <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-lg">
-            Reliable and cost-effective international ocean freight services for businesses and individuals worldwide.
+            {t("hero.description")}
           </p>
 
           <div className="flex flex-wrap gap-4 sm:gap-6 mb-6 sm:mb-8">
-            {HERO_STATS.map((stat) => (
-              <div key={stat.label} className="min-w-0">
-                <p className="text-xl sm:text-2xl font-extrabold text-white">{stat.value}</p>
-                <p className="text-xs sm:text-sm text-cyan-200">{stat.label}</p>
+            {HERO_STAT_KEYS.map((key) => (
+              <div key={key} className="min-w-0">
+                <p className="text-xl sm:text-2xl font-extrabold text-white">
+                  {t(`hero.stats.${key}.value`)}
+                </p>
+                <p className="text-xs sm:text-sm text-cyan-200">
+                  {t(`hero.stats.${key}.label`)}
+                </p>
               </div>
             ))}
           </div>

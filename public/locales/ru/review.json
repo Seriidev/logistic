@@ -1,0 +1,24 @@
+{
+  "title": "Оставить отзыв",
+  "left": {
+    "heading": "Отправляйте с уверенностью",
+    "description": "Каждый день клиенты из более чем 25 стран доверяют YuuSell доставку посылок — безопасно и в срок. Быстро, доступно и с полным отслеживанием — мы делаем логистику простой.",
+    "illustrationAlt": "Отзыв"
+  },
+  "form": {
+    "title": "Написать отзыв",
+    "namePlaceholder": "Имя",
+    "emailPlaceholder": "Электронная почта",
+    "locationPlaceholder": "Местоположение",
+    "messagePlaceholder": "Напишите сообщение",
+    "rating": "Оценка",
+    "selectFile": "Выбрать файл",
+    "fileExtensions": "Допустимые форматы: .jpg, .gif, .jpeg, .log, .txt, .html, .png, .tiff, .tif, .pdf, .doc, .docx, .zip, .rar, .gz, .tar.gz, .7z, .rdp, .odt, .csv, .conf, .cfg, .xls, .xlsx",
+    "send": "Отправить"
+  },
+  "alerts": {
+    "required": "Пожалуйста, заполните поля «Имя» и «Сообщение».",
+    "thanks": "Спасибо за ваш отзыв!"
+  },
+  "logoAlt": "YuuSell"
+}

@@ -1,15 +1,17 @@
-import { LTL_PRICING, FTL_PRICING } from "../data/shippingOptions";
+import { useTranslation } from "react-i18next";
 
 const OPTIONS = [
-  { id: "ltl", label: "LTL", sublabel: "Less Than Truck Load", deliveryTime: LTL_PRICING.deliveryTime },
-  { id: "ftl", label: "FTL", sublabel: "Full Truck Load", deliveryTime: FTL_PRICING.deliveryTime },
+  { id: "ltl" },
+  { id: "ftl" },
 ];
 
 export default function ServiceTabs({ service, onSelect }) {
+  const { t } = useTranslation(["truckCargoBooking", "booking"]);
+
   return (
     <div
       role="tablist"
-      aria-label="Truck cargo service type"
+      aria-label={t("services.ariaLabel", { ns: "truckCargoBooking" })}
       className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-xl mx-auto"
     >
       {OPTIONS.map((opt) => {
@@ -28,9 +30,9 @@ export default function ServiceTabs({ service, onSelect }) {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
           >
-            <span className="block">{opt.label}</span>
+            <span className="block">{t(`services.${opt.id}.label`, { ns: "truckCargoBooking" })}</span>
             <span className="block text-[10px] sm:text-xs font-normal normal-case tracking-normal opacity-80 mt-0.5">
-              {opt.sublabel}
+              {t(`services.${opt.id}.sublabel`, { ns: "truckCargoBooking" })}
             </span>
           </button>
         );

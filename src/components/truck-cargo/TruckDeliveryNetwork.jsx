@@ -1,56 +1,46 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const NETWORK_ITEMS = [
-  {
-    id: 1,
-    title: "Domestic Transportation",
-    description: "Nationwide coverage across all major highways and regional routes with daily departures from strategic hubs.",
-    coverage: "USA, Canada — coast to coast",
-    transit: "1–5 business days",
-  },
-  {
-    id: 2,
-    title: "International Transportation",
-    description: "Cross-continental road freight connecting North America, Europe, and Asia through partner carrier networks.",
-    coverage: "50+ countries via road corridors",
-    transit: "5–14 business days",
-  },
-  {
-    id: 3,
-    title: "Cross-Border Shipping",
-    description: "Seamless customs coordination for USA–Canada, USA–Mexico, and EU border crossings with pre-clearance support.",
-    coverage: "Major border checkpoints",
-    transit: "2–7 business days",
-  },
-  {
-    id: 4,
-    title: "Regional Distribution",
-    description: "Last-mile and hub-to-hub distribution within metropolitan areas and regional zones for fast local delivery.",
-    coverage: "200+ regional hubs",
-    transit: "Same day – 3 days",
-  },
-];
-
-const STATS = [
-  { value: "200+", label: "Distribution hubs" },
-  { value: "50+", label: "Countries served" },
-  { value: "15K+", label: "Routes active" },
-  { value: "98.5%", label: "On-time delivery" },
-];
+const NETWORK_KEYS = ["domestic", "international", "crossBorder", "regional"];
+const STAT_KEYS = ["hubs", "countries", "routes", "onTime"];
 
 export default function TruckDeliveryNetwork() {
+  const { t } = useTranslation("truckCargo");
+
+  const networkItems = useMemo(
+    () =>
+      NETWORK_KEYS.map((key) => ({
+        id: key,
+        title: t(`deliveryNetwork.items.${key}.title`),
+        description: t(`deliveryNetwork.items.${key}.description`),
+        coverage: t(`deliveryNetwork.items.${key}.coverage`),
+        transit: t(`deliveryNetwork.items.${key}.transit`),
+      })),
+    [t],
+  );
+
+  const stats = useMemo(
+    () =>
+      STAT_KEYS.map((key) => ({
+        value: t(`deliveryNetwork.stats.${key}.value`),
+        label: t(`deliveryNetwork.stats.${key}.label`),
+      })),
+    [t],
+  );
+
   return (
     <section className="bg-blue-500 min-w-0 py-12 sm:py-16 lg:py-20">
       <div className="page-container min-w-0">
         <SectionHeading
-          eyebrow="Delivery Network"
-          title="Comprehensive Road Freight Coverage"
-          description="From local distribution to international corridors — our integrated truck network connects your cargo to every destination with reliability and speed."
+          eyebrow={t("deliveryNetwork.eyebrow")}
+          title={t("deliveryNetwork.title")}
+          description={t("deliveryNetwork.description")}
           light
         />
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10 lg:mb-12">
-          {STATS.map((stat) => (
+          {stats.map((stat) => (
             <div
               key={stat.label}
               className="rounded-2xl bg-white/10 border border-white/20 px-4 py-5 sm:px-6 sm:py-6 text-center min-w-0"
@@ -62,7 +52,7 @@ export default function TruckDeliveryNetwork() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-8 sm:mb-10">
-          {NETWORK_ITEMS.map((item) => (
+          {networkItems.map((item) => (
             <article
               key={item.id}
               className="rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 min-w-0
@@ -72,11 +62,11 @@ export default function TruckDeliveryNetwork() {
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">{item.description}</p>
               <dl className="space-y-2 text-xs sm:text-sm">
                 <div>
-                  <dt className="font-semibold text-blue-600">Coverage</dt>
+                  <dt className="font-semibold text-blue-600">{t("shared.coverage")}</dt>
                   <dd className="text-gray-600 mt-0.5">{item.coverage}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-blue-600">Typical Transit</dt>
+                  <dt className="font-semibold text-blue-600">{t("shared.typicalTransit")}</dt>
                   <dd className="text-gray-600 mt-0.5">{item.transit}</dd>
                 </div>
               </dl>
@@ -91,10 +81,10 @@ export default function TruckDeliveryNetwork() {
               <path d="M8 2v16M16 6v16" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <p className="text-sm sm:text-base text-blue-100 font-medium">
-              Interactive logistics route map — ready for future media integration
+              {t("deliveryNetwork.mapTitle")}
             </p>
             <p className="text-xs sm:text-sm text-blue-200 mt-2 max-w-md mx-auto">
-              Visualize domestic lanes, cross-border corridors, and regional distribution hubs across our network
+              {t("deliveryNetwork.mapDescription")}
             </p>
           </div>
         </div>

@@ -1,6 +1,9 @@
 import { SHIPMENT_STEPS } from "../constants";
+import { useTranslation } from "react-i18next";
 
-export default function ShipmentStepper({ currentStep, onContinue, continueLabel = "Continue", disabled = false }) {
+export default function ShipmentStepper({ currentStep, onContinue, continueLabel, disabled = false }) {
+  const { t } = useTranslation("shipment");
+
   return (
     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 sm:p-6 flex flex-col gap-6">
       <ol className="flex flex-col gap-0">
@@ -25,7 +28,7 @@ export default function ShipmentStepper({ currentStep, onContinue, continueLabel
                 className={`text-sm leading-snug pb-5 ${isLast ? "pb-0" : ""}
                   ${isActive ? "font-semibold text-gray-900" : isDone ? "text-gray-700" : "text-gray-400"}`}
               >
-                {step.label}
+                {t(`steps.${step.labelKey}`)}
               </p>
             </li>
           );
@@ -38,7 +41,7 @@ export default function ShipmentStepper({ currentStep, onContinue, continueLabel
         disabled={disabled}
         className="w-full min-h-[48px] rounded-full border-none bg-emerald-500 text-white text-sm font-bold uppercase tracking-wider cursor-pointer hover:bg-emerald-600 transition-colors font-[inherit] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {continueLabel}
+        {continueLabel || t("actions.continue")}
         <span aria-hidden="true">→</span>
       </button>
     </div>

@@ -1,0 +1,191 @@
+{
+  "breadcrumb": {
+    "main": "Главная",
+    "calculate": "Рассчитать",
+    "createShipment": "Создать отправление"
+  },
+  "steps": {
+    "parcelDetails": "Детали посылки",
+    "contacts": "Информация об отправителе/получателе",
+    "delivery": "Способ доставки и оплата",
+    "payment": "Способ оплаты",
+    "finalInvoice": "Итоговый счёт"
+  },
+  "parcelSizes": {
+    "1000kg": {
+      "label": "Вес до 1000 кг",
+      "desc": "Максимальные допустимые габариты: 300 × 170 × 170 см, вес: 1 000 кг"
+    },
+    "500kg": {
+      "label": "Вес до 500 кг",
+      "desc": "Максимальные допустимые габариты: 200 × 120 × 120 см, вес: 500 кг"
+    },
+    "100kg": {
+      "label": "Вес до 100 кг",
+      "desc": "Максимальные допустимые габариты: 120 × 80 × 80 см, вес: 100 кг"
+    },
+    "30kg": {
+      "label": "Малая посылка до 30 кг",
+      "desc": "Максимальные допустимые габариты: 60 × 40 × 40 см, вес: 30 кг"
+    }
+  },
+  "transportOptions": {
+    "copart": "Copart",
+    "airCargo": "Авиаперевозки",
+    "seaCargo": "Морские перевозки"
+  },
+  "obtainOptions": {
+    "departments": "Отделения",
+    "doorToDoor": "От двери до двери",
+    "delivery": "Доставка"
+  },
+  "shippingSpeeds": {
+    "seaEconom": "Эконом (10–14 дней)",
+    "seaExpress": "Экспресс (7–10 дней)",
+    "airEconom": "Эконом (10–14 дней)",
+    "airExpress": "Экспресс (7–10 дней)"
+  },
+  "carriers": {
+    "yuusell": "Агент YuuSell",
+    "postOffice": "Почтовое отделение"
+  },
+  "carrierLogos": {
+    "yuusell": "YuuSell",
+    "fedex": "FedEx",
+    "ups": "UPS",
+    "usps": "USPS"
+  },
+  "fields": {
+    "from": "Откуда",
+    "where": "Куда",
+    "to": "Куда",
+    "transport": "Как мы будем перевозить?",
+    "obtain": "Способ получения",
+    "heightCm": "Высота, см",
+    "lengthCm": "Длина, см",
+    "widthCm": "Ширина, см",
+    "sender": "Отправитель",
+    "recipient": "Получатель",
+    "countryRegion": "Страна / Регион",
+    "address": "Адрес",
+    "city": "Город",
+    "state": "Штат",
+    "zipCode": "Почтовый индекс",
+    "fullNameCompany": "Полное имя / Название компании",
+    "lastName": "Фамилия",
+    "email": "Email",
+    "phoneNumber": "Номер телефона"
+  },
+  "sections": {
+    "typeOfService": "Тип услуги",
+    "parcelSize": "Размер и тип посылки",
+    "describeCargo": "Описание груза"
+  },
+  "placeholders": {
+    "selectOrigin": "Нажмите, чтобы выбрать отправление",
+    "selectDestination": "Нажмите, чтобы выбрать назначение",
+    "selectSize": "Выберите размер",
+    "cargoDescription": "Что нужно перевезти?",
+    "clickForm": "Нажмите на эту форму",
+    "searchAddress": "Поиск адреса...",
+    "selectState": "Выберите штат",
+    "email": "email@example.com",
+    "phoneNumber": "Введите номер телефона",
+    "streetAddress": "Улица, дом"
+  },
+  "validation": {
+    "fromWhereRequired": "Пожалуйста, заполните поля «Откуда» и «Куда».",
+    "fromWhereRequiredShort": "Пожалуйста, заполните поля «Откуда» и «Куда».",
+    "transportObtainRequired": "Пожалуйста, выберите способ перевозки и получения.",
+    "cargoRequired": "Пожалуйста, опишите груз.",
+    "contactsRequired": "Пожалуйста, добавьте информацию об отправителе и получателе.",
+    "countryRequired": "Пожалуйста, выберите страну.",
+    "optionRequired": "Пожалуйста, выберите вариант.",
+    "nameRequired": "Пожалуйста, введите имя."
+  },
+  "actions": {
+    "calculate": "Рассчитать",
+    "create": "Создать",
+    "bookShipment": "Забронировать отправление",
+    "continue": "Продолжить",
+    "complete": "Завершить",
+    "cancel": "Отмена",
+    "save": "Сохранить"
+  },
+  "calculate": {
+    "sidebarHint": "Здесь вы можете узнать приблизительный срок доставки",
+    "resultTitle": "Результат расчёта",
+    "deliveryTime": "Срок доставки",
+    "days": "{{days}} дней",
+    "estimatedPrice": "Расчётная цена",
+    "priceFrom": "от ${{price}}"
+  },
+  "modals": {
+    "close": "Закрыть",
+    "transportTitle": "Как мы будем перевозить?",
+    "obtainTitle": "Способ получения",
+    "senderTitle": "Информация об отправителе",
+    "recipientTitle": "Получатель"
+  },
+  "delivery": {
+    "addToCartOrSkip": "Добавить в корзину или пропустить",
+    "carrier": "Перевозчик",
+    "total": "Итого",
+    "shippingCost": "Стоимость доставки:",
+    "deliveryDate": "Дата доставки:",
+    "shipmentDate": "Дата отправления"
+  },
+  "payment": {
+    "title": "Способ доставки и оплата",
+    "creditCard": "Банковская карта",
+    "cardTypes": "Visa, Master Card, American Express и др.",
+    "cardNumber": "Номер карты",
+    "cardNumberPlaceholder": "•••• •••• •••• ••••",
+    "expiry": "Срок действия (ММ/ГГ)",
+    "expiryPlaceholder": "ММ/ГГ",
+    "cvc": "CVC",
+    "cardholderName": "Имя держателя карты",
+    "fullNameOnCard": "Полное имя на карте",
+    "billingAddress": "Платёжный адрес",
+    "addressLine1": "Адрес, строка 1",
+    "addressLine2": "Адрес, строка 2",
+    "city": "Город",
+    "province": "Область",
+    "postalCode": "Почтовый индекс",
+    "useShippingAddress": "Использовать адрес доставки как платёжный",
+    "saveCard": "Сохранить карту",
+    "recipientPays": "Оплата получателем",
+    "recipientPaysDesc": "Оплату за посылку производит получатель",
+    "recipientPaysHint": "Выберите этот вариант, если оплачивать должны не вы"
+  },
+  "success": {
+    "title": "Электронная декларация создана",
+    "trackingCopied": "Номер отслеживания скопирован!",
+    "copyTrackingAria": "Скопировать номер отслеживания",
+    "pickupHint": "Заберите и отправьте посылку из ближайшего отделения",
+    "downloadPdf": "Скачать PDF",
+    "viewShipments": "Просмотреть отправления",
+    "qrHint": "QR-код для подробной информации"
+  },
+  "countries": {
+    "unitedStates": "США",
+    "china": "Китай",
+    "uae": "ОАЭ",
+    "germany": "Германия",
+    "turkey": "Турция",
+    "thailand": "Таиланд"
+  },
+  "states": {
+    "alabama": "Алабама",
+    "alaska": "Аляска",
+    "arizona": "Аризона",
+    "california": "Калифорния",
+    "colorado": "Колорадо",
+    "florida": "Флорида",
+    "georgia": "Джорджия",
+    "illinois": "Иллинойс",
+    "newYork": "Нью-Йорк",
+    "texas": "Техас",
+    "washington": "Вашингтон"
+  }
+}

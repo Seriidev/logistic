@@ -1,15 +1,15 @@
 export const COMMODITY_TYPES = [
-  "General Cargo",
-  "Electronics",
-  "Textiles & Apparel",
-  "Furniture",
-  "Machinery Parts",
-  "Food & Beverage (Non-perishable)",
-  "Personal Effects",
-  "Industrial Equipment",
+  "generalCargo",
+  "electronics",
+  "textilesApparel",
+  "furniture",
+  "machineryParts",
+  "foodBeverage",
+  "personalEffects",
+  "industrialEquipment",
 ];
 
 export const WEIGHT_UNITS = [
-  { id: "kg", label: "kg" },
-  { id: "lbs", label: "lbs" },
+  { id: "kg" },
+  { id: "lbs" },
 ];

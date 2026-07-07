@@ -1,0 +1,390 @@
+{
+  "meta": {
+    "title": "Global Sea Cargo Solutions | YuuSell Logistics",
+    "description": "Reliable and cost-effective international ocean freight services. LCL and FCL shipping, global port coverage, container options, customs assistance, and real-time tracking."
+  },
+  "hero": {
+    "breadcrumbAria": "Breadcrumb",
+    "breadcrumbCurrent": "Sea Cargo",
+    "eyebrow": "Ocean Freight Solutions",
+    "title": "Global Sea Cargo Solutions",
+    "description": "Reliable and cost-effective international ocean freight services for businesses and individuals worldwide.",
+    "stats": {
+      "globalPorts": { "value": "120+", "label": "Global ports" },
+      "dayTransit": { "value": "15–45", "label": "Day transit" },
+      "operations": { "value": "24/7", "label": "Operations" }
+    }
+  },
+  "shippingOptions": {
+    "eyebrow": "Shipping Options",
+    "title": "LCL & FCL Ocean Freight",
+    "description": "Whether you need shared container space or a dedicated unit, switch between options to find the right sea cargo solution for your shipment.",
+    "tabsAriaLabel": "Sea cargo shipping type",
+    "benefitsLabel": "Benefits",
+    "examplesLabel": "Examples",
+    "getQuote": "Get {{service}} Quote",
+    "imageAlt": "{{title}} ocean freight",
+    "photoHint": "Add photo: public{{path}}",
+    "lcl": {
+      "label": "LCL Shipping",
+      "sublabel": "Less Container Load",
+      "title": "Small Shipments (LCL)",
+      "description": "Perfect for customers with smaller cargo volumes that do not require an entire shipping container.",
+      "benefits": {
+        "lowerCosts": "Lower shipping costs",
+        "payForSpace": "Pay only for used space",
+        "smallBusiness": "Ideal for small businesses",
+        "personal": "Ideal for personal shipments",
+        "flexible": "Flexible shipping options"
+      },
+      "examples": {
+        "packages": "Small packages",
+        "ecommerce": "E-commerce orders",
+        "retail": "Retail goods",
+        "personal": "Personal cargo"
+      }
+    },
+    "fcl": {
+      "label": "FCL Shipping",
+      "sublabel": "Full Container Load",
+      "title": "Full Container Shipping (FCL)",
+      "description": "Dedicated shipping container for one customer.",
+      "benefits": {
+        "faster": "Faster processing",
+        "security": "Greater security",
+        "capacity": "Large cargo capacity",
+        "bulk": "Better for bulk shipments",
+        "control": "More control over transportation"
+      },
+      "examples": {
+        "equipment": "Industrial equipment",
+        "inventory": "Large inventories",
+        "imports": "Commercial imports",
+        "wholesale": "Wholesale cargo"
+      }
+    }
+  },
+  "whyChooseUs": {
+    "eyebrow": "Why Choose Sea Cargo",
+    "title": "Enterprise Ocean Freight Built for Global Trade",
+    "description": "From single-carton LCL consolidations to full-container industrial shipments, YuuSell delivers the reliability, visibility, and port expertise that international supply chains require.",
+    "imageAlt": "Container ship at international port",
+    "photoHint": "Add photo: public/sea-why-choose.jpg",
+    "benefits": {
+      "costEffective": {
+        "title": "Cost Effective",
+        "description": "Ocean freight delivers the lowest cost per kilogram for large and heavy shipments — ideal for bulk imports and exports."
+      },
+      "globalCoverage": {
+        "title": "Global Coverage",
+        "description": "Direct and transshipment services to major ports across Asia, Europe, the Americas, Africa, and the Middle East."
+      },
+      "largeCapacity": {
+        "title": "Large Capacity",
+        "description": "Move everything from palletized goods to oversized project cargo with 20ft, 40ft, and specialized container options."
+      },
+      "secureTransportation": {
+        "title": "Secure Transportation",
+        "description": "Sealed containers, terminal security protocols, and professional stowage protect cargo throughout ocean transit."
+      },
+      "customsAssistance": {
+        "title": "Customs Assistance",
+        "description": "Expert documentation, duty guidance, and clearance coordination at origin and destination ports worldwide."
+      },
+      "realTimeTracking": {
+        "title": "Real-Time Tracking",
+        "description": "Container-level visibility with milestone updates from booking through vessel departure, port arrival, and delivery."
+      }
+    }
+  },
+  "howItWorks": {
+    "eyebrow": "How Sea Shipping Works",
+    "title": "From Booking to Delivery in Five Steps",
+    "description": "Our structured ocean freight process gives you full visibility at every milestone — from container loading and vessel transit to customs clearance and final delivery.",
+    "steps": {
+      "booking": {
+        "title": "Booking Request",
+        "description": "Submit shipment details — origin, destination, cargo type, volume, and preferred sailing schedule — through our online portal or dedicated account manager."
+      },
+      "loading": {
+        "title": "Container Loading",
+        "description": "Cargo is collected or delivered to the port warehouse, inspected, consolidated (LCL) or loaded into a dedicated container (FCL), and sealed for export."
+      },
+      "transportation": {
+        "title": "Ocean Transportation",
+        "description": "Your container is loaded onto a vessel and transported across international shipping lanes with scheduled port calls and transshipment when required."
+      },
+      "customs": {
+        "title": "Customs Clearance",
+        "description": "Import documentation is prepared and submitted. Our customs team coordinates duty payment, inspections, and regulatory compliance at the destination port."
+      },
+      "delivery": {
+        "title": "Final Delivery",
+        "description": "Container is released from port, transported to the final destination by truck or rail, and delivered with proof of delivery and complete shipment documentation."
+      }
+    }
+  },
+  "containerTypes": {
+    "eyebrow": "Container Types",
+    "title": "The Right Container for Every Cargo Profile",
+    "description": "From standard dry containers to specialized reefer and flat rack units — we match equipment to your cargo dimensions, weight, and handling requirements.",
+    "photoHint": "Add photo: public{{path}}",
+    "items": {
+      "20ft": {
+        "title": "20ft Container",
+        "description": "The most versatile standard container — ideal for small to medium shipments, personal effects, and compact commercial cargo.",
+        "capacity": "33 m³ · Up to 28 tons · 10 standard pallets"
+      },
+      "40ft": {
+        "title": "40ft Container",
+        "description": "Double the capacity of a 20ft unit — the industry standard for high-volume imports, retail inventory, and bulk goods.",
+        "capacity": "67 m³ · Up to 26.5 tons · 20 standard pallets"
+      },
+      "highCube": {
+        "title": "40ft High Cube",
+        "description": "Extra vertical space for lightweight, voluminous cargo — furniture, textiles, and stacked pallet loads with maximum cubic capacity.",
+        "capacity": "76 m³ · Up to 26 tons · 20 pallets (tall stack)"
+      },
+      "reefer": {
+        "title": "Refrigerated Container",
+        "description": "Temperature-controlled reefer units for perishable food, pharmaceuticals, and chemical products requiring cold chain integrity.",
+        "capacity": "58–67 m³ · -30°C to +30°C · Continuous monitoring"
+      },
+      "openTop": {
+        "title": "Open Top Container",
+        "description": "Removable roof for oversized cargo that cannot fit through standard container doors — machinery, timber, and project equipment.",
+        "capacity": "67 m³ · Top loading · Crane access"
+      },
+      "flatRack": {
+        "title": "Flat Rack Container",
+        "description": "Collapsible side walls for heavy, wide, or irregularly shaped cargo — steel coils, vehicles, and industrial components.",
+        "capacity": "40ft / 20ft options · Up to 45 tons · Side/top loading"
+      }
+    }
+  },
+  "industries": {
+    "eyebrow": "Industries We Serve",
+    "title": "Ocean Freight Solutions Across Every Sector",
+    "description": "Our team understands the unique compliance, timing, and handling requirements of each industry — delivering tailored sea cargo services that keep global supply chains moving.",
+    "items": {
+      "retail": {
+        "title": "Retail",
+        "description": "Seasonal inventory, store replenishment, and wholesale imports with flexible LCL and FCL scheduling to major retail hubs."
+      },
+      "manufacturing": {
+        "title": "Manufacturing",
+        "description": "Raw materials inbound and finished goods export — optimized container utilization for production supply chains worldwide."
+      },
+      "automotive": {
+        "title": "Automotive",
+        "description": "Parts, components, and finished vehicles with specialized handling, secure stowage, and just-in-time port delivery."
+      },
+      "agriculture": {
+        "title": "Agriculture",
+        "description": "Bulk commodities, packaged produce, and farm equipment with reefer and standard container options available."
+      },
+      "construction": {
+        "title": "Construction",
+        "description": "Building materials, steel, machinery, and project cargo via flat rack, open top, and standard container solutions."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "High-volume marketplace imports, fulfillment center replenishment, and consolidated LCL for growing online sellers."
+      }
+    }
+  },
+  "globalNetwork": {
+    "eyebrow": "Global Shipping Network",
+    "title": "Worldwide Ocean Freight Coverage",
+    "description": "From major transshipment hubs to emerging market gateways — our integrated sea cargo network connects your cargo to every continent with reliability and competitive transit times.",
+    "networkLabel": "Network",
+    "transitLabel": "Typical Transit",
+    "mapTitle": "Interactive world shipping map — ready for future media integration",
+    "mapDescription": "Visualize trade lanes, port connections, and sailing schedules across our global ocean freight network",
+    "stats": {
+      "globalPorts": { "value": "120+", "label": "Global ports" },
+      "continents": { "value": "6", "label": "Continents served" },
+      "tradeLanes": { "value": "500+", "label": "Trade lanes" },
+      "onTime": { "value": "99.2%", "label": "On-time sailing" }
+    },
+    "regions": {
+      "asia": {
+        "title": "Asia",
+        "description": "Direct services to Shanghai, Singapore, Hong Kong, Busan, and Mumbai — the world's busiest manufacturing and transshipment hubs.",
+        "ports": "120+ port pairs · Weekly sailings",
+        "transit": "15–25 days to Europe / Americas"
+      },
+      "europe": {
+        "title": "Europe",
+        "description": "Full coverage of Rotterdam, Hamburg, Antwerp, Felixstowe, and Mediterranean gateways with inland rail and truck connections.",
+        "ports": "80+ European ports · Daily departures",
+        "transit": "20–35 days from Asia / Americas"
+      },
+      "middleEast": {
+        "title": "Middle East",
+        "description": "Strategic access to Jebel Ali, Jeddah, and Dammam — connecting Asia-Europe trade lanes and regional distribution centers.",
+        "ports": "35+ Gulf & Red Sea ports",
+        "transit": "12–22 days from Asia / Europe"
+      },
+      "northAmerica": {
+        "title": "North America",
+        "description": "Coast-to-coast coverage via Los Angeles, Long Beach, New York, Savannah, and Vancouver with customs pre-clearance support.",
+        "ports": "60+ US & Canada ports",
+        "transit": "18–30 days from Asia · 10–18 from Europe"
+      },
+      "southAmerica": {
+        "title": "South America",
+        "description": "Regular sailings to Santos, Buenos Aires, Callao, and Cartagena — linking Atlantic and Pacific trade corridors.",
+        "ports": "40+ Latin American ports",
+        "transit": "25–40 days from Asia / Europe"
+      },
+      "africa": {
+        "title": "Africa",
+        "description": "Growing network to Durban, Mombasa, Lagos, and Tanger Med — supporting emerging market imports and resource exports.",
+        "ports": "30+ African ports · Expanding coverage",
+        "transit": "20–35 days from Asia / Europe"
+      }
+    }
+  },
+  "safety": {
+    "eyebrow": "Cargo Safety",
+    "title": "Your Shipment Protected Across Every Ocean Mile",
+    "description": "Security and compliance are built into every stage of our sea cargo operations — from sealed containers and marine insurance to GPS tracking and professional port handling.",
+    "imageAlt": "Secure container handling at international port",
+    "photoHint": "Add photo: public/sea-safety.jpg",
+    "intro": "International ocean freight demands rigorous safety standards. Our protocols align with IMO regulations, carrier security requirements, and international trade compliance — ensuring your cargo is secured, insured, and professionally handled from origin port to final delivery.",
+    "badges": {
+      "iso9001": "ISO 9001",
+      "ctpat": "C-TPAT Ready",
+      "aeo": "AEO Certified",
+      "imdg": "IMDG Compliant",
+      "solas": "SOLAS Verified"
+    },
+    "blocks": {
+      "containerSecurity": {
+        "title": "Container Security",
+        "description": "ISO-certified containers with high-security seals, terminal CCTV monitoring, and tamper-evident documentation at every handoff point."
+      },
+      "cargoInsurance": {
+        "title": "Cargo Insurance",
+        "description": "Comprehensive marine cargo insurance covering loss, damage, and general average — with streamlined claims processing and full-value options."
+      },
+      "gpsTracking": {
+        "title": "GPS Tracking",
+        "description": "Container-level tracking with vessel AIS data, port milestone alerts, and estimated arrival updates delivered to your dashboard."
+      },
+      "customsCompliance": {
+        "title": "Customs Compliance",
+        "description": "Expert trade compliance support — HS classification, documentation review, and regulatory alignment for import and export clearance."
+      },
+      "professionalHandling": {
+        "title": "Professional Handling",
+        "description": "Certified stevedores, proper lashing and dunnage, temperature monitoring for reefer units, and damage-free loading protocols at every port."
+      }
+    }
+  },
+  "video": {
+    "eyebrow": "See Us in Action",
+    "title": "Experience Our Sea Cargo Operations",
+    "description": "Watch how YuuSell manages ocean freight from booking and container loading to vessel transit, customs clearance, and final delivery.",
+    "thumbnailAlt": "Sea cargo operations promotional video thumbnail",
+    "photoHint": "Add photo: public/sea-video-thumb.jpg",
+    "playAriaLabel": "Play promotional video",
+    "playLabel": "Play Video",
+    "placeholderTitle": "Video Player Placeholder",
+    "placeholderDescription": "Embed your promotional video here — YouTube, Vimeo, or self-hosted MP4.",
+    "close": "Close",
+    "footer": "Discover our end-to-end sea cargo process — from LCL consolidation and FCL booking to vessel tracking and port delivery. Trusted by importers, exporters, and e-commerce businesses across six continents."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions About Sea Cargo",
+    "description": "Everything you need to know about ocean freight with YuuSell — from LCL and FCL options to transit times, tracking, customs, and container types.",
+    "items": {
+      "lclWhat": {
+        "q": "What is LCL shipping?",
+        "a": "LCL (Less Container Load) means your cargo shares container space with other shipments. You pay only for the volume or weight you use — ideal for smaller loads that do not require a full container."
+      },
+      "fclWhat": {
+        "q": "What is FCL shipping?",
+        "a": "FCL (Full Container Load) gives you an entire shipping container dedicated to your cargo alone. It offers faster processing, greater security, and is best suited for large-volume or high-value shipments."
+      },
+      "lclVsFcl": {
+        "q": "Which option is cheaper — LCL or FCL?",
+        "a": "LCL is typically more cost-effective for smaller shipments since you share container costs with other shippers. FCL becomes more economical when your cargo fills most of a container — usually above 15–20 cubic meters."
+      },
+      "transitTime": {
+        "q": "How long does sea cargo take?",
+        "a": "Transit times vary by route. Asia to Europe typically takes 25–35 days, Asia to North America 15–25 days, and Europe to North America 10–18 days. LCL may add 3–7 days for consolidation and deconsolidation."
+      },
+      "tracking": {
+        "q": "Can I track my shipment?",
+        "a": "Yes. Every sea cargo booking receives a tracking reference with container-level visibility — including vessel departure, port arrivals, customs status, and final delivery milestones via email and your account dashboard."
+      },
+      "customs": {
+        "q": "Do you provide customs assistance?",
+        "a": "Absolutely. Our customs team handles import/export documentation, HS code classification, duty calculation, and clearance coordination at origin and destination ports worldwide."
+      },
+      "containerTypes": {
+        "q": "What container types are available?",
+        "a": "We offer standard 20ft and 40ft containers, 40ft High Cube, refrigerated (reefer), open top, and flat rack containers — matched to your cargo dimensions, weight, and temperature requirements."
+      },
+      "insurance": {
+        "q": "Is cargo insurance available for sea freight?",
+        "a": "Yes. Comprehensive marine cargo insurance is available at booking, covering loss, damage, and general average events. Full declared-value coverage and streamlined claims processing are included."
+      },
+      "documents": {
+        "q": "What documents are required for international sea shipping?",
+        "a": "Standard documents include commercial invoice, packing list, bill of lading, certificate of origin, and any product-specific permits. Our team guides you through country-specific requirements before departure."
+      },
+      "hazardous": {
+        "q": "Can you handle hazardous or temperature-sensitive cargo?",
+        "a": "Yes. We manage IMDG-compliant dangerous goods and temperature-controlled reefer shipments where permitted by carrier and route regulations. Specialized documentation and handling protocols apply."
+      },
+      "pricing": {
+        "q": "How is sea freight pricing calculated?",
+        "a": "Rates depend on cargo volume or weight (chargeable weight), origin and destination ports, container type, and sailing schedule. LCL is priced per CBM or ton; FCL is priced per container. Use our online calculator for a preliminary quote."
+      },
+      "doorToDoor": {
+        "q": "Do you offer door-to-door sea cargo delivery?",
+        "a": "Yes. Our door-to-door service includes pickup at origin, port handling, ocean transit, customs clearance, and final delivery to your address — with optional warehouse storage at origin or destination."
+      }
+    }
+  },
+  "otherServices": {
+    "eyebrow": "Explore More",
+    "title": "Other Logistics Services",
+    "description": "Beyond ocean freight, YuuSell offers a complete suite of transportation, warehousing, and compliance solutions for your global supply chain.",
+    "learnMore": "Learn More",
+    "items": {
+      "airCargo": {
+        "title": "Air Cargo",
+        "description": "Express and standard air freight with global carrier partnerships and time-definite delivery windows."
+      },
+      "truckCargo": {
+        "title": "Truck Cargo",
+        "description": "Reliable domestic and international road freight — FTL, LTL, and door-to-door delivery across major corridors."
+      },
+      "expressDelivery": {
+        "title": "Express Delivery",
+        "description": "Same-day and next-day courier services for urgent documents and time-critical parcels worldwide."
+      },
+      "warehouse": {
+        "title": "Warehouse Services",
+        "description": "Storage, inventory management, pick-and-pack, and fulfillment from strategic global locations."
+      },
+      "customsClearance": {
+        "title": "Customs Clearance",
+        "description": "Expert import/export documentation, duty calculation, and border compliance for seamless cross-border shipping."
+      },
+      "cargoInsurance": {
+        "title": "Cargo Insurance",
+        "description": "Full-value cargo protection with streamlined claims processing and carrier liability coordination."
+      }
+    }
+  },
+  "shared": {
+    "photoHint": "Add photo: {{path}}",
+    "photoHintDefault": "Add photo:"
+  }
+}

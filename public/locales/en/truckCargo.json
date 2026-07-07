@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "title": "Truck Cargo Transportation | YuuSell Logistics",
+    "description": "Reliable domestic and international road freight solutions. FTL, LTL, fleet services, real-time tracking, and door-to-door delivery for businesses worldwide."
+  },
+  "hero": {
+    "breadcrumbAria": "Breadcrumb",
+    "breadcrumbCurrent": "Truck Cargo",
+    "eyebrow": "Road Freight Solutions",
+    "title": "Truck Cargo Transportation",
+    "description": "Reliable domestic and international road freight solutions for businesses and individuals.",
+    "stats": {
+      "countries": { "value": "50+", "label": "Countries" },
+      "delivery": { "value": "1–5", "label": "Day delivery" },
+      "support": { "value": "24/7", "label": "Support" }
+    }
+  },
+  "shared": {
+    "imageHint": "Add photo: {{path}}",
+    "delivery": "Delivery",
+    "capacity": "Capacity",
+    "keyAdvantages": "Key Advantages",
+    "coverage": "Coverage",
+    "typicalTransit": "Typical Transit",
+    "learnMore": "Learn More",
+    "getQuote": "Get {{type}} Quote"
+  },
+  "transportTypes": {
+    "eyebrow": "Transport Types",
+    "title": "Full Truck Load & Less Than Truck Load",
+    "description": "Choose the road freight model that fits your volume, budget, and delivery timeline — switch between options to compare services instantly.",
+    "tablistAria": "Transport type",
+    "imageAlt": "{{type}} truck cargo",
+    "tabs": {
+      "ftl": {
+        "label": "Full Truck Load (FTL)",
+        "shortLabel": "FTL",
+        "description": "Dedicated truck capacity for your shipment alone — ideal for large volumes, palletized goods, and time-sensitive deliveries that require direct routing without intermediate handling.",
+        "delivery": "Typical transit: 1–3 days domestic, 3–7 days cross-border. Direct point-to-point routing with no consolidation stops.",
+        "capacity": "Up to 24 tons · 13.6m trailer · 33 EU pallets · Full vehicle dedicated to your cargo",
+        "advantages": [
+          "Exclusive use of entire truck — no shared space",
+          "Fastest ground delivery with direct routing",
+          "Reduced handling risk and fewer touchpoints",
+          "Flexible scheduling and dedicated driver assignment",
+          "Ideal for high-value, fragile, or temperature-controlled goods",
+          "Custom loading configurations for oversized cargo"
+        ]
+      },
+      "ltl": {
+        "label": "Less Than Truck Load (LTL)",
+        "shortLabel": "LTL",
+        "description": "Share truck space with other shipments and pay only for the capacity you use — a cost-effective solution for smaller loads, regular shipments, and businesses optimizing freight spend.",
+        "delivery": "Typical transit: 2–5 days domestic, 5–10 days cross-border. Consolidation at regional hubs with optimized multi-stop routing.",
+        "capacity": "From 100 kg to 5 tons · Partial trailer space · Pallet or loose cargo accepted",
+        "advantages": [
+          "Significant cost savings vs. booking a full truck",
+          "Flexible shipment sizes — from single pallets to partial loads",
+          "Regular scheduled departures on major lanes",
+          "Professional consolidation and deconsolidation at hubs",
+          "Real-time tracking through every hub transfer",
+          "Scalable for growing businesses with variable volumes"
+        ]
+      }
+    }
+  },
+  "whyChooseUs": {
+    "eyebrow": "Why Choose Truck Cargo",
+    "title": "Enterprise Road Freight Built for Your Business",
+    "description": "From single pallets to full trailer loads, YuuSell delivers the reliability, visibility, and support that modern supply chains demand.",
+    "imageAlt": "Truck cargo logistics fleet",
+    "benefits": {
+      "flexibleRoutes": {
+        "title": "Flexible Routes",
+        "description": "Custom routing across domestic highways and international corridors — optimized for your schedule, not ours."
+      },
+      "fastGroundDelivery": {
+        "title": "Fast Ground Delivery",
+        "description": "Express lanes and priority dispatch for time-critical shipments with guaranteed transit windows."
+      },
+      "doorToDoor": {
+        "title": "Door-to-Door Service",
+        "description": "Pickup at origin and delivery to final destination — no terminal transfers unless you prefer them."
+      },
+      "costEffective": {
+        "title": "Cost Effective Shipping",
+        "description": "Competitive FTL and LTL rates with transparent pricing — no hidden surcharges or surprise fees."
+      },
+      "realTimeTracking": {
+        "title": "Real-Time Tracking",
+        "description": "GPS-enabled fleet with live milestone updates from pickup through final proof of delivery."
+      },
+      "dedicatedSupport": {
+        "title": "Dedicated Support",
+        "description": "Personal account managers and 24/7 operations desk for booking, routing, and exception handling."
+      }
+    }
+  },
+  "howItWorks": {
+    "eyebrow": "How It Works",
+    "title": "From Request to Delivery in Four Steps",
+    "description": "Our streamlined truck cargo process gives you full visibility and control — with proactive updates at every milestone.",
+    "steps": {
+      "request": {
+        "num": "01",
+        "title": "Request Submission",
+        "description": "Submit your pickup and delivery details, cargo specifications, and preferred timeline through our online form or dedicated account manager."
+      },
+      "collection": {
+        "num": "02",
+        "title": "Cargo Collection",
+        "description": "Our driver arrives at your location, inspects and secures the cargo, and provides pickup confirmation with photographic documentation."
+      },
+      "planning": {
+        "num": "03",
+        "title": "Route Planning",
+        "description": "Operations team optimizes the route for speed and cost — selecting the right vehicle, scheduling hub transfers, and assigning a dedicated driver."
+      },
+      "delivery": {
+        "num": "04",
+        "title": "Delivery",
+        "description": "Cargo arrives at destination with proof of delivery, digital signature capture, and a complete shipment report for your records."
+      }
+    }
+  },
+  "estimator": {
+    "eyebrow": "Shipping Estimator",
+    "title": "Get an Instant Freight Estimate",
+    "description": "Enter your shipment details for a preliminary quote. Final pricing is confirmed by our logistics team after route optimization.",
+    "pickupLabel": "Pickup Location*",
+    "deliveryLabel": "Delivery Location*",
+    "cargoTypeLabel": "Cargo Type",
+    "weightLabel": "Weight (kg)*",
+    "vehicleTypeLabel": "Vehicle Type",
+    "locationPlaceholder": "City, state or ZIP",
+    "weightPlaceholder": "e.g. 1500",
+    "calculateButton": "Calculate Estimate",
+    "validationAlert": "Please fill in pickup location, delivery location, and weight.",
+    "resultLabel": "Estimated Quote (Mock)",
+    "currency": "USD",
+    "transitLabel": "Estimated transit:",
+    "transitDays": "{{days}} business days",
+    "vehicleLabel": "Recommended vehicle:",
+    "disclaimer": "This is a preliminary estimate. Contact our team for a binding quote.",
+    "cargoTypes": {
+      "generalCargo": "General Cargo",
+      "palletizedGoods": "Palletized Goods",
+      "fragileItems": "Fragile Items",
+      "temperatureSensitive": "Temperature-Sensitive",
+      "oversizedHeavy": "Oversized / Heavy",
+      "hazardousDg": "Hazardous (DG)"
+    },
+    "vehicleTypes": {
+      "smallVan": "Small Van",
+      "mediumTruck": "Medium Truck",
+      "heavyTruck": "Heavy Truck",
+      "refrigeratedTruck": "Refrigerated Truck",
+      "containerTruck": "Container Truck",
+      "flatbedTruck": "Flatbed Truck"
+    }
+  },
+  "vehicleFleet": {
+    "eyebrow": "Vehicle Fleet",
+    "title": "Modern Fleet for Every Shipment Size",
+    "description": "From compact vans to heavy flatbeds — our diverse vehicle lineup ensures the right equipment for your cargo type, volume, and route.",
+    "vehicles": {
+      "smallVan": {
+        "title": "Small Van",
+        "description": "Urban deliveries, documents, and small parcels — nimble access to city centers and residential zones.",
+        "capacity": "Up to 1.5 tons · 8 m³ cargo space"
+      },
+      "mediumTruck": {
+        "title": "Medium Truck",
+        "description": "Versatile workhorse for regional distribution, palletized goods, and mid-volume commercial freight.",
+        "capacity": "Up to 7 tons · 30 m³ cargo space"
+      },
+      "heavyTruck": {
+        "title": "Heavy Truck",
+        "description": "Full trailer capacity for bulk shipments, industrial materials, and long-haul domestic routes.",
+        "capacity": "Up to 24 tons · 90 m³ cargo space"
+      },
+      "refrigeratedTruck": {
+        "title": "Refrigerated Truck",
+        "description": "Temperature-controlled transport for food, pharmaceuticals, and perishable goods with continuous monitoring.",
+        "capacity": "Up to 20 tons · -25°C to +25°C range"
+      },
+      "containerTruck": {
+        "title": "Container Truck",
+        "description": "ISO container hauling for intermodal transfers between ports, rail terminals, and inland depots.",
+        "capacity": "20ft / 40ft containers · Up to 30 tons"
+      },
+      "flatbedTruck": {
+        "title": "Flatbed Truck",
+        "description": "Open-deck transport for construction materials, machinery, steel coils, and oversized project cargo.",
+        "capacity": "Up to 22 tons · 13.6m deck length"
+      }
+    }
+  },
+  "industries": {
+    "eyebrow": "Industries We Serve",
+    "title": "Road Freight Solutions Across Every Sector",
+    "description": "Our team understands the unique handling, compliance, and timing requirements of each industry — delivering tailored truck cargo services that keep your operations moving.",
+    "items": {
+      "retail": {
+        "title": "Retail",
+        "description": "Store replenishment, seasonal inventory, and distribution center transfers with flexible scheduling."
+      },
+      "manufacturing": {
+        "title": "Manufacturing",
+        "description": "Raw materials inbound and finished goods outbound — just-in-time delivery to production lines."
+      },
+      "construction": {
+        "title": "Construction",
+        "description": "Building materials, equipment, and project cargo delivered directly to job sites on schedule."
+      },
+      "agriculture": {
+        "title": "Agriculture",
+        "description": "Farm produce, feed, and agricultural machinery with refrigerated and flatbed options available."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Fulfillment center transfers, last-mile hub distribution, and returns logistics at scale."
+      },
+      "wholesale": {
+        "title": "Wholesale Distribution",
+        "description": "High-volume pallet movements between warehouses, distributors, and retail partners nationwide."
+      }
+    }
+  },
+  "deliveryNetwork": {
+    "eyebrow": "Delivery Network",
+    "title": "Comprehensive Road Freight Coverage",
+    "description": "From local distribution to international corridors — our integrated truck network connects your cargo to every destination with reliability and speed.",
+    "stats": {
+      "hubs": { "value": "200+", "label": "Distribution hubs" },
+      "countries": { "value": "50+", "label": "Countries served" },
+      "routes": { "value": "15K+", "label": "Routes active" },
+      "onTime": { "value": "98.5%", "label": "On-time delivery" }
+    },
+    "items": {
+      "domestic": {
+        "title": "Domestic Transportation",
+        "description": "Nationwide coverage across all major highways and regional routes with daily departures from strategic hubs.",
+        "coverage": "USA, Canada — coast to coast",
+        "transit": "1–5 business days"
+      },
+      "international": {
+        "title": "International Transportation",
+        "description": "Cross-continental road freight connecting North America, Europe, and Asia through partner carrier networks.",
+        "coverage": "50+ countries via road corridors",
+        "transit": "5–14 business days"
+      },
+      "crossBorder": {
+        "title": "Cross-Border Shipping",
+        "description": "Seamless customs coordination for USA–Canada, USA–Mexico, and EU border crossings with pre-clearance support.",
+        "coverage": "Major border checkpoints",
+        "transit": "2–7 business days"
+      },
+      "regional": {
+        "title": "Regional Distribution",
+        "description": "Last-mile and hub-to-hub distribution within metropolitan areas and regional zones for fast local delivery.",
+        "coverage": "200+ regional hubs",
+        "transit": "Same day – 3 days"
+      }
+    },
+    "mapTitle": "Interactive logistics route map — ready for future media integration",
+    "mapDescription": "Visualize domestic lanes, cross-border corridors, and regional distribution hubs across our network"
+  },
+  "video": {
+    "eyebrow": "See Us in Action",
+    "title": "Experience Our Truck Cargo Operations",
+    "description": "Watch how YuuSell manages road freight from pickup to delivery — with modern fleet, trained drivers, and technology-driven logistics.",
+    "thumbnailAlt": "Truck cargo operations video thumbnail",
+    "playAria": "Play promotional video",
+    "playLabel": "Play Video",
+    "placeholderTitle": "Video Player Placeholder",
+    "placeholderDescription": "Embed your promotional video here — YouTube, Vimeo, or self-hosted MP4.",
+    "close": "Close",
+    "footer": "Discover our end-to-end truck cargo process — from fleet management and route optimization to real-time tracking and secure delivery. Trusted by businesses across retail, manufacturing, and e-commerce worldwide."
+  },
+  "safety": {
+    "eyebrow": "Cargo Safety",
+    "title": "Your Freight Protected at Every Mile",
+    "description": "Security and safety are built into every stage of our truck cargo operations — from secure loading and GPS tracking to insured delivery.",
+    "imageAlt": "Secure truck cargo handling",
+    "intro": "High-value and sensitive shipments demand more than standard handling. Our safety protocols align with international road freight standards, ensuring your cargo is secured, tracked, and protected throughout its journey.",
+    "badges": ["ISO 9001", "C-TPAT Ready", "GDP Handling", "AEO Status", "TAPA Certified"],
+    "blocks": {
+      "cargoProtection": {
+        "title": "Cargo Protection",
+        "description": "Professional load securing with straps, edge protectors, and custom crating. Every shipment is inspected and documented at pickup and delivery."
+      },
+      "gpsTracking": {
+        "title": "GPS Tracking",
+        "description": "Real-time vehicle location with geofence alerts, route deviation notifications, and estimated arrival updates sent to your dashboard."
+      },
+      "driverMonitoring": {
+        "title": "Driver Monitoring",
+        "description": "Certified drivers with background checks, hours-of-service compliance, and continuous performance monitoring for safe, reliable delivery."
+      },
+      "insurance": {
+        "title": "Insurance Coverage",
+        "description": "Comprehensive cargo insurance options up to full declared value — with streamlined claims processing and carrier liability coordination."
+      },
+      "secureHandling": {
+        "title": "Secure Handling",
+        "description": "Tamper-evident seals, locked trailers, CCTV at terminals, and chain-of-custody documentation for every handoff in the supply chain."
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions About Truck Cargo",
+    "description": "Everything you need to know about road freight with YuuSell — from FTL and LTL options to tracking, insurance, and cross-border delivery.",
+    "items": [
+      {
+        "q": "What is FTL (Full Truck Load)?",
+        "a": "FTL means you book an entire truck exclusively for your shipment. The vehicle travels directly from pickup to delivery without sharing space with other cargo — ideal for large volumes, time-sensitive deliveries, and high-value goods."
+      },
+      {
+        "q": "What is LTL (Less Than Truck Load)?",
+        "a": "LTL allows you to share truck space with other shipments and pay only for the capacity you use. Cargo is consolidated at regional hubs and routed efficiently — a cost-effective option for smaller or irregular shipments."
+      },
+      {
+        "q": "How long does truck cargo delivery take?",
+        "a": "Domestic deliveries typically take 1–5 business days depending on distance and service level. Cross-border and international road freight ranges from 3–14 business days. Express options are available on major lanes."
+      },
+      {
+        "q": "Can I track my shipment in real time?",
+        "a": "Yes. Every shipment receives a tracking number with GPS-enabled milestone updates at pickup, hub transfers, border crossings, and final delivery. Notifications are sent via email and available in your account dashboard."
+      },
+      {
+        "q": "Do you offer cargo insurance?",
+        "a": "Comprehensive cargo insurance is available at booking, covering up to full declared value. Our team handles claims processing and coordinates with carriers on your behalf in the event of loss or damage."
+      },
+      {
+        "q": "What types of cargo can you transport by truck?",
+        "a": "We handle general cargo, palletized goods, temperature-sensitive items, oversized machinery, construction materials, and more. Hazardous goods (DG) are accepted where permitted by route and regulations."
+      },
+      {
+        "q": "Do you provide door-to-door delivery?",
+        "a": "Yes. Our standard service includes pickup at origin and delivery to the final destination address. Terminal-to-terminal options are also available for cost-sensitive shipments."
+      },
+      {
+        "q": "How is truck freight pricing calculated?",
+        "a": "Rates depend on distance, weight, cargo type, vehicle required, and service level (FTL vs LTL). Fuel surcharges and special handling fees may apply. Use our online estimator for a preliminary quote."
+      },
+      {
+        "q": "Can you handle cross-border shipments?",
+        "a": "Absolutely. We manage USA–Canada, USA–Mexico, and European border crossings with full customs documentation, pre-clearance support, and coordinated handoffs at checkpoint facilities."
+      },
+      {
+        "q": "What vehicle types are available in your fleet?",
+        "a": "Our fleet includes small vans, medium trucks, heavy trucks, refrigerated units, container trucks, and flatbeds — ensuring the right equipment for every cargo type and volume."
+      },
+      {
+        "q": "How do I get a binding quote?",
+        "a": "Submit your shipment details through our online calculator or contact form. Our logistics team confirms routing, vehicle assignment, and final pricing within hours — often same-day for standard lanes."
+      }
+    ]
+  },
+  "otherServices": {
+    "eyebrow": "Explore More",
+    "title": "Other Logistics Services",
+    "description": "Beyond road freight, YuuSell offers a complete suite of transportation, warehousing, and compliance solutions for your supply chain.",
+    "items": {
+      "airCargo": {
+        "title": "Air Cargo",
+        "description": "Express and standard air freight with global carrier partnerships and time-definite delivery windows."
+      },
+      "seaCargo": {
+        "title": "Sea Cargo",
+        "description": "Cost-effective ocean freight for large volumes — FCL and LCL options with worldwide port coverage."
+      },
+      "expressDelivery": {
+        "title": "Express Delivery",
+        "description": "Same-day and next-day courier services for urgent documents and time-critical parcels."
+      },
+      "warehouseServices": {
+        "title": "Warehouse Services",
+        "description": "Storage, inventory management, pick-and-pack, and fulfillment from strategic global locations."
+      },
+      "customsClearance": {
+        "title": "Customs Clearance",
+        "description": "Expert import/export documentation, duty calculation, and border compliance for seamless cross-border shipping."
+      },
+      "cargoInsurance": {
+        "title": "Cargo Insurance",
+        "description": "Full-value cargo protection with streamlined claims processing and carrier liability coordination."
+      }
+    }
+  }
+}

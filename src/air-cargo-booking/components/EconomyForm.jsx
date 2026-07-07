@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import PriceCalculator from "./PriceCalculator";
 import { getBreakdown } from "../utils/getBreakdown";
 
@@ -21,22 +22,23 @@ function isValid(form) {
 }
 
 export default function EconomyForm({ formData, onChange, onNext }) {
+  const { t } = useTranslation(["airCargoBooking", "booking"]);
   const update = (field) => (e) => onChange(field, e.target.value);
   const breakdown = getBreakdown(SERVICE, formData);
   const valid = isValid(formData);
+  const deliveryTime = t(breakdown.deliveryTimeKey);
 
   return (
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
-          Economy Air Cargo
+          {t("services.economy.eyebrow")}
         </p>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-          Shipment Details
+          {t("steps.shipmentDetails", { ns: "booking" })}
         </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          Cost-effective air freight with {breakdown.deliveryTime} delivery. Enter your shipment
-          information to continue.
+          {t("services.economy.description", { deliveryTime })}
         </p>
       </div>
 
@@ -45,55 +47,56 @@ export default function EconomyForm({ formData, onChange, onNext }) {
           onSubmit={(e) => { e.preventDefault(); if (valid) onNext(); }}
           className="lg:col-span-2 bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-7 lg:p-8 min-w-0"
         >
-          {/* Route */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Route</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.route", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
             <div className="min-w-0">
-              <label htmlFor="fromCountry" className={labelClass}>From Country *</label>
-              <input id="fromCountry" type="text" placeholder="e.g. United States"
+              <label htmlFor="fromCountry" className={labelClass}>{t("form.fields.fromCountry", { ns: "booking" })}</label>
+              <input id="fromCountry" type="text" placeholder={t("form.placeholders.fromCountry", { ns: "booking" })}
                 value={formData.fromCountry || ""} onChange={update("fromCountry")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="zipCode" className={labelClass}>ZIP Code *</label>
-              <input id="zipCode" type="text" placeholder="e.g. 10001"
+              <label htmlFor="zipCode" className={labelClass}>{t("form.fields.zipCode", { ns: "booking" })}</label>
+              <input id="zipCode" type="text" placeholder={t("form.placeholders.zipCode", { ns: "booking" })}
                 value={formData.zipCode || ""} onChange={update("zipCode")} className={inputClass} />
             </div>
             <div className="min-w-0 sm:col-span-2">
-              <label htmlFor="destinationCountry" className={labelClass}>Destination Country *</label>
-              <input id="destinationCountry" type="text" placeholder="e.g. Germany"
+              <label htmlFor="destinationCountry" className={labelClass}>{t("form.fields.destinationCountry", { ns: "booking" })}</label>
+              <input id="destinationCountry" type="text" placeholder={t("form.placeholders.destinationCountry", { ns: "booking" })}
                 value={formData.destinationCountry || ""} onChange={update("destinationCountry")} className={inputClass} />
             </div>
           </div>
 
-          {/* Package */}
-          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Package Information</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+            {t("form.sections.package", { ns: "booking" })}
+          </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
             <div className="min-w-0">
-              <label htmlFor="weight" className={labelClass}>Weight (kg) *</label>
-              <input id="weight" type="number" min="0" step="0.1" placeholder="0"
+              <label htmlFor="weight" className={labelClass}>{t("form.fields.weight", { ns: "booking" })}</label>
+              <input id="weight" type="number" min="0" step="0.1" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                 value={formData.weight || ""} onChange={update("weight")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="length" className={labelClass}>Length (cm) *</label>
-              <input id="length" type="number" min="0" placeholder="0"
+              <label htmlFor="length" className={labelClass}>{t("form.fields.length", { ns: "booking" })}</label>
+              <input id="length" type="number" min="0" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                 value={formData.length || ""} onChange={update("length")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="width" className={labelClass}>Width (cm) *</label>
-              <input id="width" type="number" min="0" placeholder="0"
+              <label htmlFor="width" className={labelClass}>{t("form.fields.width", { ns: "booking" })}</label>
+              <input id="width" type="number" min="0" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                 value={formData.width || ""} onChange={update("width")} className={inputClass} />
             </div>
             <div className="min-w-0">
-              <label htmlFor="height" className={labelClass}>Height (cm) *</label>
-              <input id="height" type="number" min="0" placeholder="0"
+              <label htmlFor="height" className={labelClass}>{t("form.fields.height", { ns: "booking" })}</label>
+              <input id="height" type="number" min="0" placeholder={t("form.placeholders.zero", { ns: "booking" })}
                 value={formData.height || ""} onChange={update("height")} className={inputClass} />
             </div>
           </div>
 
-          {/* Special instructions */}
           <div className="mb-6 min-w-0">
-            <label htmlFor="specialInstructions" className={labelClass}>Special Instructions</label>
-            <textarea id="specialInstructions" rows={3} placeholder="Handling notes, delivery preferences, etc."
+            <label htmlFor="specialInstructions" className={labelClass}>{t("form.fields.specialInstructions", { ns: "booking" })}</label>
+            <textarea id="specialInstructions" rows={3} placeholder={t("form.placeholders.specialInstructions", { ns: "booking" })}
               value={formData.specialInstructions || ""} onChange={update("specialInstructions")}
               className={`${inputClass} h-auto py-3 resize-y`} />
           </div>
@@ -109,7 +112,7 @@ export default function EconomyForm({ formData, onChange, onNext }) {
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Next
+            {t("actions.next", { ns: "booking" })}
           </button>
         </form>
 

@@ -1,0 +1,47 @@
+{
+  "breadcrumb": {
+    "main": "Main",
+    "current": "Domestic Shipping",
+    "ariaLabel": "Breadcrumb"
+  },
+  "hero": {
+    "eyebrow": "Nationwide Delivery",
+    "title": "Domestic Shipping",
+    "description": "Move freight within your country via truck or express delivery — fast, reliable, and fully tracked from pickup to doorstep.",
+    "stats": {
+      "coverage": "Nationwide",
+      "coverageLabel": "Coverage",
+      "delivery": "1–5",
+      "deliveryLabel": "Day delivery",
+      "support": "24/7",
+      "supportLabel": "Support"
+    }
+  },
+  "steps": {
+    "method": "Method",
+    "details": "Details",
+    "estimate": "Estimate"
+  },
+  "section": {
+    "title": "Ship within your country",
+    "subtitle": "Choose a domestic delivery method, enter your shipment details, and get an instant estimate."
+  },
+  "methodSelect": {
+    "title": "Select a delivery method",
+    "subtitle": "Truck delivery for freight or express for parcels and packages."
+  },
+  "methods": {
+    "truck": {
+      "title": "Domestic Truck Delivery",
+      "description": "Full or partial truck loads for domestic freight lanes."
+    },
+    "express": {
+      "title": "Express Delivery",
+      "description": "Priority parcel and package delivery with fast transit."
+    }
+  },
+  "actions": {
+    "back": "Back",
+    "continue": "Continue"
+  }
+}

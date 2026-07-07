@@ -1,0 +1,191 @@
+{
+  "breadcrumb": {
+    "main": "Main",
+    "calculate": "Calculate",
+    "createShipment": "Create shipment"
+  },
+  "steps": {
+    "parcelDetails": "Parcel details",
+    "contacts": "Information about the sender/recipient",
+    "delivery": "Delivery method and payment",
+    "payment": "Payment method",
+    "finalInvoice": "Final invoice"
+  },
+  "parcelSizes": {
+    "1000kg": {
+      "label": "Weight up to 1000 kg",
+      "desc": "Maximum permissible parcel dimensions: 300 × 170 × 170 cm, weight: 1,000 kg"
+    },
+    "500kg": {
+      "label": "Weight up to 500 kg",
+      "desc": "Maximum permissible parcel dimensions: 200 × 120 × 120 cm, weight: 500 kg"
+    },
+    "100kg": {
+      "label": "Weight up to 100 kg",
+      "desc": "Maximum permissible parcel dimensions: 120 × 80 × 80 cm, weight: 100 kg"
+    },
+    "30kg": {
+      "label": "Small parcel up to 30 kg",
+      "desc": "Maximum permissible parcel dimensions: 60 × 40 × 40 cm, weight: 30 kg"
+    }
+  },
+  "transportOptions": {
+    "copart": "Copart",
+    "airCargo": "Air cargo",
+    "seaCargo": "Sea cargo"
+  },
+  "obtainOptions": {
+    "departments": "Departments",
+    "doorToDoor": "Door to door",
+    "delivery": "Delivery"
+  },
+  "shippingSpeeds": {
+    "seaEconom": "Econom (10–14 days)",
+    "seaExpress": "Express (7–10 days)",
+    "airEconom": "Econom (10–14 days)",
+    "airExpress": "Express (7–10 days)"
+  },
+  "carriers": {
+    "yuusell": "YuuSell agent",
+    "postOffice": "Post office"
+  },
+  "carrierLogos": {
+    "yuusell": "YuuSell",
+    "fedex": "FedEx",
+    "ups": "UPS",
+    "usps": "USPS"
+  },
+  "fields": {
+    "from": "From",
+    "where": "Where",
+    "to": "To",
+    "transport": "How will we transport it?",
+    "obtain": "Method to obtain",
+    "heightCm": "Height cm",
+    "lengthCm": "Length cm",
+    "widthCm": "Width cm",
+    "sender": "Sender",
+    "recipient": "Recipient",
+    "countryRegion": "Country / Region",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "zipCode": "Zip code",
+    "fullNameCompany": "Full name / Company name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phoneNumber": "Phone number"
+  },
+  "sections": {
+    "typeOfService": "Type of service",
+    "parcelSize": "Size and type of parcel",
+    "describeCargo": "Describe the cargo"
+  },
+  "placeholders": {
+    "selectOrigin": "Click to select origin",
+    "selectDestination": "Click to select destination",
+    "selectSize": "Select size",
+    "cargoDescription": "What needs to be transported?",
+    "clickForm": "Click this form",
+    "searchAddress": "Search address...",
+    "selectState": "Select state",
+    "email": "email@example.com",
+    "phoneNumber": "Enter phone number",
+    "streetAddress": "Street address"
+  },
+  "validation": {
+    "fromWhereRequired": "Please fill in From and Where fields.",
+    "fromWhereRequiredShort": "Please fill in From and Where.",
+    "transportObtainRequired": "Please select transport and obtain method.",
+    "cargoRequired": "Please describe the cargo.",
+    "contactsRequired": "Please add sender and recipient information.",
+    "countryRequired": "Please select a country.",
+    "optionRequired": "Please select an option.",
+    "nameRequired": "Please enter a name."
+  },
+  "actions": {
+    "calculate": "Calculate",
+    "create": "Create",
+    "bookShipment": "Book This Shipment",
+    "continue": "Continue",
+    "complete": "Complete",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "calculate": {
+    "sidebarHint": "Here you can find out the approximate delivery time",
+    "resultTitle": "Calculation Result",
+    "deliveryTime": "Delivery time",
+    "days": "{{days}} days",
+    "estimatedPrice": "Estimated price",
+    "priceFrom": "from ${{price}}"
+  },
+  "modals": {
+    "close": "Close",
+    "transportTitle": "How will we transport it?",
+    "obtainTitle": "Method to obtain",
+    "senderTitle": "Sender information",
+    "recipientTitle": "Recipient"
+  },
+  "delivery": {
+    "addToCartOrSkip": "Add to cart or skip",
+    "carrier": "Carrier",
+    "total": "Total",
+    "shippingCost": "Shipping cost:",
+    "deliveryDate": "Delivery date:",
+    "shipmentDate": "Date of shipment"
+  },
+  "payment": {
+    "title": "Delivery method and payment",
+    "creditCard": "Credit Card",
+    "cardTypes": "Visa, Master Card, American Express, etc.",
+    "cardNumber": "Number card",
+    "cardNumberPlaceholder": "•••• •••• •••• ••••",
+    "expiry": "Expiration date (MM/YY)",
+    "expiryPlaceholder": "MM/YY",
+    "cvc": "CVC",
+    "cardholderName": "Cardholder name",
+    "fullNameOnCard": "Full name on card",
+    "billingAddress": "Billing address",
+    "addressLine1": "Address line 1",
+    "addressLine2": "Address line 2",
+    "city": "City",
+    "province": "Province",
+    "postalCode": "Postal code",
+    "useShippingAddress": "Use shipping address as billing address",
+    "saveCard": "Save card",
+    "recipientPays": "Recipient Pays",
+    "recipientPaysDesc": "The recipient of the parcel pays",
+    "recipientPaysHint": "Select this option if you are not the one who should pay"
+  },
+  "success": {
+    "title": "Electronic declaration created",
+    "trackingCopied": "Tracking number copied!",
+    "copyTrackingAria": "Copy tracking number",
+    "pickupHint": "Pick up and send a parcel from the nearest branch",
+    "downloadPdf": "Download PDF",
+    "viewShipments": "View shipments",
+    "qrHint": "QR Code for detailed information"
+  },
+  "countries": {
+    "unitedStates": "United States",
+    "china": "China",
+    "uae": "United Arab Emirates",
+    "germany": "Germany",
+    "turkey": "Turkey",
+    "thailand": "Thailand"
+  },
+  "states": {
+    "alabama": "Alabama",
+    "alaska": "Alaska",
+    "arizona": "Arizona",
+    "california": "California",
+    "colorado": "Colorado",
+    "florida": "Florida",
+    "georgia": "Georgia",
+    "illinois": "Illinois",
+    "newYork": "New York",
+    "texas": "Texas",
+    "washington": "Washington"
+  }
+}

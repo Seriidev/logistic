@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 function mulberry32(seed) {
   let a = seed >>> 0;
@@ -18,6 +19,7 @@ function hashString(str) {
 }
 
 function QrCode({ value, size = 168 }) {
+  const { t } = useTranslation("booking");
   const modules = 25;
   const cell = size / modules;
   const rand = mulberry32(hashString(value || "yuusell"));
@@ -46,7 +48,7 @@ function QrCode({ value, size = 168 }) {
   );
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label="Shipment QR code" className="rounded-xl bg-white">
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={t("aria.qrCode")} className="rounded-xl bg-white">
       <rect width={size} height={size} fill="#fff" />
       {cells}
       <Finder x={0} y={0} />
@@ -88,6 +90,7 @@ function buildPdf(lines) {
 }
 
 export default function SuccessStep({ booking }) {
+  const { t } = useTranslation(["seaCargoBooking", "booking"]);
   const { trackingNumber, referenceNumber } = useMemo(() => {
     const rand = mulberry32((Date.now() ^ hashString(JSON.stringify(booking || {}))) >>> 0);
     const digits = (n) => Array.from({ length: n }, () => Math.floor(rand() * 10)).join("");
@@ -99,28 +102,33 @@ export default function SuccessStep({ booking }) {
 
   const handleDownload = () => {
     const b = booking || {};
+    const serviceFallback = t("success.pdf.seaCargoFallback", { ns: "seaCargoBooking" });
+    const notSet = t("common.notSet", { ns: "booking" });
+    const weightUnitLabel = b.weightUnit
+      ? t(`weightUnits.${b.weightUnit}`, { ns: "seaCargoBooking", defaultValue: b.weightUnit })
+      : t("weightUnits.kg", { ns: "seaCargoBooking" });
     const lines = [
-      "YuuSell Logistics - Electronic Declaration",
+      t("success.pdf.title", { ns: "booking" }),
       "==========================================",
       "",
-      `Service:          ${b.serviceLabel || "Sea Cargo"}`,
-      `Tracking Number:  ${trackingNumber}`,
-      `Reference Number: ${referenceNumber}`,
+      `${t("success.pdf.service", { ns: "booking" }).padEnd(18)}${b.serviceLabel || serviceFallback}`,
+      `${t("success.pdf.trackingNumber", { ns: "booking" }).padEnd(18)}${trackingNumber}`,
+      `${t("success.pdf.referenceNumber", { ns: "booking" }).padEnd(18)}${referenceNumber}`,
       "",
-      `From:             ${b.fromCountry || "-"} (${b.zipCode || "-"})`,
-      `Destination:      ${b.destinationCountry || "-"}`,
-      `Shipment Date:    ${b.dateOfShipment || "-"}`,
-      `Weight:           ${b.weight || "-"} ${b.weightUnit || "kg"}`,
-      `Details:          ${b.detailLine || "-"}`,
-      `Delivery Type:    ${b.deliveryLabel || "-"}`,
-      `Declared Value:   $${b.declaredValue || "0"}`,
+      `${t("success.pdf.from", { ns: "booking" }).padEnd(18)}${b.fromCountry || notSet} (${b.zipCode || notSet})`,
+      `${t("success.pdf.destination", { ns: "booking" }).padEnd(18)}${b.destinationCountry || notSet}`,
+      `${t("success.pdf.shipmentDate", { ns: "booking" }).padEnd(18)}${b.dateOfShipment || notSet}`,
+      `${t("success.pdf.weight", { ns: "booking" }).padEnd(18)}${b.weight || notSet} ${weightUnitLabel}`,
+      `${t("success.pdf.details", { ns: "booking" }).padEnd(18)}${b.detailLine || notSet}`,
+      `${t("success.pdf.deliveryType", { ns: "booking" }).padEnd(18)}${b.deliveryLabel || notSet}`,
+      `${t("success.pdf.declaredValue", { ns: "booking" }).padEnd(18)}$${b.declaredValue || "0"}`,
       "",
-      `Payment Method:   ${b.paymentMethod || "-"}`,
-      `Amount Paid:      $${(b.total || 0).toFixed(2)} USD`,
-      `Delivery Time:    ${b.deliveryTime || "-"}`,
+      `${t("success.pdf.paymentMethod", { ns: "booking" }).padEnd(18)}${b.paymentMethod || notSet}`,
+      `${t("success.pdf.amountPaid", { ns: "booking" }).padEnd(18)}$${(b.total || 0).toFixed(2)} USD`,
+      `${t("success.pdf.deliveryTime", { ns: "booking" }).padEnd(18)}${b.deliveryTime || notSet}`,
       "",
-      "Pick up and send your shipment from the nearest branch.",
-      "Thank you for shipping with YuuSell.",
+      t("success.pdf.pickupSea", { ns: "booking" }),
+      t("success.pdf.thankYou", { ns: "booking" }),
     ];
     const blob = new Blob([buildPdf(lines)], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
@@ -142,13 +150,13 @@ export default function SuccessStep({ booking }) {
           </svg>
         </div>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-          Electronic Declaration Created
+          {t("success.title", { ns: "seaCargoBooking" })}
         </h2>
         <p className="inline-flex items-center gap-2 text-sm sm:text-base text-green-700 font-medium">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
           </svg>
-          Payment successful
+          {t("success.paymentSuccessful", { ns: "booking" })}
         </p>
       </div>
 
@@ -156,11 +164,11 @@ export default function SuccessStep({ booking }) {
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-6 sm:gap-8 items-center">
           <div className="min-w-0 order-2 sm:order-1">
             <div className="mb-4">
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Tracking Number</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">{t("success.trackingNumber", { ns: "booking" })}</p>
               <p className="text-lg sm:text-xl font-extrabold text-gray-900 break-all">{trackingNumber}</p>
             </div>
             <div className="mb-4">
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Shipment Reference Number</p>
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">{t("success.referenceNumber", { ns: "booking" })}</p>
               <p className="text-base sm:text-lg font-bold text-gray-900 break-all">{referenceNumber}</p>
             </div>
             <button
@@ -172,7 +180,7 @@ export default function SuccessStep({ booking }) {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
               </svg>
-              Download PDF
+              {t("success.downloadPdf", { ns: "booking" })}
             </button>
           </div>
 
@@ -180,15 +188,15 @@ export default function SuccessStep({ booking }) {
             <div className="p-3 rounded-2xl border border-gray-100 bg-white">
               <QrCode value={trackingNumber} />
             </div>
-            <p className="text-xs text-gray-400 mt-2">Scan at branch</p>
+            <p className="text-xs text-gray-400 mt-2">{t("success.scanAtBranch", { ns: "booking" })}</p>
           </div>
         </div>
 
         <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-100">
           <div className="rounded-2xl bg-blue-50 border border-blue-100 p-4 sm:p-5">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900">Next step:</strong> Pick up and send your shipment
-              from the nearest branch. Track your shipment any time using your tracking number.
+              <strong className="text-gray-900">{t("success.nextStep.label", { ns: "booking" })}</strong>{" "}
+              {t("success.nextStep.bodySea", { ns: "booking" })}
             </p>
           </div>
         </div>

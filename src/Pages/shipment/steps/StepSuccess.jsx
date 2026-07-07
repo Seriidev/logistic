@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function StepSuccess({ trackingId, onCopy }) {
+  const { t } = useTranslation("shipment");
+
   return (
     <div className="flex flex-col items-center text-center py-8 sm:py-12 px-4 max-w-lg mx-auto">
       <div className="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-6">
@@ -10,7 +13,7 @@ export default function StepSuccess({ trackingId, onCopy }) {
       </div>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-[#1e2a4a] mb-4">
-        Electronic declaration created
+        {t("success.title")}
       </h2>
 
       <div className="flex items-center justify-center gap-2 mb-3 flex-wrap">
@@ -18,7 +21,7 @@ export default function StepSuccess({ trackingId, onCopy }) {
         <button
           type="button"
           onClick={onCopy}
-          aria-label="Copy tracking number"
+          aria-label={t("success.copyTrackingAria")}
           className="w-8 h-8 rounded-lg bg-gray-100 border-none cursor-pointer hover:bg-gray-200 transition-colors flex items-center justify-center"
         >
           <svg viewBox="0 0 24 24" fill="none" width="16" height="16" stroke="currentColor" strokeWidth="2">
@@ -28,7 +31,7 @@ export default function StepSuccess({ trackingId, onCopy }) {
       </div>
 
       <p className="text-sm text-gray-500 mb-8">
-        Pick up and send a parcel from the nearest branch
+        {t("success.pickupHint")}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mb-10">
@@ -36,14 +39,14 @@ export default function StepSuccess({ trackingId, onCopy }) {
           type="button"
           className="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 py-3 rounded-full bg-blue-500 text-white text-xs font-bold uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]"
         >
-          Download PDF
+          {t("success.downloadPdf")}
           <span aria-hidden="true">↓</span>
         </button>
         <Link
           to="/track"
           className="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 py-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider no-underline hover:bg-blue-200 transition-colors"
         >
-          View shipments
+          {t("success.viewShipments")}
           <span aria-hidden="true">→</span>
         </Link>
       </div>
@@ -63,7 +66,7 @@ export default function StepSuccess({ trackingId, onCopy }) {
             <rect x="48" y="48" width="24" height="8" fill="#1d4ed8" />
           </svg>
         </div>
-        <p className="text-sm font-medium text-gray-700 text-left">QR Code for detailed information</p>
+        <p className="text-sm font-medium text-gray-700 text-left">{t("success.qrHint")}</p>
       </div>
     </div>
   );

@@ -1,14 +1,17 @@
+import { useTranslation } from "react-i18next";
 import ServicesGrid from "./ServicesGrid";
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <section className="page-container py-8 sm:py-12 min-w-0">
       <div className="mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-blue-500 uppercase tracking-wide mb-2 sm:mb-4">
-          Our Services
+          {t("services.title")}
         </h2>
         <p className="text-sm text-gray-500">
-          International solutions for all your shipping and delivery needs
+          {t("services.subtitle")}
         </p>
       </div>
 

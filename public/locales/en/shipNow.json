@@ -1,0 +1,212 @@
+{
+  "title": "Ship Now",
+  "subtitle": "Select an international service to get started",
+  "domesticPromo": {
+    "title": "Domestic Shipping",
+    "description": "Need to ship within your country? Use our domestic delivery service.",
+    "cta": "Domestic Shipping"
+  },
+  "stepIndicator": {
+    "ariaLabel": "Shipping progress"
+  },
+  "steps": {
+    "destination": "Destination",
+    "method": "Method",
+    "details": "Details",
+    "calculate": "Calculate"
+  },
+  "destinationTypes": {
+    "international": "International",
+    "domestic": "Domestic"
+  },
+  "options": {
+    "destinationTypes": {
+      "international": {
+        "title": "International Shipping",
+        "description": "Ship cargo across borders with global air, sea, and truck networks."
+      },
+      "domestic": {
+        "title": "Domestic Shipping",
+        "description": "Move freight within your country via truck or express delivery."
+      }
+    },
+    "methods": {
+      "air": {
+        "title": "Air Cargo",
+        "description": "Fast international air freight for time-sensitive shipments."
+      },
+      "sea": {
+        "title": "Sea Cargo",
+        "description": "Cost-effective ocean freight for large and heavy cargo."
+      },
+      "truck": {
+        "international": {
+          "title": "International Truck Cargo",
+          "description": "Cross-border road freight with customs-ready routing."
+        },
+        "domestic": {
+          "title": "Domestic Truck Delivery",
+          "description": "Full or partial truck loads for domestic freight lanes."
+        }
+      },
+      "express": {
+        "title": "Express Delivery",
+        "description": "Priority parcel and package delivery with fast transit."
+      }
+    },
+    "cargoTypes": {
+      "generalCargo": "General Cargo",
+      "documents": "Documents",
+      "electronics": "Electronics",
+      "perishables": "Perishables",
+      "fragileItems": "Fragile Items",
+      "industrialParts": "Industrial Parts",
+      "textilesApparel": "Textiles & Apparel",
+      "hazardous": "Hazardous (DG)"
+    },
+    "airServiceTypes": {
+      "economy": "Economy Air Cargo",
+      "express": "Express Air Cargo"
+    },
+    "seaContainerTypes": {
+      "lcl": "LCL (Small Shipments)",
+      "fcl": "FCL (Full Container)"
+    },
+    "truckTransportTypes": {
+      "ftl": "Full Truck Load (FTL)",
+      "ltl": "Less Than Truck Load (LTL)"
+    },
+    "packageTypes": {
+      "envelope": "Envelope",
+      "smallBox": "Small Box",
+      "mediumBox": "Medium Box",
+      "largeBox": "Large Box",
+      "pallet": "Pallet",
+      "customPackaging": "Custom Packaging"
+    },
+    "packageSizes": {
+      "extraSmall": "Extra Small (up to 1 kg)",
+      "small": "Small (1–5 kg)",
+      "medium": "Medium (5–15 kg)",
+      "large": "Large (15–30 kg)",
+      "extraLarge": "Extra Large (30+ kg)"
+    },
+    "deliveryPriorities": {
+      "standard": "Standard (2–3 days)",
+      "priority": "Priority (Next day)",
+      "urgent": "Urgent (Same day)"
+    }
+  },
+  "units": {
+    "kg": "kg",
+    "cm": "cm"
+  },
+  "summary": {
+    "emptyValue": "—"
+  },
+  "transit": {
+    "air": {
+      "economy": "5–8 business days",
+      "express": "2–4 business days"
+    },
+    "sea": {
+      "lcl": "25–35 days",
+      "fcl": "18–28 days"
+    },
+    "truck": {
+      "ftl": "3–6 business days",
+      "ltl": "4–8 business days"
+    },
+    "express": {
+      "standard": "2–3 business days",
+      "priority": "1 business day",
+      "urgent": "Same day"
+    }
+  },
+  "forms": {
+    "stepLabel": "Step {{current}} of {{total}}",
+    "detailsSuffix": "{{title}} Details",
+    "fields": {
+      "pickupLocation": "Pickup Location",
+      "deliveryLocation": "Delivery Location",
+      "packageType": "Package Type",
+      "weightKg": "Weight (kg)",
+      "packageSize": "Package Size",
+      "deliveryPriority": "Delivery Priority",
+      "specialInstructions": "Special Instructions",
+      "cargoType": "Cargo Type",
+      "transportType": "Transport Type",
+      "dimensions": "Dimensions",
+      "originPort": "Origin Port",
+      "destinationPort": "Destination Port",
+      "containerType": "Container Type",
+      "originCountry": "Origin Country",
+      "destinationCountry": "Destination Country",
+      "lengthCm": "Length (cm)",
+      "widthCm": "Width (cm)",
+      "heightCm": "Height (cm)",
+      "serviceType": "Service Type"
+    },
+    "placeholders": {
+      "location": "City, address or ZIP",
+      "weightSmall": "e.g. 2.5",
+      "weightLarge": "e.g. 1500",
+      "weightSea": "e.g. 5000",
+      "weightAir": "e.g. 250",
+      "length": "Length",
+      "width": "Width",
+      "height": "Height",
+      "originPort": "e.g. Port of Shanghai",
+      "destinationPort": "e.g. Port of Rotterdam",
+      "dimensionsTruck": "e.g. 12 pallets · 240 × 120 × 150 cm",
+      "dimensionsSea": "e.g. 120 × 80 × 100 cm or 15 CBM",
+      "originCountry": "e.g. United States",
+      "destinationCountry": "e.g. Germany",
+      "specialInstructionsExpress": "Signature required, fragile handling, etc.",
+      "specialInstructionsTruck": "Loading dock info, appointment times, etc.",
+      "specialInstructionsSea": "Loading requirements, customs notes, etc.",
+      "specialInstructionsAir": "Handling requirements, delivery notes, etc."
+    },
+    "express": {
+      "title": "Express Delivery Details",
+      "subtitle": "Enter package and delivery information for express shipping."
+    },
+    "truck": {
+      "titles": {
+        "international": "International Truck Cargo",
+        "domestic": "Domestic Truck Delivery"
+      },
+      "subtitle": "Enter pickup, delivery, and cargo information for your truck shipment."
+    },
+    "sea": {
+      "title": "Sea Cargo Details",
+      "subtitle": "Enter your ocean freight shipment information."
+    },
+    "air": {
+      "title": "Air Cargo Details",
+      "subtitle": "Enter your shipment information for an air freight quote."
+    }
+  },
+  "estimate": {
+    "stepLabel": "Step {{current}} of {{total}}",
+    "title": "Review & Calculate",
+    "subtitle": "Confirm your shipment details and get an estimated quote.",
+    "summaryTitle": "Shipment Summary",
+    "fields": {
+      "destinationType": "Destination Type",
+      "route": "Estimated Route",
+      "service": "Selected Service",
+      "cargo": "Cargo Information",
+      "deliveryTime": "Estimated Delivery Time"
+    },
+    "priceLabel": "Estimated Price (Mock)",
+    "currency": "USD",
+    "priceDisclaimer": "Preliminary estimate only. Final pricing confirmed by our logistics team.",
+    "prompt": "Click below to generate your estimated shipping cost based on the details provided."
+  },
+  "actions": {
+    "calculating": "Calculating…",
+    "recalculate": "Recalculate Shipping Cost",
+    "calculate": "Calculate Shipping Cost"
+  }
+}

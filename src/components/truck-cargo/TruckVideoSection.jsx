@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SectionHeading, ImageBlock } from "./shared";
 
 export default function TruckVideoSection() {
+  const { t } = useTranslation("truckCargo");
   const [playing, setPlaying] = useState(false);
 
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20">
       <SectionHeading
-        eyebrow="See Us in Action"
-        title="Experience Our Truck Cargo Operations"
-        description="Watch how YuuSell manages road freight from pickup to delivery — with modern fleet, trained drivers, and technology-driven logistics."
+        eyebrow={t("video.eyebrow")}
+        title={t("video.title")}
+        description={t("video.description")}
       />
 
       <div className="max-w-4xl mx-auto min-w-0">
@@ -18,8 +20,8 @@ export default function TruckVideoSection() {
             <>
               <ImageBlock
                 src="/minibanner2.jpg"
-                alt="Truck cargo operations video thumbnail"
-                hint="Add photo: public/minibanner2.jpg"
+                alt={t("video.thumbnailAlt")}
+                hint={t("shared.imageHint", { path: "public/minibanner2.jpg" })}
                 className="absolute inset-0 w-full h-full opacity-70"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -27,7 +29,7 @@ export default function TruckVideoSection() {
               <button
                 type="button"
                 onClick={() => setPlaying(true)}
-                aria-label="Play promotional video"
+                aria-label={t("video.playAria")}
                 className="absolute inset-0 flex flex-col items-center justify-center gap-4
                   bg-transparent border-none cursor-pointer font-[inherit] group"
               >
@@ -40,7 +42,7 @@ export default function TruckVideoSection() {
                   </svg>
                 </div>
                 <span className="text-white text-sm sm:text-base font-semibold drop-shadow-lg">
-                  Play Video
+                  {t("video.playLabel")}
                 </span>
               </button>
             </>
@@ -51,10 +53,10 @@ export default function TruckVideoSection() {
                 <path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none" />
               </svg>
               <p className="text-sm sm:text-base font-medium text-center mb-2">
-                Video Player Placeholder
+                {t("video.placeholderTitle")}
               </p>
               <p className="text-xs sm:text-sm text-gray-400 text-center max-w-sm">
-                Embed your promotional video here — YouTube, Vimeo, or self-hosted MP4.
+                {t("video.placeholderDescription")}
               </p>
               <button
                 type="button"
@@ -62,16 +64,14 @@ export default function TruckVideoSection() {
                 className="mt-6 px-5 py-2 rounded-full bg-white/10 text-white text-xs font-semibold
                   border border-white/30 cursor-pointer hover:bg-white/20 transition-colors font-[inherit]"
               >
-                Close
+                {t("video.close")}
               </button>
             </div>
           )}
         </div>
 
         <p className="text-sm sm:text-base text-gray-500 text-center mt-5 sm:mt-6 leading-relaxed max-w-2xl mx-auto">
-          Discover our end-to-end truck cargo process — from fleet management and route optimization
-          to real-time tracking and secure delivery. Trusted by businesses across retail, manufacturing,
-          and e-commerce worldwide.
+          {t("video.footer")}
         </p>
       </div>
     </section>

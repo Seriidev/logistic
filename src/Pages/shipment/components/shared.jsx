@@ -58,7 +58,7 @@ export function TextInput({ label, placeholder, value, onChange, type = "text" }
   );
 }
 
-export function SelectInput({ label, placeholder, options, value, onChange }) {
+export function SelectInput({ label, placeholder, options, value, onChange, getOptionLabel }) {
   return (
     <label className="flex flex-col gap-1.5">
       {label && <span className="text-xs font-medium text-gray-600">{label}</span>}
@@ -72,8 +72,9 @@ export function SelectInput({ label, placeholder, options, value, onChange }) {
         >
           <option value="">{placeholder}</option>
           {options.map((opt) => {
-            const val = typeof opt === "string" ? opt : opt.label;
-            return <option key={val} value={val}>{val}</option>;
+            const val = typeof opt === "string" ? opt : opt.id;
+            const optionLabel = getOptionLabel ? getOptionLabel(opt) : val;
+            return <option key={val} value={val}>{optionLabel}</option>;
           })}
         </select>
         <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -84,9 +85,11 @@ export function SelectInput({ label, placeholder, options, value, onChange }) {
   );
 }
 
-export function formatLocation(data) {
+export function formatLocation(data, t) {
   if (!data) return null;
-  return [data.city, data.state, data.country].filter(Boolean).join(", ") || data.address || null;
+  const state = data.state ? t?.(`states.${data.state}`, { defaultValue: data.state }) : null;
+  const country = data.country ? t?.(`countries.${data.country}`, { defaultValue: data.country }) : null;
+  return [data.city, state, country].filter(Boolean).join(", ") || data.address || null;
 }
 
 export function formatContact(data) {

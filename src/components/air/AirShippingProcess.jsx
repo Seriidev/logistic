@@ -1,53 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 import { isAuthenticated } from "../../utils/auth";
 
-const STEPS = [
-  {
-    num: "01",
-    title: "Request a Quote",
-    description:
-      "Share origin, destination, cargo details, and timeline. Receive competitive rates within hours.",
-    icon: "/steps icon/calc icon.png",
-  },
-  {
-    num: "02",
-    title: "Book & Schedule Pickup",
-    description:
-      "Confirm your shipment, select service level, and arrange door pickup or warehouse drop-off.",
-    icon: "/steps icon/truck icon.png",
-  },
-  {
-    num: "03",
-    title: "Prepare & Consolidate",
-    description:
-      "We inspect, pack, label, and consolidate your cargo for optimal air freight loading.",
-    icon: "/steps icon/packet.png",
-  },
-  {
-    num: "04",
-    title: "Customs & Documentation",
-    description:
-      "Our team prepares all export/import paperwork and pre-clears customs where possible.",
-    icon: "/steps icon/air icon.png",
-  },
-  {
-    num: "05",
-    title: "Air Transit & Tracking",
-    description:
-      "Your cargo flies on optimized routes with live milestone tracking and proactive updates.",
-    icon: "/steps icon/air icon.png",
-  },
-  {
-    num: "06",
-    title: "Final Delivery",
-    description:
-      "Door-to-door or airport delivery with proof of delivery and post-shipment reporting.",
-    icon: "/steps icon/parcel.png",
-  },
+const STEP_CONFIG = [
+  { num: "01", icon: "/steps icon/calc icon.png" },
+  { num: "02", icon: "/steps icon/truck icon.png" },
+  { num: "03", icon: "/steps icon/packet.png" },
+  { num: "04", icon: "/steps icon/air icon.png" },
+  { num: "05", icon: "/steps icon/air icon.png" },
+  { num: "06", icon: "/steps icon/parcel.png" },
 ];
 
 export default function AirShippingProcess() {
+  const { t } = useTranslation("airCargo");
   const navigate = useNavigate();
 
   const handleShipNow = () => {
@@ -61,13 +27,13 @@ export default function AirShippingProcess() {
   return (
     <section className="page-container min-w-0 py-12 sm:py-16 lg:py-20">
       <SectionHeading
-        eyebrow="Shipping Process"
-        title="From Quote to Delivery — Six Simple Steps"
-        description="Our streamlined air cargo process removes complexity at every stage, giving you full visibility and control from the moment you book."
+        eyebrow={t("shippingProcess.eyebrow")}
+        title={t("shippingProcess.title")}
+        description={t("shippingProcess.description")}
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-        {STEPS.map((step) => (
+        {STEP_CONFIG.map((step) => (
           <article
             key={step.num}
             className="relative bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6
@@ -84,17 +50,17 @@ export default function AirShippingProcess() {
               <img src={step.icon} alt="" className="h-full w-auto object-contain" />
             </div>
 
-            <h3 className="text-base sm:text-lg font-bold text-gray-900 text-center mb-2">{step.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-500 text-center leading-relaxed">{step.description}</p>
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 text-center mb-2">{t(`shippingProcess.steps.${step.num}.title`)}</h3>
+            <p className="text-xs sm:text-sm text-gray-500 text-center leading-relaxed">{t(`shippingProcess.steps.${step.num}.description`)}</p>
           </article>
         ))}
       </div>
 
       <div className="mt-8 sm:mt-10 lg:mt-12 rounded-2xl sm:rounded-3xl bg-blue-500 px-5 py-8 sm:px-10 sm:py-10 flex flex-col md:flex-row items-center justify-between gap-6 min-w-0">
         <div className="text-center md:text-left min-w-0">
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Ready to ship by air?</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{t("shippingProcess.cta.title")}</h3>
           <p className="text-sm sm:text-base text-blue-100 max-w-lg">
-            Start your shipment in minutes. Our team is standing by to handle urgent and scheduled air freight.
+            {t("shippingProcess.cta.description")}
           </p>
         </div>
         <button
@@ -104,7 +70,7 @@ export default function AirShippingProcess() {
             text-sm font-bold uppercase tracking-wider border-none cursor-pointer
             hover:bg-blue-50 transition-colors font-[inherit]"
         >
-          Ship Now
+          {t("shippingProcess.cta.button")}
         </button>
       </div>
     </section>

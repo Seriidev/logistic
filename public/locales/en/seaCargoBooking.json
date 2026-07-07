@@ -1,0 +1,69 @@
+{
+  "breadcrumb": {
+    "seaCargo": "Sea Cargo"
+  },
+  "hero": {
+    "title": "Sea Cargo Booking",
+    "subtitle": "Complete your ocean freight booking in a few simple steps."
+  },
+  "booking": {
+    "detailLine": {
+      "fclContainer": "{{label}} container",
+      "lclUnits": "{{count}} unit(s)"
+    }
+  },
+  "serviceSelector": {
+    "ariaLabel": "Sea cargo service type",
+    "lcl": { "label": "LCL", "sublabel": "Less Container Load" },
+    "fcl": { "label": "FCL", "sublabel": "Full Container Load" },
+    "shippingSuffix": "{{label}} Shipping"
+  },
+  "services": {
+    "lcl": {
+      "label": "LCL Ocean Freight",
+      "speedLabel": "Economical",
+      "deliveryTime": "25–35 days",
+      "eyebrow": "LCL Ocean Freight",
+      "description": "Shared container space for smaller shipments. Delivery in {{time}}."
+    },
+    "fcl": {
+      "label": "FCL Ocean Freight",
+      "speedLabel": "Dedicated",
+      "deliveryTime": "18–28 days",
+      "eyebrow": "FCL Ocean Freight",
+      "description": "A dedicated container for your cargo. Delivery in {{time}}."
+    }
+  },
+  "deliveryTypes": {
+    "portPort": "Port to Port",
+    "portDoor": "Port to Door",
+    "doorPort": "Door to Port",
+    "doorDoor": "Door to Door"
+  },
+  "commodityTypes": {
+    "generalCargo": "General Cargo",
+    "electronics": "Electronics",
+    "textilesApparel": "Textiles & Apparel",
+    "furniture": "Furniture",
+    "machineryParts": "Machinery Parts",
+    "foodBeverage": "Food & Beverage (Non-perishable)",
+    "personalEffects": "Personal Effects",
+    "industrialEquipment": "Industrial Equipment"
+  },
+  "containerTypes": {
+    "20ft": "20ft Standard",
+    "40ft": "40ft Standard",
+    "40hc": "40ft High Cube",
+    "reefer": "Refrigerated Container"
+  },
+  "weightUnits": {
+    "kg": "kg",
+    "lbs": "lbs"
+  },
+  "success": {
+    "title": "Electronic Declaration Created",
+    "pdf": {
+      "seaCargoFallback": "Sea Cargo"
+    }
+  }
+}

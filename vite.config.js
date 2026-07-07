@@ -11,7 +11,8 @@ export default defineConfig({
   ],
   optimizeDeps: {
     include: [
-      'react-icons/lu',
+      "react-icons/lu",
+      "react-icons/fa",
     ],
   },
 })

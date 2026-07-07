@@ -1,53 +1,49 @@
 export const PARCEL_SIZES = [
   {
-    label: "Weight up to 1000 kg",
-    desc: "Maximum permissible parcel dimensions: 300 × 170 × 170 cm, weight: 1,000 kg",
+    id: "1000kg",
   },
   {
-    label: "Weight up to 500 kg",
-    desc: "Maximum permissible parcel dimensions: 200 × 120 × 120 cm, weight: 500 kg",
+    id: "500kg",
   },
   {
-    label: "Weight up to 100 kg",
-    desc: "Maximum permissible parcel dimensions: 120 × 80 × 80 cm, weight: 100 kg",
+    id: "100kg",
   },
   {
-    label: "Small parcel up to 30 kg",
-    desc: "Maximum permissible parcel dimensions: 60 × 40 × 40 cm, weight: 30 kg",
+    id: "30kg",
   },
 ];
 
 export const SHIPMENT_STEPS = [
-  { id: 1, label: "Parcel details" },
-  { id: 2, label: "Information about the sender/recipient" },
-  { id: 3, label: "Delivery method and payment" },
-  { id: 4, label: "Payment method" },
-  { id: 5, label: "Final invoice" },
+  { id: 1, labelKey: "parcelDetails" },
+  { id: 2, labelKey: "contacts" },
+  { id: 3, labelKey: "delivery" },
+  { id: 4, labelKey: "payment" },
+  { id: 5, labelKey: "finalInvoice" },
 ];
 
-export const TRANSPORT_OPTIONS = ["Copart", "Air cargo", "Sea cargo"];
+export const TRANSPORT_OPTIONS = ["copart", "airCargo", "seaCargo"];
 
-export const OBTAIN_OPTIONS = ["Departments", "Door to door", "Delivery"];
+export const OBTAIN_OPTIONS = ["departments", "doorToDoor", "delivery"];
 
 export const SHIPPING_SPEEDS = [
-  { id: "sea-econom", icon: "ship", label: "Econom (10–14 days)", price: 25, mode: "sea" },
-  { id: "sea-express", icon: "ship", label: "Express (7–10 days)", price: 25, mode: "sea" },
-  { id: "air-econom", icon: "plane", label: "Econom (10–14 days)", price: 25, mode: "air" },
-  { id: "air-express", icon: "plane", label: "Express (7–10 days)", price: 25, mode: "air" },
+  { id: "sea-econom", icon: "ship", labelKey: "seaEconom", price: 25, mode: "sea" },
+  { id: "sea-express", icon: "ship", labelKey: "seaExpress", price: 25, mode: "sea" },
+  { id: "air-econom", icon: "plane", labelKey: "airEconom", price: 25, mode: "air" },
+  { id: "air-express", icon: "plane", labelKey: "airExpress", price: 25, mode: "air" },
 ];
 
 export const CARRIERS = [
-  { id: "yuusell", name: "YuuSell agent", price: 49.5 },
-  { id: "fedex", name: "Post office", price: 49.5 },
-  { id: "ups", name: "Post office", price: 49.5 },
-  { id: "usps", name: "Post office", price: 49.5 },
+  { id: "yuusell", nameKey: "yuusell", price: 49.5 },
+  { id: "fedex", nameKey: "postOffice", price: 49.5 },
+  { id: "ups", nameKey: "postOffice", price: 49.5 },
+  { id: "usps", nameKey: "postOffice", price: 49.5 },
 ];
 
 export const US_STATES = [
-  "Alabama", "Alaska", "Arizona", "California", "Colorado", "Florida",
-  "Georgia", "Illinois", "New York", "Texas", "Washington",
+  "alabama", "alaska", "arizona", "california", "colorado", "florida",
+  "georgia", "illinois", "newYork", "texas", "washington",
 ];
 
 export const COUNTRIES = [
-  "United States", "China", "United Arab Emirates", "Germany", "Turkey", "Thailand",
+  "unitedStates", "china", "uae", "germany", "turkey", "thailand",
 ];

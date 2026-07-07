@@ -1,11 +1,15 @@
-import { STEPS } from "../data/shippingOptions";
+import { useTranslation } from "react-i18next";
 
-export default function StepIndicator({ currentStep }) {
+export default function StepIndicator({ currentStep, steps, methodStepSkipped = false, ariaLabel }) {
+  const { t } = useTranslation("shipNow");
+  const items = steps || [];
+
   return (
-    <nav aria-label="Shipping progress" className="w-full min-w-0">
+    <nav aria-label={ariaLabel || t("stepIndicator.ariaLabel")} className="w-full min-w-0">
       <ol className="flex items-start justify-between gap-1 sm:gap-2">
-        {STEPS.map((step, index) => {
-          const isComplete = currentStep > step.id;
+        {items.map((step, index) => {
+          const isComplete = currentStep > step.id
+            || (step.id === 2 && methodStepSkipped && currentStep >= 3);
           const isActive = currentStep === step.id;
 
           return (
@@ -40,7 +44,7 @@ export default function StepIndicator({ currentStep }) {
                     step.id
                   )}
                 </div>
-                {index < STEPS.length - 1 && (
+                {index < items.length - 1 && (
                   <div
                     className={`h-0.5 flex-1 transition-colors duration-300 ${
                       isComplete ? "bg-blue-500" : "bg-gray-200"

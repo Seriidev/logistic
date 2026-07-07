@@ -1,0 +1,237 @@
+{
+  "aria": {
+    "breadcrumb": "Навигационная цепочка",
+    "bookingProgress": "Прогресс бронирования",
+    "priceEstimate": "Расчёт стоимости",
+    "qrCode": "QR-код отправления",
+    "weightUnit": "Единица веса"
+  },
+  "breadcrumb": {
+    "main": "Главная",
+    "booking": "Бронирование"
+  },
+  "steps": {
+    "shipmentDetails": "Детали отправления",
+    "paymentMethod": "Способ оплаты",
+    "paymentDetails": "Платёжные данные",
+    "cardPayment": "Оплата картой",
+    "shipmentCreated": "Отправление создано",
+    "declarationCreated": "Декларация создана",
+    "stepOf": "Шаг {{current}} из {{total}}"
+  },
+  "actions": {
+    "back": "Назад",
+    "continue": "Продолжить",
+    "next": "Далее"
+  },
+  "paymentMethod": {
+    "title": "Способ оплаты",
+    "subtitle": "Выберите платёжного провайдера. Комиссии зависят от провайдера и добавляются к итоговой сумме.",
+    "subtitleTruck": "Выберите платёжного провайдера. Указанная цена включает комиссию провайдера.",
+    "free": "Бесплатно",
+    "fee": "+${{amount}}",
+    "summary": {
+      "service": "Услуга",
+      "delivery": "Доставка",
+      "estimatedCost": "Расчётная стоимость"
+    }
+  },
+  "paymentMethods": {
+    "yuusell": {
+      "name": "YuuSell Pay",
+      "tagline": "Мгновенная оплата · Без комиссии",
+      "badge": "Рекомендуем"
+    },
+    "fedex": {
+      "name": "FedEx",
+      "tagline": "Оплата через ваш аккаунт FedEx"
+    },
+    "ups": {
+      "name": "UPS",
+      "tagline": "Оплата через ваш аккаунт UPS"
+    },
+    "post": {
+      "name": "Почтовое отделение",
+      "tagline": "Оплата в ближайшем отделении"
+    }
+  },
+  "cardPayment": {
+    "title": "Оплата картой",
+    "subtitle": "Введите данные карты и платёжный адрес для завершения бронирования.",
+    "sections": {
+      "card": "Данные карты",
+      "billing": "Платёжный адрес",
+      "vat": "НДС"
+    },
+    "fields": {
+      "cardNumber": "Номер карты *",
+      "expiry": "Срок действия *",
+      "cvc": "CVC *",
+      "cardholderName": "Имя держателя карты *",
+      "fullName": "Полное имя *",
+      "country": "Страна *",
+      "addressLine1": "Адрес, строка 1 *",
+      "addressLine2": "Адрес, строка 2",
+      "city": "Город *",
+      "province": "Область / Регион",
+      "postalCode": "Почтовый индекс *",
+      "businessName": "Название компании",
+      "vatCountry": "Страна",
+      "vatNumber": "Номер НДС"
+    },
+    "placeholders": {
+      "cardNumber": "1234 5678 9012 3456",
+      "expiry": "ММ/ГГ",
+      "cvc": "123",
+      "cardholderName": "Имя на карте",
+      "fullName": "Полное имя",
+      "country": "Страна",
+      "addressLine1": "Улица, дом",
+      "addressLine2": "Квартира, офис и т.д. (необязательно)",
+      "city": "Город",
+      "province": "Область или регион",
+      "postalCode": "Почтовый индекс",
+      "businessName": "Название компании (необязательно)",
+      "vatCountry": "Страна",
+      "vatNumber": "ИНН / НДС (необязательно)"
+    },
+    "savePayment": "Сохранить платёжные данные для следующего раза",
+    "savePaymentFuture": "Сохранить платёжные данные для будущих заказов",
+    "savePaymentFaster": "Сохранить платёжные данные для быстрой оплаты",
+    "payButton": "Оплатить ${{amount}}"
+  },
+  "priceCalculator": {
+    "title": "Расчётная стоимость",
+    "currency": "USD",
+    "deliveryIn": "Доставка за <strong>{{time}}</strong>",
+    "lines": {
+      "baseFee": "Базовая стоимость услуги",
+      "weight": "Вес ({{weight}} кг к оплате)",
+      "distance": "Расстояние (~{{distance}} км)",
+      "insurance": "Страхование",
+      "providerFee": "Комиссия провайдера",
+      "container": "Контейнер ({{label}})",
+      "overweight": "Доплата за перевес",
+      "units": "Единицы ({{count}})",
+      "weightKg": "Вес ({{kg}} кг)",
+      "delivery": "Доставка ({{label}})",
+      "vehicle": "Транспорт ({{label}})",
+      "category": "Категория ({{category}})"
+    },
+    "total": "Итого",
+    "disclaimerAir": "Объёмный вес {{volumetric}} кг · оплата по большему из фактического и объёмного веса. Окончательная цена подтверждается при оформлении.",
+    "disclaimerSea": "Предварительный расчёт. Окончательная цена подтверждается при оформлении с учётом маршрута и расписания перевозчиков.",
+    "disclaimerTruck": "Предварительный расчёт. Окончательная цена подтверждается при оформлении после оптимизации маршрута."
+  },
+  "form": {
+    "sections": {
+      "route": "Маршрут",
+      "package": "Информация о грузе",
+      "shipment": "Отправление",
+      "insurance": "Страхование",
+      "origin": "Отправление",
+      "receiver": "Данные получателя",
+      "shipper": "Данные отправителя",
+      "customs": "Таможня и товары",
+      "receiverDelivery": "Получатель и доставка",
+      "containerCargo": "Контейнер и груз"
+    },
+    "fields": {
+      "fromCountry": "Страна отправления *",
+      "zipCode": "Почтовый индекс *",
+      "destinationCountry": "Страна назначения *",
+      "dateOfShipment": "Дата отправления *",
+      "weight": "Вес (кг) *",
+      "packageWeight": "Вес груза *",
+      "length": "Длина (см) *",
+      "width": "Ширина (см) *",
+      "height": "Высота (см) *",
+      "specialInstructions": "Особые указания",
+      "totalUnits": "Общее количество единиц *",
+      "commodityType": "Тип товара *",
+      "deliveryType": "Тип доставки *",
+      "commodityDescription": "Описание товара",
+      "declaredValue": "Заявленная стоимость для страхования (USD)",
+      "insuranceFee": "Стоимость страхования (USD)",
+      "containerType": "Тип контейнера *",
+      "hsCode": "Код ТН ВЭД *",
+      "country": "Выберите страну *",
+      "fromLocation": "Откуда — Местоположение *",
+      "fromStorage": "Откуда — Склад",
+      "fromWarehouse": "Откуда — Склад",
+      "receiverInfo": "Имя и адрес получателя *",
+      "receiverInfoFtl": "Данные получателя *",
+      "shipperInfo": "Имя и адрес отправителя *",
+      "category": "Категория *"
+    },
+    "placeholders": {
+      "fromCountry": "напр. США",
+      "fromCountrySea": "напр. Китай",
+      "zipCode": "напр. 10001",
+      "zipCodeSea": "напр. 200000",
+      "destinationCountry": "напр. Германия",
+      "destinationCountrySea": "напр. Нидерланды",
+      "zero": "0",
+      "specialInstructions": "Примечания по обращению, предпочтения по доставке и т.д.",
+      "totalUnits": "напр. 5",
+      "selectCommodity": "Выберите тип товара",
+      "selectDelivery": "Выберите тип доставки",
+      "commodityDescription": "Опишите перевозимые товары",
+      "selectContainer": "Выберите тип контейнера",
+      "hsCode": "напр. 8471.30",
+      "hsCodeLtl": "напр. 6109.10",
+      "hsCodeFtl": "напр. 8708.99",
+      "selectCountry": "Выберите страну",
+      "fromLocation": "Место забора",
+      "fromStorage": "Склад / хранилище",
+      "fromWarehouse": "Склад",
+      "receiverInfo": "ФИО, адрес, телефон",
+      "selectCategory": "Выберите категорию"
+    }
+  },
+  "success": {
+    "title": "Отправление создано",
+    "status": "Электронная декларация создана",
+    "paymentSuccessful": "Оплата прошла успешно",
+    "trackingNumber": "Номер отслеживания",
+    "shipmentNumber": "Номер отправления",
+    "referenceNumber": "Референсный номер отправления",
+    "downloadPdf": "Скачать PDF",
+    "scanAtBranch": "Сканировать в отделении",
+    "trackShipment": "Отследить отправление",
+    "nextStep": {
+      "label": "Следующий шаг:",
+      "bodyAir": "Принесите посылку в ближайшее отделение или дождитесь забора. Вы можете отслеживать отправление в любое время по номеру отслеживания.",
+      "bodySea": "Заберите и отправьте груз из ближайшего отделения. Отслеживайте отправление в любое время по номеру отслеживания.",
+      "bodyTruck": "Заберите и отправьте груз из ближайшего отделения. Отслеживайте отправление в любое время по номеру отслеживания."
+    },
+    "pdf": {
+      "title": "YuuSell Logistics — Электронная декларация",
+      "service": "Услуга:",
+      "trackingNumber": "Номер отслеживания:",
+      "shipmentNumber": "Номер отправления:",
+      "referenceNumber": "Референсный номер:",
+      "from": "Откуда:",
+      "destination": "Куда:",
+      "shipmentDate": "Дата отправления:",
+      "weight": "Вес:",
+      "dimensions": "Габариты:",
+      "details": "Детали:",
+      "deliveryType": "Тип доставки:",
+      "declaredValue": "Заявленная стоимость:",
+      "paymentMethod": "Способ оплаты:",
+      "amountPaid": "Оплаченная сумма:",
+      "deliveryTime": "Срок доставки:",
+      "country": "Страна:",
+      "instructionsAir": "Принесите посылку в ближайшее отделение или дождитесь забора.",
+      "pickupSea": "Заберите и отправьте груз из ближайшего отделения.",
+      "thankYou": "Спасибо, что выбрали YuuSell."
+    }
+  },
+  "common": {
+    "notSet": "-",
+    "emDash": "—",
+    "oceanFreight": "{{service}} — морская перевозка",
+    "roadFreight": "{{service}} — автоперевозка"
+  }
+}

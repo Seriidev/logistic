@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const inputClass =
   "w-full h-11 sm:h-12 px-4 rounded-xl border border-gray-200 text-sm text-gray-900 outline-none bg-white focus:border-blue-400 transition-colors min-w-0 font-[inherit]";
 const labelClass = "text-sm font-medium text-gray-700 mb-1.5 block";
@@ -32,6 +34,7 @@ function formatExpiry(value) {
 }
 
 export default function PaymentDetails({ details, onChange, onBack, onPay, amount }) {
+  const { t } = useTranslation("booking");
   const update = (field) => (e) => onChange(field, e.target.value);
   const valid = isValid(details);
 
@@ -39,13 +42,13 @@ export default function PaymentDetails({ details, onChange, onBack, onPay, amoun
     <div className="animate-[fadeIn_0.3s_ease-out]">
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-blue-500 mb-2">
-          Step 3 of 4
+          {t("steps.stepOf", { current: 3, total: 4 })}
         </p>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-          Payment Details
+          {t("steps.paymentDetails")}
         </h2>
         <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
-          Enter your card and billing information to complete the booking.
+          {t("cardPayment.subtitle")}
         </p>
       </div>
 
@@ -53,73 +56,75 @@ export default function PaymentDetails({ details, onChange, onBack, onPay, amoun
         onSubmit={(e) => { e.preventDefault(); if (valid) onPay(); }}
         className="max-w-3xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-7 lg:p-8 min-w-0"
       >
-        {/* Card */}
-        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Card Information</h3>
+        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+          {t("cardPayment.sections.card")}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="cardNumber" className={labelClass}>Card Number *</label>
-            <input id="cardNumber" type="text" inputMode="numeric" placeholder="1234 5678 9012 3456"
+            <label htmlFor="cardNumber" className={labelClass}>{t("cardPayment.fields.cardNumber")}</label>
+            <input id="cardNumber" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.cardNumber")}
               value={details.cardNumber || ""}
               onChange={(e) => onChange("cardNumber", formatCardNumber(e.target.value))}
               className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="expiry" className={labelClass}>Expiration Date *</label>
-            <input id="expiry" type="text" inputMode="numeric" placeholder="MM/YY"
+            <label htmlFor="expiry" className={labelClass}>{t("cardPayment.fields.expiry")}</label>
+            <input id="expiry" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.expiry")}
               value={details.expiry || ""}
               onChange={(e) => onChange("expiry", formatExpiry(e.target.value))}
               className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="cvc" className={labelClass}>CVC *</label>
-            <input id="cvc" type="text" inputMode="numeric" placeholder="123" maxLength={4}
+            <label htmlFor="cvc" className={labelClass}>{t("cardPayment.fields.cvc")}</label>
+            <input id="cvc" type="text" inputMode="numeric" placeholder={t("cardPayment.placeholders.cvc")} maxLength={4}
               value={details.cvc || ""}
               onChange={(e) => onChange("cvc", e.target.value.replace(/\D/g, "").slice(0, 4))}
               className={inputClass} />
           </div>
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="cardholderName" className={labelClass}>Cardholder Name *</label>
-            <input id="cardholderName" type="text" placeholder="Name on card"
+            <label htmlFor="cardholderName" className={labelClass}>{t("cardPayment.fields.cardholderName")}</label>
+            <input id="cardholderName" type="text" placeholder={t("cardPayment.placeholders.cardholderName")}
               value={details.cardholderName || ""} onChange={update("cardholderName")} className={inputClass} />
           </div>
         </div>
 
-        {/* Billing */}
-        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Billing Address</h3>
+        <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
+          {t("cardPayment.sections.billing")}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="billingCountry" className={labelClass}>Country *</label>
-            <input id="billingCountry" type="text" placeholder="Country"
+            <label htmlFor="billingCountry" className={labelClass}>{t("cardPayment.fields.country")}</label>
+            <input id="billingCountry" type="text" placeholder={t("cardPayment.placeholders.country")}
               value={details.billingCountry || ""} onChange={update("billingCountry")} className={inputClass} />
           </div>
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="addressLine1" className={labelClass}>Address Line 1 *</label>
-            <input id="addressLine1" type="text" placeholder="Street address"
+            <label htmlFor="addressLine1" className={labelClass}>{t("cardPayment.fields.addressLine1")}</label>
+            <input id="addressLine1" type="text" placeholder={t("cardPayment.placeholders.addressLine1")}
               value={details.addressLine1 || ""} onChange={update("addressLine1")} className={inputClass} />
           </div>
           <div className="min-w-0 sm:col-span-2">
-            <label htmlFor="addressLine2" className={labelClass}>Address Line 2</label>
-            <input id="addressLine2" type="text" placeholder="Apartment, suite, etc. (optional)"
+            <label htmlFor="addressLine2" className={labelClass}>{t("cardPayment.fields.addressLine2")}</label>
+            <input id="addressLine2" type="text" placeholder={t("cardPayment.placeholders.addressLine2")}
               value={details.addressLine2 || ""} onChange={update("addressLine2")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="city" className={labelClass}>City *</label>
-            <input id="city" type="text" placeholder="City"
+            <label htmlFor="city" className={labelClass}>{t("cardPayment.fields.city")}</label>
+            <input id="city" type="text" placeholder={t("cardPayment.placeholders.city")}
               value={details.city || ""} onChange={update("city")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="province" className={labelClass}>Province / State</label>
-            <input id="province" type="text" placeholder="Province or state"
+            <label htmlFor="province" className={labelClass}>{t("cardPayment.fields.province")}</label>
+            <input id="province" type="text" placeholder={t("cardPayment.placeholders.province")}
               value={details.province || ""} onChange={update("province")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="postalCode" className={labelClass}>Postal Code *</label>
-            <input id="postalCode" type="text" placeholder="Postal code"
+            <label htmlFor="postalCode" className={labelClass}>{t("cardPayment.fields.postalCode")}</label>
+            <input id="postalCode" type="text" placeholder={t("cardPayment.placeholders.postalCode")}
               value={details.postalCode || ""} onChange={update("postalCode")} className={inputClass} />
           </div>
           <div className="min-w-0">
-            <label htmlFor="vat" className={labelClass}>VAT Information</label>
-            <input id="vat" type="text" placeholder="VAT / Tax ID (optional)"
+            <label htmlFor="vat" className={labelClass}>{t("cardPayment.sections.vat")}</label>
+            <input id="vat" type="text" placeholder={t("cardPayment.placeholders.vatNumber")}
               value={details.vat || ""} onChange={update("vat")} className={inputClass} />
           </div>
         </div>
@@ -131,7 +136,7 @@ export default function PaymentDetails({ details, onChange, onBack, onPay, amoun
             onChange={(e) => onChange("savePayment", e.target.checked)}
             className="accent-blue-500 w-4 h-4"
           />
-          <span className="text-sm text-gray-700">Save payment information for next time</span>
+          <span className="text-sm text-gray-700">{t("cardPayment.savePayment")}</span>
         </label>
 
         <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
@@ -144,7 +149,7 @@ export default function PaymentDetails({ details, onChange, onBack, onPay, amoun
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("actions.back")}
           </button>
           <button
             type="submit"
@@ -153,7 +158,7 @@ export default function PaymentDetails({ details, onChange, onBack, onPay, amoun
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
           >
-            Pay ${amount.toFixed(2)}
+            {t("cardPayment.payButton", { amount: amount.toFixed(2) })}
           </button>
         </div>
       </form>

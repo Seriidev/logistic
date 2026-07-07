@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import ProgressIndicator from "./components/ProgressIndicator";
 import ServiceSelector from "./components/ServiceSelector";
 import LCLForm from "./components/LCLForm";
@@ -10,14 +11,16 @@ import SuccessStep from "./components/SuccessStep";
 import Footer from "../components/Footer";
 import { getBreakdown } from "./utils/getBreakdown";
 import { getPaymentMethod } from "./data/paymentMethods";
+import { getPaymentMethodLabel } from "../i18n/paymentMethodLabels";
 
 function defaultsFor(service) {
   const shared = { weightUnit: "kg", deliveryType: "port-port" };
   if (service === "fcl") return { ...shared, containerType: "20ft" };
-  return { ...shared, commodityType: "General Cargo" };
+  return { ...shared, commodityType: "generalCargo" };
 }
 
 export default function SeaCargoBookingPage() {
+  const { t } = useTranslation(["seaCargoBooking", "booking"]);
   const [searchParams] = useSearchParams();
   const initialService = searchParams.get("service") === "fcl" ? "fcl" : "lcl";
 
@@ -52,14 +55,21 @@ export default function SeaCargoBookingPage() {
 
   const detailLine =
     service === "fcl"
-      ? `${breakdown.containerLabel} container`
-      : `${breakdown.units} unit(s)`;
+      ? t("booking.detailLine.fclContainer", {
+          ns: "seaCargoBooking",
+          label: breakdown.containerLabelKey
+            ? t(breakdown.containerLabelKey, { ns: "seaCargoBooking" })
+            : t("common.emDash", { ns: "booking" }),
+        })
+      : t("booking.detailLine.lclUnits", { ns: "seaCargoBooking", count: breakdown.units });
 
   const booking = {
     serviceType: service,
-    serviceLabel: breakdown.label,
-    deliveryTime: breakdown.deliveryTime,
-    deliveryLabel: breakdown.deliveryLabel,
+    serviceLabel: t(breakdown.labelKey, { ns: "seaCargoBooking" }),
+    deliveryTime: t(breakdown.deliveryTimeKey, { ns: "seaCargoBooking" }),
+    deliveryLabel: breakdown.deliveryLabelKey
+      ? t(breakdown.deliveryLabelKey, { ns: "seaCargoBooking" })
+      : t("common.notSet", { ns: "booking" }),
     fromCountry: formData.fromCountry,
     zipCode: formData.zipCode,
     destinationCountry: formData.destinationCountry,
@@ -68,7 +78,9 @@ export default function SeaCargoBookingPage() {
     weightUnit: formData.weightUnit,
     declaredValue: formData.declaredValue,
     detailLine,
-    paymentMethod: selectedMethod ? selectedMethod.name : "-",
+    paymentMethod: selectedMethod
+      ? getPaymentMethodLabel(t, selectedMethod, "name")
+      : t("common.notSet", { ns: "booking" }),
     total: breakdown.total,
   };
 
@@ -76,20 +88,20 @@ export default function SeaCargoBookingPage() {
     <>
       <main className="min-w-0 bg-gradient-to-b from-blue-50/60 to-white">
         <section className="page-container min-w-0 pt-5 sm:pt-6">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5 flex-wrap">
-            <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Main</Link>
+          <nav aria-label={t("aria.breadcrumb", { ns: "booking" })} className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5 flex-wrap">
+            <Link to="/" className="hover:text-blue-500 transition-colors no-underline text-gray-500">{t("breadcrumb.main", { ns: "booking" })}</Link>
             <span aria-hidden="true">›</span>
-            <Link to="/sea-cargo" className="hover:text-blue-500 transition-colors no-underline text-gray-500">Sea Cargo</Link>
+            <Link to="/sea-cargo" className="hover:text-blue-500 transition-colors no-underline text-gray-500">{t("breadcrumb.seaCargo", { ns: "seaCargoBooking" })}</Link>
             <span aria-hidden="true">›</span>
-            <span className="text-gray-900 font-medium">Booking</span>
+            <span className="text-gray-900 font-medium">{t("breadcrumb.booking", { ns: "booking" })}</span>
           </nav>
 
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 sm:mb-3">
-              Sea Cargo Booking
+              {t("hero.title", { ns: "seaCargoBooking" })}
             </h1>
             <p className="text-sm sm:text-base text-gray-500">
-              Complete your ocean freight booking in a few simple steps.
+              {t("hero.subtitle", { ns: "seaCargoBooking" })}
             </p>
           </div>
         </section>

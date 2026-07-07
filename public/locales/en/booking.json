@@ -1,0 +1,237 @@
+{
+  "aria": {
+    "breadcrumb": "Breadcrumb",
+    "bookingProgress": "Booking progress",
+    "priceEstimate": "Price estimate",
+    "qrCode": "Shipment QR code",
+    "weightUnit": "Weight unit"
+  },
+  "breadcrumb": {
+    "main": "Main",
+    "booking": "Booking"
+  },
+  "steps": {
+    "shipmentDetails": "Shipment Details",
+    "paymentMethod": "Payment Method",
+    "paymentDetails": "Payment Details",
+    "cardPayment": "Card Payment",
+    "shipmentCreated": "Shipment Created",
+    "declarationCreated": "Declaration Created",
+    "stepOf": "Step {{current}} of {{total}}"
+  },
+  "actions": {
+    "back": "Back",
+    "continue": "Continue",
+    "next": "Next"
+  },
+  "paymentMethod": {
+    "title": "Payment Method",
+    "subtitle": "Choose a payment provider. Fees vary by provider and are added to your total.",
+    "subtitleTruck": "Choose a payment provider. The price shown includes the provider fee.",
+    "free": "Free",
+    "fee": "+${{amount}}",
+    "summary": {
+      "service": "Service",
+      "delivery": "Delivery",
+      "estimatedCost": "Estimated Cost"
+    }
+  },
+  "paymentMethods": {
+    "yuusell": {
+      "name": "YuuSell Pay",
+      "tagline": "Instant checkout · No processing fee",
+      "badge": "Recommended"
+    },
+    "fedex": {
+      "name": "FedEx",
+      "tagline": "Pay through your FedEx account"
+    },
+    "ups": {
+      "name": "UPS",
+      "tagline": "Pay through your UPS account"
+    },
+    "post": {
+      "name": "Post Office",
+      "tagline": "Pay at your local branch"
+    }
+  },
+  "cardPayment": {
+    "title": "Card Payment",
+    "subtitle": "Enter your card and billing information to complete the booking.",
+    "sections": {
+      "card": "Card Information",
+      "billing": "Billing Address",
+      "vat": "VAT Information"
+    },
+    "fields": {
+      "cardNumber": "Card Number *",
+      "expiry": "Expiration Date *",
+      "cvc": "CVC *",
+      "cardholderName": "Cardholder Name *",
+      "fullName": "Full Name *",
+      "country": "Country *",
+      "addressLine1": "Address Line 1 *",
+      "addressLine2": "Address Line 2",
+      "city": "City *",
+      "province": "Province / State",
+      "postalCode": "Postal Code *",
+      "businessName": "Business Name",
+      "vatCountry": "Country",
+      "vatNumber": "VAT Number"
+    },
+    "placeholders": {
+      "cardNumber": "1234 5678 9012 3456",
+      "expiry": "MM/YY",
+      "cvc": "123",
+      "cardholderName": "Name on card",
+      "fullName": "Full name",
+      "country": "Country",
+      "addressLine1": "Street address",
+      "addressLine2": "Apartment, suite, etc. (optional)",
+      "city": "City",
+      "province": "Province or state",
+      "postalCode": "Postal code",
+      "businessName": "Company / business name (optional)",
+      "vatCountry": "Country",
+      "vatNumber": "VAT / Tax ID (optional)"
+    },
+    "savePayment": "Save payment information for next time",
+    "savePaymentFuture": "Save payment information for future checkout",
+    "savePaymentFaster": "Save payment information for faster checkout",
+    "payButton": "Pay ${{amount}}"
+  },
+  "priceCalculator": {
+    "title": "Estimated Cost",
+    "currency": "USD",
+    "deliveryIn": "Delivery in <strong>{{time}}</strong>",
+    "lines": {
+      "baseFee": "Base service fee",
+      "weight": "Weight ({{weight}} kg billable)",
+      "distance": "Distance (~{{distance}} km)",
+      "insurance": "Insurance",
+      "providerFee": "Provider fee",
+      "container": "Container ({{label}})",
+      "overweight": "Overweight surcharge",
+      "units": "Units ({{count}})",
+      "weightKg": "Weight ({{kg}} kg)",
+      "delivery": "Delivery ({{label}})",
+      "vehicle": "Vehicle ({{label}})",
+      "category": "Category ({{category}})"
+    },
+    "total": "Total",
+    "disclaimerAir": "Volumetric weight {{volumetric}} kg · billed on the greater of actual vs. volumetric weight. Final price confirmed at checkout.",
+    "disclaimerSea": "Preliminary estimate. Final price confirmed at checkout based on route and carrier schedules.",
+    "disclaimerTruck": "Preliminary estimate. Final price confirmed at checkout after route optimization."
+  },
+  "form": {
+    "sections": {
+      "route": "Route",
+      "package": "Package Information",
+      "shipment": "Shipment",
+      "insurance": "Insurance",
+      "origin": "Origin",
+      "receiver": "Receiver Information",
+      "shipper": "Shipper Information",
+      "customs": "Customs & Goods",
+      "receiverDelivery": "Receiver & Delivery",
+      "containerCargo": "Container & Cargo"
+    },
+    "fields": {
+      "fromCountry": "From Country *",
+      "zipCode": "ZIP Code *",
+      "destinationCountry": "Destination Country *",
+      "dateOfShipment": "Date of Shipment *",
+      "weight": "Weight (kg) *",
+      "packageWeight": "Package Weight *",
+      "length": "Length (cm) *",
+      "width": "Width (cm) *",
+      "height": "Height (cm) *",
+      "specialInstructions": "Special Instructions",
+      "totalUnits": "Total Units *",
+      "commodityType": "Commodity Type *",
+      "deliveryType": "Delivery Type *",
+      "commodityDescription": "Commodity Description",
+      "declaredValue": "Insurance Declared Value (USD)",
+      "insuranceFee": "Insurance Fee (USD)",
+      "containerType": "Container Type *",
+      "hsCode": "HS Code *",
+      "country": "Choose your country *",
+      "fromLocation": "From — Location *",
+      "fromStorage": "From — Storage",
+      "fromWarehouse": "From — Warehouse",
+      "receiverInfo": "Receiver name & address *",
+      "receiverInfoFtl": "Receiver Information *",
+      "shipperInfo": "Shipper name & address *",
+      "category": "Category *"
+    },
+    "placeholders": {
+      "fromCountry": "e.g. United States",
+      "fromCountrySea": "e.g. China",
+      "zipCode": "e.g. 10001",
+      "zipCodeSea": "e.g. 200000",
+      "destinationCountry": "e.g. Germany",
+      "destinationCountrySea": "e.g. Netherlands",
+      "zero": "0",
+      "specialInstructions": "Handling notes, delivery preferences, etc.",
+      "totalUnits": "e.g. 5",
+      "selectCommodity": "Select commodity type",
+      "selectDelivery": "Select delivery type",
+      "commodityDescription": "Describe the goods being shipped",
+      "selectContainer": "Select container type",
+      "hsCode": "e.g. 8471.30",
+      "hsCodeLtl": "e.g. 6109.10",
+      "hsCodeFtl": "e.g. 8708.99",
+      "selectCountry": "Select country",
+      "fromLocation": "Pickup location",
+      "fromStorage": "Storage / warehouse",
+      "fromWarehouse": "Warehouse",
+      "receiverInfo": "Full name, address, phone",
+      "selectCategory": "Select category"
+    }
+  },
+  "success": {
+    "title": "Shipment Created",
+    "status": "Electronic declaration created",
+    "paymentSuccessful": "Payment successful",
+    "trackingNumber": "Tracking Number",
+    "shipmentNumber": "Shipment Number",
+    "referenceNumber": "Shipment Reference Number",
+    "downloadPdf": "Download PDF",
+    "scanAtBranch": "Scan at branch",
+    "trackShipment": "Track Shipment",
+    "nextStep": {
+      "label": "Next step:",
+      "bodyAir": "Please bring your package to the nearest branch or wait for pickup. You can track your shipment any time using your tracking number.",
+      "bodySea": "Pick up and send your shipment from the nearest branch. Track your shipment any time using your tracking number.",
+      "bodyTruck": "Pick up and send your shipment from the nearest branch. Track your shipment any time using your tracking number."
+    },
+    "pdf": {
+      "title": "YuuSell Logistics - Electronic Declaration",
+      "service": "Service:",
+      "trackingNumber": "Tracking Number:",
+      "shipmentNumber": "Shipment Number:",
+      "referenceNumber": "Reference Number:",
+      "from": "From:",
+      "destination": "Destination:",
+      "shipmentDate": "Shipment Date:",
+      "weight": "Weight:",
+      "dimensions": "Dimensions:",
+      "details": "Details:",
+      "deliveryType": "Delivery Type:",
+      "declaredValue": "Declared Value:",
+      "paymentMethod": "Payment Method:",
+      "amountPaid": "Amount Paid:",
+      "deliveryTime": "Delivery Time:",
+      "country": "Country:",
+      "instructionsAir": "Please bring your package to the nearest branch or wait for pickup.",
+      "pickupSea": "Pick up and send your shipment from the nearest branch.",
+      "thankYou": "Thank you for shipping with YuuSell."
+    }
+  },
+  "common": {
+    "notSet": "-",
+    "emDash": "—",
+    "oceanFreight": "{{service}} Ocean Freight",
+    "roadFreight": "{{service}} Road Freight"
+  }
+}

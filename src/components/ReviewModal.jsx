@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-function StarRating({ rating, setRating }) {
+function StarRating({ rating, setRating, t }) {
   const [hovered, setHovered] = useState(0);
 
   return (
-    <div className="flex gap-1" role="group" aria-label="Rating">
+    <div className="flex gap-1" role="group" aria-label={t("reviewModal.ratingGroup")}>
       {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
@@ -12,7 +13,7 @@ function StarRating({ rating, setRating }) {
           onClick={() => setRating(star)}
           onMouseEnter={() => setHovered(star)}
           onMouseLeave={() => setHovered(0)}
-          aria-label={`${star} star${star > 1 ? "s" : ""}`}
+          aria-label={t("reviewModal.star", { count: star })}
           className="border-none bg-transparent cursor-pointer p-0.5 rounded-md transition-transform hover:scale-110"
         >
           <svg
@@ -29,6 +30,8 @@ function StarRating({ rating, setRating }) {
 }
 
 export function ReviewModal({ isOpen, onClose }) {
+  const { t } = useTranslation("home");
+  const { t: tc } = useTranslation("common");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -57,10 +60,10 @@ export function ReviewModal({ isOpen, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) {
-      alert("Please fill in your name and review.");
+      alert(t("reviewModal.errors.required"));
       return;
     }
-    alert("Thank you for your review!");
+    alert(t("reviewModal.success"));
     setName("");
     setEmail("");
     setMessage("");
@@ -83,12 +86,12 @@ export function ReviewModal({ isOpen, onClose }) {
       <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl z-10 max-h-[92dvh] overflow-y-auto footer-modal-panel">
         <div className="sticky top-0 flex items-center justify-between gap-3 px-5 py-4 border-b border-gray-100 bg-white rounded-t-2xl sm:rounded-t-2xl">
           <h2 id="review-modal-title" className="text-lg font-bold text-gray-900">
-            Write a Review
+            {t("reviewModal.title")}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={tc("shared.modal.close")}
             className="w-9 h-9 shrink-0 rounded-full bg-gray-100 flex items-center justify-center border-none cursor-pointer hover:bg-gray-200 transition-colors"
           >
             <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
@@ -99,15 +102,15 @@ export function ReviewModal({ isOpen, onClose }) {
 
         <form onSubmit={handleSubmit} className="p-5 sm:p-6 flex flex-col gap-5">
           <div className="flex flex-col items-center gap-2 py-1">
-            <span className="text-sm font-medium text-gray-600">Your rating</span>
-            <StarRating rating={rating} setRating={setRating} />
+            <span className="text-sm font-medium text-gray-600">{t("reviewModal.ratingLabel")}</span>
+            <StarRating rating={rating} setRating={setRating} t={t} />
           </div>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Name</span>
+            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{tc("shared.fields.name")}</span>
             <input
               type="text"
-              placeholder="Your full name"
+              placeholder={t("reviewModal.namePlaceholder")}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -116,10 +119,10 @@ export function ReviewModal({ isOpen, onClose }) {
           </label>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Email</span>
+            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{tc("shared.fields.email")}</span>
             <input
               type="email"
-              placeholder="your@email.com"
+              placeholder={tc("shared.fields.emailPlaceholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full h-11 px-4 rounded-xl bg-gray-50 border border-gray-200 outline-none text-sm text-gray-900 font-[inherit] focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
@@ -127,9 +130,9 @@ export function ReviewModal({ isOpen, onClose }) {
           </label>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Review</span>
+            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{t("reviewModal.review")}</span>
             <textarea
-              placeholder="Share your experience with YuuSell..."
+              placeholder={t("reviewModal.reviewPlaceholder")}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
@@ -142,7 +145,7 @@ export function ReviewModal({ isOpen, onClose }) {
             type="submit"
             className="w-full min-h-[44px] bg-blue-500 text-white font-bold text-sm uppercase tracking-wider rounded-full border-none cursor-pointer hover:bg-blue-600 active:scale-[0.98] transition-all duration-150 font-[inherit]"
           >
-            Submit Review
+            {t("reviewModal.submit")}
           </button>
         </form>
       </div>

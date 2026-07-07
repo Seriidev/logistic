@@ -54,14 +54,8 @@ export default function ServerErrorPage() {
   return (
     <ErrorPageLayout
       illustration={<ServerErrorIllustration />}
-      title="500 – Internal Server Error"
-      description={
-        <>
-          Oops! Something went wrong on our side. Our system hit a temporary glitch.
-          We&apos;re already working to fix it. Please try again in a few minutes or contact
-          our support team if the issue persists.
-        </>
-      }
+      titleKey="serverError.title"
+      descriptionKey="serverError.description"
     />
   );
 }

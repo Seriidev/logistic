@@ -11,13 +11,13 @@ export function getDefaultCountry() {
   }
 }
 
-/** Returns an error message or null if valid. */
+/** Returns an error code ('phoneRequired' | 'phoneInvalid') or null if valid. */
 export function getPhoneValidationError(value, { required = false } = {}) {
   if (!value || !String(value).trim()) {
-    return required ? "Phone number is required." : null;
+    return required ? "phoneRequired" : null;
   }
   if (!isValidPhoneNumber(value)) {
-    return "Please enter a valid phone number for the selected country.";
+    return "phoneInvalid";
   }
   return null;
 }

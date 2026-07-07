@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import en from "react-phone-number-input/locale/en.json";
@@ -25,10 +26,12 @@ export default function PhoneInputField({
   disabled = false,
   defaultCountry,
 }) {
+  const { t } = useTranslation("common");
   const [touched, setTouched] = useState(false);
   const country = useMemo(() => defaultCountry || getDefaultCountry(), [defaultCountry]);
 
-  const internalError = touched ? getPhoneValidationError(value, { required }) : null;
+  const errorCode = touched ? getPhoneValidationError(value, { required }) : null;
+  const internalError = errorCode ? t(`shared.validation.${errorCode}`) : null;
   const error = externalError || internalError;
   const inputId = id || (label ? `phone-${label.replace(/\s+/g, "-").toLowerCase()}` : undefined);
 

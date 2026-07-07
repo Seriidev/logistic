@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import SeaCargoHero from "../components/sea-cargo/SeaCargoHero";
 import SeaShippingOptions from "../components/sea-cargo/SeaShippingOptions";
 import SeaWhyChooseUs from "../components/sea-cargo/SeaWhyChooseUs";
@@ -14,16 +15,15 @@ import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 
 export default function SeaPage() {
+  const { t, i18n } = useTranslation("seaCargo");
+
   useEffect(() => {
-    document.title = "Global Sea Cargo Solutions | YuuSell Logistics";
+    document.title = t("meta.title");
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
-      meta.setAttribute(
-        "content",
-        "Reliable and cost-effective international ocean freight services. LCL and FCL shipping, global port coverage, container options, customs assistance, and real-time tracking."
-      );
+      meta.setAttribute("content", t("meta.description"));
     }
-  }, []);
+  }, [t, i18n.language]);
 
   return (
     <>

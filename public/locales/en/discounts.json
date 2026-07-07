@@ -1,0 +1,57 @@
+{
+  "breadcrumb": { "title": "Discounts" },
+  "title": "Discounts",
+  "shipNow": "Ship Now",
+  "categories": {
+    "discounts": "Discounts",
+    "events": "Events",
+    "shopping": "YuuSell shopping"
+  },
+  "empty": "No discounts in this category yet.",
+  "descriptionLabel": "Description",
+  "readMore": "read more...",
+  "close": "Close",
+  "fallback": {
+    "registerWin": "Register & Win",
+    "giveaway": "Giveaway",
+    "giveawayDates": "September 8-30",
+    "saveTitle": "Save on Your<br/>First Shipment",
+    "saveSubtitle": "20% off your first international shipment."
+  },
+  "articles": {
+    "xbox": {
+      "title": "Autumn Surprise: XBOX Giveaway",
+      "description": "🎁 Promo runs: Sept 8–30, 2025\nWinner revealed Oct 1, 2025 — follow us on social media to stay tuned.\nDon't stop be-leafing — let this autumn surprise you!\nGood luck!"
+    },
+    "promo20": {
+      "title": "-20% on the first delivery with YuuSell",
+      "description": "Get 20% off your first delivery with YuuSell! This article covers how YuuSell makes international shipping from the USA and China fast, affordable, and simple. Perfect for shoppers and small businesses — with automatic discounts, real-time tracking, and prices from just $5. Learn how to start saving today!"
+    }
+  },
+  "modals": {
+    "offer20": {
+      "heading": "What's Included in the 20% Off Offer?",
+      "paragraphs": [
+        "YuuSell is making it easier than ever to shop from the USA and China with a special welcome offer for new users. Now you can enjoy 20% off your first delivery, automatically applied at checkout — no promo code needed!",
+        "Whether you're ordering trendy clothes from the U.S., gadgets from Amazon, or wholesale goods from 1688 or Taobao, YuuSell guarantees fast, affordable, and reliable delivery straight to your door."
+      ],
+      "listTitle": "🔥 What You Get:",
+      "listItems": [
+        { "bold": "20% discount", "text": " on your first international delivery" },
+        { "bold": "Automatic application", "text": " — no promo code required" },
+        { "bold": "Shipping from", "text": " the USA and China" },
+        { "bold": "Real-time tracking,", "text": " secure storage, and personal account dashboard" },
+        { "bold": "Prices starting", "text": " from just $5 after discount" }
+      ]
+    },
+    "xbox": {
+      "heading": "Autumn Surprise: XBOX Giveaway",
+      "paragraphs": [
+        "🎁 Promo runs: Sept 8–30, 2025",
+        "Winner revealed Oct 1, 2025 — follow us on social media to stay tuned.",
+        "Don't stop be-leafing — let this autumn surprise you!",
+        "Register with YuuSell for a chance to win an XBOX. Good luck!"
+      ]
+    }
+  }
+}

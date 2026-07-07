@@ -1,61 +1,60 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PhoneInputField from "./PhoneInputField";
 import { getPhoneValidationError } from "../utils/phone";
 
-const SHIPPING_OPTIONS = [
-  "Business",
-  "Personal",
-  "E-commerce",
-  "Freight Broker",
-  "Other",
+const SHIPPING_OPTION_KEYS = [
+  "business",
+  "personal",
+  "ecommerce",
+  "freightBroker",
+  "other",
 ];
 
 export default function ContactForm() {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [shipping, setShipping] = useState("Business");
+  const [shipping, setShipping] = useState("business");
 
   const handleSubmit = () => {
     const err = getPhoneValidationError(phone, { required: true });
     if (err) {
-      setPhoneError(err);
+      setPhoneError(t(`shared.validation.${err}`));
       return;
     }
     setPhoneError("");
-    alert(`Thank you, ${name}! We'll contact you soon.`);
+    alert(t("contactForm.successAlert", { name }));
   };
 
   return (
     <section className="page-container min-w-0 py-16">
       <div className="max-w-175 mx-auto">
 
-        {/* Header */}
         <div className="text-center mb-10">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-            Connect with us
+            {t("contactForm.eyebrow")}
           </p>
           <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Need An Expert Advice?
+            {t("contactForm.title")}
           </h2>
           <p className="text-sm text-gray-500 leading-relaxed">
-            Get in touch to discuss your specific logistics needs or request more information.
+            {t("contactForm.subtitle")}
           </p>
         </div>
 
-        {/* Form */}
         <div className="flex flex-col gap-6">
 
-          {/* Row 1 — Name + Email */}
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1 min-w-0">
               <label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                Name*
+                {t("contactForm.fields.name")}
               </label>
               <input
                 type="text"
-                placeholder="Your Full Name"
+                placeholder={t("contactForm.fields.namePlaceholder")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full h-12 px-5 rounded-full border border-gray-200
@@ -66,11 +65,11 @@ export default function ContactForm() {
             </div>
             <div className="flex-1 min-w-0">
               <label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                Email*
+                {t("contactForm.fields.email")}
               </label>
               <input
                 type="email"
-                placeholder="yourname@company.com"
+                placeholder={t("contactForm.fields.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-12 px-5 rounded-full border border-gray-200
@@ -81,24 +80,22 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Row 2 — Phone + Shipping */}
           <div className="flex flex-col sm:flex-row gap-4">
 
             <PhoneInputField
-              label="Phone"
+              label={t("contactForm.fields.phone")}
               required
               variant="rounded"
               value={phone}
               onChange={(v) => { setPhone(v); setPhoneError(""); }}
               error={phoneError}
-              placeholder="Enter phone number"
+              placeholder={t("contactForm.fields.phonePlaceholder")}
               className="flex-1 min-w-0 [&_label]:text-sm [&_label]:text-gray-700 [&_label]:font-medium"
             />
 
-            {/* Shipping as */}
             <div className="flex-1">
               <label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                Shipping as*
+                {t("contactForm.fields.shippingAs")}
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
@@ -117,8 +114,10 @@ export default function ContactForm() {
                     focus:border-blue-400 hover:border-gray-300
                     transition-colors duration-150"
                 >
-                  {SHIPPING_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
+                  {SHIPPING_OPTION_KEYS.map((key) => (
+                    <option key={key} value={key}>
+                      {t(`contactForm.shippingOptions.${key}`)}
+                    </option>
                   ))}
                 </select>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
@@ -131,7 +130,6 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Submit */}
           <button
             onClick={handleSubmit}
             className="w-full h-14 bg-blue-500 text-white font-semibold text-base
@@ -139,7 +137,7 @@ export default function ContactForm() {
               hover:bg-blue-600 active:scale-[0.99]
               transition-all duration-150 font-[inherit]"
           >
-            Talk to an Expert
+            {t("contactForm.submit")}
           </button>
 
         </div>

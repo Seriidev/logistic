@@ -1,0 +1,69 @@
+{
+  "breadcrumb": {
+    "seaCargo": "Морские перевозки"
+  },
+  "hero": {
+    "title": "Бронирование морской перевозки",
+    "subtitle": "Оформите морскую перевозку груза в несколько простых шагов."
+  },
+  "booking": {
+    "detailLine": {
+      "fclContainer": "Контейнер {{label}}",
+      "lclUnits": "{{count}} ед."
+    }
+  },
+  "serviceSelector": {
+    "ariaLabel": "Тип морской перевозки",
+    "lcl": { "label": "LCL", "sublabel": "Сборный груз" },
+    "fcl": { "label": "FCL", "sublabel": "Полный контейнер" },
+    "shippingSuffix": "{{label}} — доставка"
+  },
+  "services": {
+    "lcl": {
+      "label": "LCL — морская перевозка",
+      "speedLabel": "Экономичный",
+      "deliveryTime": "25–35 дней",
+      "eyebrow": "LCL — морская перевозка",
+      "description": "Сборное контейнерное пространство для небольших отправлений. Доставка за {{time}}."
+    },
+    "fcl": {
+      "label": "FCL — морская перевозка",
+      "speedLabel": "Выделенный",
+      "deliveryTime": "18–28 дней",
+      "eyebrow": "FCL — морская перевозка",
+      "description": "Выделенный контейнер для вашего груза. Доставка за {{time}}."
+    }
+  },
+  "deliveryTypes": {
+    "portPort": "Порт — порт",
+    "portDoor": "Порт — дверь",
+    "doorPort": "Дверь — порт",
+    "doorDoor": "Дверь — дверь"
+  },
+  "commodityTypes": {
+    "generalCargo": "Генеральный груз",
+    "electronics": "Электроника",
+    "textilesApparel": "Текстиль и одежда",
+    "furniture": "Мебель",
+    "machineryParts": "Запчасти для техники",
+    "foodBeverage": "Продукты и напитки (нескоропортящиеся)",
+    "personalEffects": "Личные вещи",
+    "industrialEquipment": "Промышленное оборудование"
+  },
+  "containerTypes": {
+    "20ft": "20 футов стандартный",
+    "40ft": "40 футов стандартный",
+    "40hc": "40 футов High Cube",
+    "reefer": "Рефрижераторный контейнер"
+  },
+  "weightUnits": {
+    "kg": "кг",
+    "lbs": "фунт"
+  },
+  "success": {
+    "title": "Электронная декларация создана",
+    "pdf": {
+      "seaCargoFallback": "Морские перевозки"
+    }
+  }
+}

@@ -28,13 +28,11 @@ export function calculateFTLPrice(form = {}) {
 
   return {
     serviceType: p.serviceType,
-    label: p.label,
-    deliveryTime: p.deliveryTime,
     currency: p.currency,
     weightKg: Number(weightKg.toFixed(2)),
-    vehicleLabel: vehicle.label,
+    vehicleId: vehicle.id,
     distance: Math.round(distance),
-    deliveryLabel: delivery ? delivery.label : "—",
+    deliveryId: delivery ? delivery.id : "",
     vehicleFee: Number(vehicleFee.toFixed(2)),
     overweightFee: Number(overweightFee.toFixed(2)),
     distanceFee: Number(distanceFee.toFixed(2)),

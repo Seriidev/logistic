@@ -1,0 +1,64 @@
+{
+  "breadcrumb": { "title": "Track" },
+  "title": "Track Your Parcel Anywhere in the World",
+  "subtitle": "Enter your tracking number and see where your package is right now.",
+  "searchPlaceholder": "Enter the parcel number",
+  "search": "Search",
+  "tryLabel": "Try:",
+  "tryOr": "or",
+  "appPromo": "Live tracking updates & extra support on our App",
+  "appStore": "App Store",
+  "googlePlay": "Google Play",
+  "telegram": {
+    "title": "Track the status of your parcels in Telegram",
+    "bot": "@yuusell_bot",
+    "qrAlt": "QR Code",
+    "scanHint": "Scan QR code to open our Telegram bot and track your shipment instantly"
+  },
+  "notFound": "Tracking number not found. Please check and try again.",
+  "result": {
+    "trackingNumber": "Tracking number",
+    "status": "Status",
+    "from": "From",
+    "to": "To",
+    "type": "Type",
+    "eta": "ETA"
+  },
+  "status": {
+    "inTransit": "In Transit",
+    "delivered": "Delivered"
+  },
+  "cargoType": {
+    "air": "Air Cargo",
+    "sea": "Sea Cargo"
+  },
+  "steps": {
+    "orderPlaced": "Order Placed",
+    "pickedUp": "Picked Up",
+    "inTransit": "In Transit",
+    "customsClearance": "Customs Clearance",
+    "outForDelivery": "Out for Delivery",
+    "delivered": "Delivered"
+  },
+  "demo": {
+    "fromNy": "New York, USA",
+    "toDubai": "Dubai, UAE",
+    "fromLa": "Los Angeles, USA",
+    "toShanghai": "Shanghai, China",
+    "etaDate": "June 19, 2025",
+    "dates": {
+      "order1": "June 17, 08:00",
+      "pickup1": "June 17, 14:00",
+      "transit1": "June 18, 02:00",
+      "customs1": "June 18, 18:00",
+      "out1": "June 19, 09:00",
+      "delivered1": "June 19, 17:00",
+      "order2": "June 1, 09:00",
+      "pickup2": "June 2, 11:00",
+      "transit2": "June 5, 00:00",
+      "customs2": "June 12, 14:00",
+      "out2": "June 14, 08:00",
+      "delivered2": "June 14, 15:00"
+    }
+  }
+}

@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 export default function CalculateButton({ onClick, loading, calculated }) {
+  const { t } = useTranslation("shipNow");
+
   return (
     <button
       type="button"
@@ -12,12 +16,12 @@ export default function CalculateButton({ onClick, loading, calculated }) {
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
           </svg>
-          Calculating…
+          {t("actions.calculating")}
         </>
       ) : calculated ? (
-        "Recalculate Shipping Cost"
+        t("actions.recalculate")
       ) : (
-        "Calculate Shipping Cost"
+        t("actions.calculate")
       )}
     </button>
   );

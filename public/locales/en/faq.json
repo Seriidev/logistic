@@ -1,0 +1,93 @@
+{
+  "breadcrumb": { "title": "FAQ" },
+  "categories": "Categories",
+  "sections": {
+    "shipping": {
+      "title": "Shipping & Delivery",
+      "questions": [
+        {
+          "q": "Which countries do you deliver to?",
+          "a": "We deliver to over 150 countries worldwide, including the USA, China, UAE, Germany, UK, Russia, Uzbekistan, Kazakhstan, and more. Our network covers all major continents with reliable carrier partners."
+        },
+        {
+          "q": "How much does international shipping cost?",
+          "a": "Shipping costs depend on the weight, dimensions, destination, and shipping method (air, sea, or truck). You can get an instant quote using our calculator on the Ship Now page. Prices start from just $5 for small packages."
+        },
+        {
+          "q": "How long does delivery take?",
+          "a": "Delivery times vary by service: Air Cargo — 3 to 7 business days. Sea Cargo — 20 to 45 days. Truck Cargo — 5 to 14 days depending on destination. Express options are available for urgent shipments."
+        },
+        {
+          "q": "Can I track my shipment?",
+          "a": "Yes! Every shipment comes with a unique tracking number. You can track your parcel in real-time on our Track page or via our Telegram bot @yuusell_bot. We also send automatic SMS and email notifications."
+        },
+        {
+          "q": "Do you offer courier pickup?",
+          "a": "Yes, we offer door-to-door pickup service in most major cities. You can schedule a pickup when placing your order, or drop off your package at one of our partner locations."
+        },
+        {
+          "q": "What happens if my package is delayed?",
+          "a": "In case of delays due to customs, weather, or carrier issues, our support team will notify you immediately and provide an updated ETA. We work 24/7 to resolve any issues as quickly as possible."
+        }
+      ]
+    },
+    "orders": {
+      "title": "Orders & Payments",
+      "questions": [
+        {
+          "q": "How do I place a delivery order?",
+          "a": "Simply go to our Ship Now page, enter your shipment details (from, to, weight, dimensions), get an instant quote, and confirm your order. You can also contact our support team for assistance."
+        },
+        {
+          "q": "Which payment methods do you accept?",
+          "a": "We accept all major credit and debit cards (Visa, Mastercard), Apple Pay, Google Pay, bank transfers, and PayPal. All payments are processed securely through encrypted channels."
+        },
+        {
+          "q": "Can I cancel or change my shipment?",
+          "a": "Yes, you can cancel or modify your shipment before it is picked up. Once the shipment is in transit, changes may be limited. Please contact our support team as soon as possible for assistance."
+        },
+        {
+          "q": "Is VAT included in the price?",
+          "a": "VAT and customs duties depend on the destination country and the type of goods being shipped. Our system will show any applicable taxes during the checkout process. We also provide full customs documentation support."
+        },
+        {
+          "q": "Are there any hidden fees?",
+          "a": "No hidden fees! The price you see during checkout is the final price. Any additional customs or duties are clearly displayed before you confirm your order."
+        },
+        {
+          "q": "Do you offer refunds?",
+          "a": "If your shipment is lost or significantly damaged due to our fault, we offer full compensation according to our insurance policy. Please file a claim within 30 days of the expected delivery date."
+        }
+      ]
+    },
+    "business": {
+      "title": "Business & Integrations",
+      "questions": [
+        {
+          "q": "Can I integrate YuuSell with my online store?",
+          "a": "Yes! We offer seamless integrations with major e-commerce platforms including Shopify, WooCommerce, Amazon, eBay, Etsy, and AliExpress. Contact our business team to set up your integration."
+        },
+        {
+          "q": "Do you have special pricing for businesses?",
+          "a": "Absolutely. We offer volume discounts, dedicated account managers, and custom pricing plans for businesses with high shipping volumes. Contact us to discuss a tailored solution for your business."
+        },
+        {
+          "q": "Can I automate shipping from my e-commerce platform?",
+          "a": "Yes, through our API and platform integrations, you can fully automate order fulfillment, label generation, and tracking updates directly from your store dashboard."
+        },
+        {
+          "q": "Do you offer fulfillment services?",
+          "a": "Yes! Our Amazon FBA prep service handles receiving, labeling, packing, and shipping your products directly to Amazon warehouses. We are 100% compliant with Amazon requirements."
+        },
+        {
+          "q": "How do I become a business client?",
+          "a": "Simply fill out the contact form on our Contact Us page or email us at info.usa@yuusell.com. Our business team will get back to you within 24 hours to discuss your needs."
+        },
+        {
+          "q": "Do you provide customs clearance support?",
+          "a": "Yes, we provide full customs clearance support including documentation preparation, duty calculation, and liaison with customs authorities. Our team ensures smooth and compliant cross-border shipping."
+        }
+      ]
+    }
+  }
+}

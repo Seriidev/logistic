@@ -37,13 +37,13 @@ export function calculateLCLPrice(form = {}) {
 
   return {
     serviceType: p.serviceType,
-    label: p.label,
-    deliveryTime: p.deliveryTime,
+    labelKey: p.labelKey,
+    deliveryTimeKey: p.deliveryTimeKey,
     currency: p.currency,
     weightKg: Number(weightKg.toFixed(2)),
     units,
     distance: Math.round(distance),
-    deliveryLabel: delivery ? delivery.label : "—",
+    deliveryLabelKey: delivery ? delivery.labelKey : null,
     baseFee: Number(baseFee.toFixed(2)),
     unitsFee: Number(unitsFee.toFixed(2)),
     weightFee: Number(weightFee.toFixed(2)),

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const PARTNERS = [
@@ -35,6 +36,7 @@ function PartnerLogo({ partner }) {
 }
 
 export function Partners() {
+  const { t } = useTranslation();
   const marqueeRef = useRef(null);
   const animationRef = useRef(null);
   const positionRef = useRef(0);
@@ -91,10 +93,10 @@ export function Partners() {
   return (
     <section className="page-container py-8 sm:py-12 min-w-0 overflow-hidden">
       <h2 className="text-2xl sm:text-3xl font-bold text-blue-500 uppercase tracking-wide mb-3 sm:mb-4 text-center">
-        Our Partners
+        {t("partners.title")}
       </h2>
       <p className="text-sm text-gray-500 text-center mb-6 sm:mb-8 px-2">
-        International solutions for all your shipping and delivery needs
+        {t("partners.subtitle")}
       </p>
 
       <div className="w-full overflow-hidden" style={{ minHeight: "3.5rem" }}>
@@ -135,7 +137,7 @@ function StarRating({ rating }) {
   );
 }
 
-function ReviewCard({ review, width }) {
+function ReviewCard({ review, width, title, text }) {
   return (
     <div
       className="shrink-0 bg-white rounded-2xl p-5 sm:p-6 shadow-sm"
@@ -165,14 +167,15 @@ function ReviewCard({ review, width }) {
           </div>
         </div>
       </div>
-      <h4 className="text-sm font-bold text-gray-900 mb-1">{review.title}</h4>
-      <p className="text-xs text-gray-500 leading-relaxed">{review.text}</p>
+      <h4 className="text-sm font-bold text-gray-900 mb-1">{title}</h4>
+      <p className="text-xs text-gray-500 leading-relaxed">{text}</p>
       <StarRating rating={review.rating} />
     </div>
   );
 }
 
 function Reviews() {
+  const { t } = useTranslation();
   const isLg = useMediaQuery("(min-width: 1024px)");
   const isSm = useMediaQuery("(min-width: 640px)");
   const visibleCount = isLg ? 3 : isSm ? 2 : 1;
@@ -216,10 +219,10 @@ function Reviews() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
           <div className="min-w-0">
             <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-2 sm:mb-4">
-              Reviews YuuSell
+              {t("reviews.title")}
             </h2>
             <p className="text-blue-100 text-sm">
-              International solutions for all your shipping and delivery needs
+              {t("reviews.subtitle")}
             </p>
           </div>
           <div className="flex gap-2 shrink-0">
@@ -230,7 +233,7 @@ function Reviews() {
               className="carousel-nav-btn w-10 h-10 rounded-full border border-white/30 bg-white/10
                 flex items-center justify-center text-white cursor-pointer
                 hover:bg-white/20 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-              aria-label="Previous review"
+              aria-label={t("reviews.nav.previous")}
             >
               <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
                 <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -243,7 +246,7 @@ function Reviews() {
               className="carousel-nav-btn w-10 h-10 rounded-full border border-white/30 bg-white/10
                 flex items-center justify-center text-white cursor-pointer
                 hover:bg-white/20 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-              aria-label="Next review"
+              aria-label={t("reviews.nav.next")}
             >
               <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
                 <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -258,7 +261,13 @@ function Reviews() {
             style={cardWidth ? { transform: `translateX(-${current * stepPx}px)` } : undefined}
           >
             {REVIEWS.map((review) => (
-              <ReviewCard key={review.id} review={review} width={cardWidth} />
+              <ReviewCard
+                key={review.id}
+                review={review}
+                width={cardWidth}
+                title={t("reviews.items.title")}
+                text={t("reviews.items.text")}
+              />
             ))}
           </div>
         </div>
@@ -270,7 +279,7 @@ function Reviews() {
               type="button"
               onClick={() => setCurrent(i)}
               className={`carousel-nav-btn h-1.5 rounded-full border-none cursor-pointer transition-all ${i === current ? "w-5 bg-white" : "w-1.5 bg-white/40"}`}
-              aria-label={`Review slide ${i + 1}`}
+              aria-label={t("reviews.nav.slide", { n: i + 1 })}
             />
           ))}
         </div>

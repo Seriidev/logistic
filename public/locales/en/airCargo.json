@@ -1,0 +1,452 @@
+{
+  "meta": {
+    "title": "Air Cargo Transportation | YuuSell Logistics",
+    "description": "Fast, secure international air freight with express and economy options, real-time tracking, customs support, and a global carrier network."
+  },
+  "breadcrumb": {
+    "title": "Air Cargo"
+  },
+  "banner": {
+    "slideAlt": "Banner {{n}}",
+    "goToSlide": "Go to slide {{n}}"
+  },
+  "shared": {
+    "imageHint": "Add photo: public{{path}}"
+  },
+  "hero": {
+    "eyebrow": "Premium Air Freight",
+    "title": "Fast, Secure Air Cargo to Every Corner of the World",
+    "description": "Express and standard air freight solutions with real-time tracking, customs support, and a global carrier network — built for businesses that cannot afford delays.",
+    "stats": {
+      "countries": {
+        "value": "180+",
+        "label": "Countries"
+      },
+      "delivery": {
+        "value": "3–7",
+        "label": "Day delivery"
+      },
+      "support": {
+        "value": "24/7",
+        "label": "Support"
+      }
+    }
+  },
+  "serviceTypes": {
+    "eyebrow": "Service Types",
+    "title": "Economy & Express Air Cargo",
+    "description": "Choose the air freight service that fits your timeline and budget — switch between options to compare delivery speed and pricing instantly.",
+    "tablistAriaLabel": "Air cargo service type",
+    "deliveryLabel": "Delivery",
+    "pricingLabel": "Pricing",
+    "advantagesLabel": "Key Advantages",
+    "examplesLabel": "Examples",
+    "getQuote": "Get {{service}} Quote",
+    "imageAlt": "{{service}} air cargo",
+    "economy": {
+      "label": "Economy Air Cargo",
+      "shortLabel": "Economy",
+      "description": "Cost-effective air freight for shipments where budget matters more than speed — consolidated loads on scheduled flights with reliable, predictable transit.",
+      "delivery": "Typical transit: 5–8 business days. Consolidated cargo on scheduled departures with optimized routing through major hubs.",
+      "pricing": "Lowest air freight rates · Shared capacity · Ideal for non-urgent and high-volume cargo",
+      "advantages": {
+        "0": "Most affordable air freight option",
+        "1": "Reliable scheduled flight departures",
+        "2": "Ideal for non-time-critical shipments",
+        "3": "Great for bulk and high-volume cargo",
+        "4": "Full tracking from origin to destination",
+        "5": "Lower cost per kilogram on large loads"
+      },
+      "examples": {
+        "0": "Bulk inventory",
+        "1": "E-commerce restocking",
+        "2": "Non-urgent freight",
+        "3": "Seasonal stock"
+      }
+    },
+    "express": {
+      "label": "Express Air Cargo",
+      "shortLabel": "Express",
+      "description": "Priority air freight for time-critical shipments — next-flight-out options, guaranteed transit windows, and expedited handling from pickup to delivery.",
+      "delivery": "Typical transit: 2–4 business days. Priority booking, next-flight-out availability, and expedited customs clearance.",
+      "pricing": "Premium rates · Guaranteed capacity · Ideal for urgent and high-value cargo",
+      "advantages": {
+        "0": "Fastest air freight delivery available",
+        "1": "Priority space on the next flight out",
+        "2": "Guaranteed transit time windows",
+        "3": "Expedited customs and clearance handling",
+        "4": "Ideal for urgent and high-value goods",
+        "5": "Dedicated priority support and monitoring"
+      },
+      "examples": {
+        "0": "AOG / spare parts",
+        "1": "Medical supplies",
+        "2": "Perishables",
+        "3": "High-value goods"
+      }
+    }
+  },
+  "overview": {
+    "eyebrow": "Service Overview",
+    "title": "Premium Air Freight for Time-Critical Global Shipments",
+    "description": "From single cartons to full charter loads, YuuSell delivers reliable air cargo solutions backed by a global carrier network, transparent pricing, and end-to-end logistics control.",
+    "imageAlt": "Air cargo operations",
+    "body": "Air cargo remains the fastest way to move goods across continents. Whether you are shipping retail inventory, industrial parts, perishables, or e-commerce parcels, our air freight team designs routes that balance speed, cost, and compliance — so your cargo arrives on schedule and in perfect condition.",
+    "highlights": {
+      "0": "Door-to-airport and door-to-door delivery worldwide",
+      "1": "Express, standard, and deferred air freight options",
+      "2": "Consolidation, repacking, and labeling at origin hubs",
+      "3": "Live tracking with milestone notifications",
+      "4": "Dedicated account managers for commercial shippers",
+      "5": "Insurance and priority handling for high-value cargo"
+    },
+    "getQuote": "Get a Quote",
+    "calculateRates": "Calculate Rates"
+  },
+  "whyChooseUs": {
+    "eyebrow": "Why Choose Us",
+    "title": "Why Businesses Trust YuuSell for Air Cargo",
+    "description": "We combine carrier-grade capacity with the agility of a modern freight forwarder — giving you speed, transparency, and control at every stage of the journey.",
+    "imageAlt": "Air freight logistics",
+    "features": {
+      "1": {
+        "title": "Global Airline Partnerships",
+        "description": "Preferred rates and capacity with major carriers across North America, Europe, Asia, and the Middle East."
+      },
+      "2": {
+        "title": "Time-Definite Delivery",
+        "description": "Express lanes, next-flight-out options, and guaranteed transit windows for urgent shipments."
+      },
+      "3": {
+        "title": "Real-Time Visibility",
+        "description": "Track every milestone from pickup to final delivery with proactive status alerts."
+      },
+      "4": {
+        "title": "Flexible Cargo Options",
+        "description": "General cargo, temperature-controlled, dangerous goods (where permitted), and oversized freight."
+      },
+      "5": {
+        "title": "End-to-End Logistics",
+        "description": "Pickup, warehousing, customs clearance, last-mile delivery, and documentation — all managed in one place."
+      },
+      "6": {
+        "title": "24/7 Expert Support",
+        "description": "Dedicated operations specialists available around the clock for booking, routing, and exception handling."
+      }
+    }
+  },
+  "industries": {
+    "eyebrow": "Industries We Serve",
+    "title": "Specialized Air Freight Across Every Sector",
+    "description": "Our team understands the compliance, handling, and timing requirements unique to each industry — delivering tailored solutions that keep your supply chain moving.",
+    "items": {
+      "1": {
+        "title": "E-Commerce & Retail",
+        "description": "Fast replenishment, FBA prep, and cross-border parcel consolidation for online sellers."
+      },
+      "2": {
+        "title": "Automotive & Aerospace",
+        "description": "Critical spare parts, AOG shipments, and just-in-time component delivery."
+      },
+      "3": {
+        "title": "Pharmaceuticals & Healthcare",
+        "description": "Temperature-controlled lanes, GDP-compliant handling, and priority routing."
+      },
+      "4": {
+        "title": "Electronics & Technology",
+        "description": "Secure transport for high-value devices, semiconductors, and sensitive equipment."
+      },
+      "5": {
+        "title": "Fashion & Luxury Goods",
+        "description": "Seasonal collections, showroom samples, and time-sensitive retail launches."
+      },
+      "6": {
+        "title": "Industrial & Manufacturing",
+        "description": "Heavy machinery parts, production materials, and project cargo coordination."
+      },
+      "7": {
+        "title": "Food & Perishables",
+        "description": "Cold-chain air freight for fresh produce, seafood, and specialty foods."
+      },
+      "8": {
+        "title": "Energy & Mining",
+        "description": "Urgent equipment, drilling components, and remote-site delivery support."
+      }
+    }
+  },
+  "globalCoverage": {
+    "eyebrow": "Global Coverage",
+    "title": "Worldwide Air Cargo Network",
+    "description": "Strategic hub partnerships and multi-carrier routing give your freight the fastest path to any destination — with full visibility from origin to arrival.",
+    "stats": {
+      "countries": {
+        "value": "180+",
+        "label": "Countries served"
+      },
+      "partners": {
+        "value": "50+",
+        "label": "Airline partners"
+      },
+      "operations": {
+        "value": "24/7",
+        "label": "Operations desk"
+      },
+      "performance": {
+        "value": "99.2%",
+        "label": "On-time performance"
+      }
+    },
+    "keyHubs": "Key Hubs",
+    "typicalTransit": "Typical Transit",
+    "coverage": "Coverage",
+    "regions": {
+      "1": {
+        "name": "North America",
+        "hubs": "New York, Los Angeles, Chicago, Miami",
+        "transit": "1–3 days intra-region",
+        "coverage": "USA, Canada, Mexico"
+      },
+      "2": {
+        "name": "Europe",
+        "hubs": "Frankfurt, London, Amsterdam, Paris",
+        "transit": "2–4 days from USA",
+        "coverage": "EU, UK, Switzerland, Nordics"
+      },
+      "3": {
+        "name": "Asia-Pacific",
+        "hubs": "Hong Kong, Shanghai, Singapore, Tokyo",
+        "transit": "3–5 days from USA",
+        "coverage": "China, Japan, Korea, ASEAN"
+      },
+      "4": {
+        "name": "Middle East & Africa",
+        "hubs": "Dubai, Doha, Johannesburg",
+        "transit": "4–6 days from USA",
+        "coverage": "UAE, Saudi Arabia, South Africa"
+      },
+      "5": {
+        "name": "Latin America",
+        "hubs": "São Paulo, Bogotá, Santiago",
+        "transit": "3–5 days from USA",
+        "coverage": "Brazil, Colombia, Chile, Peru"
+      },
+      "6": {
+        "name": "Oceania",
+        "hubs": "Sydney, Auckland",
+        "transit": "5–7 days from USA",
+        "coverage": "Australia, New Zealand"
+      }
+    },
+    "map": {
+      "title": "Interactive global route map — ready for future media integration",
+      "subtitle": "Visualize lanes, hubs, and live capacity across your network"
+    }
+  },
+  "cargoSecurity": {
+    "eyebrow": "Cargo Security",
+    "title": "Your Freight Protected at Every Touchpoint",
+    "description": "Security is built into every stage of our air cargo operations — from secure intake and screening to controlled handoffs and insured delivery.",
+    "imageAlt": "Secure cargo handling",
+    "body": "High-value and sensitive shipments demand more than standard handling. Our security protocols align with international aviation standards, ensuring your cargo is screened, tracked, and protected throughout its journey — with full audit trails for compliance and peace of mind.",
+    "features": {
+      "0": "Tamper-evident sealing and secure warehouse zones",
+      "1": "CCTV monitoring at all origin and transit facilities",
+      "2": "Chain-of-custody documentation for every handoff",
+      "3": "Screened cargo compliance with TSA and ICAO standards",
+      "4": "High-value cargo escort and priority handling",
+      "5": "Full cargo insurance options up to declared value"
+    },
+    "badges": {
+      "0": "IATA Certified",
+      "1": "TSA Compliant",
+      "2": "C-TPAT Ready",
+      "3": "ISO 9001",
+      "4": "GDP Handling",
+      "5": "AEO Status"
+    }
+  },
+  "customsSupport": {
+    "eyebrow": "Customs Support",
+    "title": "Seamless Customs Clearance for Air Freight",
+    "description": "Navigate complex international regulations with confidence. Our licensed customs brokers handle documentation, duties, and compliance — minimizing delays at every border.",
+    "imageAlt": "Customs clearance support",
+    "body": "Customs delays can derail even the fastest air shipments. YuuSell's in-house brokerage team works ahead of arrival to pre-file declarations, verify classifications, and resolve issues before your cargo lands — keeping clearance times to a minimum.",
+    "services": {
+      "0": "Import and export documentation preparation",
+      "1": "HS code classification and duty optimization",
+      "2": "Pre-clearance and bonded warehouse solutions",
+      "3": "Country-specific compliance advisory",
+      "4": "Certificate of origin and commercial invoice support",
+      "5": "Real-time customs status updates and exception management"
+    },
+    "documents": {
+      "commercialInvoice": {
+        "name": "Commercial Invoice",
+        "desc": "Accurate valuation and product descriptions"
+      },
+      "packingList": {
+        "name": "Packing List",
+        "desc": "Detailed contents and weight breakdown"
+      },
+      "airWaybill": {
+        "name": "Air Waybill",
+        "desc": "Carrier contract and shipment tracking"
+      },
+      "customsDeclaration": {
+        "name": "Customs Declaration",
+        "desc": "Regulatory filing for smooth clearance"
+      }
+    }
+  },
+  "shippingProcess": {
+    "eyebrow": "Shipping Process",
+    "title": "From Quote to Delivery — Six Simple Steps",
+    "description": "Our streamlined air cargo process removes complexity at every stage, giving you full visibility and control from the moment you book.",
+    "steps": {
+      "01": {
+        "title": "Request a Quote",
+        "description": "Share origin, destination, cargo details, and timeline. Receive competitive rates within hours."
+      },
+      "02": {
+        "title": "Book & Schedule Pickup",
+        "description": "Confirm your shipment, select service level, and arrange door pickup or warehouse drop-off."
+      },
+      "03": {
+        "title": "Prepare & Consolidate",
+        "description": "We inspect, pack, label, and consolidate your cargo for optimal air freight loading."
+      },
+      "04": {
+        "title": "Customs & Documentation",
+        "description": "Our team prepares all export/import paperwork and pre-clears customs where possible."
+      },
+      "05": {
+        "title": "Air Transit & Tracking",
+        "description": "Your cargo flies on optimized routes with live milestone tracking and proactive updates."
+      },
+      "06": {
+        "title": "Final Delivery",
+        "description": "Door-to-door or airport delivery with proof of delivery and post-shipment reporting."
+      }
+    },
+    "cta": {
+      "title": "Ready to ship by air?",
+      "description": "Start your shipment in minutes. Our team is standing by to handle urgent and scheduled air freight.",
+      "button": "Ship Now"
+    }
+  },
+  "successMetrics": {
+    "eyebrow": "Success Metrics",
+    "title": "Proven Performance You Can Measure",
+    "description": "Numbers that reflect our commitment to reliability, speed, and customer satisfaction across every air cargo lane we operate.",
+    "metrics": {
+      "shipments": {
+        "value": "2.4M+",
+        "label": "Air shipments delivered",
+        "detail": "Across 180+ countries since launch"
+      },
+      "quote": {
+        "value": "48 hrs",
+        "label": "Average quote turnaround",
+        "detail": "Competitive rates within two business days"
+      },
+      "delivery": {
+        "value": "99.2%",
+        "label": "On-time delivery rate",
+        "detail": "Industry-leading transit reliability"
+      },
+      "claims": {
+        "value": "< 2%",
+        "label": "Claims ratio",
+        "detail": "Exceptional cargo handling record"
+      }
+    },
+    "testimonials": {
+      "1": {
+        "quote": "YuuSell moved our seasonal inventory from LA to Frankfurt in 4 days. Tracking was flawless and customs cleared without a single delay.",
+        "author": "Sarah M.",
+        "role": "E-Commerce Director"
+      },
+      "2": {
+        "quote": "We rely on their air freight for AOG parts. Next-flight-out service has saved us countless hours of downtime.",
+        "author": "James K.",
+        "role": "Aviation Maintenance Manager"
+      },
+      "3": {
+        "quote": "The consolidation service cut our per-unit shipping cost by 35% while keeping delivery times competitive.",
+        "author": "Elena R.",
+        "role": "Supply Chain Lead"
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions About Air Cargo",
+    "description": "Everything you need to know about shipping by air with YuuSell — from transit times and pricing to customs, tracking, and special cargo handling.",
+    "items": {
+      "1": {
+        "q": "How long does air cargo delivery typically take?",
+        "a": "Transit times depend on origin, destination, and service level. Express air freight typically delivers in 2–5 business days, standard service in 5–10 days, and economy deferred options in 10–14 days. We provide exact ETAs at the time of booking."
+      },
+      "2": {
+        "q": "What is the maximum weight and size for air cargo shipments?",
+        "a": "We handle everything from small parcels to full pallet loads and oversized project cargo. Single pieces up to several tons can be accommodated with proper planning. Contact our team for dimensions exceeding standard pallet sizes."
+      },
+      "3": {
+        "q": "Do you handle dangerous goods and temperature-sensitive cargo?",
+        "a": "Yes, where permitted by carrier and destination regulations. Our team manages DG documentation (IATA DGR), cold-chain packaging, and temperature-controlled containers for pharmaceuticals, perishables, and specialty goods."
+      },
+      "4": {
+        "q": "How is air freight pricing calculated?",
+        "a": "Rates are based on chargeable weight — the greater of actual weight or dimensional (volumetric) weight. Factors include origin/destination, service level, fuel surcharges, and any special handling. Use our online calculator for instant estimates."
+      },
+      "5": {
+        "q": "What documents are required for international air shipments?",
+        "a": "Typically: commercial invoice, packing list, air waybill, and customs declaration. Additional certificates may be required depending on product type and destination (e.g., phytosanitary, origin certificates). Our team prepares all documentation on your behalf."
+      },
+      "6": {
+        "q": "Can I track my air cargo shipment in real time?",
+        "a": "Absolutely. Every shipment receives a tracking number with milestone updates at pickup, warehouse intake, customs clearance, departure, arrival, and final delivery. Notifications are sent via email and available in your account dashboard."
+      },
+      "7": {
+        "q": "What happens if my cargo is delayed or damaged?",
+        "a": "Our operations team proactively monitors all shipments and alerts you to any exceptions. In the rare event of delay or damage, we file claims with carriers and insurers on your behalf. Cargo insurance is available at booking for full declared value protection."
+      },
+      "8": {
+        "q": "Do you offer consolidation services to reduce costs?",
+        "a": "Yes. Our consolidation program combines multiple shipments into shared air freight loads, significantly reducing per-unit costs. Ideal for e-commerce sellers, retailers, and businesses with regular smaller shipments to the same destinations."
+      }
+    }
+  },
+  "otherServices": {
+    "eyebrow": "Explore More",
+    "title": "Other Logistics Services",
+    "description": "Beyond air freight, YuuSell offers a complete suite of transportation and warehousing solutions to meet every supply chain need.",
+    "learnMore": "Learn More",
+    "items": {
+      "1": {
+        "title": "Sea Cargo",
+        "description": "Cost-effective ocean freight for large volumes, FCL and LCL options with global port coverage."
+      },
+      "2": {
+        "title": "Road Transport",
+        "description": "Reliable overland freight across domestic and cross-border routes with flexible scheduling."
+      },
+      "3": {
+        "title": "Express Delivery",
+        "description": "Same-day and next-day courier services for urgent documents and time-critical parcels."
+      },
+      "4": {
+        "title": "Full Truck Load",
+        "description": "Dedicated truck capacity for bulk shipments with direct routing and no intermediate handling."
+      },
+      "5": {
+        "title": "Partial Load",
+        "description": "Share truck space and save on costs — ideal for smaller shipments that don't need a full vehicle."
+      },
+      "6": {
+        "title": "Warehouse Services",
+        "description": "Storage, inventory management, pick-and-pack, and fulfillment from strategic global locations."
+      }
+    }
+  }
+}

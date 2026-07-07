@@ -1,26 +1,33 @@
 import StepWrapper from "./StepWrapper";
 import { PAYMENT_METHODS } from "../data/paymentMethods";
+import { useTranslation } from "react-i18next";
+import { getPaymentMethodLabel } from "../../i18n/paymentMethodLabels";
 
 export default function PaymentMethodStep({ service, breakdown, selected, onSelect, onBack, onContinue }) {
+  const { t } = useTranslation(["seaCargoBooking", "booking"]);
+  const deliveryTime = t(breakdown.deliveryTimeKey, { ns: "seaCargoBooking" });
+
   return (
     <StepWrapper
-      eyebrow="Step 2 of 4"
-      title="Payment Method"
-      description="Choose a payment provider. Fees vary by provider and are added to your total."
+      eyebrow={t("steps.stepOf", { ns: "booking", current: 2, total: 4 })}
+      title={t("paymentMethod.title", { ns: "booking" })}
+      description={t("paymentMethod.subtitle", { ns: "booking" })}
     >
       <div className="max-w-2xl mx-auto">
         {/* Summary */}
         <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 sm:p-5 mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Service</p>
-            <p className="text-sm font-bold text-gray-900">{service.toUpperCase()} Ocean Freight</p>
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">{t("paymentMethod.summary.service", { ns: "booking" })}</p>
+            <p className="text-sm font-bold text-gray-900">
+              {t("common.oceanFreight", { ns: "booking", service: service.toUpperCase() })}
+            </p>
           </div>
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Delivery</p>
-            <p className="text-sm font-bold text-gray-900">{breakdown.deliveryTime}</p>
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">{t("paymentMethod.summary.delivery", { ns: "booking" })}</p>
+            <p className="text-sm font-bold text-gray-900">{deliveryTime}</p>
           </div>
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Estimated Cost</p>
+            <p className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider mb-0.5">{t("paymentMethod.summary.estimatedCost", { ns: "booking" })}</p>
             <p className="text-sm font-bold text-gray-900">${breakdown.total.toFixed(2)} USD</p>
           </div>
         </div>
@@ -28,6 +35,7 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
         <div className="flex flex-col gap-3 sm:gap-4">
           {PAYMENT_METHODS.map((method) => {
             const isActive = selected === method.id;
+            const badge = method.badge ? getPaymentMethodLabel(t, method, "badge") : null;
             return (
               <label
                 key={method.id}
@@ -50,17 +58,19 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm sm:text-base font-bold text-gray-900">{method.name}</span>
-                    {method.badge && (
+                    <span className="text-sm sm:text-base font-bold text-gray-900">{getPaymentMethodLabel(t, method, "name")}</span>
+                    {badge && (
                       <span className="inline-flex px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider">
-                        {method.badge}
+                        {badge}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-500 truncate">{method.tagline}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 truncate">{getPaymentMethodLabel(t, method, "tagline")}</p>
                 </div>
                 <span className="text-sm font-semibold text-gray-900 shrink-0">
-                  {method.fee > 0 ? `+$${method.fee.toFixed(2)}` : "Free"}
+                  {method.fee > 0
+                    ? t("paymentMethod.fee", { ns: "booking", amount: method.fee.toFixed(2) })
+                    : t("paymentMethod.free", { ns: "booking" })}
                 </span>
               </label>
             );
@@ -77,7 +87,7 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("actions.back", { ns: "booking" })}
           </button>
           <button
             type="button"
@@ -87,7 +97,7 @@ export default function PaymentMethodStep({ service, breakdown, selected, onSele
               uppercase tracking-wider border-none cursor-pointer hover:bg-blue-600 transition-colors font-[inherit]
               disabled:opacity-50 disabled:cursor-not-allowed sm:ml-auto"
           >
-            Continue
+            {t("actions.continue", { ns: "booking" })}
           </button>
         </div>
       </div>

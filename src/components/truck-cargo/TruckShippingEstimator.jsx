@@ -1,31 +1,32 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SectionHeading } from "./shared";
 
-const CARGO_TYPES = [
-  "General Cargo",
-  "Palletized Goods",
-  "Fragile Items",
-  "Temperature-Sensitive",
-  "Oversized / Heavy",
-  "Hazardous (DG)",
+const CARGO_TYPE_KEYS = [
+  "generalCargo",
+  "palletizedGoods",
+  "fragileItems",
+  "temperatureSensitive",
+  "oversizedHeavy",
+  "hazardousDg",
 ];
 
-const VEHICLE_TYPES = [
-  "Small Van",
-  "Medium Truck",
-  "Heavy Truck",
-  "Refrigerated Truck",
-  "Container Truck",
-  "Flatbed Truck",
+const VEHICLE_TYPE_KEYS = [
+  "smallVan",
+  "mediumTruck",
+  "heavyTruck",
+  "refrigeratedTruck",
+  "containerTruck",
+  "flatbedTruck",
 ];
 
 function mockEstimate(form) {
   const weight = parseFloat(form.weight) || 0;
-  const baseRate = form.vehicleType.includes("Heavy") ? 2.8 : form.vehicleType.includes("Refrigerated") ? 3.2 : 1.9;
+  const baseRate = form.vehicleType === "heavyTruck" ? 2.8 : form.vehicleType === "refrigeratedTruck" ? 3.2 : 1.9;
   const distanceFactor = (form.pickup.length + form.delivery.length) % 5 + 3;
-  const cargoMultiplier = form.cargoType.includes("Hazardous") ? 1.5 : form.cargoType.includes("Temperature") ? 1.3 : 1;
+  const cargoMultiplier = form.cargoType === "hazardousDg" ? 1.5 : form.cargoType === "temperatureSensitive" ? 1.3 : 1;
   const total = Math.max(150, weight * baseRate * distanceFactor * cargoMultiplier);
-  const days = form.vehicleType.includes("Van") ? "1–2" : form.vehicleType.includes("Heavy") ? "3–5" : "2–4";
+  const days = form.vehicleType === "smallVan" ? "1–2" : form.vehicleType === "heavyTruck" ? "3–5" : "2–4";
 
   return {
     price: total.toFixed(2),
@@ -35,12 +36,13 @@ function mockEstimate(form) {
 }
 
 export default function TruckShippingEstimator() {
+  const { t } = useTranslation("truckCargo");
   const [form, setForm] = useState({
     pickup: "",
     delivery: "",
-    cargoType: "General Cargo",
+    cargoType: "generalCargo",
     weight: "",
-    vehicleType: "Medium Truck",
+    vehicleType: "mediumTruck",
   });
   const [result, setResult] = useState(null);
   const [calculated, setCalculated] = useState(false);
@@ -53,7 +55,7 @@ export default function TruckShippingEstimator() {
   const handleCalculate = (e) => {
     e.preventDefault();
     if (!form.pickup.trim() || !form.delivery.trim() || !form.weight.trim()) {
-      alert("Please fill in pickup location, delivery location, and weight.");
+      alert(t("estimator.validationAlert"));
       return;
     }
     setResult(mockEstimate(form));
@@ -64,9 +66,9 @@ export default function TruckShippingEstimator() {
     <section className="bg-gray-50 min-w-0 py-12 sm:py-16 lg:py-20">
       <div className="page-container min-w-0">
         <SectionHeading
-          eyebrow="Shipping Estimator"
-          title="Get an Instant Freight Estimate"
-          description="Enter your shipment details for a preliminary quote. Final pricing is confirmed by our logistics team after route optimization."
+          eyebrow={t("estimator.eyebrow")}
+          title={t("estimator.title")}
+          description={t("estimator.description")}
         />
 
         <div className="max-w-4xl mx-auto min-w-0">
@@ -77,12 +79,12 @@ export default function TruckShippingEstimator() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5 sm:mb-6">
               <div className="min-w-0">
                 <label htmlFor="pickup" className="text-sm font-medium text-gray-700 mb-1.5 block">
-                  Pickup Location*
+                  {t("estimator.pickupLabel")}
                 </label>
                 <input
                   id="pickup"
                   type="text"
-                  placeholder="City, state or ZIP"
+                  placeholder={t("estimator.locationPlaceholder")}
                   value={form.pickup}
                   onChange={handleChange("pickup")}
                   className="w-full h-11 sm:h-12 px-4 rounded-xl border border-gray-200 text-sm text-gray-900
@@ -91,12 +93,12 @@ export default function TruckShippingEstimator() {
               </div>
               <div className="min-w-0">
                 <label htmlFor="delivery" className="text-sm font-medium text-gray-700 mb-1.5 block">
-                  Delivery Location*
+                  {t("estimator.deliveryLabel")}
                 </label>
                 <input
                   id="delivery"
                   type="text"
-                  placeholder="City, state or ZIP"
+                  placeholder={t("estimator.locationPlaceholder")}
                   value={form.delivery}
                   onChange={handleChange("delivery")}
                   className="w-full h-11 sm:h-12 px-4 rounded-xl border border-gray-200 text-sm text-gray-900
@@ -105,7 +107,7 @@ export default function TruckShippingEstimator() {
               </div>
               <div className="min-w-0">
                 <label htmlFor="cargoType" className="text-sm font-medium text-gray-700 mb-1.5 block">
-                  Cargo Type
+                  {t("estimator.cargoTypeLabel")}
                 </label>
                 <select
                   id="cargoType"
@@ -115,20 +117,20 @@ export default function TruckShippingEstimator() {
                     outline-none bg-white cursor-pointer appearance-none font-[inherit]
                     focus:border-blue-400 transition-colors min-w-0"
                 >
-                  {CARGO_TYPES.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                  {CARGO_TYPE_KEYS.map((key) => (
+                    <option key={key} value={key}>{t(`estimator.cargoTypes.${key}`)}</option>
                   ))}
                 </select>
               </div>
               <div className="min-w-0">
                 <label htmlFor="weight" className="text-sm font-medium text-gray-700 mb-1.5 block">
-                  Weight (kg)*
+                  {t("estimator.weightLabel")}
                 </label>
                 <input
                   id="weight"
                   type="number"
                   min="1"
-                  placeholder="e.g. 1500"
+                  placeholder={t("estimator.weightPlaceholder")}
                   value={form.weight}
                   onChange={handleChange("weight")}
                   className="w-full h-11 sm:h-12 px-4 rounded-xl border border-gray-200 text-sm text-gray-900
@@ -137,7 +139,7 @@ export default function TruckShippingEstimator() {
               </div>
               <div className="min-w-0 sm:col-span-2">
                 <label htmlFor="vehicleType" className="text-sm font-medium text-gray-700 mb-1.5 block">
-                  Vehicle Type
+                  {t("estimator.vehicleTypeLabel")}
                 </label>
                 <select
                   id="vehicleType"
@@ -147,8 +149,8 @@ export default function TruckShippingEstimator() {
                     outline-none bg-white cursor-pointer appearance-none font-[inherit]
                     focus:border-blue-400 transition-colors min-w-0"
                 >
-                  {VEHICLE_TYPES.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                  {VEHICLE_TYPE_KEYS.map((key) => (
+                    <option key={key} value={key}>{t(`estimator.vehicleTypes.${key}`)}</option>
                   ))}
                 </select>
               </div>
@@ -160,7 +162,7 @@ export default function TruckShippingEstimator() {
                 text-sm font-bold uppercase tracking-wider border-none cursor-pointer
                 hover:bg-blue-600 transition-colors font-[inherit]"
             >
-              Calculate Estimate
+              {t("estimator.calculateButton")}
             </button>
 
             {calculated && result && (
@@ -170,19 +172,21 @@ export default function TruckShippingEstimator() {
                 role="status"
               >
                 <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-2">
-                  Estimated Quote (Mock)
+                  {t("estimator.resultLabel")}
                 </p>
                 <p className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1">
-                  ${result.price} <span className="text-sm font-normal text-gray-500">USD</span>
+                  ${result.price} <span className="text-sm font-normal text-gray-500">{t("estimator.currency")}</span>
                 </p>
                 <p className="text-sm text-gray-600 mb-1">
-                  Estimated transit: <strong>{result.days} business days</strong>
+                  {t("estimator.transitLabel")}{" "}
+                  <strong>{t("estimator.transitDays", { days: result.days })}</strong>
                 </p>
                 <p className="text-sm text-gray-600">
-                  Recommended vehicle: <strong>{result.vehicle}</strong>
+                  {t("estimator.vehicleLabel")}{" "}
+                  <strong>{t(`estimator.vehicleTypes.${result.vehicle}`)}</strong>
                 </p>
                 <p className="text-xs text-gray-400 mt-3">
-                  This is a preliminary estimate. Contact our team for a binding quote.
+                  {t("estimator.disclaimer")}
                 </p>
               </div>
             )}

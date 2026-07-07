@@ -1,0 +1,69 @@
+{
+  "breadcrumb": { "title": "About us" },
+  "banner": {
+    "title": "Calculate shipping and send your parcel in a minute",
+    "subtitle": "Fast, simple and transparent — no hidden fees.",
+    "subtitleLine2": "Select a country, specify the weight — and get an exact price.",
+    "shipNow": "Ship Now",
+    "teamAlt": "Team"
+  },
+  "stats": {
+    "clients": "Registered clients / Customers",
+    "countries": "Minimum delivery from 20 countries",
+    "offices": "Major services and offices",
+    "parcels": "Number of delivered parcels"
+  },
+  "timeline": {
+    "title": "How It All Started",
+    "subtitle": "Every great brand began with a simple idea — here's how YuuSell grew from a small startup to a global shipping company.",
+    "photoPlaceholder": "Add photo:",
+    "items": {
+      "2018": {
+        "title": "Company Founded",
+        "description": "YuuSell was born from a team of logistics and tech experts aiming to simplify international delivery for everyday people and growing businesses."
+      },
+      "2019": {
+        "title": "First Warehouse in the USA",
+        "description": "We launched our first warehouse in New York, building a reliable shipping route between the U.S. and China/Europe — and laying the foundations for our B2C services."
+      },
+      "2021": {
+        "title": "Expansion into the EU",
+        "description": "YuuSell started Europe operations partnering with local carriers and integrating with leading e-commerce platforms to serve clients in the European regulation."
+      },
+      "2024": {
+        "title": "Launch of YuuSell Online",
+        "description": "We launched our new digital platform delivering online store real-time tracking, and a customer dashboard — elevating shipping clarity like never."
+      }
+    }
+  },
+  "whyUs": {
+    "title": "Why Customers Choose Us",
+    "subtitle": "Trusted by thousands of happy clients",
+    "items": {
+      "shipments": {
+        "title": "100K+ Shipments/Year",
+        "description": "Whether you need help with picking, packing, kitting or BPMI to offer local warehousing, YuuSell offers best-in-class fulfillment at competitive rates in every category."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Our dedicated support team is always ready to help — whether you have questions about your order, customs, or delivery status. We're here around the clock."
+      },
+      "tools": {
+        "title": "Smart Online Tools",
+        "description": "From real-time tracking and CRM-connected label printing — YuuSell uses cutting-edge tools to keep you informed and in control — manage shipments easily."
+      },
+      "integration": {
+        "title": "Seamless Global Integration",
+        "description": "We integrate across Amazon, eBay, Etsy, and OZON to offer truly scalable delivery through the world's largest platforms."
+      },
+      "clients": {
+        "title": "For Individuals and Businesses",
+        "description": "Whether you're a shopper ordering items for personal use or a commercial entity needing white-label logistics, YuuSell offers tailored solutions for every scale."
+      },
+      "security": {
+        "title": "Secure and Transparent",
+        "description": "No hidden fees, full cargo insurance, and complete payment transparency. YuuSell gives you complete visibility — proposal fact — protected."
+      }
+    }
+  }
+}
