@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ServicesGrid from "./ServicesGrid";
+import { api } from "../utils/api";
 
 const STATUS_COLORS = {
   blue: { bg: "bg-blue-100", text: "text-blue-600" },
@@ -13,6 +14,8 @@ export default function TrackPage() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const mockResults = useMemo(
     () => ({
@@ -52,14 +55,20 @@ export default function TrackPage() {
     [t],
   );
 
-  const handleSearch = () => {
-    const found = mockResults[input.trim().toUpperCase()];
-    if (found) {
-      setResult(found);
+  const handleTrack = async (trackingNumber) => {
+    if (!trackingNumber.trim()) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const apiResult = await api(`/tracking/${trackingNumber.trim()}`);
+      setResult(apiResult);
       setNotFound(false);
-    } else {
+    } catch (err) {
+      setError("Shipment not found. Please check the tracking number.");
       setResult(null);
       setNotFound(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -92,12 +101,12 @@ export default function TrackPage() {
                   placeholder={t("searchPlaceholder")}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                  onKeyDown={(e) => e.key === "Enter" && handleTrack(input)}
                   className="w-full h-12 pl-10 pr-4 rounded-full bg-white border-none outline-none text-sm text-gray-900 font-[inherit]"
                 />
               </div>
               <button
-                onClick={handleSearch}
+                onClick={() => handleTrack(input)}
                 className="w-full sm:w-auto h-12 px-6 bg-gray-900 text-white text-sm font-bold uppercase tracking-wider rounded-full border-none cursor-pointer hover:bg-gray-700 transition-colors duration-150 font-[inherit] flex items-center gap-2"
               >
                 {t("search")}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../../components/Footer";
 import { isAuthenticated } from "../../utils/auth";
+import { api } from "../../utils/api";
 import { PARCEL_SIZES } from "./constants";
 import ShipmentStepper from "./components/ShipmentStepper";
 import StepParcelDetails from "./steps/StepParcelDetails";
@@ -41,11 +42,6 @@ const INITIAL_FORM = {
   useShippingAddress: true,
 };
 
-function generateTrackingId() {
-  const part = () => String(Math.floor(Math.random() * 10000)).padStart(4, "0");
-  return `YU ${part()} ${part()} ${part()} USSU`;
-}
-
 export default function CreateShipmentPage() {
   const navigate = useNavigate();
   const { t } = useTranslation("shipment");
@@ -53,6 +49,7 @@ export default function CreateShipmentPage() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [trackingId, setTrackingId] = useState("");
   const [completed, setCompleted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -88,10 +85,48 @@ export default function CreateShipmentPage() {
     }
 
     if (step === 4) {
-      setTrackingId(generateTrackingId());
-      setCompleted(true);
-      setStep(5);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const handleSubmit = async () => {
+        setLoading(true);
+        try {
+          const shipment = await api("/shipments", {
+            method: "POST",
+            body: JSON.stringify({
+              sender: {
+                name: `${form.sender?.company || ""} ${form.sender?.lastName || ""}`.trim(),
+                address: form.sender?.address || "",
+                city: form.sender?.city || "",
+                country: form.from?.country || "",
+                phone: form.sender?.phone,
+                email: form.sender?.email,
+              },
+              recipient: {
+                name: `${form.recipient?.company || ""} ${form.recipient?.lastName || ""}`.trim(),
+                address: form.recipient?.address || "",
+                city: form.recipient?.city || "",
+                country: form.where?.country || "",
+                phone: form.recipient?.phone,
+                email: form.recipient?.email,
+              },
+              cargo: {
+                description: form.cargo,
+                weight: 0,
+                dimensions: [form.length, form.width, form.height].filter(Boolean).join("x") || "",
+              },
+              serviceType: form.transport ? String(form.transport).toUpperCase() : "STANDARD",
+            }),
+          });
+          // Use tracking number from server
+          setTrackingId(shipment.trackingNumber);
+          setCompleted(true);
+          setStep(5);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (err) {
+          alert("Failed to create shipment. Please try again.");
+        } finally {
+          setLoading(false);
+        }
+      };
+      handleSubmit();
     }
   };
 

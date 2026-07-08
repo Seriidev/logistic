@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import PhoneInputField from "../components/PhoneInputField";
+import { api } from "../utils/api";
+import { logoutUser, isAuthenticated } from "../utils/auth";
 
 function StatusPill({ status }) {
   const style = useMemo(() => {
@@ -22,44 +24,77 @@ function StatusPill({ status }) {
 
 export default function ProfilePage() {
   const { t } = useTranslation("profile");
-  const [user, setUser] = useState({
-    fullName: t("demo.fullName"),
-    email: t("demo.email"),
-    phone: "+18626521545",
-    country: t("demo.country"),
-    city: t("demo.city"),
-    address: t("demo.address"),
-  });
+  const [user, setUser] = useState(null);
+  const [shipments, setShipments] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
 
-  const shipments = useMemo(
-    () => [
-      { id: "YS-10428", status: t("status.inTransit"), from: t("demo.fromChina"), to: t("demo.toUsa"), eta: t("demo.etaRange1") },
-      { id: "YS-10311", status: t("status.delivered"), from: t("demo.fromTurkey"), to: t("demo.toUsa"), eta: t("demo.etaDelivered") },
-      { id: "YS-10102", status: t("status.processing"), from: t("demo.fromUae"), to: t("demo.toUsa"), eta: t("demo.etaRange2") },
-    ],
-    [t],
-  );
+  // Load user data from API
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      window.location.href = "/login";
+      return;
+    }
+    Promise.all([api("/auth/me"), api("/shipments?limit=3&page=1")])
+      .then(([me, shipmentsData]) => {
+        setUser({
+          fullName: me.name || me.email,
+          email: me.email,
+          phone: me.phone || "",
+          country: me.country || "",
+          city: me.city || "",
+          address: me.address || "",
+        });
+        setShipments(shipmentsData.data || []);
+      })
+      .catch(() => setError("Failed to load profile"))
+      .finally(() => setLoading(false));
+  }, []);
 
   const stats = useMemo(() => {
-    const inTransit = shipments.filter((s) => s.status === t("status.inTransit")).length;
-    const delivered = shipments.filter((s) => s.status === t("status.delivered")).length;
+    const inTransit = shipments.filter((s) => String(s.status || "").toLowerCase().includes("transit")).length;
+    const delivered = shipments.filter((s) => String(s.status || "").toLowerCase().includes("deliver")).length;
     return { total: shipments.length, inTransit, delivered };
-  }, [shipments, t]);
+  }, [shipments]);
 
   const initials = useMemo(() => {
+    if (!user) return "U";
     const parts = (user.fullName || "").trim().split(/\s+/).filter(Boolean);
     const a = parts[0]?.[0] || "U";
     const b = parts[1]?.[0] || "";
     return (a + b).toUpperCase();
-  }, [user.fullName]);
+  }, [user]);
 
   const onSave = async () => {
     setSaving(true);
-    await new Promise((r) => setTimeout(r, 650));
-    setSaving(false);
-    alert(t("saved"));
+    try {
+      await api("/auth/me", {
+        method: "PUT",
+        body: JSON.stringify({
+          name: user.fullName,
+          phone: user.phone,
+          country: user.country,
+          city: user.city,
+          address: user.address,
+        }),
+      });
+      alert("Saved!");
+    } catch (err) {
+      alert("Failed to save. Please try again.");
+    } finally {
+      setSaving(false);
+    }
   };
+
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+
+  if (!user) return null;
 
   return (
     <>
@@ -133,7 +168,10 @@ export default function ProfilePage() {
                 </button>
                 <button
                   className="w-full bg-white text-red-600 text-sm font-semibold px-4 py-3 rounded-2xl border border-red-100 cursor-pointer hover:bg-red-50 transition-colors"
-                  onClick={() => alert(t("actions.logoutStub"))}
+                  onClick={async () => {
+                    await logoutUser();
+                    window.location.href = "/login";
+                  }}
                 >
                   {t("actions.logout")}
                 </button>
@@ -213,9 +251,9 @@ export default function ProfilePage() {
                 {shipments.map((s) => (
                   <div key={s.id} className="bg-white border border-gray-200 rounded-2xl p-4 flex flex-col md:flex-row md:items-center gap-3">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-gray-900">{s.id}</p>
+                      <p className="text-sm font-bold text-gray-900">{s.trackingNumber}</p>
                       <p className="text-xs text-gray-500 mt-0.5">
-                        {s.from} → {s.to} · {t("shipments.eta")}: {s.eta}
+                        {s.sender?.city} → {s.recipient?.city}
                       </p>
                     </div>
                     <div className="flex items-center justify-between md:justify-end gap-3">

@@ -228,7 +228,7 @@ export default function Footer() {
         <div className="hidden lg:grid lg:grid-cols-12 gap-8 xl:gap-10 min-w-0">
           <div className="lg:col-span-3 flex flex-col gap-5 min-w-0">
             <a href="/" className="inline-flex items-center gap-2.5 no-underline w-fit group">
-              <img src={yuuLogo} alt="" className="h-9 w-auto transition-transform duration-200 group-hover:scale-105" />
+              <img src={yuuLogo} alt={t("footer.brand.name")} className="h-9 w-auto transition-transform duration-200 group-hover:scale-105" />
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               {t("footer.brand.tagline")}
@@ -264,8 +264,7 @@ export default function Footer() {
         <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-6 min-w-0">
           <div className="flex flex-col gap-5 min-w-0">
             <a href="/" className="inline-flex items-center gap-2.5 no-underline w-fit">
-              <img src={yuuLogo} alt="" className="h-9 w-auto" />
-              <span className="text-lg font-bold text-gray-900">{t("footer.brand.name")}</span>
+              <img src={yuuLogo} alt={t("footer.brand.name")} className="h-9 w-auto" />
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               {t("footer.brand.tagline")}
@@ -296,8 +295,7 @@ export default function Footer() {
         <div className="md:hidden min-w-0">
           <div className="flex flex-col gap-5 pb-6 border-b border-gray-200/80 mb-2">
             <a href="/" className="inline-flex items-center gap-2.5 no-underline w-fit">
-              <img src={yuuLogo} alt="" className="h-9 w-auto" />
-              <span className="text-lg font-bold text-gray-900">{t("footer.brand.name")}</span>
+              <img src={yuuLogo} alt={t("footer.brand.name")} className="h-9 w-auto" />
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               {t("footer.brand.tagline")}

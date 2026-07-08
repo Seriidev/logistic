@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 import Footer from "../../components/Footer";
 import PhoneInputField from "../../components/PhoneInputField";
-import { loginUser } from "../../utils/auth";
+import { loginUser, registerUser } from "../../utils/auth";
 import { getPhoneValidationError } from "../../utils/phone";
 import AuthIllustration from "./AuthIllustration";
 
 const inputClass =
   "w-full h-12 px-4 rounded-xl bg-[#f0f2f5] border border-transparent outline-none text-sm text-gray-900 font-[inherit] placeholder:text-gray-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all";
+
+const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
 const IconGoogle = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
@@ -61,6 +64,17 @@ export default function AuthPage() {
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const isSignupFormValid = useMemo(() => {
+    if (!name.trim() || !surname.trim()) return false;
+    if (getPhoneValidationError(phone, { required: true })) return false;
+    if (!password || password.length < 8) return false;
+    if (!isValidEmail(email)) return false;
+    return true;
+  }, [name, surname, phone, password, email]);
 
   const switchMode = (next) => {
     setMode(next);
@@ -69,17 +83,21 @@ export default function AuthPage() {
     navigate(`${base}${query}`, { replace: true });
   };
 
-  const finishAuth = () => {
-    loginUser();
-    navigate(redirectTo);
-  };
-
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    finishAuth();
+    setLoading(true);
+    setError(null);
+    try {
+      await loginUser(email, password);
+      window.location.href = "/profile";
+    } catch (err) {
+      setError(err?.message || "Invalid email or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
     const err = getPhoneValidationError(phone, { required: true });
     if (err) {
@@ -87,7 +105,16 @@ export default function AuthPage() {
       return;
     }
     setPhoneError("");
-    finishAuth();
+    setLoading(true);
+    setError(null);
+    try {
+      await registerUser(email, password, phone);
+      window.location.href = "/profile";
+    } catch (err2) {
+      setError(err2?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const breadcrumbLabel = mode === "signup" ? t("breadcrumb.signUp") : t("breadcrumb.logIn");
@@ -242,6 +269,28 @@ export default function AuthPage() {
                     />
 
                     <label className="flex flex-col gap-1.5">
+                      <span className="text-xs font-medium text-gray-500">{t("fields.password")}</span>
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder={t("fields.passwordPlaceholder")}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className={`${inputClass} pr-12`}
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword((v) => !v)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 border-none bg-transparent cursor-pointer transition-colors"
+                          aria-label={showPassword ? "Hide password" : "Show password"}
+                        >
+                          {showPassword ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}
+                        </button>
+                      </div>
+                    </label>
+
+                    <label className="flex flex-col gap-1.5">
                       <span className="text-xs font-medium text-gray-500">{t("fields.email")}</span>
                       <input
                         type="email"
@@ -256,7 +305,11 @@ export default function AuthPage() {
 
                     <button
                       type="submit"
-                      className="mt-2 w-full min-h-[48px] bg-[#9baff9] hover:bg-[#7a97f5] text-white text-sm font-bold uppercase tracking-wider rounded-2xl border-none cursor-pointer transition-colors duration-150 font-[inherit] flex items-center justify-center gap-2"
+                      disabled={!isSignupFormValid || loading}
+                      className={`mt-2 w-full min-h-[48px] text-white text-sm font-bold uppercase tracking-wider rounded-2xl border-none transition-colors duration-150 font-[inherit] flex items-center justify-center gap-2
+                        ${isSignupFormValid && !loading
+                          ? "bg-[#3b63f1] hover:bg-[#2d52e0] cursor-pointer"
+                          : "bg-[#b8c8f8] cursor-not-allowed"}`}
                     >
                       {t("submit.signUp")}
                       <span aria-hidden="true">→</span>
